@@ -5,6 +5,9 @@ ABIP is a new framework that applies alternating direction method of multipliers
 
 ABIP is developed by **[Tianyi Lin (https://github.com/tyDLin)](https://github.com/tyDLin)** and the is currently maintained by **[LEAVES]((https://github.com/tyDLin)**  optimization software platform
 
+## Version
+______________
+Current version of ABIP is 1.00
 
 ## Reference & Performance
 ______________
