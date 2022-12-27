@@ -1,0 +1,19 @@
+function compile_indirect(flags, common_abip)
+
+abip_include = strjoin("-I" + [fullfile("include");
+    fullfile("linsys")]);
+
+% compile indirect
+if (flags.COMPILE_WITH_OPENMP)
+    cmd = sprintf('mex -O %s %s %s %s COMPFLAGS="/openmp \\$COMPFLAGS" CFLAGS="\\$CFLAGS -fopenmp" %s %s %s %s %s %s -output abip_indirect',...
+        flags.arr, flags.LCFLAG, common_abip, flags.INCS,...
+        fullfile("linsys", "direct", "private.c"),...
+        flags.link, abip_include, flags.LOCS, flags.BLASLIB, flags.INT);
+else
+    cmd = sprintf('mex -O %s %s %s %s %s %s %s %s %s %s -output abip_indirect',...
+        flags.arr, flags.LCFLAG, common_abip, flags.INCS,...
+        fullfile("linsys", "indirect.c"),...
+        flags.link, abip_include, flags.LOCS, flags.BLASLIB, flags.INT);
+end
+
+eval(cmd);
