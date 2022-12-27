@@ -57,7 +57,7 @@ To call it, use
 
 **ABIP-LP**
 
-Chenyu Xu (More info)
+Chenyu Xue (Phd. student at RIIS, SUFE)
 
 **ABIP-QCP**
 
