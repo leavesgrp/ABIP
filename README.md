@@ -61,6 +61,6 @@ Chenyu Xue (Phd. student at RIIS, SUFE)
 
 **ABIP-QCP**
 
-Jinsong Liu (Phd. student as SUFE)
+Jinsong Liu (Phd. student at SUFE)
 
 Tianhao Liu (More info)
