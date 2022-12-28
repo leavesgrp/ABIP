@@ -63,4 +63,4 @@ Chenyu Xue (Phd. student at RIIS, SUFE)
 
 Jinsong Liu (Phd. student at SUFE)
 
-Tianhao Liu (Phd. student at RIIS, SUFE)
+Tianhao Liu (Phd. student at RIIS, SUFE. Email: liu.tianhao@163.sufe.edu.cn)
