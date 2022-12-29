@@ -61,6 +61,6 @@ Chenyu Xue (Phd. student at RIIS, SUFE. E-mail: xcy2721d@gmail.com)
 
 **ABIP-QCP**
 
-Jinsong Liu (Phd. student at SUFE)
+Jinsong Liu (Phd. student at SUFE. Email: liujinsong@163.shufe.edu.cn)
 
 Tianhao Liu (Phd. student at RIIS, SUFE. Email: liu.tianhao@163.sufe.edu.cn)
