@@ -66,7 +66,9 @@ Jinsong Liu (Phd. student at RIIS, Shanghai University of Finance and Economics.
 Tianhao Liu (Phd. student at RIIS, Shanghai University of Finance and Economics. Email: liu.tianhao@163.sufe.edu.cn)
 
 **Testing**
-Chuwen Zhang(Phd. student at RIIS, Shanghai University of Finance and Economics. Email: chuwzhang@gmail.com)
+
+Chuwen Zhang (Phd. student at RIIS, Shanghai University of Finance and Economics. Email: chuwzhang@gmail.com)
 
 **Interface**
+
 Wenzhi Gao (Master student at SIME, Shanghai University of Finance and Economics. Email: gwz@163.shufe.edu.cn)
