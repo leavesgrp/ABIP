@@ -57,7 +57,7 @@ To call it, use
 
 **ABIP-LP**
 
-Chenyu Xue (Phd. student at RIIS, SUFE)
+Chenyu Xue (Phd. student at RIIS, SUFE. E-mail: xcy2721d@gmail.com)
 
 **ABIP-QCP**
 
