@@ -1,7 +1,7 @@
 ## ABIP
 ### ADMM-based Interior Point Method for Linear and Conic Programming
 
-ABIP is a new framework that applies alternating direction method of multipliers (ADMM) to implement interior point method (IPM) for solving large-scale linear programs (LP) and conic programs (QCP.
+ABIP is a new framework that applies alternating direction method of multipliers (ADMM) to implement interior point method (IPM) for solving large-scale linear programs (LP) and conic programs (QCP).
 
 ABIP(LP) was initially developed by **[Tianyi Lin (https://github.com/tyDLin)](https://github.com/tyDLin)** and is currently maintained by **[LEAVES](https://leaves.shufe.edu.cn)**  optimization software platform. 
 
