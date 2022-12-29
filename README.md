@@ -57,10 +57,16 @@ To call it, use
 
 **ABIP-LP**
 
-Chenyu Xue (Phd. student at RIIS, SUFE. E-mail: xcy2721d@gmail.com)
+Chenyu Xue (Phd. student at RIIS, Shanghai University of Finance and Economics. Email: xcy2721d@gmail.com)
 
 **ABIP-QCP**
 
-Jinsong Liu (Phd. student at SUFE. Email: liujinsong@163.shufe.edu.cn)
+Jinsong Liu (Phd. student at RIIS, Shanghai University of Finance and Economics. Email: liujinsong@163.shufe.edu.cn)
 
-Tianhao Liu (Phd. student at RIIS, SUFE. Email: liu.tianhao@163.sufe.edu.cn)
+Tianhao Liu (Phd. student at RIIS, Shanghai University of Finance and Economics. Email: liu.tianhao@163.sufe.edu.cn)
+
+**Testing**
+Chuwen Zhang(Phd. student at RIIS, Shanghai University of Finance and Economics. Email: chuwzhang@gmail.com)
+
+**Interface**
+Wenzhi Gao (Master student at SIME, Shanghai University of Finance and Economics. Email: gwz@163.shufe.edu.cn)
