@@ -1,0 +1,30 @@
+{
+  "directory": "lp-test-results/mipcol17",
+  "methods": [
+    {
+      "name": "google_pdhg_1e-4",
+      "solution_dir": "pdhg_cpp_1e-4-cross",
+      "affix": ".json"
+    },
+    {
+      "name": "google_pdhg_1e-6",
+      "solution_dir": "pdhg_cpp_1e-6-cross",
+      "affix": ".json"
+    },
+    {
+      "name": "google_pdhg_1e-8",
+      "solution_dir": "pdhg_cpp_1e-8-cross",
+      "affix": ".json"
+    },
+    {
+      "name": "abip_direct_1e-6",
+      "solution_dir": "abip_0_1e-6-cross",
+      "affix": ".json"
+    },
+    {
+      "name": "abip_direct_1e-4",
+      "solution_dir": "abip_0_1e-4-cross",
+      "affix": ".json"
+    }
+  ]
+}

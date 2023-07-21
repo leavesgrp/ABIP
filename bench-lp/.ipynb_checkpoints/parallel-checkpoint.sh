@@ -1,0 +1,1 @@
+cat $1 | while read i; do printf "%q\n" "$i"; done | xargs --max-procs=$2 -I CMD bash -c CMD &
