@@ -5,17 +5,17 @@
 #  * Copyright (c) 2022
 #  */
 
-if [ "$#" -ne 5 ]; then
-  echo "Script for generating cmds to run ABIP via matlab in batch mode..."
+if [ "$#" -ne 4 ]; then
+  echo "Script for generating cmds to run ABIP via binary in batch mode..."
   echo "the commands save to ./cmd.sh"
-  echo "Usage: <dataset directory> <output_directory> <time limit for each instance> <precision> <direct:0 / indirect:1>" 1>&2
+  echo "Usage: <dataset directory> <output_directory> <time limit for each instance> <eps>" 1>&2
   exit -1
 fi
 
 # params
 wdir=$(pwd)
 
-echo "working directory ${wdir}"
+# echo "working directory ${wdir}"
 
 # if [ -z $abipsrc ]; then
 #   echo "'abipsrc' unset!"
@@ -34,10 +34,9 @@ input=$1
 output=$2
 timelimit=$3
 precision=$4
-usedirect=$5
 
-abipsrc='abip'
-abipname=$output/${abipsrc}_${usedirect}_1e-$precision
+abipsrc=abipc-$precision
+abipname=$output/${abipsrc}
 
 # save to a directory
 mkdir -p $abipname
@@ -45,13 +44,11 @@ if [ -f cmd.sh ]; then
   rm cmd.sh
 fi
 
-for f in $(/bin/ls $input); do
-  ff=$(basename -s .mps.gz $f)
+for f in $(/bin/ls $input/*.mps); do
+  ff=$(basename -s .mps $f)
 
-  mat_cmd="addpath matlab; addpath lpbench; test_one_abip('$input/$f', '$abipname', 1e-$precision, $timelimit); exit;"
+  mat_cmd="bin/abip $input/$ff.mps $timelimit 100000 10000000 0 1e-10 1e-$precision 5 1 $abipname/$ff"
   full_cmd="nohup timeout $timelimit \
-    $MATLAB_HOME/bin/matlab -nodesktop -nodisplay -nosplash -noFigureWindows -r \
-    \"${mat_cmd}\""
+    ${mat_cmd} &> $output/${abipsrc}/$ff.log "
   echo $full_cmd
-  echo $full_cmd >>cmd.sh
 done

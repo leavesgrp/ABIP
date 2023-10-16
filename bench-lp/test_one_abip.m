@@ -19,7 +19,7 @@ params.timelimit = timelimit;
 K.l = 1;
 
 if isfile(params.file_dir)
-  try
+  %try
     fprintf("=== running  : %s\n", params.file_dir);
     fi = params.file_dir;
     fname_arr = strsplit(params.file_dir, '/');
@@ -48,9 +48,9 @@ if isfile(params.file_dir)
     for xi = ylp
       fprintf(fdual, sprintf('%.4f\n', xi));
     end
-  catch
-    warning(sprintf("!!! %s failed", fdir));
-  end
+  %catch
+   % warning(sprintf("!!! %s failed", fdir));
+  %end
 else
   % else if an directory to run
   disp('not support a directory to run')
