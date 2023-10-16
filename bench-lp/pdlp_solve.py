@@ -17,7 +17,6 @@ from ortools.init import pywrapinit
 
 
 def copt_solve(fname, timelimit=3600):
-
     env = Envr()
     model = env.createModel()
     model.read(fname)  # type: Model
@@ -30,7 +29,6 @@ def copt_solve(fname, timelimit=3600):
 
 
 def copt_crossover(fname, A, b, x, y, s, tm=1000):
-
     env = Envr()
     model = env.createModel()
     model.read(fname)  # type: Model
@@ -45,7 +43,6 @@ def copt_crossover(fname, A, b, x, y, s, tm=1000):
 
 
 def get_lp_data(fname):
-
     model = gp.read(fname)
     A = model.getA()
     b = np.asarray(model.rhs)
@@ -88,10 +85,10 @@ def solve_pdhg_lp(A, b, c, lb, mm, tol=1e-08, tm=3600):
     # prob.solve(solver='PDLP', verbose=True, parameters_proto=p)
     result = pywrap_pdlp.primal_dual_hybrid_gradient(prob, p.SerializeToString())
     solver_log = solve_log_pb2.SolveLog.FromString(result.solve_log_str)
-    print('Primal solution:', result.primal_solution)
-    print('Dual solution:', result.dual_solution)
-    print('Reduced costs:', result.reduced_costs)
-    
+    print("Primal solution:", result.primal_solution)
+    print("Dual solution:", result.dual_solution)
+    print("Reduced costs:", result.reduced_costs)
+
     return (
         prob,
         p,
@@ -104,12 +101,12 @@ def solve_pdhg_lp(A, b, c, lb, mm, tol=1e-08, tm=3600):
 parser = argparse.ArgumentParser()
 parser.add_argument("--tol", type=float, default=1e-08)
 parser.add_argument("--solve_tm", type=float, default=3600)
-parser.add_argument("--cross_tm", type=float, default=1000)
+parser.add_argument("--cross_tm", type=float, default=-1)
 parser.add_argument("--file", type=str, default="")
 parser.add_argument("--output", type=str, default=".")
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     args = parser.parse_args()
     fname = args.file
     tol = args.tol
@@ -117,23 +114,33 @@ if __name__ == "__main__":
     info, mm = get_lp_data(fname)
     prob, p, result, solver_log, sol = solve_pdhg_lp(
         # info[0], info[1], info[2], info[3], tol, tm=args.solve_tm
-        info[0], info[1], info[2], info[3], mm, tol, tm=args.solve_tm
+        info[0],
+        info[1],
+        info[2],
+        info[3],
+        mm,
+        tol,
+        tm=args.solve_tm,
     )
     print("Iterations:", solver_log.iteration_count)
     print("Solve time (sec):", solver_log.solve_time_sec)
-    model = copt_crossover(
-        fname, info[0], info[1], sol[0], sol[1], sol[2], tm=args.cross_tm
-    )
-    content = {}
+
     name = fname.split("/")[-1].replace(".mps", "").replace(".gz", "")
-    content["name"] = name
-    content["Status"] = model.LpStatus
-    content["ObjVal"] = model.ObjVal
-    content["IterCount"] = model.SimplexIter
-    content["SolvingTime"] = model.SolvingTime
-    
-    print(content)
-    json.dump(content, open(f"{args.output}/{name}.crs.json", "w"))
     with open(f"{args.output}/{name}.json", "w") as f:
         from google.protobuf.json_format import MessageToJson
+
         f.write(MessageToJson(solver_log))
+
+    if args.cross_tm > 0:
+        model = copt_crossover(
+            fname, info[0], info[1], sol[0], sol[1], sol[2], tm=args.cross_tm
+        )
+        content = {}
+        content["name"] = name
+        content["Status"] = model.LpStatus
+        content["ObjVal"] = model.ObjVal
+        content["IterCount"] = model.SimplexIter
+        content["SolvingTime"] = model.SolvingTime
+
+        print(content)
+        json.dump(content, open(f"{args.output}/{name}.crs.json", "w"))

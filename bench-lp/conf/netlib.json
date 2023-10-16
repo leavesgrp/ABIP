@@ -1,5 +1,5 @@
 {
-  "directory": "lp-test-results/mipcol17",
+  "directory": "lp-test-results/netlib",
   "methods": [
     {
       "name": "google_pdhg_1e-4",

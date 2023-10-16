@@ -35,3 +35,12 @@ where
 ```
 
 Once you run this script, you will see a file `cmd.sh` in this directory. Then you can run the command one-by-one, or use `xargs` to run in parallel.
+
+
+## Number of Threads
+
+For benchmarking, we keep 4 threads,
+
+```
+export MKL_NUM_THREADS=4; export NUMEXPR_NUM_THREADS=4; export OMP_NUM_THREADS=4; ...
+```

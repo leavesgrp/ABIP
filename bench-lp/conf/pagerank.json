@@ -1,0 +1,15 @@
+{
+  "directory": "lp-test-results/pagerank",
+  "methods": [
+    {
+      "name": "google_pdhg_1e-4",
+      "solution_dir": "pdhg_cpp_1e-4",
+      "affix": ".json"
+    },
+    {
+      "name": "abip_c_4",
+      "solution_dir": "abipc-4-ind",
+      "affix": ".json"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ cd $wdir/$pdhgsrc
 for f in $(/bin/ls $data/*.mps); do
 
   ff=$(basename -s .mps $f)
-  cmd="python abip-lp/bench-lp/pdlp_solve.py \
+  cmd="python bench-lp/pdlp_solve.py \
     --file $data/$ff.mps \
     --tol  $eps \
     --output $phdg
