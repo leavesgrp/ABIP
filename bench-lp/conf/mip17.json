@@ -40,6 +40,11 @@
       "name": "abip_c_6",
       "solution_dir": "abipc-6",
       "affix": ".json"
+    },
+    {
+      "name": "copt_barrier",
+      "solution_dir": "copt",
+      "affix": ".json"
     }
   ]
 }

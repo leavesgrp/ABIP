@@ -72,8 +72,8 @@ def solve_pdhg_lp(A, b, c, lb, mm, tol=1e-08, tm=3600):
     criteria = TerminationCriteria(
         eps_optimal_absolute=tol,
         eps_optimal_relative=tol,
-        eps_primal_infeasible=1e-12,
-        eps_dual_infeasible=1e-12,
+        eps_primal_infeasible=tol,
+        eps_dual_infeasible=tol,
         time_sec_limit=tm,
     )
 

@@ -26,7 +26,10 @@ def google_pdhg_string_to_result(fpath):
             val_dual=val_dual.__round__(4),
             sol_status=sol_status,
             matvec=stats_solution["cumulativeKktMatrixPasses"],
-            name=fpath.split("/")[-1].split(".")[0].replace("s_", "pre_"),
+            name=fpath.split("/")[-1]
+            .split(".")[0]
+            .replace("s_pre", "pre")
+            .replace("s_", "pre_"),
         )
 
 
