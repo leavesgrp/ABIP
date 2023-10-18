@@ -1,0 +1,6 @@
+# test params
+# @author Chuwen Zhang
+# Parameter settings 
+TimeLimit 2000
+Threads 1
+Method 0

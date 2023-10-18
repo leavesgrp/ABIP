@@ -14,7 +14,7 @@ from analyze_abip import abip_string_to_result, abipc_string_to_result
 
 # from analyze_gurobi import gurobi_string_to_result
 # from analyze_scs import scs_string_to_result
-# from analyze_copt import copt_string_to_result
+from analyze_copt import copt_string_to_result
 
 DEFAULT_CONF = "./conf.analyze.json"
 ANALYZE_METHOD_REGISTRY = {
@@ -32,7 +32,7 @@ ANALYZE_METHOD_REGISTRY = {
     "abip_indirect_1e-4": abip_string_to_result,
     "abip_direct_1e-6": abip_string_to_result,
     "abip_indirect_1e-6": abip_string_to_result,
-    # "copt_barrier": copt_string_to_result,
+    "copt_barrier": copt_string_to_result,
     ###########################
     "pdlp_julia": google_pdhg_string_to_result,
     "pdlp": google_pdhg_string_to_result,
