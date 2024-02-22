@@ -90,6 +90,8 @@ mexcommand = "mex " + debugcommand + " -output " + join([mexfname, lib_path, src
 fprintf("%s\n",mexcommand);
 eval(replace(mexcommand, "Program Files (x86)", "'Program Files (x86)'"));
 
+addpath(pmex);
+
 if(mex_type == "ml")
     fprintf("Successfull compiled mex function abip_ml\n");
     fprintf("Usage:[sol,info] = abip_ml(data,settings)\n ");
