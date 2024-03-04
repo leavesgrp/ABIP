@@ -11,9 +11,9 @@ extern "C" {
 #define ABIP(x) abip_##x
 #endif
 
-//#ifndef ABIP_PARDISO
-//#define ABIP_PARDISO
-//#endif
+#ifndef ABIP_PARDISO
+#define ABIP_PARDISO
+#endif
 
 /* ABIP VERSION NUMBER ----------------------------------------------    */
 #define ABIP_VERSION                                                            \

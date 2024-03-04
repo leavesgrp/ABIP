@@ -253,7 +253,7 @@ void ABIP(_normalize_A)
                 A->x[j] /= D_pc[A->i[j]];
             }
         }
-        abip_printf("Done the pc rescaling!\n");
+        // abip_printf("Done the pc rescaling!\n");
     }
     else
     {
@@ -314,7 +314,7 @@ void ABIP(_normalize_A)
                 A->x[j] /= D_origin[A->i[j]];
             }
         }
-        abip_printf("Done the origin rescaling!\n");
+        // abip_printf("Done the origin rescaling!\n");
     }
     else
     {
@@ -400,7 +400,7 @@ void ABIP(_normalize_A)
             }
             
         }
-        abip_printf("Done the ruiz rescaling!\n");
+        // abip_printf("Done the ruiz rescaling!\n");
     }
     
     if (stgs->qp_rescale)
@@ -488,7 +488,7 @@ void ABIP(_normalize_A)
                 A->x[j] /= D_qp[A->i[j]];
             }
         }
-        abip_printf("Done the QP rescaling\n");
+        // abip_printf("Done the QP rescaling\n");
     }
     else
     {
