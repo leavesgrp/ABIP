@@ -11,7 +11,7 @@
 function [data] = save_abip_mps(fdir, fodir)
 % other method attr comes from the loaded .mat file
 % with `params` preset with default settings.
-params = abip_get_params();
+% params = abip_get_params();
 params.file_dir = fdir;
 params.output_dir = fodir;
 K.l = 1;
