@@ -6,24 +6,28 @@ abip_include = strjoin("-I" + [fullfile("include");
     fullfile("external", "amd");
     fullfile("external", "ldl")]);
 
-% If use MKL, then the lib_path is your MKL path. For example, in Windows
-lib_path = 'C:\Program Files (x86)\Intel\oneAPI\mkl\2022.1.0\lib\intel64';
-% or 
-% lib_path = 'C:\Program Files (x86)\Intel\oneAPI\mkl\2021.2.0\lib\intel64';
-
-% in MACOS or *nix
+platform = convertCharsToStrings(computer('arch'));
+lib_path = "";
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If use MKL, we suggest you set the environmental variables by oneapi,
+%   it is typically placed at /opt/intel/oneapi/setvars.sh
+%   alternatively, you can set the lib_path to your MKL path by your self,
+% For example, in linux, you may find it at /opt/intel/oneapi/mkl/2021.2.0/lib/intel64,
+%   then you uncomment the following:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % lib_path = "/opt/intel/oneapi/mkl/2021.2.0/lib/";
+% if exist(lib_path) % #ok
+%     platform = computer('arch');
+%     lib_path = "C:\'Program Files (x86)'\Intel\oneAPI\mkl\2022.1.0\lib\intel64";
+%     lib_path = "-L" + lib_path;
+% else
+%     platform = "nomkl";
+% end 
 
-if exist(lib_path) % #ok
-    platform = computer('arch');
-    lib_path = "C:\'Program Files (x86)'\Intel\oneAPI\mkl\2022.1.0\lib\intel64";
-    lib_path = "-L" + lib_path;
-else
-    platform = "nomkl";
-end % End if
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkl_macro = "-DABIP_PARDISO";
-pardiso_src = fullfile("..", "..", "c", "linsys", "abip_pardiso.c");
+pardiso_src = fullfile("linsys", "abip_pardiso.c");
 
 if platform == "win64"
     fprintf("Linking MKL in Windows \n");

@@ -163,7 +163,7 @@ static void print_init_header
         abip_printf("-");
     }
     
-    abip_printf("\n\tABIP v%s - First-Order Interior-Point Solver\n\t(c) Tianyi Lin, UC Berkeley, 2018-2020\n",
+    abip_printf("\n\tABIP v%s - First-Order Interior-Point Solver\n\t(c) Tianyi Lin, UC Berkeley, 2018-2020\n\t(c)LEAVES Group, 2021-2024\n",
                 ABIP(version)());
     
     for (i = 0; i < LINE_LEN; ++i)

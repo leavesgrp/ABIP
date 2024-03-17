@@ -24,15 +24,21 @@ v1.0
 
 ### Installation
 
-To install ABIP, use `install.m` script in the main direction.
+We provide the Matlab interface. The C interface is planned for 3.0 release.
+To install ABIP, install [`Intel OneAPI MKL`](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#base-kit) first.
 
-For QCP solver,  user needs to specify MKL path in 
+We suggest that the user set the environment variables by using the script provided by OneAPI.
+It is typically located at `path-to-oneapi/setvars.sh`.
 
-```
-mkl_path = ''; % '/opt/intel/oneapi/mkl'
-```
+For example, on Ubuntu, the root path of OneAPI is `/opt/intel/oneapi`, then you can run the following,
 
-### How to call ABIP
+```bash
+source /opt/intel/oneapi/setvars.sh       
+``` 
+
+When you finish the setups, use `install.m` script in the main direction.
+
+### Basic usages of ABIP
 
 ABIP accepts standard sedumi format defined using $A, b, c, K$.
 

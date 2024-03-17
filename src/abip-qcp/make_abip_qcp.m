@@ -1,20 +1,26 @@
 mex_type = 'qcp';
-    debug = 0;
+debug = 0;
 
 platform = convertCharsToStrings(computer('arch'));
 link = ' ';
-
+MKLROOT = getenv('MKLROOT');
+mkl_lib_path = fullfile(MKLROOT, 'lib');
+lib_path = join(['-L', mkl_lib_path]);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If use MKL, we suggest you set the environmental variables by oneapi,
+%   it is typically placed at /opt/intel/oneapi/setvars.sh
+%   alternatively, you can set the lib_path to your MKL path by your self,
+% For example, in linux, you may find it at /opt/intel/oneapi/mkl/2021.2.0/lib/intel64,
+%   then you may set therein.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if platform == "win64"
-    mkl_lib_path = fullfile(mkl_path, "lib", "intel64");
     fprintf('Linking MKL in Windows \n');
     link = [link, ' -lmkl_intel_lp64',...
         ' -lmkl_core', ' -lmkl_sequential '];
 elseif platform == "maci64"
-    mkl_lib_path = fullfile(mkl_path, "lib");
     fprintf('Linking MKL in MacOS \n');
     link = [link, join(mkl_lib_path + ["/libmkl_intel_lp64.a","/libmkl_core.a", "/libmkl_sequential.a "])];
 elseif platform == "glnxa64"
-    mkl_lib_path = fullfile(mkl_path, "lib", "intel64");
     fprintf('Linking MKL in Linux \n');
     link = [link, ' -lmkl_intel_ilp64',...
         ' -lmkl_core', ' -lmkl_sequential '];
@@ -22,7 +28,6 @@ else
     error('Unsupported platform.\n');
 end
 
-lib_path = join('-L' + mkl_lib_path);
 mexfname = "abip_" + mex_type;
 psrc = fullfile('.', 'source');  
 

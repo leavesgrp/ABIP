@@ -17,7 +17,7 @@ extern "C" {
 
 /* ABIP VERSION NUMBER ----------------------------------------------    */
 #define ABIP_VERSION                                                            \
-  ("1.0.0") /* string literals automatically null-terminated */
+  ("2.0.0") /* string literals automatically null-terminated */
                         
 #define ABIP_INFEASIBLE_INACCURATE (-7)  
 #define ABIP_UNBOUNDED_INACCURATE (-6)  

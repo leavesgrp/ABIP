@@ -97,7 +97,7 @@ static void print_init_header
             abip_printf("-");
       }
       
-      abip_printf("\n\tABIP v%s - First-Order Interior-Point Solver for Conic Programming\n\t(c)  Jinsong Liu\n", 
+      abip_printf("\n\tABIP v%s - First-Order Interior-Point Solver for Conic Programming\n\t(c)  Jinsong Liu & LEAVES Group, 2021-2024\n", 
             ABIP(version)());
       
       for (i = 0; i < LINE_LEN; ++i) 

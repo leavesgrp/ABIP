@@ -27,7 +27,6 @@ abip_common_linsys = fullfile('linsys', abip_common_linsys);
 abip_mexfile = fullfile('mexfile', abip_mexfile);
 
 common_abip = strcat(abip_common_src, " ", abip_common_linsys, " ", abip_mexfile);
-% common_abip = 'abip/src/linalg.c abip/src/adaptive.c abip/src/cs.c abip/src/util.c abip/src/abip.c abip/src/ctrlc.c abip/src/normalize.c abip/src/abip_version.c abip/linsys/common.c abip_mex.c';
 
 if (~isempty (strfind (computer, '64')))
     flags.arr = '-largeArrayDims';
@@ -68,5 +67,5 @@ compile_indirect(flags, common_abip);
 movefile(fullfile(".", "*." + mexext), fullfile(".", "interface"));
 addpath(fullfile("mexfile"));
 addpath(fullfile("interface"));
-addpath(fullfile("test"));
+% addpath(fullfile("test"));
 savepath
