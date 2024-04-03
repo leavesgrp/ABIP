@@ -67,5 +67,4 @@ compile_indirect(flags, common_abip);
 movefile(fullfile(".", "*." + mexext), fullfile(".", "interface"));
 addpath(fullfile("mexfile"));
 addpath(fullfile("interface"));
-% addpath(fullfile("test"));
 savepath

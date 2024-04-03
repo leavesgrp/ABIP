@@ -1,7 +1,11 @@
 #include "linalg.h"
 #include <math.h>
 
-/* x = b*a */
+// basic algebra operators
+
+/**
+@brief compute x = b*a 
+*/
 void ABIP(set_as_scaled_array)
 (
  abip_float *x,
@@ -17,7 +21,9 @@ void ABIP(set_as_scaled_array)
     }
 }
 
-/* x = sqrt(v) */
+/**
+@brief compute x = sqrt(v) 
+*/
 void ABIP(set_as_sqrt)
 (
  abip_float *x,
@@ -32,7 +38,9 @@ void ABIP(set_as_sqrt)
     }
 }
 
-/* x = v.^2 */
+/**
+@brief compute x = v.^2 
+*/
 void ABIP(set_as_sq)
 (
  abip_float *x,
@@ -47,7 +55,9 @@ void ABIP(set_as_sq)
     }
 }  
 
-/* a *= b */
+/**
+@brief compute a *= b 
+*/
 void ABIP(scale_array)
 (
  abip_float *a,
@@ -62,7 +72,9 @@ void ABIP(scale_array)
     }
 }
 
-/* x'*y */
+/**
+@brief compute x'*y 
+*/
 abip_float ABIP(dot)
 (
  const abip_float *x,
@@ -79,7 +91,9 @@ abip_float ABIP(dot)
     return ip;
 }
 
-/* ||v||_2^2 */
+/**
+@brief compute||v||_2^2 
+*/
 abip_float ABIP(norm_sq)
 (
  const abip_float *v,
@@ -95,7 +109,9 @@ abip_float ABIP(norm_sq)
     return nmsq;
 }
 
-/* ||v||_2 */
+/**
+@brief compute ||v||_2 
+*/
 abip_float ABIP(norm)
 (
  const abip_float *v,
@@ -104,7 +120,9 @@ abip_float ABIP(norm)
 {
     return SQRTF(ABIP(norm_sq)(v, len));
 }
-
+/**
+@brief compute square root of the minimal absolute value
+*/
 abip_float ABIP(min_abs_sqrt)
 (
  const abip_float *a,
@@ -125,7 +143,9 @@ abip_float ABIP(min_abs_sqrt)
     return SQRTF(ref);
 }
 
-// add by Kurt
+/**
+@brief compute L1 norm 
+*/
 abip_float ABIP(norm_one)
 (
  const abip_float *v,
@@ -140,6 +160,10 @@ abip_float ABIP(norm_one)
     }
     return nmone;
 }
+
+/**
+@brief compute square root L1 norm 
+*/
 abip_float ABIP(norm_one_sqrt)
 (
  const abip_float *v,
@@ -148,11 +172,13 @@ abip_float ABIP(norm_one_sqrt)
 {
     return SQRTF(ABIP(norm_one)(v, len));
 }
-// ------
 
 
 
-/* max(|v|) */
+
+/**
+@brief compute the infinity norm 
+*/
 abip_float ABIP(norm_inf)
 (
  const abip_float *a,
@@ -173,7 +199,9 @@ abip_float ABIP(norm_inf)
     return max;
 }
 
-// add by Kurt
+/**
+@brief compute square root infinity norm 
+*/
 abip_float ABIP(norm_inf_sqrt)
 (
  const abip_float *v,
@@ -184,7 +212,9 @@ abip_float ABIP(norm_inf_sqrt)
 }
 // ------
 
-/* a .+= b */
+/**
+@brief compute a .+= b 
+*/
 void ABIP(add_array)
 (
  abip_float *a,
@@ -199,7 +229,9 @@ void ABIP(add_array)
     }
 } 
 
-/* saxpy a += sc*b */
+/**
+@brief compute a += sc*b 
+*/
 void ABIP(add_scaled_array)
 ( 
  abip_float *a,
@@ -215,7 +247,9 @@ void ABIP(add_scaled_array)
     }
 }
 
-/* ||a-b||_2^2 */
+/**
+@brief compute ||a-b||_2^2 
+*/
 abip_float ABIP(norm_diff)
 (
  const abip_float *a,
@@ -234,7 +268,9 @@ abip_float ABIP(norm_diff)
     return SQRTF(nm_diff);
 }
 
-/* max(|a-b|) */
+/**
+@brief compute max(|a-b|) 
+*/
 abip_float ABIP(norm_inf_diff)
 (
  const abip_float *a,

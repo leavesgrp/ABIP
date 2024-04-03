@@ -2,9 +2,9 @@ function compile_direct(flags, common_abip)
 
 abip_include = strjoin("-I" + [fullfile("include");
     fullfile("linsys");
-    fullfile("external");
-    fullfile("external", "amd");
-    fullfile("external", "ldl")]);
+    fullfile("../external");
+    fullfile("../external", "amd");
+    fullfile("../external", "ldl")]);
 
 platform = convertCharsToStrings(computer('arch'));
 lib_path = "";
@@ -59,8 +59,8 @@ else
     cmd = sprintf ('mex -O %s %s %s %s %s %s %s %s', mkl_macro, flags.arr, lib_path, flags.LCFLAG, flags.INCS, abip_include, flags.INT);
 end
 
-ldl_path = fullfile("external", "ldl");
-amd_path = fullfile("external", "amd");
+ldl_path = fullfile("../external", "ldl");
+amd_path = fullfile("../external", "amd");
 
 ldl_files = ["ldl.c"];
 amd_files = ["amd_order", "amd_dump", "amd_postorder", "amd_post_tree", ...

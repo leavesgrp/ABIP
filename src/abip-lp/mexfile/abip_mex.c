@@ -77,6 +77,9 @@ void set_output_field(mxArray **pout, abip_float *out, abip_int len)
       mxSetN(*pout, 1);
 }
 
+/**
+@brief obtain data from mex function
+*/
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) 
 {
       abip_int i;                                 
@@ -174,6 +177,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
             d->c = (abip_float *)mxGetPr(c_mex);
       #endif
 
+      // set default parameters
       ABIP(set_default_settings)(d);
 
       tmp = mxGetField(settings, 0, "max_ipm_iters");
@@ -419,6 +423,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       return;
 }
 
+/**
+@brief set memory free
+*/
 void free_mex(ABIPData *d) 
 {
       if (d) 

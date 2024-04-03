@@ -5,6 +5,9 @@
 #define MIN_SCALE (1e-3)
 #define MAX_SCALE (1e3)
 
+/**
+@brief normalize b and c
+*/
 void ABIP(normalize_b_c)
 (
  ABIPWork *w
@@ -35,7 +38,9 @@ void ABIP(normalize_b_c)
     ABIP(scale_array)(c, w->sc_c * w->stgs->scale, w->n);
     ABIP(scale_array)(b, w->sc_b * w->stgs->scale, w->m);
 }
-
+/**
+@brief calculate the scaled residuals
+*/
 void ABIP(calc_scaled_resids)
 (
  ABIPWork *w,
@@ -89,6 +94,9 @@ void ABIP(calc_scaled_resids)
     r->res_dual = sqrt(r->res_dual);
 }
 
+/**
+@brief normalize the warm start solution
+*/
 void ABIP(normalize_warm_start)
 (
  ABIPWork *w
@@ -119,6 +127,9 @@ void ABIP(normalize_warm_start)
     }
 }
 
+/**
+@brief recover the optimal solution
+*/
 void ABIP(un_normalize_sol)
 (
  ABIPWork *w,

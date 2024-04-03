@@ -4,6 +4,9 @@
 #define MIN_SCALE (1e-3)
 #define MAX_SCALE (1e3)
 
+/**
+@brief copy matrix A
+*/
 abip_int ABIP(copy_A_matrix)
 (
  ABIPMatrix **dstp,
@@ -36,6 +39,9 @@ abip_int ABIP(copy_A_matrix)
     return 1;
 }
 
+/**
+@brief validate the linear system
+*/
 abip_int ABIP(validate_lin_sys)
 (
  const ABIPMatrix *A
@@ -87,7 +93,9 @@ abip_int ABIP(validate_lin_sys)
     
     return 0;
 }
-
+/**
+@brief set the memory of matrix A free
+*/
 void ABIP(free_A_matrix)
 (
  ABIPMatrix *A
@@ -136,6 +144,9 @@ static void print_A_matrix
 }
 #endif
 
+/**
+@brief normalize matrix A
+*/
 void ABIP(_normalize_A)
 (
  ABIPMatrix *A,
@@ -147,18 +158,16 @@ void ABIP(_normalize_A)
     abip_float *E = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
     abip_float *nms = (abip_float *) abip_calloc(A->m, sizeof(abip_float));
     
-    // Add by Kurt
-    abip_float *D_pc = (abip_float *) abip_malloc(A->m * sizeof(abip_float));
+    abip_float *D_pc = (abip_float *) abip_malloc(A->m * sizeof(abip_float)); // for pc rescale
     abip_float *E_pc = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
     abip_float *D_origin = (abip_float *) abip_malloc(A->m * sizeof(abip_float));
     abip_float *E_origin = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
     abip_float *D_temp = (abip_float *) abip_malloc(A->m * sizeof(abip_float));
     abip_float *E_temp = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
-    abip_float *D_ruiz = (abip_float *) abip_malloc(A->m * sizeof(abip_float));
+    abip_float *D_ruiz = (abip_float *) abip_malloc(A->m * sizeof(abip_float)); // for ruiz rescale
     abip_float *E_ruiz = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
-    abip_float *D_qp = (abip_float *) abip_malloc(A->m * sizeof(abip_float));
+    abip_float *D_qp = (abip_float *) abip_malloc(A->m * sizeof(abip_float)); // for the trial rescale used in qcp
     abip_float *E_qp = (abip_float *) abip_malloc(A->n * sizeof(abip_float));
-    // ------
     
     abip_float min_row_scale = MIN_SCALE * SQRTF((abip_float)A->n);
     abip_float max_row_scale = MAX_SCALE * SQRTF((abip_float)A->n);
@@ -170,7 +179,7 @@ void ABIP(_normalize_A)
     abip_int c1;
     abip_int c2;
     
-    // Add by Kurt
+    // 
     abip_int k;
     abip_int ruiz_iter = stgs->ruiz_iter;
     abip_float tmp;
@@ -189,7 +198,7 @@ void ABIP(_normalize_A)
     memset(D, 0, A->m * sizeof(abip_float));
     memset(E, 0, A->n * sizeof(abip_float));
     
-    // Add by Kurt
+    // 
     memset(D_pc, 0, A->m * sizeof(abip_float));
     memset(E_pc, 0, A->n * sizeof(abip_float));
     memset(D_origin, 0, A->m * sizeof(abip_float));
@@ -289,8 +298,8 @@ void ABIP(_normalize_A)
             c2 = A->p[i + 1];
             for (j = c1; j < c2; ++j)
             {
-                wrk = A->x[j];                             //  取出第j个非0元
-                D_origin[A->i[j]] += wrk * wrk;            //  A->[i[j]] 存的是第j个非零元对应的行数
+                wrk = A->x[j];                             //  j-th nnz
+                D_origin[A->i[j]] += wrk * wrk;            //  A->[i[j]] is the j-th nnz's row 
             }
         }
         
@@ -347,7 +356,7 @@ void ABIP(_normalize_A)
                     e = max_col_scale;
                 }
                 
-                ABIP(scale_array)(&(A->x[A->p[i]]), 1.0 / e, c1);  // 相当于是对A做了scale
+                ABIP(scale_array)(&(A->x[A->p[i]]), 1.0 / e, c1);  // scale A
                 E_temp[i] = e;
             }
             
@@ -359,11 +368,11 @@ void ABIP(_normalize_A)
                 
                 for (j = c1; j < c2; ++j)
                 {
-                    wrk = ABS(A->x[j]);   //取出第j个非0元，并计算绝对值
-                    // abip_printf("the ABS of %d_{th} nnz element is: %f, the corresponding row is %d\n", j, wrk, A->i[j]);
+                    wrk = ABS(A->x[j]);   //abs j-th nnz
+
                     if (wrk >= D_temp[A->i[j]])
                     {
-                        D_temp[A->i[j]] = wrk; // 如果第j个非0元的绝对值大于其所在行对应的D_temp的元素，则替换之
+                        D_temp[A->i[j]] = wrk; 
                     }
                 }
             }
@@ -437,7 +446,6 @@ void ABIP(_normalize_A)
             for (j = c1; j < c2; ++j)
             {
                 wrk = ABS(A->x[j]);
-                // abip_printf("the ABS of %d_{th} nnz element is: %f, the corresponding row is %d\n", j, wrk, A->i[j]);
                 if (wrk >= D_qp[A->i[j]])
                 {
                     D_qp[A->i[j]] = wrk;
@@ -449,7 +457,6 @@ void ABIP(_normalize_A)
         for (i = 0; i < A->m; ++i)
         {
             D_temp[i] = D_qp[i];
-            // abip_printf("D_qp[%d] is: %f\n", i, D_qp[i]);
         }
         
         // compute the min nonzero abs and save it in D_temp
@@ -556,7 +563,9 @@ void ABIP(_normalize_A)
 #endif
     
 }
-
+/**
+@brief unnormalize matrix A
+*/
 void ABIP(_un_normalize_A)
 (
  ABIPMatrix *A,
@@ -583,7 +592,9 @@ void ABIP(_un_normalize_A)
         ABIP(scale_array)(&(A->x[A->p[i]]), E[i] / stgs->scale, A->p[i + 1] - A->p[i]);
     }
 }
-
+/**
+@brief compute A^Tx
+*/
 void ABIP(_accum_by_Atrans)
 (
  abip_int n,
@@ -627,6 +638,9 @@ void ABIP(_accum_by_Atrans)
 #endif
 }
 
+/**
+@brief compute Ax
+*/
 void ABIP(_accum_by_A)
 (
  abip_int n,
@@ -680,6 +694,9 @@ void ABIP(_accum_by_A)
 #endif
 }
 
+/**
+@brief compute cumulative sum of c
+*/
 abip_float ABIP(cumsum)
 (
  abip_int *p,

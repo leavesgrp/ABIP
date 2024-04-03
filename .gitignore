@@ -1,4 +1,4 @@
-results
+
 lp-test-results
 datasets
 data
@@ -7,6 +7,9 @@ hil
 *.ipynb_checkpoints
 *.gz
 __pycache__/
+
+.vscode
+settings.json
 # reference
 ref/*.pdf
 *.nav
@@ -181,3 +184,5 @@ dualnv/thirdparty
 /out/
 *.whl
 .DS_Store
+.texpadtmp
+.texpadtmp

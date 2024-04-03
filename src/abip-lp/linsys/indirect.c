@@ -3,6 +3,8 @@
 #define CG_BEST_TOL 1e-9
 #define CG_MIN_TOL 1e-1
 
+// use cg to solve the linear system
+
 char *ABIP(get_lin_sys_method)
 (
  const ABIPMatrix *A,

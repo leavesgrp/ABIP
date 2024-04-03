@@ -11,7 +11,9 @@
 
 ABIP(timer) global_timer;
 
-/* printing header */
+/* 
+@brief printing header 
+*/
 static const char *HEADER[] = {
     " ipm iter ", " admm iter ", "     mu ",
     " pri res ", " dua res ", " rel gap ",
@@ -22,6 +24,9 @@ static const abip_int HSPACE = 9;
 static const abip_int HEADER_LEN = 10;
 static const abip_int LINE_LEN = 150;
 
+/**
+@brief check whether x is nan
+*/
 static abip_int abip_isnan
  (
   abip_float x
@@ -30,7 +35,9 @@ static abip_int abip_isnan
     DEBUG_FUNC
     RETURN(x == NAN || x != x);
 }
-
+/**
+@brief set memory free
+*/
 static void free_work
  (
   ABIPWork *w
@@ -146,7 +153,9 @@ static void free_work
     
     RETURN;
 }
-
+/**
+@brief print the initialization header
+*/
 static void print_init_header
  (
   const ABIPData *d
@@ -204,7 +213,9 @@ static void print_init_header
     
     RETURN;
 }
-
+/**
+@brief if the algorithm fails, fill in the related information
+*/
 static void populate_on_failure
  (
   abip_int m,
@@ -265,6 +276,9 @@ static void populate_on_failure
     RETURN;
 }
 
+/**
+@brief detect whether the algorithm fails
+*/
 static abip_int failure
  (
   ABIPWork *w,
@@ -287,7 +301,9 @@ static abip_int failure
     
     RETURN status;
 }
-
+/**
+@brief use warm start
+*/
 static void warm_start_vars
  (
   ABIPWork *w,
@@ -339,7 +355,9 @@ static void warm_start_vars
     
     RETURN;
 }
-
+/**
+@brief use cold start
+*/
 static void cold_start_vars
  (
   ABIPWork *w
@@ -361,7 +379,9 @@ static void cold_start_vars
     
     RETURN;
 }
-
+/**
+@brief calculate primal residual
+*/
 static abip_float calc_primal_resid
  (
   ABIPWork *w,
@@ -395,7 +415,9 @@ static abip_float calc_primal_resid
     *nm_A_x = SQRTF(*nm_A_x);
     RETURN SQRTF(pres);
 }
-
+/**
+@brief calculate dual residual
+*/
 static abip_float calc_dual_resid
  (
   ABIPWork *w,
@@ -430,6 +452,9 @@ static abip_float calc_dual_resid
     RETURN SQRTF(dres);
 }
 
+/**
+@brief calculate the residuals based on given primal-dual solution
+*/
 static void calc_residuals
  (
   ABIPWork *w,
@@ -489,7 +514,7 @@ static void calc_residuals
     }
     
     
-    // compute primal resid and dual resid. memset pr and dr, then compute.
+    // compute primal resid. and dual resid. memset pr and dr, then compute.
     nmpr_tau = calc_primal_resid(w, x, r->tau, &nm_A_x_tau);
     nmdr_tau = calc_dual_resid(w, y, s, r->tau, &nm_At_ys_tau);
     
@@ -508,7 +533,9 @@ static void calc_residuals
     
     RETURN;
 }
-
+/**
+@brief update utilde
+*/
 static abip_int project_lin_sys
  (
   ABIPWork *w,
@@ -534,6 +561,9 @@ static abip_int project_lin_sys
     RETURN status;
 }
 
+/**
+@brief update dual variable v
+*/
 static void update_dual_vars
  (
   ABIPWork *w
@@ -552,7 +582,8 @@ static void update_dual_vars
     
     RETURN;
 }
-
+/* @brief use restart strategy
+*/
 static void restart_vars
  (
   ABIPWork* w,
@@ -598,7 +629,9 @@ static void restart_vars
     
 }
 
-
+/**
+@brief compute the average solution for restart
+*/
 static void compute_avg
  (
   ABIPWork* w,
@@ -676,9 +709,11 @@ static void project_barrier_dual
     
     RETURN;
 }
-// ------------------------------
 
 
+/**
+@brief update u
+*/
 static void project_barrier
  (
   ABIPWork *w
@@ -712,6 +747,9 @@ static void project_barrier
     RETURN;
 }
 
+/**
+@brief traditional tedious mu strategy
+*/
 static void update_barrier
  (
   ABIPWork* w,
@@ -886,6 +924,9 @@ static void update_barrier
 // #define MYDEBUG
 // #endif
 
+/**
+@brief LOQO mu strategy
+*/
 static void update_barrier_dynamic
  (
   ABIPWork *w,
@@ -935,6 +976,9 @@ static void update_barrier_dynamic
     // w->gamma = gamma;
 }
 
+/**
+@brief aggressive mu strategy
+*/
 static void update_barrier_dynamic_2
  (
   ABIPWork* w
@@ -946,7 +990,9 @@ static void update_barrier_dynamic_2
     w->mu *= MIN(x * w->mu, pow(w->mu, eta));
     return;
 }
-
+/**
+@brief reinitialize variables for the next outer loop
+*/
 static void reinitialize_vars
  (
   ABIPWork *w,
@@ -959,7 +1005,7 @@ static void reinitialize_vars
     abip_int m = w->m;
     abip_int l = m + w->n + 1;
     
-    if (w->stgs->avg_criterion)
+    if (w->stgs->avg_criterion) // restart related
     {
         if (indx == 0)
         {
@@ -1027,7 +1073,9 @@ static void reinitialize_vars
     }
     RETURN;
 }
-
+/**
+@brief determine whether the problem is indeterminated
+*/
 static abip_int indeterminate
  (
   ABIPWork *w,
@@ -1046,6 +1094,9 @@ static abip_int indeterminate
     RETURN ABIP_INDETERMINATE;
 }
 
+/**
+@brief determine whether the problem is solved
+*/
 static abip_int solved
  (
   ABIPWork *w,
@@ -1070,7 +1121,9 @@ static abip_int solved
     
     RETURN ABIP_SOLVED;
 }
-
+/**
+@brief set dual variable y
+*/
 static void sety
  (
   ABIPWork *w,
@@ -1097,7 +1150,9 @@ static void sety
     
     RETURN;
 }
-
+/**
+@brief set primal variable x
+*/
 static void setx
  (
   ABIPWork *w,
@@ -1124,7 +1179,9 @@ static void setx
     
     RETURN;
 }
-
+/**
+@brief set slack variable s
+*/
 static void sets
  (
   ABIPWork *w,
@@ -1151,7 +1208,9 @@ static void sets
     
     RETURN;
 }
-
+/**
+@brief determine whether the problem is infeasible
+*/
 static abip_int infeasible
  (
   ABIPWork *w,
@@ -1175,7 +1234,9 @@ static abip_int infeasible
     strcpy(info->status, "Infeasible");
     RETURN ABIP_INFEASIBLE;
 }
-
+/**
+@brief determine whether the problem is unbounded
+*/
 static abip_int unbounded
  (
   ABIPWork *w,
@@ -1199,7 +1260,9 @@ static abip_int unbounded
     strcpy(info->status, "Unbounded");
     RETURN ABIP_UNBOUNDED;
 }
-
+/**
+@brief return the solved status
+*/
 static abip_int is_solved_status
  (
   abip_int status
@@ -1207,7 +1270,9 @@ static abip_int is_solved_status
 {
     RETURN status == ABIP_SOLVED || status == ABIP_SOLVED_INACCURATE;
 }
-
+/**
+@brief return the infeasible status
+*/
 static abip_int is_infeasible_status
  (
   abip_int status
@@ -1215,7 +1280,9 @@ static abip_int is_infeasible_status
 {
     RETURN status == ABIP_INFEASIBLE || status == ABIP_INFEASIBLE_INACCURATE;
 }
-
+/**
+@brief return the unbouned status
+*/
 static abip_int is_unbounded_status
  (
   abip_int status
@@ -1223,7 +1290,9 @@ static abip_int is_unbounded_status
 {
     RETURN status == ABIP_UNBOUNDED || status == ABIP_UNBOUNDED_INACCURATE;
 }
-
+/**
+@brief store the information after solving
+*/
 static void get_info
  (
   ABIPWork *w,
@@ -1269,7 +1338,9 @@ static void get_info
     
     RETURN;
 }
-
+/**
+@brief store the soluton obtained
+*/
 static void get_solution
  (
   ABIPWork *w,
@@ -1341,7 +1412,9 @@ static void get_solution
     
     RETURN;
 }
-
+/**
+@brief print detailed information
+*/
 static void print_summary
  (
   ABIPWork *w,
@@ -1388,7 +1461,9 @@ static void print_summary
     
     RETURN;
 }
-
+/**
+@brief print header
+*/
 static void print_header
  (
   ABIPWork *w
@@ -1429,7 +1504,9 @@ static void print_header
     
     RETURN;
 }
-
+/**
+@brief print footer
+*/
 static void print_footer
  (
   const ABIPData *d,
@@ -1529,6 +1606,10 @@ static void print_footer
     RETURN;
 }
 
+/**
+@brief check whether the tolerance level is satisfied
+*/
+
 static abip_int has_converged
  (
   ABIPWork *w,
@@ -1559,6 +1640,9 @@ static abip_int has_converged
     RETURN 0;
 }
 
+/**
+@brief validate the input data
+*/
 static abip_int validate
  (
   const ABIPData *d
@@ -1649,6 +1733,9 @@ static abip_int validate
     RETURN 0;
 }
 
+/**
+@brief allocate memory
+*/
 static ABIPWork *init_work
  (
   const ABIPData *d
@@ -1750,7 +1837,9 @@ static ABIPWork *init_work
     
     RETURN w;
 }
-
+/**
+@brief determine the hyperparameters and do normalization
+*/
 static abip_int update_work
  (
   const ABIPData *d,
@@ -1830,13 +1919,16 @@ static abip_int update_work
     ABIP(scale_array)(w->h, -1, m);
     memcpy(w->g, w->h, (n + m) * sizeof(abip_float));
     
-    ABIP(solve_lin_sys)(w->A, w->stgs, w->p, w->g, ABIP_NULL, -1);
+    ABIP(solve_lin_sys)(w->A, w->stgs, w->p, w->g, ABIP_NULL, -1); // solve the linear system
     ABIP(scale_array)(&(w->g[m]), -1, n);
     w->g_th = ABIP(dot)(w->h, w->g, n + m);
     
     RETURN 0;
 }
 
+/**
+@brief compute the norm difference between iterates
+*/
 static abip_float iterate_norm_diff
  (
   ABIPWork *w
@@ -1853,7 +1945,9 @@ static abip_float iterate_norm_diff
     
     RETURN norm_diff / norm;
 }
-
+/**
+@brief compute Q norm to check the inner loop termination criterion
+*/
 static abip_float iterate_Q_norm_resd
  (
   ABIPWork *w,
@@ -1901,10 +1995,8 @@ static abip_float iterate_Q_norm_resd
     Qres += (bTy - cTx - kap) * (bTy - cTx - kap);
     abip_float norm = 1 + SQRTF(ABIP(norm_sq)(w->u, l) + ABIP(norm_sq)(w->v, l)) ;
     
-    // abip_printf("Qres is %f\n", Qres);
-    // abip_printf("norm is %f\n", norm);
     
-    
+    // check inner loop termination criterion via the average solution returned by restart strategy
     if ( (j+1) % 10 == 0)
     {
         // initialize pr_avg and dr_avg
@@ -1941,9 +2033,7 @@ static abip_float iterate_Q_norm_resd
         
         Qres_avg += (bTy_avg - cTx_avg - kap_avg) * (bTy_avg - cTx_avg - kap_avg);
         
-        // abip_printf("Qres_avg is %f\n", Qres_avg);
         norm_avg = 1 + SQRTF(ABIP(norm_sq)(w->u_avgcon, l) + ABIP(norm_sq)(w->v_avgcon, l));
-        // abip_printf("norm_avg is %f\n", norm_avg);
         abip_free(pr_avg); abip_free(dr_avg);
     }
     
@@ -1951,23 +2041,18 @@ static abip_float iterate_Q_norm_resd
     {
         w->stgs->avg_criterion = 1;
         
-        // abip_printf("avg works here\n");
-        
-        // abip_printf("avg value is: %f\n", SQRTF(Qres_avg) / norm_avg);
-        // abip_printf("last iterate value is: %f\n", SQRTF(Qres) / norm);
-        
-        
         RETURN SQRTF(Qres_avg) / norm_avg;
     }
     else
     {
-        // abip_printf("avg value is: %f\n", SQRTF(Qres_avg) / norm_avg);
-        // abip_printf("last iterate value is: %f\n", SQRTF(Qres) / norm);
         w->stgs->avg_criterion = 0;
         RETURN SQRTF(Qres) / norm;
     }
 }
 
+/**
+@brief detailed update rule of ABIP
+*/
 abip_int ABIP(solve)
 (
  ABIPWork *w,
@@ -2014,9 +2099,9 @@ abip_int ABIP(solve)
     
     k = 0;
     
-    for (i = 0; i < w->stgs->max_ipm_iters; ++i)
+    for (i = 0; i < w->stgs->max_ipm_iters; ++i) // the outer loop
     {
-        if (MIN(w->sp, w->stgs->sparsity_ratio) > 0.5)
+        if (MIN(w->sp, w->stgs->sparsity_ratio) > 0.5) // determine the # iteratin of inner loop
         {
             inner_stopper = (int)round(POWF(w->mu, -0.35));
         }
@@ -2043,19 +2128,19 @@ abip_int ABIP(solve)
             memcpy(w->v, w->v_avgcon, sizeof(abip_float) * l);
         }
         
-        for (j = 0; j < inner_stopper; ++j)
+        for (j = 0; j < inner_stopper; ++j) // the inner loop
         {
             memcpy(w->u_prev, w->u, l * sizeof(abip_float));
             memcpy(w->v_prev, w->v, l * sizeof(abip_float));
             
-            
+            // update variables
             if (project_lin_sys(w, k) < 0)
             {
                 RETURN failure(w, w->m, w->n, sol, info, ABIP_FAILED, "error in project_lin_sys", "Failure");
             }
             
             
-            if (w->stgs->half_update)
+            if (w->stgs->half_update) // half update
             {
                 half_update_dual_vars(w);
                 
@@ -2063,14 +2148,14 @@ abip_int ABIP(solve)
                 
             }
             
-            else
+            else // normal update
             {
                 project_barrier(w);
                 
                 update_dual_vars(w);
                 
             }
-            
+            // restart
             restart_vars(w, j, k);
             
             
@@ -2079,16 +2164,13 @@ abip_int ABIP(solve)
                 RETURN failure(w, w->m, w->n, sol, info, ABIP_SIGINT, "Interrupted", "Interrupted");
             }
             
-            
+            // compute average solution
             compute_avg(w,j);
             
-            /* abip_printf("||Qu-v|| = %3.6f, gamma = %3.6f, mu = %3.6f\n", iterate_Q_norm_resd(w), w->gamma, w->mu);  */
             
-            k += 1;
+            k += 1;   
             
-            
-            
-            if (iterate_Q_norm_resd(w, j) < w->gamma*w->mu)
+            if (iterate_Q_norm_resd(w, j) < w->gamma*w->mu) // inner loop termination criterion
             {
                 if (w->stgs->half_update)
                 {
@@ -2104,16 +2186,16 @@ abip_int ABIP(solve)
                 
                 break;
             }
-            
-            if (w-> final_check && (j+1) % CONVERGED_INTERVAL == 0)
+            // check whether the inner loop iterate has satisfied the tolerance level
+            if (w-> final_check && (j+1) % CONVERGED_INTERVAL == 0) 
             {
-                calc_residuals(w, &r, i, k);
+                calc_residuals(w, &r, i, k); // compute residuals
                 
                 if ((info->status_val = has_converged(w, &r, i, k)) != 0 || k+1 >= w->stgs->max_admm_iters || i+1 >= w->stgs->max_ipm_iters)
                 {
                     if (w->stgs->verbose && k>0)
                     {
-                        print_summary(w, i, k, &r, &solve_timer);
+                        print_summary(w, i, k, &r, &solve_timer); // converge
                     }
                     
                     get_solution(w, sol, info, &r, i, k);
@@ -2132,22 +2214,18 @@ abip_int ABIP(solve)
             
         }
         
-        elapsedT = ((abip_float)clock() - start_time) / CLOCKS_PER_SEC;
+        elapsedT = ((abip_float)clock() - start_time) / CLOCKS_PER_SEC; // record runtime
         if (elapsedT > maxTime) {
             abip_printf("Timelimit reached. \n");
             w->stgs->max_admm_iters = k * 1.05;
         }
         
-        // if (k > (int) (w->stgs->max_admm_iters*0.8))
-        // {
-        //       w-> final_check = 1;
-        // }
-        
+        // early stopping strategy
         if (w->mu < w->stgs->eps)
         {
             w->final_check = 1;
         }
-        
+        // check whether the iterate satisfies the tolerance level in the outer loop
         calc_residuals(w, &r, i, k);
         if (w->stgs->verbose)
         {
@@ -2197,7 +2275,7 @@ abip_int ABIP(solve)
                 update_barrier_dynamic(w, &r);
             }
         }
-        
+        // prepare the next outer loop
         reinitialize_vars(w, 0);
         
         if (w->stgs->adaptive)
@@ -2215,9 +2293,11 @@ abip_int ABIP(solve)
         }
     }
     
-    RETURN info->status_val;
+    RETURN info->status_val; // return status
 }
 
+/* @brief recover the optimal solution and set memory free
+*/
 void ABIP(finish)
 (
  ABIPWork *w
@@ -2256,6 +2336,8 @@ void ABIP(finish)
     RETURN;
 }
 
+/* @brief initialization
+*/
 ABIPWork *ABIP(init)
 (
  const ABIPData *d,
@@ -2292,12 +2374,12 @@ ABIPWork *ABIP(init)
     
     ABIP(tic)(&init_timer);
     
-    w = init_work(d);
+    w = init_work(d); // initialization 
     info->setup_time = ABIP(tocq)(&init_timer);
     
     if (d->stgs->verbose)
     {
-        abip_printf("Setup time: %1.2es\n", info->setup_time / 1e3);
+        abip_printf("Setup time: %1.2es\n", info->setup_time / 1e3); // prinf information
     }
     
     abip_end_interrupt_listener();
@@ -2305,6 +2387,9 @@ ABIPWork *ABIP(init)
     RETURN w;
 }
 
+/**
+@brief the main function
+*/
 abip_int ABIP(main)
 (
  const ABIPData *d,
@@ -2323,7 +2408,7 @@ abip_int ABIP(main)
     
     if (w)
     {
-        ABIP(solve)(w, d, sol, info);
+        ABIP(solve)(w, d, sol, info); // solve the problem via abip
         status = info->status_val;
     }
     else

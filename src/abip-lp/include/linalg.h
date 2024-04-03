@@ -63,22 +63,18 @@ abip_float ABIP(norm_inf)
 	abip_int len
 );
 
-
-// Added by Kurt
 abip_float ABIP(norm_one)
 (
       const abip_float *v, 
       abip_int len
 );
 
-// Added by Kurt
 abip_float ABIP(norm_one_sqrt)
 (
       const abip_float *v, 
       abip_int len
 );
 
-// Added by Kurt
 abip_float ABIP(norm_inf_sqrt)
 (
       const abip_float *v, 
@@ -91,7 +87,6 @@ abip_float ABIP(min_abs_sqrt)
       abip_int len,
       abip_float ref
 );
-// ------
 
 
 void ABIP(add_array)

@@ -1,5 +1,7 @@
 #include "direct.h"
 
+// use ldl to solve the linear system
+
 char *ABIP(get_lin_sys_method) ( const ABIPMatrix *A, const ABIPSettings *stgs ) {
     char *tmp = (char *) abip_malloc(sizeof(char) * 128);
 #ifdef ABIP_PARDISO

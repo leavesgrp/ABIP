@@ -44,7 +44,7 @@ end
 
 src = fullfile(psrc, srclist);
 
-pcs = fullfile('.', 'csparse', 'Source');  
+pcs = fullfile('.', '../external/csparse', 'Source');  
 
 cs_files = dir( [pcs '/*.c'] );
 cslist = [];
@@ -53,7 +53,7 @@ for i = 1:length(cs_files)
 end
 cs = fullfile(pcs, cslist);
 
-pldl = fullfile('.', 'qdldl', 'src');  
+pldl = fullfile('.', '../external/qdldl', 'src');  
 
 ldl_files = dir( [pldl '/*.c'] );
 ldllist = [];
@@ -62,7 +62,7 @@ for i = 1:length(ldl_files)
 end
 ldl = fullfile(pldl, ldllist);
 
-pamd = fullfile('.', 'amd');  
+pamd = fullfile('.', '../external/amd');  
 
 amd_files = dir( [pamd '/*.c'] );
 amdlist = [];
@@ -75,15 +75,18 @@ src = [src,cs,ldl,mex_file,amd];
 
 pinc = "include";
 
-cs_include = fullfile("csparse", "Include");
+cs_include = fullfile(".", "../external/csparse", "Include");
 
-ldl_include = fullfile("qdldl", "include");
+ldl_include = fullfile(".", "../external/qdldl", "include");
 
 mkl_include = fullfile(mkl_path, "include");
 
-amd_include = "amd";
+external_include = "../external/";
 
-inc = [pinc,mkl_include,cs_include,ldl_include, amd_include];
+amd_include = "../external/amd";
+
+
+inc = [pinc,mkl_include,cs_include,ldl_include,amd_include,external_include];
 inc = join("-I" + inc);
 
 if(debug == 0)
