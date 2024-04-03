@@ -1,0 +1,173 @@
+\hypertarget{linsys_8h}{}\doxysection{include/linsys.h File Reference}
+\label{linsys_8h}\index{include/linsys.h@{include/linsys.h}}
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_ade882d3f4d06d932341d13197881fbc9}{init\+\_\+lin\+\_\+sys\+\_\+work}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_ac1465df3228739549e5435792394d4bf}{solve\+\_\+lin\+\_\+sys}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$s, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_ad23b46969855636085b813a83c2489d2}{free\+\_\+lin\+\_\+sys\+\_\+work}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a905df62af2f6f126fa9e1a65dbc7d9f2}{free\+\_\+lin\+\_\+sys\+\_\+work\+\_\+pds}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a258abad59f073a88954cde0430ef5965}{accum\+\_\+by\+\_\+\+Atrans}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a9487ca3dd47956f14600cf6be4149505}{accum\+\_\+by\+\_\+A}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_ae1e5d79ab31d4c0b81adfbeaf20c0456}{validate\+\_\+lin\+\_\+sys}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em validate the linear system \end{DoxyCompactList}\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a6f4745f2a8f151cbfba288a3248bb397}{get\+\_\+lin\+\_\+sys\+\_\+method}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a9324fcbdcbd2c577751203abc8ba28c4}{get\+\_\+lin\+\_\+sys\+\_\+summary}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a8fb58ed8fb2e51d3b351642a176ed59b}{normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a184cd0c90635e21071242946afc34efa}{un\+\_\+normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a429675ba14ca33e555093446664eae95}{free\+\_\+\+A\+\_\+matrix}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em set the memory of matrix A free \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linsys_8h_a9e197c43e5f3b3ab5e69a10b9bdcea1a}{copy\+\_\+\+A\+\_\+matrix}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$$\ast$dstp, const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$src)
+\begin{DoxyCompactList}\small\item\em copy matrix A \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{linsys_8h_a9487ca3dd47956f14600cf6be4149505}\label{linsys_8h_a9487ca3dd47956f14600cf6be4149505}} 
+\index{linsys.h@{linsys.h}!accum\_by\_A@{accum\_by\_A}}
+\index{accum\_by\_A@{accum\_by\_A}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{accum\_by\_A()}{accum\_by\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() accum\+\_\+by\+\_\+A (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00205}{205}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a258abad59f073a88954cde0430ef5965}\label{linsys_8h_a258abad59f073a88954cde0430ef5965}} 
+\index{linsys.h@{linsys.h}!accum\_by\_Atrans@{accum\_by\_Atrans}}
+\index{accum\_by\_Atrans@{accum\_by\_Atrans}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{accum\_by\_Atrans()}{accum\_by\_Atrans()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() accum\+\_\+by\+\_\+\+Atrans (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00200}{200}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a9e197c43e5f3b3ab5e69a10b9bdcea1a}\label{linsys_8h_a9e197c43e5f3b3ab5e69a10b9bdcea1a}} 
+\index{linsys.h@{linsys.h}!copy\_A\_matrix@{copy\_A\_matrix}}
+\index{copy\_A\_matrix@{copy\_A\_matrix}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{copy\_A\_matrix()}{copy\_A\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() copy\+\_\+\+A\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$$\ast$}]{dstp,  }\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{src }\end{DoxyParamCaption})}
+
+
+
+copy matrix A 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00010}{10}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a429675ba14ca33e555093446664eae95}\label{linsys_8h_a429675ba14ca33e555093446664eae95}} 
+\index{linsys.h@{linsys.h}!free\_A\_matrix@{free\_A\_matrix}}
+\index{free\_A\_matrix@{free\_A\_matrix}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{free\_A\_matrix()}{free\_A\_matrix()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+\+A\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+set the memory of matrix A free 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00099}{99}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_ad23b46969855636085b813a83c2489d2}\label{linsys_8h_ad23b46969855636085b813a83c2489d2}} 
+\index{linsys.h@{linsys.h}!free\_lin\_sys\_work@{free\_lin\_sys\_work}}
+\index{free\_lin\_sys\_work@{free\_lin\_sys\_work}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{free\_lin\_sys\_work()}{free\_lin\_sys\_work()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+lin\+\_\+sys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00028}{28}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a905df62af2f6f126fa9e1a65dbc7d9f2}\label{linsys_8h_a905df62af2f6f126fa9e1a65dbc7d9f2}} 
+\index{linsys.h@{linsys.h}!free\_lin\_sys\_work\_pds@{free\_lin\_sys\_work\_pds}}
+\index{free\_lin\_sys\_work\_pds@{free\_lin\_sys\_work\_pds}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{free\_lin\_sys\_work\_pds()}{free\_lin\_sys\_work\_pds()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+lin\+\_\+sys\+\_\+work\+\_\+pds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{linsys_8h_a6f4745f2a8f151cbfba288a3248bb397}\label{linsys_8h_a6f4745f2a8f151cbfba288a3248bb397}} 
+\index{linsys.h@{linsys.h}!get\_lin\_sys\_method@{get\_lin\_sys\_method}}
+\index{get\_lin\_sys\_method@{get\_lin\_sys\_method}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{get\_lin\_sys\_method()}{get\_lin\_sys\_method()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+lin\+\_\+sys\+\_\+method (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00005}{5}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a9324fcbdcbd2c577751203abc8ba28c4}\label{linsys_8h_a9324fcbdcbd2c577751203abc8ba28c4}} 
+\index{linsys.h@{linsys.h}!get\_lin\_sys\_summary@{get\_lin\_sys\_summary}}
+\index{get\_lin\_sys\_summary@{get\_lin\_sys\_summary}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{get\_lin\_sys\_summary()}{get\_lin\_sys\_summary()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+lin\+\_\+sys\+\_\+summary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00015}{15}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_ade882d3f4d06d932341d13197881fbc9}\label{linsys_8h_ade882d3f4d06d932341d13197881fbc9}} 
+\index{linsys.h@{linsys.h}!init\_lin\_sys\_work@{init\_lin\_sys\_work}}
+\index{init\_lin\_sys\_work@{init\_lin\_sys\_work}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{init\_lin\_sys\_work()}{init\_lin\_sys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init\+\_\+lin\+\_\+sys\+\_\+work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00273}{273}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a8fb58ed8fb2e51d3b351642a176ed59b}\label{linsys_8h_a8fb58ed8fb2e51d3b351642a176ed59b}} 
+\index{linsys.h@{linsys.h}!normalize\_A@{normalize\_A}}
+\index{normalize\_A@{normalize\_A}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{normalize\_A()}{normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{\mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00210}{210}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_ac1465df3228739549e5435792394d4bf}\label{linsys_8h_ac1465df3228739549e5435792394d4bf}} 
+\index{linsys.h@{linsys.h}!solve\_lin\_sys@{solve\_lin\_sys}}
+\index{solve\_lin\_sys@{solve\_lin\_sys}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{solve\_lin\_sys()}{solve\_lin\_sys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() solve\+\_\+lin\+\_\+sys (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00305}{305}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_a184cd0c90635e21071242946afc34efa}\label{linsys_8h_a184cd0c90635e21071242946afc34efa}} 
+\index{linsys.h@{linsys.h}!un\_normalize\_A@{un\_normalize\_A}}
+\index{un\_normalize\_A@{un\_normalize\_A}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{un\_normalize\_A()}{un\_normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() un\+\_\+normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{direct_8c_source_l00214}{214}} of file \mbox{\hyperlink{direct_8c_source}{direct.\+c}}.
+
+\mbox{\Hypertarget{linsys_8h_ae1e5d79ab31d4c0b81adfbeaf20c0456}\label{linsys_8h_ae1e5d79ab31d4c0b81adfbeaf20c0456}} 
+\index{linsys.h@{linsys.h}!validate\_lin\_sys@{validate\_lin\_sys}}
+\index{validate\_lin\_sys@{validate\_lin\_sys}!linsys.h@{linsys.h}}
+\doxysubsubsection{\texorpdfstring{validate\_lin\_sys()}{validate\_lin\_sys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() validate\+\_\+lin\+\_\+sys (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+validate the linear system 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00045}{45}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+

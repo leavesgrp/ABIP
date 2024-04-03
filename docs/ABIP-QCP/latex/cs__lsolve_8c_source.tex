@@ -1,0 +1,24 @@
+\hypertarget{cs__lsolve_8c_source}{}\doxysection{cs\+\_\+lsolve.\+c}
+\label{cs__lsolve_8c_source}\index{csparse/Source/cs\_lsolve.c@{csparse/Source/cs\_lsolve.c}}
+\mbox{\hyperlink{cs__lsolve_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00002}00002 \textcolor{comment}{/* solve Lx=b where x and b are dense.  x=b on input, solution on output. */}}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00003}\mbox{\hyperlink{cs_8h_adefe244fe8757d1d7b4de55e0c81561f}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__lsolve_8c_adefe244fe8757d1d7b4de55e0c81561f}{cs\_lsolve}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *L, \textcolor{keywordtype}{double} *x)}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} p, j, n, *Lp, *Li ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00006}00006     \textcolor{keywordtype}{double} *Lx ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (L) || !x) \textcolor{keywordflow}{return} (0) ;                     \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00008}00008     n = L-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Lp = L-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Li = L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Lx = L-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00009}00009     \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00011}00011         x [j] /= Lx [Lp [j]] ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00012}00012         \textcolor{keywordflow}{for} (p = Lp [j]+1 ; p < Lp [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00013}00013         \{}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00014}00014             x [Li [p]] -\/= Lx [p] * x [j] ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00015}00015         \}}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00016}00016     \}}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00017}00017     \textcolor{keywordflow}{return} (1) ;}
+\DoxyCodeLine{\Hypertarget{cs__lsolve_8c_source_l00018}00018 \}}
+
+\end{DoxyCode}

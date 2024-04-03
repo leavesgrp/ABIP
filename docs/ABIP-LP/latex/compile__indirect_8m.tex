@@ -1,0 +1,58 @@
+\hypertarget{compile__indirect_8m}{}\doxysection{compile\+\_\+indirect.\+m File Reference}
+\label{compile__indirect_8m}\index{compile\_indirect.m@{compile\_indirect.m}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip__direct_8m_a267d0ce52d8688bab09dac188f7cff81}{function}} \mbox{\hyperlink{compile__indirect_8m_a384e8c41b6b559353b6571806b8f8c65}{compile\+\_\+indirect}} (flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}) abip\+\_\+include
+\item 
+compile indirect \mbox{\hyperlink{compile__indirect_8m_af4c8e097a97b3fb80e7b49cffb28a523}{if}} (flags.\+COMPILE\+\_\+\+WITH\+\_\+\+OPENMP) \mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}}
+\item 
+end \mbox{\hyperlink{compile__indirect_8m_a7a1782653b9210ddcbe070bff90935af}{eval}} (\mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+else \mbox{\hyperlink{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}{cmd}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{compile__indirect_8m_a384e8c41b6b559353b6571806b8f8c65}\label{compile__indirect_8m_a384e8c41b6b559353b6571806b8f8c65}} 
+\index{compile\_indirect.m@{compile\_indirect.m}!compile\_indirect@{compile\_indirect}}
+\index{compile\_indirect@{compile\_indirect}!compile\_indirect.m@{compile\_indirect.m}}
+\doxysubsubsection{\texorpdfstring{compile\_indirect()}{compile\_indirect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip__direct_8m_a267d0ce52d8688bab09dac188f7cff81}{function}} compile\+\_\+indirect (\begin{DoxyParamCaption}\item[{flags}]{,  }\item[{\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__indirect_8m_a7a1782653b9210ddcbe070bff90935af}\label{compile__indirect_8m_a7a1782653b9210ddcbe070bff90935af}} 
+\index{compile\_indirect.m@{compile\_indirect.m}!eval@{eval}}
+\index{eval@{eval}!compile\_indirect.m@{compile\_indirect.m}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily end eval (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__indirect_8m_af4c8e097a97b3fb80e7b49cffb28a523}\label{compile__indirect_8m_af4c8e097a97b3fb80e7b49cffb28a523}} 
+\index{compile\_indirect.m@{compile\_indirect.m}!if@{if}}
+\index{if@{if}!compile\_indirect.m@{compile\_indirect.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily compile indirect if (\begin{DoxyParamCaption}\item[{flags.}]{COMPILE\+\_\+\+WITH\+\_\+\+OPENMP }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}\label{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}} 
+\index{compile\_indirect.m@{compile\_indirect.m}!cmd@{cmd}}
+\index{cmd@{cmd}!compile\_indirect.m@{compile\_indirect.m}}
+\doxysubsubsection{\texorpdfstring{cmd}{cmd}}
+{\footnotesize\ttfamily else cmd}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= sprintf(\textcolor{stringliteral}{'mex -\/O \%s \%s \%s \%s \%s \%s \%s \%s \%s \%s -\/output abip\_indirect'},...}
+\DoxyCodeLine{        flags.arr, flags.LCFLAG, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}}, flags.INCS,...}
+\DoxyCodeLine{        fullfile(\textcolor{stringliteral}{"{}linsys"{}}, \textcolor{stringliteral}{"{}indirect.c"{}}),...}
+\DoxyCodeLine{        flags.link, abip\_include, flags.LOCS, flags.BLASLIB, flags.INT)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{compile__indirect_8m_source_l00013}{13}} of file \mbox{\hyperlink{compile__indirect_8m_source}{compile\+\_\+indirect.\+m}}.
+

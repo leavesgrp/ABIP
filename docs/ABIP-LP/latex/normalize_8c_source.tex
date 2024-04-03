@@ -1,0 +1,152 @@
+\hypertarget{normalize_8c_source}{}\doxysection{normalize.\+c}
+\label{normalize_8c_source}\index{src/normalize.c@{src/normalize.c}}
+\mbox{\hyperlink{normalize_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00002}00002 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{normalize_8h}{normalize.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linalg_8h}{linalg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00005}\mbox{\hyperlink{normalize_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{00005}} \textcolor{preprocessor}{\#define MIN\_SCALE (1e-\/3)}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00006}\mbox{\hyperlink{normalize_8c_a0706168c32c39d519133d981a3df0687}{00006}} \textcolor{preprocessor}{\#define MAX\_SCALE (1e3)}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00011}\mbox{\hyperlink{normalize_8h_a5d485765ca1d4f69b70e62c7f9837d3b}{00011}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{normalize_8c_a5d485765ca1d4f69b70e62c7f9837d3b}{normalize\_b\_c}})}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00012}00012 (}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00013}00013  \mbox{\hyperlink{struct_a_b_i_p___w_o_r_k}{ABIPWork}} *w}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00014}00014  )}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00016}00016     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} i;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00017}00017     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00018}00018     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} nm;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00019}00019     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *D = w-\/>scal-\/>D;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00020}00020     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *E = w-\/>scal-\/>E;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00021}00021     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}} = w-\/>b;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00022}00022     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}} = w-\/>c;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00023}00023     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00024}00024     \textcolor{keywordflow}{for} (i = 0; i < w-\/>n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00026}00026         \mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}}[i] /= E[i];}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00028}00028     nm = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(\mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}}, w-\/>n);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00029}00029     w-\/>sc\_c = w-\/>scal-\/>mean\_norm\_row\_A / \mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(nm, \mbox{\hyperlink{normalize_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{MIN\_SCALE}});}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00030}00030     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00031}00031     \textcolor{keywordflow}{for} (i = 0; i < w-\/>m; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00032}00032     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00033}00033         \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}[i] /= D[i];}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00034}00034     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00035}00035     nm = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, w-\/>m);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00036}00036     w-\/>sc\_b = w-\/>scal-\/>mean\_norm\_col\_A / \mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(nm, \mbox{\hyperlink{normalize_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{MIN\_SCALE}});}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00037}00037     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00038}00038     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(\mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}}, w-\/>sc\_c * w-\/>stgs-\/>scale, w-\/>n);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00039}00039     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, w-\/>sc\_b * w-\/>stgs-\/>scale, w-\/>m);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00040}00040 \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00044}\mbox{\hyperlink{normalize_8h_ad79e3b5ea7b749dde36d599155420821}{00044}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{normalize_8c_ad79e3b5ea7b749dde36d599155420821}{calc\_scaled\_resids}})}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00045}00045 (}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00046}00046  \mbox{\hyperlink{struct_a_b_i_p___w_o_r_k}{ABIPWork}} *w,}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00047}00047  \mbox{\hyperlink{struct_a_b_i_p___r_e_s_i_d_u_a_l_s}{ABIPResiduals}} *r}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00048}00048  )}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00049}00049 \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00050}00050     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *D = w-\/>scal-\/>D;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00051}00051     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *E = w-\/>scal-\/>E;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00052}00052     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00053}00053     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *u = w-\/>u;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00054}00054     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *u\_t = w-\/>u\_t;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00055}00055     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *u\_prev = w-\/>u\_prev;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00056}00056     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00057}00057     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00058}00058     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} i;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00059}00059     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = w-\/>n;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00060}00060     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m = w-\/>m;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00061}00061     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00062}00062     r-\/>res\_pri = 0;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00063}00063     \textcolor{keywordflow}{for} (i = 0; i < m; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00064}00064     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00065}00065         tmp = (u[i] -\/ u\_t[i]) / (D[i] * w-\/>sc\_c);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00066}00066         r-\/>res\_pri += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00067}00067     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00068}00068     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00069}00069     \textcolor{keywordflow}{for} (i = 0; i < n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00070}00070     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00071}00071         tmp = (u[i + m] -\/ u\_t[i + m]) / (E[i] * w-\/>sc\_b);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00072}00072         r-\/>res\_pri += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00073}00073     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00074}00074     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00075}00075     tmp = u[n + m] -\/ u\_t[n + m];}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00076}00076     r-\/>res\_pri += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00077}00077     r-\/>res\_pri = sqrt(r-\/>res\_pri);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00078}00078     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00079}00079     r-\/>res\_dual = 0;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00080}00080     \textcolor{keywordflow}{for} (i = 0; i < m; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00082}00082         tmp = (u[i] -\/ u\_prev[i]) * D[i] / w-\/>sc\_c;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00083}00083         r-\/>res\_dual += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00085}00085     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00086}00086     \textcolor{keywordflow}{for} (i = 0; i < n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00087}00087     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00088}00088         tmp = (u[i + m] -\/ u\_prev[i + m]) * E[i] / w-\/>sc\_b;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00089}00089         r-\/>res\_dual += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00090}00090     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00091}00091     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00092}00092     tmp = u[n + m] -\/ u\_prev[n + m];}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00093}00093     r-\/>res\_dual += tmp * tmp;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00094}00094     r-\/>res\_dual = sqrt(r-\/>res\_dual);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00095}00095 \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00100}\mbox{\hyperlink{normalize_8h_a6d8351b5a39bb6ba2c4acf142490e201}{00100}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{normalize_8c_a6d8351b5a39bb6ba2c4acf142490e201}{normalize\_warm\_start}})}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00101}00101 (}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00102}00102  \mbox{\hyperlink{struct_a_b_i_p___w_o_r_k}{ABIPWork}} *w}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00103}00103  )}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00104}00104 \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00105}00105     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} i;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00106}00106     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00107}00107     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *D = w-\/>scal-\/>D;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00108}00108     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *E = w-\/>scal-\/>E;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00109}00109     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00110}00110     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y = w-\/>u;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00111}00111     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}} = \&(w-\/>u[w-\/>m]);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00112}00112     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *s = \&(w-\/>v[w-\/>m]);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00113}00113     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00114}00114     \textcolor{keywordflow}{for} (i = 0; i < w-\/>n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00115}00115     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00116}00116         \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}[i] *= (E[i] * w-\/>sc\_b);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00117}00117     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00118}00118     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00119}00119     \textcolor{keywordflow}{for} (i = 0; i < w-\/>m; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00120}00120     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00121}00121         y[i] *= (D[i] * w-\/>sc\_c);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00122}00122     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00123}00123     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00124}00124     \textcolor{keywordflow}{for} (i = 0; i < w-\/>n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00125}00125     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00126}00126         s[i] /= (E[i] / (w-\/>sc\_c * w-\/>stgs-\/>scale));}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00127}00127     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00128}00128 \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00133}\mbox{\hyperlink{normalize_8h_a6c8fea1d3460e3d00d7a3863e9c169cb}{00133}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{normalize_8c_a6c8fea1d3460e3d00d7a3863e9c169cb}{un\_normalize\_sol}})}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00134}00134 (}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00135}00135  \mbox{\hyperlink{struct_a_b_i_p___w_o_r_k}{ABIPWork}} *w,}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00136}00136  \mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s}{ABIPSolution}} *sol}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00137}00137  )}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00138}00138 \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00139}00139     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} i;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00140}00140     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00141}00141     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *D = w-\/>scal-\/>D;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00142}00142     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *E = w-\/>scal-\/>E;}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00143}00143     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00144}00144     \textcolor{keywordflow}{for} (i = 0; i < w-\/>n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00145}00145     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00146}00146         sol-\/>x[i] /= (E[i] * w-\/>sc\_b);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00147}00147     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00148}00148     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00149}00149     \textcolor{keywordflow}{for} (i = 0; i < w-\/>m; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00150}00150     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00151}00151         sol-\/>y[i] /= (D[i] * w-\/>sc\_c);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00152}00152     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00153}00153     }
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00154}00154     \textcolor{keywordflow}{for} (i = 0; i < w-\/>n; ++i)}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00155}00155     \{}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00156}00156         sol-\/>s[i] *= E[i] / (w-\/>sc\_c * w-\/>stgs-\/>scale);}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00157}00157     \}}
+\DoxyCodeLine{\Hypertarget{normalize_8c_source_l00158}00158 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,325 @@
+\hypertarget{compile__direct_8m}{}\doxysection{compile\+\_\+direct.\+m File Reference}
+\label{compile__direct_8m}\index{compile\_direct.m@{compile\_direct.m}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip__direct_8m_a267d0ce52d8688bab09dac188f7cff81}{function}} \mbox{\hyperlink{compile__direct_8m_aa145d4ae026e82e8669ee74f065adcec}{compile\+\_\+direct}} (flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}) abip\+\_\+include
+\item 
+\mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} \mbox{\hyperlink{compile__direct_8m_a50ba00d8124ad5c0a393f866fb4e83d5}{exist}} (\mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}}) \% \% \mbox{\hyperlink{compile__direct_8m_a59a23dc8a9b01eed45075cf81601f40b}{platform}}
+\item 
+\mbox{\hyperlink{compile__direct_8m_adc62c2157d03ae614c0be0f3ebd9816b}{fprintf}} (\char`\"{}Unknown platform. Not using \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} \textbackslash{}n\char`\"{})
+\item 
+end End if \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} (flags.\+COMPILE\+\_\+\+WITH\+\_\+\+OPENMP) \mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}} = sprintf(\textquotesingle{}-\/DEXTRA\+\_\+\+VERBOSE \%s\textquotesingle{}, \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{flags.\+LCFLAG}})
+\item 
+\mbox{\hyperlink{compile__direct_8m_af0ec925f2f73e66aaaa8ae81dd69ffca}{eval}} (\mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{compile__direct_8m_a59a23dc8a9b01eed45075cf81601f40b}{platform}} = convert\+Chars\+To\+Strings(computer(\textquotesingle{}arch\textquotesingle{}))
+\item 
+\mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} = \char`\"{}\char`\"{}
+\item 
+If use \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}}
+\item 
+If use we suggest you set the environmental variables by \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh \mbox{\hyperlink{compile__direct_8m_af0c019493ffd73b2804c0a82e0284905}{alternatively}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your \mbox{\hyperlink{compile__direct_8m_a5a10d557154569995a38500644890827}{self}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For \mbox{\hyperlink{compile__direct_8m_ad25a423421b65a265c07429f960a1b8f}{example}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in \mbox{\hyperlink{compile__direct_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}{linux}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib \mbox{\hyperlink{compile__direct_8m_a457fad4fc634bc3412b163d82eab6663}{intel64}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib then you uncomment the \mbox{\hyperlink{compile__direct_8m_a4ed70d023f5da8ddabf87b40c0bc192f}{following}}
+\item 
+end \mbox{\hyperlink{compile__direct_8m_afbf0dfabe34eeaa746ca8fca0eef4ff9}{mkl\+\_\+macro}} = \char`\"{}-\/DABIP\+\_\+\+PARDISO\char`\"{}
+\item 
+\mbox{\hyperlink{compile__direct_8m_a4e384906dcbfb907b30f0d032db3c8bf}{pardiso\+\_\+src}} = fullfile(\char`\"{}linsys\char`\"{}, \char`\"{}abip\+\_\+pardiso.\+c\char`\"{})
+\item 
+flags \mbox{\hyperlink{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{link}}
+\item 
+\mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} \mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}}
+\item 
+else \mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}} = sprintf (\textquotesingle{}mex -\/O \%s \%s \%s \%s \%s \%s \%s \%s\textquotesingle{}, \mbox{\hyperlink{compile__direct_8m_afbf0dfabe34eeaa746ca8fca0eef4ff9}{mkl\+\_\+macro}}, \mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{flags.\+arr}}, \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}}, \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{flags.\+LCFLAG}}, \mbox{\hyperlink{make__abip_8m_a913387b300daf852c9d46473133374da}{flags.\+INCS}}, abip\+\_\+include, \mbox{\hyperlink{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}{flags.\+INT}})
+\item 
+end \mbox{\hyperlink{compile__direct_8m_a3351588c9986f085e1875aeb972ac468}{ldl\+\_\+path}} = fullfile(\char`\"{}external\char`\"{}, \char`\"{}ldl\char`\"{})
+\item 
+\mbox{\hyperlink{compile__direct_8m_add5c132463deb5335f753b0ed58d01d9}{amd\+\_\+path}} = fullfile(\char`\"{}external\char`\"{}, \char`\"{}amd\char`\"{})
+\item 
+\mbox{\hyperlink{compile__direct_8m_a3129127996706ffd4bfb637354a9d7c6}{ldl\+\_\+files}} = \mbox{[}\char`\"{}ldl.\+c\char`\"{}\mbox{]}
+\item 
+\mbox{\hyperlink{compile__direct_8m_a8f7f94b77930741f0b407da3e6ea7465}{amd\+\_\+files}}
+\item 
+\mbox{\hyperlink{compile__direct_8m_affbc754f9b4e1e4a7d5b05cb91b14b5d}{abip\+\_\+ldl}} = fullfile(\mbox{\hyperlink{compile__direct_8m_a3351588c9986f085e1875aeb972ac468}{ldl\+\_\+path}}, \mbox{\hyperlink{compile__direct_8m_a3129127996706ffd4bfb637354a9d7c6}{ldl\+\_\+files}})
+\item 
+\mbox{\hyperlink{compile__direct_8m_a3ee3f87cb0f295063521d7268b81409e}{abip\+\_\+amd}} = fullfile(\mbox{\hyperlink{compile__direct_8m_add5c132463deb5335f753b0ed58d01d9}{amd\+\_\+path}}, \mbox{\hyperlink{compile__direct_8m_a8f7f94b77930741f0b407da3e6ea7465}{amd\+\_\+files}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{compile__direct_8m_aa145d4ae026e82e8669ee74f065adcec}\label{compile__direct_8m_aa145d4ae026e82e8669ee74f065adcec}} 
+\index{compile\_direct.m@{compile\_direct.m}!compile\_direct@{compile\_direct}}
+\index{compile\_direct@{compile\_direct}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{compile\_direct()}{compile\_direct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip__direct_8m_a267d0ce52d8688bab09dac188f7cff81}{function}} compile\+\_\+direct (\begin{DoxyParamCaption}\item[{flags}]{,  }\item[{\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__direct_8m_af0ec925f2f73e66aaaa8ae81dd69ffca}\label{compile__direct_8m_af0ec925f2f73e66aaaa8ae81dd69ffca}} 
+\index{compile\_direct.m@{compile\_direct.m}!eval@{eval}}
+\index{eval@{eval}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily eval (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}{cmd}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__direct_8m_a50ba00d8124ad5c0a393f866fb4e83d5}\label{compile__direct_8m_a50ba00d8124ad5c0a393f866fb4e83d5}} 
+\index{compile\_direct.m@{compile\_direct.m}!exist@{exist}}
+\index{exist@{exist}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{exist()}{exist()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} exist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__direct_8m_adc62c2157d03ae614c0be0f3ebd9816b}\label{compile__direct_8m_adc62c2157d03ae614c0be0f3ebd9816b}} 
+\index{compile\_direct.m@{compile\_direct.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}Unknown platform. Not using \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} \textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}\label{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}} 
+\index{compile\_direct.m@{compile\_direct.m}!if@{if}}
+\index{if@{if}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{flags.}]{COMPILE\+\_\+\+WITH\+\_\+\+OPENMP }\end{DoxyParamCaption}) = sprintf(\textquotesingle{}-\/DEXTRA\+\_\+\+VERBOSE \%s\textquotesingle{}, \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{flags.\+LCFLAG}})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{compile__direct_8m_a3ee3f87cb0f295063521d7268b81409e}\label{compile__direct_8m_a3ee3f87cb0f295063521d7268b81409e}} 
+\index{compile\_direct.m@{compile\_direct.m}!abip\_amd@{abip\_amd}}
+\index{abip\_amd@{abip\_amd}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{abip\_amd}{abip\_amd}}
+{\footnotesize\ttfamily abip\+\_\+amd = fullfile(\mbox{\hyperlink{compile__direct_8m_add5c132463deb5335f753b0ed58d01d9}{amd\+\_\+path}}, \mbox{\hyperlink{compile__direct_8m_a8f7f94b77930741f0b407da3e6ea7465}{amd\+\_\+files}})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00073}{73}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_affbc754f9b4e1e4a7d5b05cb91b14b5d}\label{compile__direct_8m_affbc754f9b4e1e4a7d5b05cb91b14b5d}} 
+\index{compile\_direct.m@{compile\_direct.m}!abip\_ldl@{abip\_ldl}}
+\index{abip\_ldl@{abip\_ldl}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{abip\_ldl}{abip\_ldl}}
+{\footnotesize\ttfamily abip\+\_\+ldl = fullfile(\mbox{\hyperlink{compile__direct_8m_a3351588c9986f085e1875aeb972ac468}{ldl\+\_\+path}}, \mbox{\hyperlink{compile__direct_8m_a3129127996706ffd4bfb637354a9d7c6}{ldl\+\_\+files}})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00071}{71}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_af0c019493ffd73b2804c0a82e0284905}\label{compile__direct_8m_af0c019493ffd73b2804c0a82e0284905}} 
+\index{compile\_direct.m@{compile\_direct.m}!alternatively@{alternatively}}
+\index{alternatively@{alternatively}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{alternatively}{alternatively}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh alternatively}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00014}{14}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a8f7f94b77930741f0b407da3e6ea7465}\label{compile__direct_8m_a8f7f94b77930741f0b407da3e6ea7465}} 
+\index{compile\_direct.m@{compile\_direct.m}!amd\_files@{amd\_files}}
+\index{amd\_files@{amd\_files}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{amd\_files}{amd\_files}}
+{\footnotesize\ttfamily amd\+\_\+files}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= ["{}amd\_order"{}, "{}amd\_dump"{}, "{}amd\_postorder"{}, "{}amd\_post\_tree"{}, ...}
+\DoxyCodeLine{    "{}amd\_aat"{}, "{}amd\_2"{}, "{}amd\_1"{}, "{}amd\_defaults"{}, "{}amd\_control"{}, ...}
+\DoxyCodeLine{    "{}amd\_info"{}, "{}amd\_valid"{}, "{}amd\_global"{}, "{}amd\_preprocess"{}]}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00066}{66}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_add5c132463deb5335f753b0ed58d01d9}\label{compile__direct_8m_add5c132463deb5335f753b0ed58d01d9}} 
+\index{compile\_direct.m@{compile\_direct.m}!amd\_path@{amd\_path}}
+\index{amd\_path@{amd\_path}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{amd\_path}{amd\_path}}
+{\footnotesize\ttfamily amd\+\_\+path = fullfile(\char`\"{}external\char`\"{}, \char`\"{}amd\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00063}{63}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}\label{compile__direct_8m_adfc5ba7e22f5e4a6221c12a70503bef3}} 
+\index{compile\_direct.m@{compile\_direct.m}!cmd@{cmd}}
+\index{cmd@{cmd}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{cmd}{cmd}}
+{\footnotesize\ttfamily cmd = sprintf (\textquotesingle{}mex -\/O \%s \%s \%s \%s \%s \%s \%s \%s\textquotesingle{}, \mbox{\hyperlink{compile__direct_8m_afbf0dfabe34eeaa746ca8fca0eef4ff9}{mkl\+\_\+macro}}, \mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{flags.\+arr}}, \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}}, \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{flags.\+LCFLAG}}, \mbox{\hyperlink{make__abip_8m_a913387b300daf852c9d46473133374da}{flags.\+INCS}}, abip\+\_\+include, \mbox{\hyperlink{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}{flags.\+INT}})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00059}{59}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_ad25a423421b65a265c07429f960a1b8f}\label{compile__direct_8m_ad25a423421b65a265c07429f960a1b8f}} 
+\index{compile\_direct.m@{compile\_direct.m}!example@{example}}
+\index{example@{example}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{example}{example}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For example}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00015}{15}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a4ed70d023f5da8ddabf87b40c0bc192f}\label{compile__direct_8m_a4ed70d023f5da8ddabf87b40c0bc192f}} 
+\index{compile\_direct.m@{compile\_direct.m}!following@{following}}
+\index{following@{following}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{following}{following}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib then you uncomment the following}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00016}{16}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a457fad4fc634bc3412b163d82eab6663}\label{compile__direct_8m_a457fad4fc634bc3412b163d82eab6663}} 
+\index{compile\_direct.m@{compile\_direct.m}!intel64@{intel64}}
+\index{intel64@{intel64}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{intel64}{intel64}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib intel64}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00015}{15}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a3129127996706ffd4bfb637354a9d7c6}\label{compile__direct_8m_a3129127996706ffd4bfb637354a9d7c6}} 
+\index{compile\_direct.m@{compile\_direct.m}!ldl\_files@{ldl\_files}}
+\index{ldl\_files@{ldl\_files}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{ldl\_files}{ldl\_files}}
+{\footnotesize\ttfamily ldl\+\_\+files = \mbox{[}\char`\"{}ldl.\+c\char`\"{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00065}{65}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a3351588c9986f085e1875aeb972ac468}\label{compile__direct_8m_a3351588c9986f085e1875aeb972ac468}} 
+\index{compile\_direct.m@{compile\_direct.m}!ldl\_path@{ldl\_path}}
+\index{ldl\_path@{ldl\_path}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{ldl\_path}{ldl\_path}}
+{\footnotesize\ttfamily end ldl\+\_\+path = fullfile(\char`\"{}external\char`\"{}, \char`\"{}ldl\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00062}{62}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}\label{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}} 
+\index{compile\_direct.m@{compile\_direct.m}!lib\_path@{lib\_path}}
+\index{lib\_path@{lib\_path}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{lib\_path}{lib\_path}}
+{\footnotesize\ttfamily else lib\+\_\+path = \char`\"{}\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00010}{10}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}\label{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}} 
+\index{compile\_direct.m@{compile\_direct.m}!link@{link}}
+\index{link@{link}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{link}{link}}
+{\footnotesize\ttfamily else flags link}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [flags.link, ' -\/lmkl\_intel\_ilp64',...}
+\DoxyCodeLine{        ' -\/lmkl\_core', ' -\/lmkl\_sequential ']}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00034}{34}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}\label{compile__direct_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}} 
+\index{compile\_direct.m@{compile\_direct.m}!linux@{linux}}
+\index{linux@{linux}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{linux}{linux}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in linux}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00015}{15}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}\label{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}} 
+\index{compile\_direct.m@{compile\_direct.m}!mexext@{mexext}}
+\index{mexext@{mexext}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{mexext}{mexext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} mexext}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{== \textcolor{stringliteral}{"{}mexw64"{}}}
+\DoxyCodeLine{        flags.link = \textcolor{stringliteral}{'-\/lut -\/lmwblas -\/lmwlapack'}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00047}{47}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a04949beba84344c1fdd15af198cef829}\label{compile__direct_8m_a04949beba84344c1fdd15af198cef829}} 
+\index{compile\_direct.m@{compile\_direct.m}!MKL@{MKL}}
+\index{MKL@{MKL}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{MKL}{MKL}}
+{\footnotesize\ttfamily If use MKL}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00012}{12}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_afbf0dfabe34eeaa746ca8fca0eef4ff9}\label{compile__direct_8m_afbf0dfabe34eeaa746ca8fca0eef4ff9}} 
+\index{compile\_direct.m@{compile\_direct.m}!mkl\_macro@{mkl\_macro}}
+\index{mkl\_macro@{mkl\_macro}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{mkl\_macro}{mkl\_macro}}
+{\footnotesize\ttfamily mkl\+\_\+macro = \char`\"{}-\/DABIP\+\_\+\+PARDISO\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00029}{29}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}\label{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}} 
+\index{compile\_direct.m@{compile\_direct.m}!oneapi@{oneapi}}
+\index{oneapi@{oneapi}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{oneapi}{oneapi}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by oneapi}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00012}{12}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a4e384906dcbfb907b30f0d032db3c8bf}\label{compile__direct_8m_a4e384906dcbfb907b30f0d032db3c8bf}} 
+\index{compile\_direct.m@{compile\_direct.m}!pardiso\_src@{pardiso\_src}}
+\index{pardiso\_src@{pardiso\_src}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{pardiso\_src}{pardiso\_src}}
+{\footnotesize\ttfamily end End \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} pardiso\+\_\+src = fullfile(\char`\"{}linsys\char`\"{}, \char`\"{}abip\+\_\+pardiso.\+c\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00030}{30}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a59a23dc8a9b01eed45075cf81601f40b}\label{compile__direct_8m_a59a23dc8a9b01eed45075cf81601f40b}} 
+\index{compile\_direct.m@{compile\_direct.m}!platform@{platform}}
+\index{platform@{platform}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{platform}{platform}}
+{\footnotesize\ttfamily \mbox{\hyperlink{make__abip_8m_af8033cde77b7d79971dc87281682264a}{elseif}} platform = convert\+Chars\+To\+Strings(computer(\textquotesingle{}arch\textquotesingle{}))}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00009}{9}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+
+\mbox{\Hypertarget{compile__direct_8m_a5a10d557154569995a38500644890827}\label{compile__direct_8m_a5a10d557154569995a38500644890827}} 
+\index{compile\_direct.m@{compile\_direct.m}!self@{self}}
+\index{self@{self}!compile\_direct.m@{compile\_direct.m}}
+\doxysubsubsection{\texorpdfstring{self}{self}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{compile__direct_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{compile__direct_8m_a9cc25a531a71b5fad1d6d7cd37b582c2}{lib\+\_\+path}} to your \mbox{\hyperlink{compile__direct_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your self}
+
+
+
+Definition at line \mbox{\hyperlink{compile__direct_8m_source_l00014}{14}} of file \mbox{\hyperlink{compile__direct_8m_source}{compile\+\_\+direct.\+m}}.
+

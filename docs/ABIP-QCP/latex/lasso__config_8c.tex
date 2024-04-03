@@ -1,0 +1,295 @@
+\hypertarget{lasso__config_8c}{}\doxysection{source/lasso\+\_\+config.c File Reference}
+\label{lasso__config_8c}\index{source/lasso\_config.c@{source/lasso\_config.c}}
+{\ttfamily \#include \char`\"{}lasso\+\_\+config.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lasso__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{MIN\+\_\+\+SCALE}}~(1e-\/3)
+\item 
+\#define \mbox{\hyperlink{lasso__config_8c_a0706168c32c39d519133d981a3df0687}{MAX\+\_\+\+SCALE}}~(1e3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{lasso__config_8c_a0cbd483376be35f0c5da60ff0402a6ae}{init\+\_\+lasso}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$$\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\begin{DoxyCompactList}\small\item\em Initialize the lasso problem structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_aa36d07da79c50a2988707d65248c28d9}{lasso\+\_\+\+A\+\_\+times}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the lasso problem with A untransposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_acf3b9f4570cd53cbc4ffb189df9657dd}{lasso\+\_\+\+AT\+\_\+times}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the lasso problem with A transposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a29da2be8cc8817a96807e129f0e6933a}{scaling\+\_\+lasso\+\_\+data}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Customized scaling procedure for the lasso problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a942ebf12634abf2117f06558e60df01c}{get\+\_\+unscaled\+\_\+x}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$us\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution x of the lasso qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a2f3d64b7238d7b8b154f017b446f5887}{get\+\_\+unscaled\+\_\+y}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$us\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution y of the lasso qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a0adea4377bbb344556bafe3d6df21c3e}{get\+\_\+unscaled\+\_\+s}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$s, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$us\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution s of the lasso qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a066efaa6c7e98d7b472e558783cd5a15}{un\+\_\+scaling\+\_\+lasso\+\_\+sol}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution of the original lasso problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{lasso__config_8c_aa6aa7ba9c12848bfadca2613609a71df}{lasso\+\_\+inner\+\_\+conv\+\_\+check}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\begin{DoxyCompactList}\small\item\em Check whether the inner loop of the lasso problem has converged. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a4302c96659be76036e8dd9e039a6fb8b}{calc\+\_\+lasso\+\_\+residuals}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\begin{DoxyCompactList}\small\item\em Calculate the residuals of the lasso qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ \mbox{\hyperlink{lasso__config_8c_a0e9d4b342dda5e21ffc5d12147ca066e}{form\+\_\+lasso\+\_\+kkt}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Formulate the qcp KKT matrix of the lasso problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a9759cde95cde3b75817d6881863d5055}{init\+\_\+lasso\+\_\+precon}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the preconditioner of conjugate gradient method for the lasso problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{lasso__config_8c_ab8c763f6895cf3271de213f1d8fa2c01}{get\+\_\+lasso\+\_\+pcg\+\_\+tol}} (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} k, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} norm\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the tolerance of the conjugate gradient method for the lasso problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{lasso__config_8c_a5d20935b8bee5f8886e5a122e2d23396}{init\+\_\+lasso\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the linear system solver work space for the lasso problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{lasso__config_8c_af488f3e6a8881c3d93a834b2e03dd119}{solve\+\_\+lasso\+\_\+linsys}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\begin{DoxyCompactList}\small\item\em Customized linear system solver for the lasso problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lasso__config_8c_a9a003b18f96398058fda9b18ea81c7d3}{free\+\_\+lasso\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Free the linear system solver work space for the lasso problem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lasso__config_8c_a0706168c32c39d519133d981a3df0687}\label{lasso__config_8c_a0706168c32c39d519133d981a3df0687}} 
+\index{lasso\_config.c@{lasso\_config.c}!MAX\_SCALE@{MAX\_SCALE}}
+\index{MAX\_SCALE@{MAX\_SCALE}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_SCALE}{MAX\_SCALE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SCALE~(1e3)}
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00003}{3}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}\label{lasso__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}} 
+\index{lasso\_config.c@{lasso\_config.c}!MIN\_SCALE@{MIN\_SCALE}}
+\index{MIN\_SCALE@{MIN\_SCALE}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_SCALE}{MIN\_SCALE}}
+{\footnotesize\ttfamily \#define MIN\+\_\+\+SCALE~(1e-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00002}{2}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lasso__config_8c_a4302c96659be76036e8dd9e039a6fb8b}\label{lasso__config_8c_a4302c96659be76036e8dd9e039a6fb8b}} 
+\index{lasso\_config.c@{lasso\_config.c}!calc\_lasso\_residuals@{calc\_lasso\_residuals}}
+\index{calc\_lasso\_residuals@{calc\_lasso\_residuals}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{calc\_lasso\_residuals()}{calc\_lasso\_residuals()}}
+{\footnotesize\ttfamily void calc\+\_\+lasso\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{ipm\+\_\+iter,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{admm\+\_\+iter }\end{DoxyParamCaption})}
+
+
+
+Calculate the residuals of the lasso qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00367}{367}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a0e9d4b342dda5e21ffc5d12147ca066e}\label{lasso__config_8c_a0e9d4b342dda5e21ffc5d12147ca066e}} 
+\index{lasso\_config.c@{lasso\_config.c}!form\_lasso\_kkt@{form\_lasso\_kkt}}
+\index{form\_lasso\_kkt@{form\_lasso\_kkt}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{form\_lasso\_kkt()}{form\_lasso\_kkt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ form\+\_\+lasso\+\_\+kkt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Formulate the qcp KKT matrix of the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00507}{507}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a9a003b18f96398058fda9b18ea81c7d3}\label{lasso__config_8c_a9a003b18f96398058fda9b18ea81c7d3}} 
+\index{lasso\_config.c@{lasso\_config.c}!free\_lasso\_linsys\_work@{free\_lasso\_linsys\_work}}
+\index{free\_lasso\_linsys\_work@{free\_lasso\_linsys\_work}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{free\_lasso\_linsys\_work()}{free\_lasso\_linsys\_work()}}
+{\footnotesize\ttfamily void free\+\_\+lasso\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Free the linear system solver work space for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00722}{722}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_ab8c763f6895cf3271de213f1d8fa2c01}\label{lasso__config_8c_ab8c763f6895cf3271de213f1d8fa2c01}} 
+\index{lasso\_config.c@{lasso\_config.c}!get\_lasso\_pcg\_tol@{get\_lasso\_pcg\_tol}}
+\index{get\_lasso\_pcg\_tol@{get\_lasso\_pcg\_tol}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{get\_lasso\_pcg\_tol()}{get\_lasso\_pcg\_tol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} get\+\_\+lasso\+\_\+pcg\+\_\+tol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{k,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{norm\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Get the tolerance of the conjugate gradient method for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00592}{592}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a0adea4377bbb344556bafe3d6df21c3e}\label{lasso__config_8c_a0adea4377bbb344556bafe3d6df21c3e}} 
+\index{lasso\_config.c@{lasso\_config.c}!get\_unscaled\_s@{get\_unscaled\_s}}
+\index{get\_unscaled\_s@{get\_unscaled\_s}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{get\_unscaled\_s()}{get\_unscaled\_s()}}
+{\footnotesize\ttfamily void get\+\_\+unscaled\+\_\+s (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{us\+\_\+s }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution s of the lasso qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00289}{289}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a942ebf12634abf2117f06558e60df01c}\label{lasso__config_8c_a942ebf12634abf2117f06558e60df01c}} 
+\index{lasso\_config.c@{lasso\_config.c}!get\_unscaled\_x@{get\_unscaled\_x}}
+\index{get\_unscaled\_x@{get\_unscaled\_x}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{get\_unscaled\_x()}{get\_unscaled\_x()}}
+{\footnotesize\ttfamily void get\+\_\+unscaled\+\_\+x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{us\+\_\+x }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution x of the lasso qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00265}{265}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a2f3d64b7238d7b8b154f017b446f5887}\label{lasso__config_8c_a2f3d64b7238d7b8b154f017b446f5887}} 
+\index{lasso\_config.c@{lasso\_config.c}!get\_unscaled\_y@{get\_unscaled\_y}}
+\index{get\_unscaled\_y@{get\_unscaled\_y}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{get\_unscaled\_y()}{get\_unscaled\_y()}}
+{\footnotesize\ttfamily void get\+\_\+unscaled\+\_\+y (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{us\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution y of the lasso qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00279}{279}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a0cbd483376be35f0c5da60ff0402a6ae}\label{lasso__config_8c_a0cbd483376be35f0c5da60ff0402a6ae}} 
+\index{lasso\_config.c@{lasso\_config.c}!init\_lasso@{init\_lasso}}
+\index{init\_lasso@{init\_lasso}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_lasso()}{init\_lasso()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+lasso (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$$\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Initialize the lasso problem structure. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00008}{8}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a5d20935b8bee5f8886e5a122e2d23396}\label{lasso__config_8c_a5d20935b8bee5f8886e5a122e2d23396}} 
+\index{lasso\_config.c@{lasso\_config.c}!init\_lasso\_linsys\_work@{init\_lasso\_linsys\_work}}
+\index{init\_lasso\_linsys\_work@{init\_lasso\_linsys\_work}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_lasso\_linsys\_work()}{init\_lasso\_linsys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+lasso\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the linear system solver work space for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00624}{624}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a9759cde95cde3b75817d6881863d5055}\label{lasso__config_8c_a9759cde95cde3b75817d6881863d5055}} 
+\index{lasso\_config.c@{lasso\_config.c}!init\_lasso\_precon@{init\_lasso\_precon}}
+\index{init\_lasso\_precon@{init\_lasso\_precon}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_lasso\_precon()}{init\_lasso\_precon()}}
+{\footnotesize\ttfamily void init\+\_\+lasso\+\_\+precon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the preconditioner of conjugate gradient method for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00571}{571}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_aa36d07da79c50a2988707d65248c28d9}\label{lasso__config_8c_aa36d07da79c50a2988707d65248c28d9}} 
+\index{lasso\_config.c@{lasso\_config.c}!lasso\_A\_times@{lasso\_A\_times}}
+\index{lasso\_A\_times@{lasso\_A\_times}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{lasso\_A\_times()}{lasso\_A\_times()}}
+{\footnotesize\ttfamily void lasso\+\_\+\+A\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the lasso problem with A untransposed. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00099}{99}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_acf3b9f4570cd53cbc4ffb189df9657dd}\label{lasso__config_8c_acf3b9f4570cd53cbc4ffb189df9657dd}} 
+\index{lasso\_config.c@{lasso\_config.c}!lasso\_AT\_times@{lasso\_AT\_times}}
+\index{lasso\_AT\_times@{lasso\_AT\_times}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{lasso\_AT\_times()}{lasso\_AT\_times()}}
+{\footnotesize\ttfamily void lasso\+\_\+\+AT\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the lasso problem with A transposed. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00116}{116}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_aa6aa7ba9c12848bfadca2613609a71df}\label{lasso__config_8c_aa6aa7ba9c12848bfadca2613609a71df}} 
+\index{lasso\_config.c@{lasso\_config.c}!lasso\_inner\_conv\_check@{lasso\_inner\_conv\_check}}
+\index{lasso\_inner\_conv\_check@{lasso\_inner\_conv\_check}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{lasso\_inner\_conv\_check()}{lasso\_inner\_conv\_check()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lasso\+\_\+inner\+\_\+conv\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Check whether the inner loop of the lasso problem has converged. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00323}{323}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a29da2be8cc8817a96807e129f0e6933a}\label{lasso__config_8c_a29da2be8cc8817a96807e129f0e6933a}} 
+\index{lasso\_config.c@{lasso\_config.c}!scaling\_lasso\_data@{scaling\_lasso\_data}}
+\index{scaling\_lasso\_data@{scaling\_lasso\_data}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{scaling\_lasso\_data()}{scaling\_lasso\_data()}}
+{\footnotesize\ttfamily void scaling\+\_\+lasso\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Customized scaling procedure for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00131}{131}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_af488f3e6a8881c3d93a834b2e03dd119}\label{lasso__config_8c_af488f3e6a8881c3d93a834b2e03dd119}} 
+\index{lasso\_config.c@{lasso\_config.c}!solve\_lasso\_linsys@{solve\_lasso\_linsys}}
+\index{solve\_lasso\_linsys@{solve\_lasso\_linsys}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{solve\_lasso\_linsys()}{solve\_lasso\_linsys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+lasso\+\_\+linsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{pcg\+\_\+warm\+\_\+start,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio }\end{DoxyParamCaption})}
+
+
+
+Customized linear system solver for the lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00648}{648}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{lasso__config_8c_a066efaa6c7e98d7b472e558783cd5a15}\label{lasso__config_8c_a066efaa6c7e98d7b472e558783cd5a15}} 
+\index{lasso\_config.c@{lasso\_config.c}!un\_scaling\_lasso\_sol@{un\_scaling\_lasso\_sol}}
+\index{un\_scaling\_lasso\_sol@{un\_scaling\_lasso\_sol}!lasso\_config.c@{lasso\_config.c}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_lasso\_sol()}{un\_scaling\_lasso\_sol()}}
+{\footnotesize\ttfamily void un\+\_\+scaling\+\_\+lasso\+\_\+sol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lasso__config_8h_a6819de7dbcccb74a135baa5e97479d2e}{lasso}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution of the original lasso problem. 
+
+
+
+Definition at line \mbox{\hyperlink{lasso__config_8c_source_l00303}{303}} of file \mbox{\hyperlink{lasso__config_8c_source}{lasso\+\_\+config.\+c}}.
+

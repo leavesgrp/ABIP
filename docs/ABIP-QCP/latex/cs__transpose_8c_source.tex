@@ -1,0 +1,31 @@
+\hypertarget{cs__transpose_8c_source}{}\doxysection{cs\+\_\+transpose.\+c}
+\label{cs__transpose_8c_source}\index{csparse/Source/cs\_transpose.c@{csparse/Source/cs\_transpose.c}}
+\mbox{\hyperlink{cs__transpose_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00002}00002 \textcolor{comment}{/* C = A' */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00003}\mbox{\hyperlink{cs_8h_a838dfaabdae54c408a4a696dfffa3dea}{00003}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{cs__transpose_8c_a838dfaabdae54c408a4a696dfffa3dea}{cs\_transpose}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} values)}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} p, q, j, *Cp, *Ci, n, m, *Ap, *Ai, *w ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00006}00006     \textcolor{keywordtype}{double} *Cx, *Ax ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00007}00007     \mbox{\hyperlink{structcs__sparse}{cs}} *C ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00008}00008     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (NULL) ;    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00009}00009     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Ax = A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00010}00010     C = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (n, m, Ap [n], values \&\& Ax, 0) ;       \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00011}00011     w = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (m, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;                      \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00012}00012     \textcolor{keywordflow}{if} (!C || !w) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (C, w, NULL, 0)) ;       \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00013}00013     Cp = C-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ci = C-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Cx = C-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00014}00014     \textcolor{keywordflow}{for} (p = 0 ; p < Ap [n] ; p++) w [Ai [p]]++ ;          \textcolor{comment}{/* row counts */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00015}00015     \mbox{\hyperlink{cs_8h_a4c92d1dd47385e119da4d37ca82c2baa}{cs\_cumsum}} (Cp, w, m) ;                                 \textcolor{comment}{/* row pointers */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00016}00016     \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00017}00017     \{}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00018}00018         \textcolor{keywordflow}{for} (p = Ap [j] ; p < Ap [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00019}00019         \{}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00020}00020             Ci [q = w [Ai [p]]++] = j ; \textcolor{comment}{/* place A(i,j) as entry C(j,i) */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00021}00021             \textcolor{keywordflow}{if} (Cx) Cx [q] = Ax [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00022}00022         \}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00024}00024     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (C, w, NULL, 1)) ;  \textcolor{comment}{/* success; free w and return C */}}
+\DoxyCodeLine{\Hypertarget{cs__transpose_8c_source_l00025}00025 \}}
+
+\end{DoxyCode}

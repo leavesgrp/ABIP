@@ -1,0 +1,455 @@
+\hypertarget{abip__ml__mex_8c_source}{}\doxysection{abip\+\_\+ml\+\_\+mex.\+c}
+\label{abip__ml__mex_8c_source}\index{mex/abip\_ml\_mex.c@{mex/abip\_ml\_mex.c}}
+\mbox{\hyperlink{abip__ml__mex_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00002}00002 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linsys_8h}{linsys.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}matrix.h"{}}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}mex.h"{}}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00005}00005 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cones_8h}{cones.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00008}00008 \textcolor{keyword}{static} \textcolor{keywordtype}{void} free\_mex(\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}} *d, \mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}} *k) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00010}00010    \textcolor{comment}{/* if (k) \{}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00011}00011 \textcolor{comment}{        abip\_free(k);}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00012}00012 \textcolor{comment}{    \}*/}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00013}00013     \textcolor{keywordflow}{if} (d) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00015}00015         \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00016}00016             \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00017}00017         \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00019}00019         \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_aa89e923752bf41d843ce03b1124f9e52}{b}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00020}00020             \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_aa89e923752bf41d843ce03b1124f9e52}{b}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00021}00021         \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00022}00022         \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a0ec3e5b0b4c65650fdd53c82b9124317}{c}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00023}00023             \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a0ec3e5b0b4c65650fdd53c82b9124317}{c}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00024}00024         \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00026}00026         \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00028}00028             \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00029}00029                 \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00030}00030             \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00031}00031             \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00032}00032                 \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00033}00033             \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00034}00034             \textcolor{keywordflow}{if} (d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00035}00035                 \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}}-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00036}00036             \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00037}00037             \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00038}00038         \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00039}00039         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00040}00040     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00041}00041 \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00044}00044 \textcolor{comment}{/* this memory must be freed */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00045}00045 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *cast\_to\_abip\_int\_arr(mwIndex *arr, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} len) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00046}00046     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00047}00047     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *arr\_out = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * len);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00048}00048     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < len; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00049}00049         arr\_out[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})arr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00050}00050     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00051}00051     \textcolor{keywordflow}{return} arr\_out;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00052}00052 \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00055}00055 \textcolor{comment}{/* this memory must be freed */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00056}00056 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *cast\_to\_abip\_float\_arr(\textcolor{keywordtype}{double} *arr, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} len) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00057}00057     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00058}00058     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *arr\_out = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * len);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00059}00059     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < len; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00060}00060         arr\_out[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})arr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00061}00061     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00062}00062     \textcolor{keywordflow}{return} arr\_out;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00063}00063 \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00065}00065 \textcolor{keyword}{static} \textcolor{keywordtype}{double} *cast\_to\_double\_arr(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *arr, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} len) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00066}00066     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00067}00067     \textcolor{keywordtype}{double} *arr\_out = (\textcolor{keywordtype}{double} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * len);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00068}00068     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < len; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00069}00069         arr\_out[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = (double)arr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00070}00070     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00071}00071     \textcolor{keywordflow}{return} arr\_out;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00072}00072 \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00074}00074 \textcolor{keyword}{static} \textcolor{keywordtype}{void} set\_output\_field(mxArray **pout, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *out, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} len) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00075}00075     *pout = mxCreateDoubleMatrix(0, 0, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00076}00076 \textcolor{preprocessor}{\#if SFLOAT > 0}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00077}00077     mxSetPr(*pout, cast\_to\_double\_arr(out, len));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00078}00078     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(out);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00079}00079 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00080}00080     mxSetPr(*pout, out);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00081}00081 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00082}00082     mxSetM(*pout, len);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00083}00083     mxSetN(*pout, 1);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00084}00084 \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00089}00089 \textcolor{comment}{/*the input of matlab is data, cone, settings, output is sol, info}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00090}00090 \textcolor{comment}{  data is struct containing X,y,lambda;}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00091}00091 \textcolor{comment}{  matlab usage: [sol,info] = abip(data,settings)}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00092}00092 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00093}\mbox{\hyperlink{abip__ml__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{00093}} \textcolor{keywordtype}{void}  \mbox{\hyperlink{abip__ml__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{mexFunction}}(\textcolor{keywordtype}{int}  nlhs, mxArray* plhs[], \textcolor{keywordtype}{int}  nrhs, \textcolor{keyword}{const}  mxArray* prhs[])}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00094}00094 \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00096}00096     \textcolor{keyword}{const} mxArray *data;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00097}00097     \textcolor{keyword}{const} mxArray *A\_mex;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00098}00098     \textcolor{keyword}{const} mxArray *b\_mex;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00099}00099     \textcolor{keyword}{const} mxArray *lambda\_mex;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00102}00102     \textcolor{keyword}{const} mxArray *settings;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00103}00103     mxArray *tmp;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00105}00105     \textcolor{keyword}{const} mwSize one[1] = \{1\};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00106}00106     \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_info\_fields = 14;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00107}00107     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *info\_fields[] = \{\textcolor{stringliteral}{"{}ipm\_iter"{}}, \textcolor{stringliteral}{"{}admm\_iter"{}}, \textcolor{stringliteral}{"{}status"{}}, \textcolor{stringliteral}{"{}pobj"{}}, \textcolor{stringliteral}{"{}dobj"{}},\textcolor{stringliteral}{"{}res\_pri"{}}, \textcolor{stringliteral}{"{}res\_dual"{}}, }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00108}00108                                     \textcolor{stringliteral}{"{}gap"{}}, \textcolor{stringliteral}{"{}status\_val"{}}, \textcolor{stringliteral}{"{}setup\_time"{}}, \textcolor{stringliteral}{"{}solve\_time"{}}, \textcolor{stringliteral}{"{}runtime"{}},  \textcolor{stringliteral}{"{}lin\_sys\_time\_per\_iter"{}},}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00109}00109                                     \textcolor{stringliteral}{"{}avg\_cg\_iters"{}}\};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00111}00111     \textcolor{keyword}{const} \textcolor{keywordtype}{int} svm\_num\_sol\_fields = 3;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00112}00112     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *svm\_sol\_fields[] = \{\textcolor{stringliteral}{"{}w"{}}, \textcolor{stringliteral}{"{}b"{}}, \textcolor{stringliteral}{"{}xi"{}}\};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00114}00114     \textcolor{keyword}{const} \textcolor{keywordtype}{int} lasso\_num\_sol\_fields = 1;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00115}00115     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *lasso\_sol\_fields[] = \{\textcolor{stringliteral}{"{}x"{}}\};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00118}00118     \textcolor{comment}{/* get data*/}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00119}00119     \mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}}* d = (\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}}*)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00120}00120     data = prhs[0];}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00121}00121     A\_mex = (mxArray *)mxGetField(data, 0, \textcolor{stringliteral}{"{}X"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00122}00122     \textcolor{keywordflow}{if} (A\_mex == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00123}00123         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00124}00124         mexErrMsgTxt(\textcolor{stringliteral}{"{}ABIPData struct must contain a `X` entry."{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00125}00125     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00126}00126     \textcolor{keywordflow}{if} (!mxIsSparse(A\_mex)) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00127}00127         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00128}00128         mexErrMsgTxt(\textcolor{stringliteral}{"{}Input matrix X must be in sparse format (pass in sparse(X))"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00129}00129     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00130}00130     b\_mex = (mxArray *)mxGetField(data, 0, \textcolor{stringliteral}{"{}y"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00131}00131     \textcolor{keywordflow}{if} (b\_mex == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00132}00132         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00133}00133         mexErrMsgTxt(\textcolor{stringliteral}{"{}ABIPData struct must contain a `y` entry."{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00134}00134     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00135}00135     \textcolor{keywordflow}{if} (mxIsSparse(b\_mex)) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00136}00136         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00137}00137         mexErrMsgTxt(\textcolor{stringliteral}{"{}Input vector y must be in dense format (pass in full(y))"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00138}00138     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00139}00139     lambda\_mex = (mxArray *)mxGetField(data, 0, \textcolor{stringliteral}{"{}lambda"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00140}00140     \textcolor{keywordflow}{if} (lambda\_mex == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00141}00141         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00142}00142         mexErrMsgTxt(\textcolor{stringliteral}{"{}ABIPData struct must contain a `lambda` entry."{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00143}00143     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00146}00146     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a4dba77222881ad40d4d4f8ad271b0baf}{lambda}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(lambda\_mex);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00147}00147     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}} = mxGetM(A\_mex);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00148}00148     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}} = mxGetN(A\_mex);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00149}00149     \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A = (\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00150}00150     A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a79066c221d815b12d2972b10f8d75460}{m}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00151}00151     A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00152}00152 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00153}00153     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_aa89e923752bf41d843ce03b1124f9e52}{b}} = cast\_to\_abip\_float\_arr(mxGetPr(b\_mex), d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00155}00155     A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}} = cast\_to\_abip\_int\_arr(mxGetJc(A\_mex), A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}} + 1);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00156}00156     A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}} = cast\_to\_abip\_int\_arr(mxGetIr(A\_mex), A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}}]);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00157}00157     A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}} = cast\_to\_abip\_float\_arr(mxGetPr(A\_mex), A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}}]);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00159}00159     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a5dd08b61cb0d065480d46bc10c3eee9a}{A}} = A;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00160}00160     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a0ec3e5b0b4c65650fdd53c82b9124317}{c}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00162}00162     \textcolor{comment}{/*get settings*/}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00163}00163     settings = prhs[1];}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00164}00164     d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}} = (\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}}*)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00165}00165     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a64b69194e80b7a516cfde034ce1e7bed}{set\_default\_settings}})(d);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00166}00166 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00167}00167     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}alpha"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00168}00168     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00169}00169         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a8741017ba6a92b03b5970a0ed24bdbeb}{alpha}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00170}00170     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00172}00172     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}cg\_rate"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00173}00173     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00174}00174         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_aad10f271ef92c79cbf3dfc99aea012c4}{cg\_rate}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00175}00175     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00177}00177     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00178}00178     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00179}00179         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00180}00180         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a92ed81b47310ab7c197303e03b3bcabf}{eps\_p}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00181}00181         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a84e1b120cf1d4463ca99321606c409c7}{eps\_d}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00182}00182         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ade87ebc9ede0f2ce3855c2a541c20985}{eps\_g}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00183}00183         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a869011fc15bddb776b3bc3b418ae93a6}{eps\_inf}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00184}00184         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a82e943050e40d10664e26ffc6a544b88}{eps\_unb}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab456cd9cd9ccb6e63bb127a85942c35f}{eps}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00185}00185     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00186}00186     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps\_p"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00187}00187     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00188}00188         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a92ed81b47310ab7c197303e03b3bcabf}{eps\_p}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00189}00189     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00190}00190     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps\_d"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00191}00191     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00192}00192         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a84e1b120cf1d4463ca99321606c409c7}{eps\_d}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00193}00193     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00194}00194     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps\_g"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00195}00195     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00196}00196         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ade87ebc9ede0f2ce3855c2a541c20985}{eps\_g}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00197}00197     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00198}00198         tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps\_inf"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00199}00199     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00200}00200         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a869011fc15bddb776b3bc3b418ae93a6}{eps\_inf}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00201}00201     \}    tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}eps\_unb"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00202}00202     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00203}00203         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a82e943050e40d10664e26ffc6a544b88}{eps\_unb}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00204}00204     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00206}00206     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}max\_admm\_iters"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00207}00207     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00208}00208         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a43533f7b5380096ab768b810e8a879fd}{max\_admm\_iters}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00209}00209     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00211}00211     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}max\_ipm\_iters"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00212}00212     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00213}00213         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ad3eae77c31333471d17fd68f0fac1d0e}{max\_ipm\_iters}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00214}00214     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00216}00216     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}normalize"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00217}00217     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00218}00218         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a99f7cde12a8fa935ed5375fe14e4e179}{normalize}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00219}00219     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00220}00220 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00221}00221     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}rho\_y"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00222}00222     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00223}00223         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a68fd66c528363641a7f727384099a2ad}{rho\_y}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00224}00224     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00226}00226     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}rho\_x"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00227}00227     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00228}00228         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a8f308cbe6f253ad7bb52ecc0ccf9b9f2}{rho\_x}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00229}00229     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00230}00230 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00231}00231     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}rho\_tau"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00232}00232     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00233}00233         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_adef1720fc5f7d41e0f52ca3459483b6c}{rho\_tau}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00234}00234     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00235}00235     }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00236}00236     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}scale"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00237}00237     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00238}00238         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a28fd5d780593ca29805d202c85c30031}{scale}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00239}00239     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00240}00240 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00241}00241     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}scale\_bc"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00242}00242     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00243}00243         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a914a9ece5e89d58ed84ae3776af3f938}{scale\_bc}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00244}00244     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00246}00246     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}scale\_E"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00247}00247     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00248}00248         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ab844b5c874b058408b00de4281f22171}{scale\_E}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00249}00249     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00250}00250 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00251}00251     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}use\_indirect"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00252}00252     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00253}00253         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a51b00c420af47f860d45f6c78cc4a9ee}{use\_indirect}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00254}00254     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00256}00256     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}verbose"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00257}00257     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00258}00258         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a86aacf2ce71d08db933a1e338c2128e5}{verbose}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00259}00259     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00261}00261     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}linsys\_solver"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00262}00262     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00263}00263         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a732a06e79a30c1b08a7f8dc0548e5b88}{linsys\_solver}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00264}00264     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00265}00265 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00266}00266     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}prob\_type"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00267}00267     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00268}00268         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00269}00269         \textcolor{keywordflow}{if}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} != \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a3e6d412e72d69974ec3a747ec6d48907}{LASSO}} \&\& d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} != \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a1f78ebe5434d75417847221709d9efc6}{SVM}} \&\& d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} != \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a398014351bdf1e97cab40d3f20c1a655}{SVMQP}})\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00270}00270             mexErrMsgTxt(\textcolor{stringliteral}{"{}Invalid problem type"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00271}00271         \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00272}00272     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00273}00273     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00274}00274         mexErrMsgTxt(\textcolor{stringliteral}{"{}Please input the machine learning problem type"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00275}00275     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00276}00276 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00277}00277     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}inner\_check\_period"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00278}00278     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00279}00279         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a9c082c827d738c6068b8f2dbe2f3dece}{inner\_check\_period}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00280}00280     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00281}00281 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00282}00282     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}outer\_check\_period"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00283}00283     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00284}00284         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a529463cd9cf61ae05e1442f2825d5c9e}{outer\_check\_period}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00285}00285     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00287}00287     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}err\_dif"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00288}00288     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00289}00289         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a3146247d9a539eb681853281118da020}{err\_dif}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00290}00290     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00291}00291 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00292}00292     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}time\_limit"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00293}00293     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00294}00294         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_aebf06873a525d66eb532a967e301b504}{time\_limit}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00295}00295     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00296}00296     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}psi"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00297}00297     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00298}00298         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ad8ba967073e3f09eacd3557dee942b8d}{psi}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00299}00299     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00300}00300 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00301}00301     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}origin\_scaling"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00302}00302     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00303}00303         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_aec6a0e445e0e0fb0e13d028d0c1338ef}{origin\_scaling}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00304}00304     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00305}00305 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00306}00306     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}ruiz\_scaling"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00307}00307     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00308}00308         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a0c0c3e825e8a0d4025b9e501521a7688}{ruiz\_scaling}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00309}00309     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00310}00310 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00311}00311     tmp = mxGetField(settings, 0, \textcolor{stringliteral}{"{}pc\_scaling"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00312}00312     \textcolor{keywordflow}{if} (tmp != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00313}00313         d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ae01087adb27512bc8b9fae4313f1d7db}{pc\_scaling}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}})*mxGetPr(tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00314}00314     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00315}00315 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00316}00316 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00317}00317     \mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}* k = (\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}*)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00318}00318 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00319}00319     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a3968e9b8b62638112b64f9ce4a8c6dbf}{q}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00320}00320     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a79d9231daaaf1f4add477de67311a7a2}{qsize}} = 0;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00321}00321 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00322}00322     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a1b5d0429a6245f211825a05ee0b47ee6}{rqsize}} = 1;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00323}00323     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a7ab882c6bbd49161631d508e808eefc9}{rq}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00324}00324     }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00325}00325     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a616ca46c411355a280cfa20a088381f0}{f}} = 0;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00326}00326     k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a0a4022e44662c0e2ff7533eaa221b5ce}{z}} = 0;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00327}00327 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00328}00328     \textcolor{keywordflow}{if}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} == \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a3e6d412e72d69974ec3a747ec6d48907}{LASSO}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00330}00330         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a7ab882c6bbd49161631d508e808eefc9}{rq}}[0] = 2 + d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00331}00331         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_abaa61450966d803a7a24b8f04316d7f9}{l}} = 2 * d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}}; }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00332}00332     \} }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00333}00333     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} == \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a1f78ebe5434d75417847221709d9efc6}{SVM}}) \{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00334}00334         }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00335}00335         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a7ab882c6bbd49161631d508e808eefc9}{rq}}[0] = 2 + d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00336}00336         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_abaa61450966d803a7a24b8f04316d7f9}{l}} = 2 + 2 * d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}} + 2 * d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00337}00337     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00338}00338     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} == \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155a398014351bdf1e97cab40d3f20c1a655}{SVMQP}})\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00339}00339         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a1b5d0429a6245f211825a05ee0b47ee6}{rqsize}} = 0;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00340}00340         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a7ab882c6bbd49161631d508e808eefc9}{rq}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00341}00341         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_a616ca46c411355a280cfa20a088381f0}{f}} = d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}} + 1;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00342}00342         k-\/>\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e_abaa61450966d803a7a24b8f04316d7f9}{l}} = 2 * d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00343}00343     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00344}00344     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00345}00345         mexErrMsgTxt(\textcolor{stringliteral}{"{}This type of machine learning problem is not supported yet"{}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00346}00346     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00347}00347 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00348}00348     \mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s}{ABIPSolution}}* sol = (\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s}{ABIPSolution}}*)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s}{ABIPSolution}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00349}00349     \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}}* info = (\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}}*)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00350}00350 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00351}00351     sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_a937845a873f0a60c6e744584cc6fa1b0}{x}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00352}00352     sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_aed9bcbd49efc91abb0dcb3cfab937865}{y}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00353}00353     sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_a270422dc9fbd032d6558efbc2c7f9a34}{s}} = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00354}00354 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00355}00355     }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00356}00356 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00357}00357     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} status = \mbox{\hyperlink{abip_8h_a08dfb9f3b531584cd989a3adb95bc863}{abip}}(d,sol,info,k);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00359}00359     \textcolor{comment}{/* output sol */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00360}00360 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00361}00361     \textcolor{comment}{//SVM}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00362}00362     \textcolor{keywordflow}{if}(d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} == 2 || d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a2443c410328a63df6b6715fd3bec096b}{stgs}}-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a4e25a2f091f03cbb95b5d4228a395267}{prob\_type}} == 4)\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00363}00363 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00364}00364         plhs[0] = mxCreateStructArray(1, one, svm\_num\_sol\_fields, svm\_sol\_fields);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00365}00365 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00366}00366         set\_output\_field(\&tmp, sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_a937845a873f0a60c6e744584cc6fa1b0}{x}}, d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00367}00367         mxSetField(plhs[0], 0, \textcolor{stringliteral}{"{}w"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00368}00368 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00369}00369         set\_output\_field(\&tmp, sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_aed9bcbd49efc91abb0dcb3cfab937865}{y}}, 1);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00370}00370         mxSetField(plhs[0], 0, \textcolor{stringliteral}{"{}b"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00371}00371 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00372}00372         set\_output\_field(\&tmp, sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_a270422dc9fbd032d6558efbc2c7f9a34}{s}}, d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_ae1f1d265c14bd3b70a5ed501a65c8a3a}{m}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00373}00373         mxSetField(plhs[0], 0, \textcolor{stringliteral}{"{}xi"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00374}00374     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00375}00375     \textcolor{comment}{//LASSO}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00376}00376     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00377}00377         plhs[0] = mxCreateStructArray(1, one, lasso\_num\_sol\_fields, lasso\_sol\_fields);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00378}00378 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00379}00379         set\_output\_field(\&tmp, sol-\/>\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s_a937845a873f0a60c6e744584cc6fa1b0}{x}}, d-\/>\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a_a851d42a0756265fbdd9f2826e3e99883}{n}});}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00380}00380         mxSetField(plhs[0], 0, \textcolor{stringliteral}{"{}x"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00381}00381     \}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00382}00382 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00383}00383     \textcolor{comment}{/* output info */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00384}00384     plhs[1] = mxCreateStructArray(1, one, num\_info\_fields, info\_fields);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00385}00385 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00386}00386     \textcolor{comment}{/* if you add/remove fields here update the info\_fields above */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00387}00387     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}status"{}}, mxCreateString(info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_af686b94b484faa853b4ac5ae1fe2faa3}{status}}));}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00388}00388 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00389}00389     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00390}00390     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}ipm\_iter"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00391}00391     *mxGetPr(tmp) = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a71644e2bd3135f5c9b7db1d296a4255c}{ipm\_iter}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00392}00392 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00393}00393     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00394}00394     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}admm\_iter"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00395}00395     *mxGetPr(tmp) = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_ad1dab3c599051a0c2ef0a07130da7694}{admm\_iter}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00396}00396 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00397}00397     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00398}00398     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}status\_val"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00399}00399     *mxGetPr(tmp) = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a62b1f8d7736586fa2bd2044139f4d5d3}{status\_val}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00400}00400 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00401}00401     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00402}00402     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}pobj"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00403}00403     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a9d6efb0f00355452e70b9ca70c2eb851}{pobj}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00404}00404 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00405}00405     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00406}00406     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}dobj"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00407}00407     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a6bc998d11a1b606d0ae272a3c0c0d8f9}{dobj}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00408}00408 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00409}00409     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00410}00410     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}res\_pri"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00411}00411     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a9642bfb67eafd976c078a97fab0074b1}{res\_pri}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00412}00412 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00413}00413     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00414}00414     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}res\_dual"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00415}00415     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a3d03d7965993594fda0ab62735c835c7}{res\_dual}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00416}00416 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00417}00417     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00418}00418     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}gap"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00419}00419     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a7df91430d069f3466f9fe191edb13370}{rel\_gap}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00420}00420 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00421}00421 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00422}00422     \textcolor{comment}{/*return value in secs */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00423}00423     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00424}00424     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}setup\_time"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00425}00425     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a4424aa7dfda820987ab020c7ad10f83f}{setup\_time}} / 1e3;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00426}00426 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00427}00427     \textcolor{comment}{/*return value in secs */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00428}00428     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00429}00429     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}solve\_time"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00430}00430     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a8cbd654d84b8dc0def54543a4b98e932}{solve\_time}} / 1e3;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00431}00431 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00432}00432     \textcolor{comment}{/*return value in secs */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00433}00433     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00434}00434     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}runtime"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00435}00435     *mxGetPr(tmp) = (info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a8cbd654d84b8dc0def54543a4b98e932}{solve\_time}} + info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a4424aa7dfda820987ab020c7ad10f83f}{setup\_time}}) / 1e3;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00436}00436 }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00437}00437     \textcolor{comment}{/*return value in secs */}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00438}00438     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00439}00439     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}lin\_sys\_time\_per\_iter"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00440}00440     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a430cae15c3219fc0354f109723b71bf9}{avg\_linsys\_time}} / 1e3;}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00441}00441      }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00442}00442     \textcolor{comment}{//average cg iters per admm iter}}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00443}00443     tmp = mxCreateDoubleMatrix(1, 1, mxREAL);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00444}00444     mxSetField(plhs[1], 0, \textcolor{stringliteral}{"{}avg\_cg\_iters"{}}, tmp);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00445}00445     *mxGetPr(tmp) = info-\/>\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o_a1b8aceac60a41a3f0263dfc7698f6409}{avg\_cg\_iters}};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00446}00446     }
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00447}00447     free\_mex(d, k);}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00448}00448     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{abip__ml__mex_8c_source_l00449}00449 \}}
+
+\end{DoxyCode}

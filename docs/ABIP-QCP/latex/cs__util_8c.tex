@@ -1,0 +1,141 @@
+\hypertarget{cs__util_8c}{}\doxysection{csparse/\+Source/cs\+\_\+util.c File Reference}
+\label{cs__util_8c}\index{csparse/Source/cs\_util.c@{csparse/Source/cs\_util.c}}
+{\ttfamily \#include \char`\"{}cs.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ \mbox{\hyperlink{cs__util_8c_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\+\_\+spalloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} m, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} nzmax, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} values, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} triplet)
+\item 
+\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__util_8c_a4f6f6d0b8acba23772fd254ec794e966}{cs\+\_\+sprealloc}} (\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} nzmax)
+\item 
+\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\+\_\+spfree}} (\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$A)
+\item 
+\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$ \mbox{\hyperlink{cs__util_8c_adabc8e810cec49307537b5e3368d53aa}{cs\+\_\+nfree}} (\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$N)
+\item 
+\mbox{\hyperlink{cs_8h_a665db6e495baeaa6b3a2a3072cf7f4b4}{css}} $\ast$ \mbox{\hyperlink{cs__util_8c_a2eebf0dae1d9ee505a016630e4fa5748}{cs\+\_\+sfree}} (\mbox{\hyperlink{cs_8h_a665db6e495baeaa6b3a2a3072cf7f4b4}{css}} $\ast$S)
+\item 
+\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ \mbox{\hyperlink{cs__util_8c_a5b17812b02b3c113ce0088870aaeffd9}{cs\+\_\+dalloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} m, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n)
+\item 
+\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ \mbox{\hyperlink{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}{cs\+\_\+dfree}} (\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$D)
+\item 
+\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ \mbox{\hyperlink{cs__util_8c_afa27f1bfd7e5be4f160c24b0828d9178}{cs\+\_\+done}} (\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$C, void $\ast$w, void $\ast$x, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)
+\item 
+\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} $\ast$ \mbox{\hyperlink{cs__util_8c_a5f172de9436558173ef0b873d9e1a5db}{cs\+\_\+idone}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} $\ast$p, \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$C, void $\ast$w, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)
+\item 
+\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$ \mbox{\hyperlink{cs__util_8c_a694a09c9515e8fd862bd5270ee35cbc8}{cs\+\_\+ndone}} (\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$N, \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$C, void $\ast$w, void $\ast$x, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)
+\item 
+\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ \mbox{\hyperlink{cs__util_8c_aa848643a3fad58acb3b400c36de5dd3e}{cs\+\_\+ddone}} (\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$D, \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$C, void $\ast$w, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cs__util_8c_a5b17812b02b3c113ce0088870aaeffd9}\label{cs__util_8c_a5b17812b02b3c113ce0088870aaeffd9}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_dalloc@{cs\_dalloc}}
+\index{cs\_dalloc@{cs\_dalloc}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_dalloc()}{cs\_dalloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ cs\+\_\+dalloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{m,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00066}{66}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_aa848643a3fad58acb3b400c36de5dd3e}\label{cs__util_8c_aa848643a3fad58acb3b400c36de5dd3e}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_ddone@{cs\_ddone}}
+\index{cs\_ddone@{cs\_ddone}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_ddone()}{cs\_ddone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ cs\+\_\+ddone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$}]{D,  }\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{C,  }\item[{void $\ast$}]{w,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{ok }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00115}{115}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}\label{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_dfree@{cs\_dfree}}
+\index{cs\_dfree@{cs\_dfree}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_dfree()}{cs\_dfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$ cs\+\_\+dfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_aeab9af24928684690bf568c4bc3b43f3}{csd}} $\ast$}]{D }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00079}{79}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_afa27f1bfd7e5be4f160c24b0828d9178}\label{cs__util_8c_afa27f1bfd7e5be4f160c24b0828d9178}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_done@{cs\_done}}
+\index{cs\_done@{cs\_done}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_done()}{cs\_done()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ cs\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{C,  }\item[{void $\ast$}]{w,  }\item[{void $\ast$}]{x,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{ok }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00090}{90}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a5f172de9436558173ef0b873d9e1a5db}\label{cs__util_8c_a5f172de9436558173ef0b873d9e1a5db}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_idone@{cs\_idone}}
+\index{cs\_idone@{cs\_idone}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_idone()}{cs\_idone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} $\ast$ cs\+\_\+idone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{C,  }\item[{void $\ast$}]{w,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{ok }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00098}{98}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a694a09c9515e8fd862bd5270ee35cbc8}\label{cs__util_8c_a694a09c9515e8fd862bd5270ee35cbc8}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_ndone@{cs\_ndone}}
+\index{cs\_ndone@{cs\_ndone}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_ndone()}{cs\_ndone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$ cs\+\_\+ndone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$}]{N,  }\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{C,  }\item[{void $\ast$}]{w,  }\item[{void $\ast$}]{x,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{ok }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00106}{106}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_adabc8e810cec49307537b5e3368d53aa}\label{cs__util_8c_adabc8e810cec49307537b5e3368d53aa}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_nfree@{cs\_nfree}}
+\index{cs\_nfree@{cs\_nfree}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_nfree()}{cs\_nfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$ cs\+\_\+nfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a5c6209c1d43f317aa26e54f2dc1123a5}{csn}} $\ast$}]{N }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00043}{43}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a2eebf0dae1d9ee505a016630e4fa5748}\label{cs__util_8c_a2eebf0dae1d9ee505a016630e4fa5748}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_sfree@{cs\_sfree}}
+\index{cs\_sfree@{cs\_sfree}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_sfree()}{cs\_sfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_a665db6e495baeaa6b3a2a3072cf7f4b4}{css}} $\ast$ cs\+\_\+sfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a665db6e495baeaa6b3a2a3072cf7f4b4}{css}} $\ast$}]{S }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00054}{54}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_af3ed6e2936760b1b53b79fe3ed5cc8b6}\label{cs__util_8c_af3ed6e2936760b1b53b79fe3ed5cc8b6}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_spalloc@{cs\_spalloc}}
+\index{cs\_spalloc@{cs\_spalloc}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_spalloc()}{cs\_spalloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ cs\+\_\+spalloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{m,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{n,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{nzmax,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{values,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{triplet }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00003}{3}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}\label{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_spfree@{cs\_spfree}}
+\index{cs\_spfree@{cs\_spfree}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_spfree()}{cs\_spfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ cs\+\_\+spfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00033}{33}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+
+\mbox{\Hypertarget{cs__util_8c_a4f6f6d0b8acba23772fd254ec794e966}\label{cs__util_8c_a4f6f6d0b8acba23772fd254ec794e966}} 
+\index{cs\_util.c@{cs\_util.c}!cs\_sprealloc@{cs\_sprealloc}}
+\index{cs\_sprealloc@{cs\_sprealloc}!cs\_util.c@{cs\_util.c}}
+\doxysubsubsection{\texorpdfstring{cs\_sprealloc()}{cs\_sprealloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} cs\+\_\+sprealloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}}]{nzmax }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cs__util_8c_source_l00018}{18}} of file \mbox{\hyperlink{cs__util_8c_source}{cs\+\_\+util.\+c}}.
+

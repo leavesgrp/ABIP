@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['get_5fadapt_5fsummary_0',['get_adapt_summary',['../adaptive_8h.html#ab3966c2c1948a7b80c88104689d6dae7',1,'get_adapt_summary(const ABIPInfo *info, ABIPAdaptWork *a):&#160;adaptive.c'],['../adaptive_8c.html#ab3966c2c1948a7b80c88104689d6dae7',1,'get_adapt_summary(const ABIPInfo *info, ABIPAdaptWork *a):&#160;adaptive.c']]],
+  ['get_5flin_5fsys_5fmethod_1',['get_lin_sys_method',['../linsys_8h.html#a6f4745f2a8f151cbfba288a3248bb397',1,'get_lin_sys_method(const ABIPMatrix *A, const ABIPSettings *stgs):&#160;direct.c'],['../direct_8c.html#a6f4745f2a8f151cbfba288a3248bb397',1,'get_lin_sys_method(const ABIPMatrix *A, const ABIPSettings *stgs):&#160;direct.c'],['../indirect_8c.html#a6f4745f2a8f151cbfba288a3248bb397',1,'get_lin_sys_method(const ABIPMatrix *A, const ABIPSettings *stgs):&#160;indirect.c']]],
+  ['get_5flin_5fsys_5fsummary_2',['get_lin_sys_summary',['../linsys_8h.html#a9324fcbdcbd2c577751203abc8ba28c4',1,'get_lin_sys_summary(ABIPLinSysWork *p, const ABIPInfo *info):&#160;direct.c'],['../direct_8c.html#a9324fcbdcbd2c577751203abc8ba28c4',1,'get_lin_sys_summary(ABIPLinSysWork *p, const ABIPInfo *info):&#160;direct.c'],['../indirect_8c.html#a9324fcbdcbd2c577751203abc8ba28c4',1,'get_lin_sys_summary(ABIPLinSysWork *p, const ABIPInfo *info):&#160;indirect.c']]]
+];

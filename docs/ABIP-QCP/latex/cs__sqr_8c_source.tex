@@ -1,0 +1,93 @@
+\hypertarget{cs__sqr_8c_source}{}\doxysection{cs\+\_\+sqr.\+c}
+\label{cs__sqr_8c_source}\index{csparse/Source/cs\_sqr.c@{csparse/Source/cs\_sqr.c}}
+\mbox{\hyperlink{cs__sqr_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00002}00002 \textcolor{comment}{/* compute nnz(V) = S-\/>lnz, S-\/>pinv, S-\/>leftmost, S-\/>m2 from A and S-\/>parent */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00003}00003 \textcolor{keyword}{static} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} cs\_vcount (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{structcs__symbolic}{css}} *S)}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, k, p, pa, n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}}, *Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, *Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, *next, *head,}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00006}00006         *tail, *nque, *pinv, *leftmost, *w, *parent = S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00007}00007     S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}} = pinv = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m+n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;        \textcolor{comment}{/* allocate pinv, */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00008}00008     S-\/>\mbox{\hyperlink{structcs__symbolic_a06a2d29d73a501796269bc02638dbf97}{leftmost}} = leftmost = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;  \textcolor{comment}{/* and leftmost */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00009}00009     w = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m+3*n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;   \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!pinv || !w || !leftmost)}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00011}00011     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00012}00012         \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                       \textcolor{comment}{/* pinv and leftmost freed later */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00013}00013         \textcolor{keywordflow}{return} (0) ;                        \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00014}00014     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00015}00015     next = w ; head = w + m ; tail = w + m + n ; nque = w + m + 2*n ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00016}00016     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) head [k] = -\/1 ;   \textcolor{comment}{/* queue k is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00017}00017     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) tail [k] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00018}00018     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) nque [k] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00019}00019     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) leftmost [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00020}00020     \textcolor{keywordflow}{for} (k = n-\/1 ; k >= 0 ; k-\/-\/)}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00021}00021     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00022}00022         \textcolor{keywordflow}{for} (p = Ap [k] ; p < Ap [k+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00023}00023         \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00024}00024             leftmost [Ai [p]] = k ;         \textcolor{comment}{/* leftmost[i] = min(find(A(i,:)))*/}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00025}00025         \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00027}00027     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = m-\/1 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} >= 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}-\/-\/)            \textcolor{comment}{/* scan rows in reverse order */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00028}00028     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00029}00029         pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;                     \textcolor{comment}{/* row i is not yet ordered */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00030}00030         k = leftmost [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00031}00031         \textcolor{keywordflow}{if} (k == -\/1) continue ;             \textcolor{comment}{/* row i is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00032}00032         \textcolor{keywordflow}{if} (nque [k]++ == 0) tail [k] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ; \textcolor{comment}{/* first row in queue k */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00033}00033         next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = head [k] ;               \textcolor{comment}{/* put i at head of queue k */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00034}00034         head [k] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00036}00036     S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00037}00037     S-\/>\mbox{\hyperlink{structcs__symbolic_aa0227f03661c17f047757cad80d6f4d9}{m2}} = m ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00038}00038     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)               \textcolor{comment}{/* find row permutation and nnz(V)*/}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00039}00039     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00040}00040         \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = head [k] ;                      \textcolor{comment}{/* remove row i from queue k */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00041}00041         S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}}++ ;                          \textcolor{comment}{/* count V(k,k) as nonzero */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00042}00042         \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < 0) \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = S-\/>\mbox{\hyperlink{structcs__symbolic_aa0227f03661c17f047757cad80d6f4d9}{m2}}++ ;            \textcolor{comment}{/* add a fictitious row */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00043}00043         pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k ;                      \textcolor{comment}{/* associate row i with V(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00044}00044         \textcolor{keywordflow}{if} (-\/-\/nque [k] <= 0) continue ;     \textcolor{comment}{/* skip if V(k+1:m,k) is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00045}00045         S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} += nque [k] ;                \textcolor{comment}{/* nque [k] is nnz (V(k+1:m,k)) */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00046}00046         \textcolor{keywordflow}{if} ((pa = parent [k]) != -\/1)        \textcolor{comment}{/* move all rows to parent of k */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00047}00047         \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00048}00048             \textcolor{keywordflow}{if} (nque [pa] == 0) tail [pa] = tail [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00049}00049             next [tail [k]] = head [pa] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00050}00050             head [pa] = next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00051}00051             nque [pa] += nque [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00052}00052         \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00053}00053     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00054}00054     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \textcolor{keywordflow}{if} (pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] < 0) pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k++ ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00055}00055     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00056}00056     \textcolor{keywordflow}{return} (1) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00057}00057 \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00059}00059 \textcolor{comment}{/* symbolic ordering and analysis for QR or LU */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00060}\mbox{\hyperlink{cs_8h_a7cb77fc595740853b9d5f49df6d5f64c}{00060}} \mbox{\hyperlink{structcs__symbolic}{css}} *\mbox{\hyperlink{cs__sqr_8c_a7cb77fc595740853b9d5f49df6d5f64c}{cs\_sqr}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} order, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} qr)}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00061}00061 \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00062}00062     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, k, ok = 1, *post ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00063}00063     \mbox{\hyperlink{structcs__symbolic}{css}} *S ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00064}00064     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (NULL) ;        \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00065}00065     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00066}00066     S = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__symbolic}{css}})) ;       \textcolor{comment}{/* allocate result S */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00067}00067     \textcolor{keywordflow}{if} (!S) \textcolor{keywordflow}{return} (NULL) ;                 \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00068}00068     S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}} = \mbox{\hyperlink{cs_8h_a8c0812b53c0937ab04dc22eae0fb5259}{cs\_amd}} (order, A) ;              \textcolor{comment}{/* fill-\/reducing ordering */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00069}00069     \textcolor{keywordflow}{if} (order \&\& !S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}}) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S)) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00070}00070     \textcolor{keywordflow}{if} (qr)                                 \textcolor{comment}{/* QR symbolic analysis */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00071}00071     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00072}00072         \mbox{\hyperlink{structcs__sparse}{cs}} *C = order ? \mbox{\hyperlink{cs_8h_aa09de703c0e946fe0d8a61dacbd78aa4}{cs\_permute}} (A, NULL, S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}}, 0) : ((\mbox{\hyperlink{structcs__sparse}{cs}} *) A) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00073}00073         S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} = \mbox{\hyperlink{cs_8h_a86d7b84d5a4cdf928556bcd30a413a84}{cs\_etree}} (C, 1) ;       \textcolor{comment}{/* etree of C'*C, where C=A(:,q) */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00074}00074         post = \mbox{\hyperlink{cs_8h_ae8e3fc0a5f911aa66a95391b1be0c780}{cs\_post}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}, n) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00075}00075         S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} = \mbox{\hyperlink{cs_8h_ad97e14775c7d6b9f8f1e8c5ee0d63aa7}{cs\_counts}} (C, S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}, post, 1) ;  \textcolor{comment}{/* col counts chol(C'*C) */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00076}00076         \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (post) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00077}00077         ok = C \&\& S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} \&\& S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} \&\& cs\_vcount (C, S) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00078}00078         \textcolor{keywordflow}{if} (ok) \textcolor{keywordflow}{for} (S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} = 0, k = 0 ; k < n ; k++) S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} += S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00079}00079         \textcolor{keywordflow}{if} (order) \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C) ;}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00080}00080     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00081}00081     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00082}00082     \{}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00083}00083         S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} = 4*(A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} [n]) + n ;         \textcolor{comment}{/* for LU factorization only, */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00084}00084         S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} = S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} ;                   \textcolor{comment}{/* guess nnz(L) and nnz(U) */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00085}00085     \}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00086}00086     \textcolor{keywordflow}{return} (ok ? S : \mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S)) ;        \textcolor{comment}{/* return result S */}}
+\DoxyCodeLine{\Hypertarget{cs__sqr_8c_source_l00087}00087 \}}
+
+\end{DoxyCode}

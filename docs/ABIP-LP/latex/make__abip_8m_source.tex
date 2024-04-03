@@ -1,0 +1,76 @@
+\hypertarget{make__abip_8m_source}{}\doxysection{make\+\_\+abip.\+m}
+\mbox{\hyperlink{make__abip_8m}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00001}00001 \%\% parameter setting \textcolor{keywordflow}{for} compiling the \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}} solver. }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00002}\mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{00002}} \mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{gpu}} = \textcolor{keyword}{false};         \% compile the \mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{gpu}} \mbox{\hyperlink{abip_8h_a14b83612aa3efc7ef50c6f69af903cad}{version}} of \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}. }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00003}\mbox{\hyperlink{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}{00003}} \textcolor{keywordtype}{float} = \textcolor{keyword}{false};          \% \textcolor{keyword}{using }single precision (rather than \textcolor{keywordtype}{double}) floating points}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00004}\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{00004}} \textcolor{keywordtype}{int} = \textcolor{keyword}{false};            \% use 32 bit integers \textcolor{keywordflow}{for} indexing}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00006}\mbox{\hyperlink{make__abip_8m_ad1da6aee73ae87e10805291deee2c8b3}{00006}} \% \mbox{\hyperlink{make__abip_8m_ad1da6aee73ae87e10805291deee2c8b3}{WARNING}}: openmp used in MATLAB can cause errors and crashes, use with caution.  }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00007}00007 \% openmp parallelizes the matrix multiply \textcolor{keywordflow}{for} the indirect solver (\textcolor{keyword}{using} CG):}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00008}00008 flags.COMPILE\_WITH\_OPENMP = false;}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00009}\mbox{\hyperlink{make__abip_8m_a6bb8ce5d84d402b19ab613b863477e9f}{00009}} flags.EXTRA\_VERBOSE = 0;}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00011}\mbox{\hyperlink{make__abip_8m_a63a313883bd2adaa2d01b1e4615490cb}{00011}} flags.BLASLIB = \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00012}00012 \% MATLAB\_MEX\_FILE env variable sets blasint to ptrdiff\_t. }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00013}\mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{00013}} flags.LCFLAG  = \textcolor{stringliteral}{'-\/DMATLAB\_MEX\_FILE -\/DUSE\_LAPACK -\/DCTRLC=1 -\/DCOPYAMATRIX'}; }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00014}\mbox{\hyperlink{make__abip_8m_a913387b300daf852c9d46473133374da}{00014}} flags.INCS = \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00015}\mbox{\hyperlink{make__abip_8m_a1d9fd0cb2e05c83451d050ce7faa1e1e}{00015}} flags.LOCS = \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00018}00018 \% Common source files}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00019}\mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{00019}} \mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}} = ["{}linalg.c"{}; "{}adaptive.c"{}; "{}cs.c"{}; "{}util.c"{}; "{}abip.c"{};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00020}00020                     "{}ctrlc.c"{}; "{}normalize.c"{}; "{}abip\_version.c"{}];}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00021}\mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{00021}} \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\_common\_linsys}} = ["{}common.c"{}];}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00022}\mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{00022}} \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\_mexfile}} = ["{}abip\_mex.c"{}];}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00024}00024 \mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}} = fullfile(\textcolor{stringliteral}{'src'}, \mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00025}00025 \mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}} = strjoin(\mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00026}00026 \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\_common\_linsys}} = fullfile(\textcolor{stringliteral}{'linsys'}, \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\_common\_linsys}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00027}00027 \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\_mexfile}} = fullfile(\textcolor{stringliteral}{'mexfile'}, \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\_mexfile}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00029}\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{00029}} \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}} = strcat(\mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\_common\_src}}, \textcolor{stringliteral}{"{} "{}}, \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\_common\_linsys}}, \textcolor{stringliteral}{"{} "{}}, \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\_mexfile}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00031}\mbox{\hyperlink{make__abip_8m_aa1f670df3c26c1fd2c4d45eb0e675f9a}{00031}} \textcolor{keywordflow}{if} (\string~isempty (strfind (computer, \textcolor{stringliteral}{'64'})))}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00032}00032     flags.arr = \textcolor{stringliteral}{'-\/largeArrayDims'};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00033}00033 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00034}\mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{00034}}     flags.arr = \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00035}00035 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00037}\mbox{\hyperlink{make__abip_8m_aad2344c947d37bb94803091dcc653dd4}{00037}} \textcolor{keywordflow}{if} (isunix \&\& \string~ismac)}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00038}00038     flags.link = \textcolor{stringliteral}{'-\/lm -\/lut -\/lrt'};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00039}\mbox{\hyperlink{make__abip_8m_af8033cde77b7d79971dc87281682264a}{00039}} \mbox{\hyperlink{make__abip_8m_af8033cde77b7d79971dc87281682264a}{elseif}}  (ismac)}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00040}00040     flags.link = \textcolor{stringliteral}{'-\/lm -\/lut'};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00041}00041 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00042}\mbox{\hyperlink{make__abip_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{00042}}     flags.link = \textcolor{stringliteral}{'-\/lut'};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00043}00043     flags.LCFLAG = sprintf(\textcolor{stringliteral}{'-\/DNOBLASSUFFIX \%s'}, flags.LCFLAG);}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00044}00044 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00046}\mbox{\hyperlink{make__abip_8m_a93f0c7e13cdc49889b7fda3c881ae6a6}{00046}} \textcolor{keywordflow}{if} (\textcolor{keywordtype}{float})}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00047}00047     flags.LCFLAG = sprintf(\textcolor{stringliteral}{'-\/DSFLOAT \%s'}, flags.LCFLAG);}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00048}00048 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00050}\mbox{\hyperlink{make__abip_8m_a21762f4c6c8ae092c9631f4a745b54c0}{00050}} \textcolor{keywordflow}{if} (\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00051}00051     flags.INT = \textcolor{stringliteral}{''};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00052}00052 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00053}\mbox{\hyperlink{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}{00053}}     flags.INT = \textcolor{stringliteral}{'-\/DDLONG'};}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00054}00054 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00056}\mbox{\hyperlink{make__abip_8m_a153356591492e2cb0644e85b9ac13f2b}{00056}} \textcolor{keywordflow}{if} (flags.COMPILE\_WITH\_OPENMP)}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00057}00057     flags.link = strcat(flags.link, \textcolor{stringliteral}{' -\/lgomp'});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00058}00058 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00060}00060 \textcolor{keywordflow}{if} (flags.EXTRA\_VERBOSE)}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00061}00061     flags.LCFLAG = sprintf(\textcolor{stringliteral}{'-\/DEXTRA\_VERBOSE \%s'}, flags.LCFLAG);}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00062}00062 end}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00064}\mbox{\hyperlink{make__abip_8m_a1217a141f130511d5ac2277872b77d9f}{00064}} \textcolor{keyword}{delete}(fullfile(\textcolor{stringliteral}{"{}."{}}, \textcolor{stringliteral}{"{}interface"{}}, \textcolor{stringliteral}{"{}*."{}} + \mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}}));}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00065}\mbox{\hyperlink{make__abip_8m_a9c686ed161fd3aacfd6328229352f070}{00065}} \mbox{\hyperlink{make__abip_8m_a9c686ed161fd3aacfd6328229352f070}{compile\_direct}}(flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00066}\mbox{\hyperlink{make__abip_8m_a0e57e96c21b374bc51e0f5d12c612704}{00066}} \mbox{\hyperlink{make__abip_8m_a0e57e96c21b374bc51e0f5d12c612704}{compile\_indirect}}(flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}});}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00067}\mbox{\hyperlink{make__abip_8m_aa55e65093c0a26f0c8a4a99f490aa562}{00067}} \mbox{\hyperlink{make__abip_8m_aa55e65093c0a26f0c8a4a99f490aa562}{movefile}}(fullfile(\textcolor{stringliteral}{"{}."{}}, \textcolor{stringliteral}{"{}*."{}} + \mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}}), fullfile(\textcolor{stringliteral}{"{}."{}}, \textcolor{stringliteral}{"{}interface"{}}));}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00068}\mbox{\hyperlink{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}{00068}} \mbox{\hyperlink{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}{addpath}}(fullfile(\textcolor{stringliteral}{"{}mexfile"{}}));}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00069}\mbox{\hyperlink{make__abip_8m_a420dce71dd5ceb13c8eb478016f2deb9}{00069}} \mbox{\hyperlink{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}{addpath}}(fullfile(\textcolor{stringliteral}{"{}interface"{}}));}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00070}\mbox{\hyperlink{make__abip_8m_a982633413f531a5520e2218145aad5a7}{00070}} \% \mbox{\hyperlink{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}{addpath}}(fullfile(\textcolor{stringliteral}{"{}test"{}}));}
+\DoxyCodeLine{\Hypertarget{make__abip_8m_source_l00071}00071 savepath}
+
+\end{DoxyCode}

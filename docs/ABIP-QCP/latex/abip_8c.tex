@@ -1,0 +1,157 @@
+\hypertarget{abip_8c}{}\doxysection{source/abip.c File Reference}
+\label{abip_8c}\index{source/abip.c@{source/abip.c}}
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}cones.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ctrlc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lasso\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mkl\+\_\+lapacke.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}qcp\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}svm\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}svm\+\_\+qp\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{abip_8c_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip_8c_a016a520dc275fc34ac8d42f08d42907d}{ABIP}} (timer)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{abip_8c_a513abf61527c70e3c89babd3a44f23fa}{update\+\_\+work}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, const \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol, const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$c, \mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$spe)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8c_a60196090a169699008eb9074f6eaeb65}{adjust\+\_\+barrier}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$spe)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_a558890489e5c263b5fe898ea86ef4458}{solve}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$c, \mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Main solve iteration of the solver. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_a017666419fb218bef2f5341e144fd08f}{finish}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$spe)
+\begin{DoxyCompactList}\small\item\em Free the memory allocated for the solver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_aea34b4fb05bce35cc94b52d7357559e0}{init}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info, \mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$s, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Initialize and allocate memory for the solver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_ac75b3d3e3f1409484d0d3596e27477d1}{init\+\_\+problem}} (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$$\ast$s, \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}} special\+\_\+problem)
+\begin{DoxyCompactList}\small\item\em Specify the problem type and initialize the problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{abip_8c_a08dfb9f3b531584cd989a3adb95bc863}{abip}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$K)
+\begin{DoxyCompactList}\small\item\em the main function to call the abip conic solver \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{abip_8c_af08ec37a8c99d747fb60fa15bc28678b}\label{abip_8c_af08ec37a8c99d747fb60fa15bc28678b}} 
+\index{abip.c@{abip.c}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l00001}{1}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{abip_8c_a08dfb9f3b531584cd989a3adb95bc863}\label{abip_8c_a08dfb9f3b531584cd989a3adb95bc863}} 
+\index{abip.c@{abip.c}!abip@{abip}}
+\index{abip@{abip}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{abip()}{abip()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} abip (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{K }\end{DoxyParamCaption})}
+
+
+
+the main function to call the abip conic solver 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l01335}{1335}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a016a520dc275fc34ac8d42f08d42907d}\label{abip_8c_a016a520dc275fc34ac8d42f08d42907d}} 
+\index{abip.c@{abip.c}!ABIP@{ABIP}}
+\index{ABIP@{ABIP}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{ABIP()}{ABIP()}}
+{\footnotesize\ttfamily ABIP (\begin{DoxyParamCaption}\item[{timer}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l00020}{20}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a60196090a169699008eb9074f6eaeb65}\label{abip_8c_a60196090a169699008eb9074f6eaeb65}} 
+\index{abip.c@{abip.c}!adjust\_barrier@{adjust\_barrier}}
+\index{adjust\_barrier@{adjust\_barrier}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{adjust\_barrier()}{adjust\_barrier()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} adjust\+\_\+barrier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{spe }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l00994}{994}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a017666419fb218bef2f5341e144fd08f}\label{abip_8c_a017666419fb218bef2f5341e144fd08f}} 
+\index{abip.c@{abip.c}!finish@{finish}}
+\index{finish@{finish}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{finish()}{finish()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() finish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{spe }\end{DoxyParamCaption})}
+
+
+
+Free the memory allocated for the solver. 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l01254}{1254}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_aea34b4fb05bce35cc94b52d7357559e0}\label{abip_8c_aea34b4fb05bce35cc94b52d7357559e0}} 
+\index{abip.c@{abip.c}!init@{init}}
+\index{init@{init}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info,  }\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+Initialize and allocate memory for the solver. 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l01271}{1271}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_ac75b3d3e3f1409484d0d3596e27477d1}\label{abip_8c_ac75b3d3e3f1409484d0d3596e27477d1}} 
+\index{abip.c@{abip.c}!init\_problem@{init\_problem}}
+\index{init\_problem@{init\_problem}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{init\_problem()}{init\_problem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init\+\_\+problem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$$\ast$}]{s,  }\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}}}]{special\+\_\+problem }\end{DoxyParamCaption})}
+
+
+
+Specify the problem type and initialize the problem. 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l01316}{1316}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a558890489e5c263b5fe898ea86ef4458}\label{abip_8c_a558890489e5c263b5fe898ea86ef4458}} 
+\index{abip.c@{abip.c}!solve@{solve}}
+\index{solve@{solve}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Main solve iteration of the solver. 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l01076}{1076}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a513abf61527c70e3c89babd3a44f23fa}\label{abip_8c_a513abf61527c70e3c89babd3a44f23fa}} 
+\index{abip.c@{abip.c}!update\_work@{update\_work}}
+\index{update\_work@{update\_work}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{update\_work()}{update\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} update\+\_\+work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{const \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol,  }\item[{const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{spe }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l00912}{912}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+

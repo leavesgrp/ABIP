@@ -1,0 +1,528 @@
+\hypertarget{struct_svm}{}\doxysection{Svm Struct Reference}
+\label{struct_svm}\index{Svm@{Svm}}
+
+
+{\ttfamily \#include $<$svm\+\_\+config.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}} \mbox{\hyperlink{struct_svm_a229e7479ecc9336a2e15e949d1d4dc13}{pro\+\_\+type}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{struct_svm_a26ae782cfc690e8c413209093b6e150f}{m}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{struct_svm_a7851de1f1cb6c177bf9cb959fd94c3c9}{n}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{struct_svm_a0a99ecb3a71b3c900836f46c884887c0}{p}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{struct_svm_ab26fdca6e110868e0a84772e665d3747}{q}}
+\item 
+\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$ \mbox{\hyperlink{struct_svm_aef8eb8e194a5f848d08ac9824f2319be}{L}}
+\item 
+\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$ \mbox{\hyperlink{struct_svm_a0547b4c3f20328db7006b015dc2e1a79}{stgs}}
+\item 
+\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$ \mbox{\hyperlink{struct_svm_a3a098980f7a2c86dad11fd6ff29b20cb}{data}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_abc5b6204e41d6a7c1dc83fa6b9a697a4}{sparsity}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a457e1e48bcc87b403aeff07bbdb84c11}{rho\+\_\+dr}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{struct_svm_abd24edf54dc7829432655abe5883c378}{A}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{struct_svm_a046025276e4882886e4522d8a267e541}{Q}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_aee36ad025852882aa30039b80c21ef31}{b}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a1ea41f9d2f10286a467e36928fd82b81}{c}}
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_a742bb91f6bd41e5b8a88b4e7b0805100}{scaling\+\_\+data}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_a0fa932781d126f505a563d62d284e429}{un\+\_\+scaling\+\_\+sol}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_a8f0bb9bfbbd8f0ae0c80efff4871eb97}{calc\+\_\+residuals}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ \mbox{\hyperlink{struct_svm_aa593b2fa48708d3843a7b8b70d3f0b52}{init\+\_\+spe\+\_\+linsys\+\_\+work}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ \mbox{\hyperlink{struct_svm_a2ac989fbd10ec0c14ba39b3a228d65be}{solve\+\_\+spe\+\_\+linsys}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{struct_svm_aee36ad025852882aa30039b80c21ef31}{b}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_a9c5c079649c99d8ea32e394f67e6e5c0}{free\+\_\+spe\+\_\+linsys\+\_\+work}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_ae711628ecd71efb387a7c64b7218c40e}{spe\+\_\+\+A\+\_\+times}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+void($\ast$ \mbox{\hyperlink{struct_svm_ad3c3fc5955461a3fdc1bf16f204682f3}{spe\+\_\+\+AT\+\_\+times}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}($\ast$ \mbox{\hyperlink{struct_svm_ac5c9dde5e0019bde31ac6cfce800a9b6}{inner\+\_\+conv\+\_\+check}} )(\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_af22c62f1232bf3439b2ae15b78f1617e}{lambda}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_aa67f26688b927bfd6c791c91067e23d1}{sc\+\_\+D}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a925252693b21cff22ac74ef0c0c14d61}{sc\+\_\+E}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a145863cba1b1ebf7a6bd3e7d2fc029fc}{sc\+\_\+F}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_a21ffe9e15268b8fdb196c07fc7c2278b}{sc\+\_\+b}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_ab2e93e18dabe0a5e6984abc2b2644a6f}{sc\+\_\+c}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_a180ec203c4a2b1a4f913c29e1d775d8d}{sc}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_aa613ebcaf60fc493203f93ccf12126da}{sc\+\_\+cone1}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{struct_svm_aff221ff655d0de933919c7e6a6972fb4}{sc\+\_\+cone2}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{struct_svm_a7728d077c2b8a818a781a699b3e5ab13}{wA}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a2360d4613f8fdc95e4116ce79d3c53f0}{wy}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_aa9b0e921eb94be3fb1f513b9444a3b8e}{wB}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a8a051eec4d0f888518561f4b0462054f}{wC}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_acd9f409d9af094eef6bdf95b9a85299b}{wD}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_ac7e473afed63ba258eff53fe4a4b2620}{wE}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a6211f2fa93f3f3e17148ba69aef573f5}{wF}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_a7e7dbca26c092d2dca779962db4334df}{wG}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{struct_svm_aef393242442a4db7786aed2acd949e1d}{wH}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{struct_svm_aec236c41deeff28c50b39a9ac2e70851}{wX}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00014}{14}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_svm_abd24edf54dc7829432655abe5883c378}\label{struct_svm_abd24edf54dc7829432655abe5883c378}} 
+\index{Svm@{Svm}!A@{A}}
+\index{A@{A}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ Svm\+::A}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00030}{30}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aee36ad025852882aa30039b80c21ef31}\label{struct_svm_aee36ad025852882aa30039b80c21ef31}} 
+\index{Svm@{Svm}!b@{b}}
+\index{b@{b}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::b}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00032}{32}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a1ea41f9d2f10286a467e36928fd82b81}\label{struct_svm_a1ea41f9d2f10286a467e36928fd82b81}} 
+\index{Svm@{Svm}!c@{c}}
+\index{c@{c}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::c}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00033}{33}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a8f0bb9bfbbd8f0ae0c80efff4871eb97}\label{struct_svm_a8f0bb9bfbbd8f0ae0c80efff4871eb97}} 
+\index{Svm@{Svm}!calc\_residuals@{calc\_residuals}}
+\index{calc\_residuals@{calc\_residuals}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{calc\_residuals}{calc\_residuals}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::calc\+\_\+residuals) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00038}{38}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a3a098980f7a2c86dad11fd6ff29b20cb}\label{struct_svm_a3a098980f7a2c86dad11fd6ff29b20cb}} 
+\index{Svm@{Svm}!data@{data}}
+\index{data@{data}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}}$\ast$ Svm\+::data}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00024}{24}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a9c5c079649c99d8ea32e394f67e6e5c0}\label{struct_svm_a9c5c079649c99d8ea32e394f67e6e5c0}} 
+\index{Svm@{Svm}!free\_spe\_linsys\_work@{free\_spe\_linsys\_work}}
+\index{free\_spe\_linsys\_work@{free\_spe\_linsys\_work}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{free\_spe\_linsys\_work}{free\_spe\_linsys\_work}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::free\+\_\+spe\+\_\+linsys\+\_\+work) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00041}{41}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aa593b2fa48708d3843a7b8b70d3f0b52}\label{struct_svm_aa593b2fa48708d3843a7b8b70d3f0b52}} 
+\index{Svm@{Svm}!init\_spe\_linsys\_work@{init\_spe\_linsys\_work}}
+\index{init\_spe\_linsys\_work@{init\_spe\_linsys\_work}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{init\_spe\_linsys\_work}{init\_spe\_linsys\_work}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ Svm\+::init\+\_\+spe\+\_\+linsys\+\_\+work) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00039}{39}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ac5c9dde5e0019bde31ac6cfce800a9b6}\label{struct_svm_ac5c9dde5e0019bde31ac6cfce800a9b6}} 
+\index{Svm@{Svm}!inner\_conv\_check@{inner\_conv\_check}}
+\index{inner\_conv\_check@{inner\_conv\_check}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{inner\_conv\_check}{inner\_conv\_check}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}($\ast$ Svm\+::inner\+\_\+conv\+\_\+check) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00044}{44}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aef8eb8e194a5f848d08ac9824f2319be}\label{struct_svm_aef8eb8e194a5f848d08ac9824f2319be}} 
+\index{Svm@{Svm}!L@{L}}
+\index{L@{L}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{L}{L}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}}$\ast$ Svm\+::L}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00022}{22}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_af22c62f1232bf3439b2ae15b78f1617e}\label{struct_svm_af22c62f1232bf3439b2ae15b78f1617e}} 
+\index{Svm@{Svm}!lambda@{lambda}}
+\index{lambda@{lambda}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{lambda}{lambda}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::lambda}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00047}{47}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a26ae782cfc690e8c413209093b6e150f}\label{struct_svm_a26ae782cfc690e8c413209093b6e150f}} 
+\index{Svm@{Svm}!m@{m}}
+\index{m@{m}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} Svm\+::m}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00018}{18}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a7851de1f1cb6c177bf9cb959fd94c3c9}\label{struct_svm_a7851de1f1cb6c177bf9cb959fd94c3c9}} 
+\index{Svm@{Svm}!n@{n}}
+\index{n@{n}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} Svm\+::n}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00019}{19}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a0a99ecb3a71b3c900836f46c884887c0}\label{struct_svm_a0a99ecb3a71b3c900836f46c884887c0}} 
+\index{Svm@{Svm}!p@{p}}
+\index{p@{p}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} Svm\+::p}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00020}{20}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a229e7479ecc9336a2e15e949d1d4dc13}\label{struct_svm_a229e7479ecc9336a2e15e949d1d4dc13}} 
+\index{Svm@{Svm}!pro\_type@{pro\_type}}
+\index{pro\_type@{pro\_type}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{pro\_type}{pro\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}} Svm\+::pro\+\_\+type}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00017}{17}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ab26fdca6e110868e0a84772e665d3747}\label{struct_svm_ab26fdca6e110868e0a84772e665d3747}} 
+\index{Svm@{Svm}!q@{q}}
+\index{q@{q}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} Svm\+::q}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00021}{21}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a046025276e4882886e4522d8a267e541}\label{struct_svm_a046025276e4882886e4522d8a267e541}} 
+\index{Svm@{Svm}!Q@{Q}}
+\index{Q@{Q}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{Q}{Q}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ Svm\+::Q}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00031}{31}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a457e1e48bcc87b403aeff07bbdb84c11}\label{struct_svm_a457e1e48bcc87b403aeff07bbdb84c11}} 
+\index{Svm@{Svm}!rho\_dr@{rho\_dr}}
+\index{rho\_dr@{rho\_dr}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{rho\_dr}{rho\_dr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::rho\+\_\+dr}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00027}{27}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a180ec203c4a2b1a4f913c29e1d775d8d}\label{struct_svm_a180ec203c4a2b1a4f913c29e1d775d8d}} 
+\index{Svm@{Svm}!sc@{sc}}
+\index{sc@{sc}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc}{sc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sc}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00054}{54}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a21ffe9e15268b8fdb196c07fc7c2278b}\label{struct_svm_a21ffe9e15268b8fdb196c07fc7c2278b}} 
+\index{Svm@{Svm}!sc\_b@{sc\_b}}
+\index{sc\_b@{sc\_b}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_b}{sc\_b}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sc\+\_\+b}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00052}{52}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ab2e93e18dabe0a5e6984abc2b2644a6f}\label{struct_svm_ab2e93e18dabe0a5e6984abc2b2644a6f}} 
+\index{Svm@{Svm}!sc\_c@{sc\_c}}
+\index{sc\_c@{sc\_c}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_c}{sc\_c}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sc\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00053}{53}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aa613ebcaf60fc493203f93ccf12126da}\label{struct_svm_aa613ebcaf60fc493203f93ccf12126da}} 
+\index{Svm@{Svm}!sc\_cone1@{sc\_cone1}}
+\index{sc\_cone1@{sc\_cone1}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_cone1}{sc\_cone1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sc\+\_\+cone1}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00055}{55}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aff221ff655d0de933919c7e6a6972fb4}\label{struct_svm_aff221ff655d0de933919c7e6a6972fb4}} 
+\index{Svm@{Svm}!sc\_cone2@{sc\_cone2}}
+\index{sc\_cone2@{sc\_cone2}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_cone2}{sc\_cone2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sc\+\_\+cone2}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00056}{56}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aa67f26688b927bfd6c791c91067e23d1}\label{struct_svm_aa67f26688b927bfd6c791c91067e23d1}} 
+\index{Svm@{Svm}!sc\_D@{sc\_D}}
+\index{sc\_D@{sc\_D}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_D}{sc\_D}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::sc\+\_\+D}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00049}{49}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a925252693b21cff22ac74ef0c0c14d61}\label{struct_svm_a925252693b21cff22ac74ef0c0c14d61}} 
+\index{Svm@{Svm}!sc\_E@{sc\_E}}
+\index{sc\_E@{sc\_E}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_E}{sc\_E}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::sc\+\_\+E}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00050}{50}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a145863cba1b1ebf7a6bd3e7d2fc029fc}\label{struct_svm_a145863cba1b1ebf7a6bd3e7d2fc029fc}} 
+\index{Svm@{Svm}!sc\_F@{sc\_F}}
+\index{sc\_F@{sc\_F}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sc\_F}{sc\_F}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::sc\+\_\+F}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00051}{51}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a742bb91f6bd41e5b8a88b4e7b0805100}\label{struct_svm_a742bb91f6bd41e5b8a88b4e7b0805100}} 
+\index{Svm@{Svm}!scaling\_data@{scaling\_data}}
+\index{scaling\_data@{scaling\_data}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{scaling\_data}{scaling\_data}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::scaling\+\_\+data) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00036}{36}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a2ac989fbd10ec0c14ba39b3a228d65be}\label{struct_svm_a2ac989fbd10ec0c14ba39b3a228d65be}} 
+\index{Svm@{Svm}!solve\_spe\_linsys@{solve\_spe\_linsys}}
+\index{solve\_spe\_linsys@{solve\_spe\_linsys}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{solve\_spe\_linsys}{solve\_spe\_linsys}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ Svm\+::solve\+\_\+spe\+\_\+linsys) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{struct_svm_aee36ad025852882aa30039b80c21ef31}{b}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00040}{40}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_abc5b6204e41d6a7c1dc83fa6b9a697a4}\label{struct_svm_abc5b6204e41d6a7c1dc83fa6b9a697a4}} 
+\index{Svm@{Svm}!sparsity@{sparsity}}
+\index{sparsity@{sparsity}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{sparsity}{sparsity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Svm\+::sparsity}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00025}{25}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ae711628ecd71efb387a7c64b7218c40e}\label{struct_svm_ae711628ecd71efb387a7c64b7218c40e}} 
+\index{Svm@{Svm}!spe\_A\_times@{spe\_A\_times}}
+\index{spe\_A\_times@{spe\_A\_times}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{spe\_A\_times}{spe\_A\_times}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::spe\+\_\+\+A\+\_\+times) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00042}{42}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ad3c3fc5955461a3fdc1bf16f204682f3}\label{struct_svm_ad3c3fc5955461a3fdc1bf16f204682f3}} 
+\index{Svm@{Svm}!spe\_AT\_times@{spe\_AT\_times}}
+\index{spe\_AT\_times@{spe\_AT\_times}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{spe\_AT\_times}{spe\_AT\_times}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::spe\+\_\+\+AT\+\_\+times) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00043}{43}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a0547b4c3f20328db7006b015dc2e1a79}\label{struct_svm_a0547b4c3f20328db7006b015dc2e1a79}} 
+\index{Svm@{Svm}!stgs@{stgs}}
+\index{stgs@{stgs}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{stgs}{stgs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}}$\ast$ Svm\+::stgs}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00023}{23}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a0fa932781d126f505a563d62d284e429}\label{struct_svm_a0fa932781d126f505a563d62d284e429}} 
+\index{Svm@{Svm}!un\_scaling\_sol@{un\_scaling\_sol}}
+\index{un\_scaling\_sol@{un\_scaling\_sol}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_sol}{un\_scaling\_sol}}
+{\footnotesize\ttfamily void($\ast$ Svm\+::un\+\_\+scaling\+\_\+sol) (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00037}{37}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a7728d077c2b8a818a781a699b3e5ab13}\label{struct_svm_a7728d077c2b8a818a781a699b3e5ab13}} 
+\index{Svm@{Svm}!wA@{wA}}
+\index{wA@{wA}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wA}{wA}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ Svm\+::wA}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00058}{58}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aa9b0e921eb94be3fb1f513b9444a3b8e}\label{struct_svm_aa9b0e921eb94be3fb1f513b9444a3b8e}} 
+\index{Svm@{Svm}!wB@{wB}}
+\index{wB@{wB}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wB}{wB}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wB}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00060}{60}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a8a051eec4d0f888518561f4b0462054f}\label{struct_svm_a8a051eec4d0f888518561f4b0462054f}} 
+\index{Svm@{Svm}!wC@{wC}}
+\index{wC@{wC}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wC}{wC}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wC}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00061}{61}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_acd9f409d9af094eef6bdf95b9a85299b}\label{struct_svm_acd9f409d9af094eef6bdf95b9a85299b}} 
+\index{Svm@{Svm}!wD@{wD}}
+\index{wD@{wD}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wD}{wD}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wD}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00062}{62}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_ac7e473afed63ba258eff53fe4a4b2620}\label{struct_svm_ac7e473afed63ba258eff53fe4a4b2620}} 
+\index{Svm@{Svm}!wE@{wE}}
+\index{wE@{wE}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wE}{wE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wE}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00063}{63}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a6211f2fa93f3f3e17148ba69aef573f5}\label{struct_svm_a6211f2fa93f3f3e17148ba69aef573f5}} 
+\index{Svm@{Svm}!wF@{wF}}
+\index{wF@{wF}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wF}{wF}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wF}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00064}{64}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a7e7dbca26c092d2dca779962db4334df}\label{struct_svm_a7e7dbca26c092d2dca779962db4334df}} 
+\index{Svm@{Svm}!wG@{wG}}
+\index{wG@{wG}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wG}{wG}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wG}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00065}{65}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aef393242442a4db7786aed2acd949e1d}\label{struct_svm_aef393242442a4db7786aed2acd949e1d}} 
+\index{Svm@{Svm}!wH@{wH}}
+\index{wH@{wH}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wH}{wH}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wH}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00066}{66}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_aec236c41deeff28c50b39a9ac2e70851}\label{struct_svm_aec236c41deeff28c50b39a9ac2e70851}} 
+\index{Svm@{Svm}!wX@{wX}}
+\index{wX@{wX}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wX}{wX}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ Svm\+::wX}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00067}{67}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+\mbox{\Hypertarget{struct_svm_a2360d4613f8fdc95e4116ce79d3c53f0}\label{struct_svm_a2360d4613f8fdc95e4116ce79d3c53f0}} 
+\index{Svm@{Svm}!wy@{wy}}
+\index{wy@{wy}!Svm@{Svm}}
+\doxysubsubsection{\texorpdfstring{wy}{wy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ Svm\+::wy}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00059}{59}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{svm__config_8h}{svm\+\_\+config.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,300 @@
+\hypertarget{structsolve__specific__problem}{}\doxysection{solve\+\_\+specific\+\_\+problem Struct Reference}
+\label{structsolve__specific__problem}\index{solve\_specific\_problem@{solve\_specific\_problem}}
+
+
+{\ttfamily \#include $<$abip.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}} \mbox{\hyperlink{structsolve__specific__problem_ae41675eb35648f720627d79a3f1ebaa7}{pro\+\_\+type}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{structsolve__specific__problem_a1466b7492f80dcbe5d5978f1b831d2e3}{m}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{structsolve__specific__problem_ab7b6dcc4b82be5fd93ae7732a136d653}{n}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{structsolve__specific__problem_a854d03d2f27cb8cade16133467976344}{p}}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{structsolve__specific__problem_a580baecb156a45a1acfae42a09dee459}{q}}
+\item 
+\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}
+\item 
+\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_a87a14906bfb1485c2b8467dad4bfe4bc}{stgs}}
+\item 
+\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_aa038a7ee224dba73151c77cfcdd5ad1e}{data}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{structsolve__specific__problem_ad829c6b88553441045230c38cc8ed8ea}{sparsity}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_a506444136872bbd68acb5fe2db95a0f7}{rho\+\_\+dr}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_aaee358723c6ebdbd129e08c31eb806b1}{A}}
+\item 
+\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_aaf75651a9aa38adad371963227c5e286}{Q}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_a1f65a0ce3b494844ccad480370202455}{b}}
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ \mbox{\hyperlink{structsolve__specific__problem_a527d6603dc4cc897853510e1ec37fad5}{c}}
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_ad928d4e3c9324e87ee6cb6efc195fa66}{scaling\+\_\+data}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a8982663e789e99ebd6c2c2c5ef048545}{un\+\_\+scaling\+\_\+sol}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a2634b7fb155448c78e5e1fc7290a0631}{calc\+\_\+residuals}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a1472c6d60af41a820e78008722203f63}{init\+\_\+spe\+\_\+linsys\+\_\+work}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ \mbox{\hyperlink{structsolve__specific__problem_acb8e485c5630a3b52e32ea87e18181ba}{solve\+\_\+spe\+\_\+linsys}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{structsolve__specific__problem_a1f65a0ce3b494844ccad480370202455}{b}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a88b4396584f92d2302356992d729bc3b}{free\+\_\+spe\+\_\+linsys\+\_\+work}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a56caf516fa6769d91b80187056214f31}{spe\+\_\+\+A\+\_\+times}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+void($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a401b9baa1bc5cd4529fd43d502175ba1}{spe\+\_\+\+AT\+\_\+times}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}($\ast$ \mbox{\hyperlink{structsolve__specific__problem_a833eba56845831e47c8d85099730035d}{inner\+\_\+conv\+\_\+check}} )(\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00029}{29}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsolve__specific__problem_aaee358723c6ebdbd129e08c31eb806b1}\label{structsolve__specific__problem_aaee358723c6ebdbd129e08c31eb806b1}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!A@{A}}
+\index{A@{A}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ solve\+\_\+specific\+\_\+problem\+::A}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00044}{44}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a1f65a0ce3b494844ccad480370202455}\label{structsolve__specific__problem_a1f65a0ce3b494844ccad480370202455}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!b@{b}}
+\index{b@{b}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ solve\+\_\+specific\+\_\+problem\+::b}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00046}{46}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a527d6603dc4cc897853510e1ec37fad5}\label{structsolve__specific__problem_a527d6603dc4cc897853510e1ec37fad5}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!c@{c}}
+\index{c@{c}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ solve\+\_\+specific\+\_\+problem\+::c}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00047}{47}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a2634b7fb155448c78e5e1fc7290a0631}\label{structsolve__specific__problem_a2634b7fb155448c78e5e1fc7290a0631}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!calc\_residuals@{calc\_residuals}}
+\index{calc\_residuals@{calc\_residuals}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{calc\_residuals}{calc\_residuals}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::calc\+\_\+residuals) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00052}{52}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_aa038a7ee224dba73151c77cfcdd5ad1e}\label{structsolve__specific__problem_aa038a7ee224dba73151c77cfcdd5ad1e}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!data@{data}}
+\index{data@{data}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}}$\ast$ solve\+\_\+specific\+\_\+problem\+::data}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00038}{38}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a88b4396584f92d2302356992d729bc3b}\label{structsolve__specific__problem_a88b4396584f92d2302356992d729bc3b}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!free\_spe\_linsys\_work@{free\_spe\_linsys\_work}}
+\index{free\_spe\_linsys\_work@{free\_spe\_linsys\_work}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{free\_spe\_linsys\_work}{free\_spe\_linsys\_work}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::free\+\_\+spe\+\_\+linsys\+\_\+work) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00055}{55}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a1472c6d60af41a820e78008722203f63}\label{structsolve__specific__problem_a1472c6d60af41a820e78008722203f63}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!init\_spe\_linsys\_work@{init\_spe\_linsys\_work}}
+\index{init\_spe\_linsys\_work@{init\_spe\_linsys\_work}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{init\_spe\_linsys\_work}{init\_spe\_linsys\_work}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ solve\+\_\+specific\+\_\+problem\+::init\+\_\+spe\+\_\+linsys\+\_\+work) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00053}{53}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a833eba56845831e47c8d85099730035d}\label{structsolve__specific__problem_a833eba56845831e47c8d85099730035d}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!inner\_conv\_check@{inner\_conv\_check}}
+\index{inner\_conv\_check@{inner\_conv\_check}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{inner\_conv\_check}{inner\_conv\_check}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}($\ast$ solve\+\_\+specific\+\_\+problem\+::inner\+\_\+conv\+\_\+check) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00058}{58}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}\label{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!L@{L}}
+\index{L@{L}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{L}{L}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}}$\ast$ solve\+\_\+specific\+\_\+problem\+::L}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00036}{36}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a1466b7492f80dcbe5d5978f1b831d2e3}\label{structsolve__specific__problem_a1466b7492f80dcbe5d5978f1b831d2e3}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!m@{m}}
+\index{m@{m}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+specific\+\_\+problem\+::m}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00032}{32}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_ab7b6dcc4b82be5fd93ae7732a136d653}\label{structsolve__specific__problem_ab7b6dcc4b82be5fd93ae7732a136d653}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!n@{n}}
+\index{n@{n}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+specific\+\_\+problem\+::n}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00033}{33}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a854d03d2f27cb8cade16133467976344}\label{structsolve__specific__problem_a854d03d2f27cb8cade16133467976344}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!p@{p}}
+\index{p@{p}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+specific\+\_\+problem\+::p}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00034}{34}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_ae41675eb35648f720627d79a3f1ebaa7}\label{structsolve__specific__problem_ae41675eb35648f720627d79a3f1ebaa7}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!pro\_type@{pro\_type}}
+\index{pro\_type@{pro\_type}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{pro\_type}{pro\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{abip_8h_a35e92033e4d05b381f0dd72066687155}{problem\+\_\+type}} solve\+\_\+specific\+\_\+problem\+::pro\+\_\+type}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00031}{31}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a580baecb156a45a1acfae42a09dee459}\label{structsolve__specific__problem_a580baecb156a45a1acfae42a09dee459}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!q@{q}}
+\index{q@{q}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+specific\+\_\+problem\+::q}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00035}{35}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_aaf75651a9aa38adad371963227c5e286}\label{structsolve__specific__problem_aaf75651a9aa38adad371963227c5e286}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!Q@{Q}}
+\index{Q@{Q}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{Q}{Q}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}}$\ast$ solve\+\_\+specific\+\_\+problem\+::Q}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00045}{45}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a506444136872bbd68acb5fe2db95a0f7}\label{structsolve__specific__problem_a506444136872bbd68acb5fe2db95a0f7}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!rho\_dr@{rho\_dr}}
+\index{rho\_dr@{rho\_dr}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{rho\_dr}{rho\_dr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}$\ast$ solve\+\_\+specific\+\_\+problem\+::rho\+\_\+dr}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00041}{41}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_ad928d4e3c9324e87ee6cb6efc195fa66}\label{structsolve__specific__problem_ad928d4e3c9324e87ee6cb6efc195fa66}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!scaling\_data@{scaling\_data}}
+\index{scaling\_data@{scaling\_data}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{scaling\_data}{scaling\_data}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::scaling\+\_\+data) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00050}{50}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_acb8e485c5630a3b52e32ea87e18181ba}\label{structsolve__specific__problem_acb8e485c5630a3b52e32ea87e18181ba}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!solve\_spe\_linsys@{solve\_spe\_linsys}}
+\index{solve\_spe\_linsys@{solve\_spe\_linsys}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{solve\_spe\_linsys}{solve\_spe\_linsys}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}($\ast$ solve\+\_\+specific\+\_\+problem\+::solve\+\_\+spe\+\_\+linsys) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{structsolve__specific__problem_a1f65a0ce3b494844ccad480370202455}{b}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00054}{54}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_ad829c6b88553441045230c38cc8ed8ea}\label{structsolve__specific__problem_ad829c6b88553441045230c38cc8ed8ea}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!sparsity@{sparsity}}
+\index{sparsity@{sparsity}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{sparsity}{sparsity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} solve\+\_\+specific\+\_\+problem\+::sparsity}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00039}{39}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a56caf516fa6769d91b80187056214f31}\label{structsolve__specific__problem_a56caf516fa6769d91b80187056214f31}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!spe\_A\_times@{spe\_A\_times}}
+\index{spe\_A\_times@{spe\_A\_times}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{spe\_A\_times}{spe\_A\_times}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::spe\+\_\+\+A\+\_\+times) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00056}{56}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a401b9baa1bc5cd4529fd43d502175ba1}\label{structsolve__specific__problem_a401b9baa1bc5cd4529fd43d502175ba1}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!spe\_AT\_times@{spe\_AT\_times}}
+\index{spe\_AT\_times@{spe\_AT\_times}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{spe\_AT\_times}{spe\_AT\_times}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::spe\+\_\+\+AT\+\_\+times) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00057}{57}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a87a14906bfb1485c2b8467dad4bfe4bc}\label{structsolve__specific__problem_a87a14906bfb1485c2b8467dad4bfe4bc}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!stgs@{stgs}}
+\index{stgs@{stgs}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{stgs}{stgs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}}$\ast$ solve\+\_\+specific\+\_\+problem\+::stgs}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00037}{37}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+\mbox{\Hypertarget{structsolve__specific__problem_a8982663e789e99ebd6c2c2c5ef048545}\label{structsolve__specific__problem_a8982663e789e99ebd6c2c2c5ef048545}} 
+\index{solve\_specific\_problem@{solve\_specific\_problem}!un\_scaling\_sol@{un\_scaling\_sol}}
+\index{un\_scaling\_sol@{un\_scaling\_sol}!solve\_specific\_problem@{solve\_specific\_problem}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_sol}{un\_scaling\_sol}}
+{\footnotesize\ttfamily void($\ast$ solve\+\_\+specific\+\_\+problem\+::un\+\_\+scaling\+\_\+sol) (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8h_source_l00051}{51}} of file \mbox{\hyperlink{abip_8h_source}{abip.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{abip_8h}{abip.\+h}}\end{DoxyCompactItemize}

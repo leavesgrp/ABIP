@@ -1,0 +1,75 @@
+\hypertarget{cs_8h_source}{}\doxysection{cs.\+h}
+\label{cs_8h_source}\index{include/cs.h@{include/cs.h}}
+\mbox{\hyperlink{cs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00001}\mbox{\hyperlink{cs_8h_ab2b7add1f2fcf14c473e0a9f42e2f42d}{00001}} \textcolor{preprocessor}{\#ifndef CS\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00002}00002 \textcolor{preprocessor}{\#define CS\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00004}00004 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00005}00005 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00006}00006 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00010}00010 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ABIP(cs\_sparse) }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00012}00012        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} nnzmax;         }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00013}00013        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m;          }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00014}00014        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n;          }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00015}00015        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *p;         }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00016}00016        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *i;         }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00017}00017        \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}};        }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00018}00018        \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} nnz;        }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00019}\mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{00019}} \} \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}};}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00021}00021 \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a0067d5a454edd6a1b54951cb34ae4522}{cs\_compress}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00022}00022 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00023}00023     \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *T}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00024}00024 ); }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00026}00026 \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a9d109c20b96e5b73d84d6f552747067a}{cs\_spalloc}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00027}00027 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00028}00028     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00029}00029     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00030}00030     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} nnzmax, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00031}00031     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} values, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00032}00032     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} triplet}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00033}00033 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00035}00035 \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00036}00036 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00037}00037     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00038}00038 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00040}00040 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_aaa0beb4f9c1a5394eb23b96c00a13097}{cs\_cumsum}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00041}00041 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00042}00042     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *p, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00043}00043     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *\mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}}, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00044}00044     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00045}00045 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00047}00047 \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_affcbccdcf617ee47accc795922ecb79f}{cs\_transpose}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00048}00048 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00049}00049     \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}},}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00050}00050     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} values}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00051}00051 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00053}00053 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a4a9038a6c1ce2775bf14f8791104942f}{cs\_pinv}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00054}00054 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00055}00055     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \textcolor{keyword}{const} *p, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00056}00056     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00057}00057 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00059}00059 \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a0d41e4df716c34cad926f66392344719}{cs\_symperm}})}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00060}00060 (}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00061}00061     \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00062}00062     \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *pinv, }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00063}00063     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} values}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00064}00064 );}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00066}00066 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00067}00067 \}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00068}00068 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cs_8h_source_l00069}00069 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,328 @@
+\hypertarget{make__abip_8m}{}\doxysection{make\+\_\+abip.\+m File Reference}
+\label{make__abip_8m}\index{make\_abip.m@{make\_abip.m}}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{make__abip_8m_aa1f670df3c26c1fd2c4d45eb0e675f9a}{if}} ($\sim$isempty(strfind(computer, \textquotesingle{}64\textquotesingle{}))) \mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{flags.\+arr}}
+\item 
+end \mbox{\hyperlink{make__abip_8m_aad2344c947d37bb94803091dcc653dd4}{if}} (isunix \&\&$\sim$ismac) \mbox{\hyperlink{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{flags.\+link}}
+\item 
+\mbox{\hyperlink{make__abip_8m_af8033cde77b7d79971dc87281682264a}{elseif}} (ismac) \mbox{\hyperlink{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{flags.\+link}}
+\item 
+end \mbox{\hyperlink{make__abip_8m_a93f0c7e13cdc49889b7fda3c881ae6a6}{if}} (\mbox{\hyperlink{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}{float}}) \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{flags.\+LCFLAG}}
+\item 
+end \mbox{\hyperlink{make__abip_8m_a21762f4c6c8ae092c9631f4a745b54c0}{if}} (\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}) \mbox{\hyperlink{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}{flags.\+INT}}
+\item 
+end \mbox{\hyperlink{make__abip_8m_a153356591492e2cb0644e85b9ac13f2b}{if}} (flags.\+COMPILE\+\_\+\+WITH\+\_\+\+OPENMP) \mbox{\hyperlink{compile__direct_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{flags.\+link}}
+\item 
+end \mbox{\hyperlink{make__abip_8m_a1217a141f130511d5ac2277872b77d9f}{delete}} (fullfile(\char`\"{}.\char`\"{}, \char`\"{}interface\char`\"{}, \char`\"{}$\ast$.\char`\"{}+\mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}}))
+\item 
+\mbox{\hyperlink{make__abip_8m_a9c686ed161fd3aacfd6328229352f070}{compile\+\_\+direct}} (flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}})
+\item 
+\mbox{\hyperlink{make__abip_8m_a0e57e96c21b374bc51e0f5d12c612704}{compile\+\_\+indirect}} (flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}})
+\item 
+\mbox{\hyperlink{make__abip_8m_aa55e65093c0a26f0c8a4a99f490aa562}{movefile}} (fullfile(\char`\"{}.\char`\"{}, \char`\"{}$\ast$.\char`\"{}+\mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}}), fullfile(\char`\"{}.\char`\"{}, \char`\"{}interface\char`\"{}))
+\item 
+\mbox{\hyperlink{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}{addpath}} (fullfile(\char`\"{}mexfile\char`\"{}))
+\item 
+\mbox{\hyperlink{make__abip_8m_a420dce71dd5ceb13c8eb478016f2deb9}{addpath}} (fullfile(\char`\"{}interface\char`\"{}))
+\item 
+\mbox{\hyperlink{make__abip_8m_a982633413f531a5520e2218145aad5a7}{addpath}} (fullfile(\char`\"{}test\char`\"{}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+parameter setting for compiling the \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}} solver \mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{gpu}} = false
+\item 
+compile the \mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{gpu}} \mbox{\hyperlink{abip_8h_a14b83612aa3efc7ef50c6f69af903cad}{version}} of \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}} \mbox{\hyperlink{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}{float}} = false
+\item 
+use bit integers for indexing \mbox{\hyperlink{make__abip_8m_ad1da6aee73ae87e10805291deee2c8b3}{WARNING}}
+\item 
+use bit integers for indexing use with caution openmp parallelizes the matrix multiply for the indirect solver(using CG) flags \mbox{\hyperlink{make__abip_8m_a6bb8ce5d84d402b19ab613b863477e9f}{EXTRA\+\_\+\+VERBOSE}} = 0
+\item 
+flags \mbox{\hyperlink{make__abip_8m_a63a313883bd2adaa2d01b1e4615490cb}{BLASLIB}} = \textquotesingle{}\textquotesingle{}
+\item 
+MATLAB\+\_\+\+MEX\+\_\+\+FILE env variable sets blasint to ptrdiff\+\_\+t flags \mbox{\hyperlink{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}{LCFLAG}} = \textquotesingle{}-\/DMATLAB\+\_\+\+MEX\+\_\+\+FILE -\/DUSE\+\_\+\+LAPACK -\/DCTRLC=1 -\/DCOPYAMATRIX\textquotesingle{}
+\item 
+flags \mbox{\hyperlink{make__abip_8m_a913387b300daf852c9d46473133374da}{INCS}} = \textquotesingle{}\textquotesingle{}
+\item 
+flags \mbox{\hyperlink{make__abip_8m_a1d9fd0cb2e05c83451d050ce7faa1e1e}{LOCS}} = \textquotesingle{}\textquotesingle{}
+\item 
+Common source files \mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\+\_\+common\+\_\+src}} = \mbox{[}\char`\"{}linalg.\+c\char`\"{}
+\item 
+\mbox{\hyperlink{adaptive_8h_abfe679edd7c5ff08f8536686f75269a6}{adaptive}} \mbox{\hyperlink{make__abip_8m_a5379398b9ffec817ff29d003b85cff31}{c}}
+\item 
+\mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\+\_\+common\+\_\+linsys}} = \mbox{[}\char`\"{}common.\+c\char`\"{}\mbox{]}
+\item 
+\mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\+\_\+mexfile}} = \mbox{[}\char`\"{}abip\+\_\+mex.\+c\char`\"{}\mbox{]}
+\item 
+\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}} = strcat(\mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\+\_\+common\+\_\+src}}, \char`\"{} \char`\"{}, \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\+\_\+common\+\_\+linsys}}, \char`\"{} \char`\"{}, \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\+\_\+mexfile}})
+\item 
+else flags \mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{arr}} = \textquotesingle{}\textquotesingle{}
+\item 
+else flags \mbox{\hyperlink{make__abip_8m_a0dce3c7c089f53b48718dcd1f39ed5be}{link}} = \textquotesingle{}-\/lut\textquotesingle{}
+\item 
+else flags \mbox{\hyperlink{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}{INT}} = \textquotesingle{}-\/DDLONG\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}\label{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}} 
+\index{make\_abip.m@{make\_abip.m}!int@{int}}
+\index{int@{int}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{int}{int}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} =  false}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00004}{4}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{make__abip_8m_a420dce71dd5ceb13c8eb478016f2deb9}\label{make__abip_8m_a420dce71dd5ceb13c8eb478016f2deb9}} 
+\index{make\_abip.m@{make\_abip.m}!addpath@{addpath}}
+\index{addpath@{addpath}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{addpath()}{addpath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily addpath (\begin{DoxyParamCaption}\item[{fullfile(\char`\"{}interface\char`\"{})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}\label{make__abip_8m_a6068d2a5ab9468df9e600862902b66cc}} 
+\index{make\_abip.m@{make\_abip.m}!addpath@{addpath}}
+\index{addpath@{addpath}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{addpath()}{addpath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily addpath (\begin{DoxyParamCaption}\item[{fullfile(\char`\"{}mexfile\char`\"{})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a982633413f531a5520e2218145aad5a7}\label{make__abip_8m_a982633413f531a5520e2218145aad5a7}} 
+\index{make\_abip.m@{make\_abip.m}!addpath@{addpath}}
+\index{addpath@{addpath}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{addpath()}{addpath()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily addpath (\begin{DoxyParamCaption}\item[{fullfile(\char`\"{}test\char`\"{})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a9c686ed161fd3aacfd6328229352f070}\label{make__abip_8m_a9c686ed161fd3aacfd6328229352f070}} 
+\index{make\_abip.m@{make\_abip.m}!compile\_direct@{compile\_direct}}
+\index{compile\_direct@{compile\_direct}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{compile\_direct()}{compile\_direct()}}
+{\footnotesize\ttfamily compile\+\_\+direct (\begin{DoxyParamCaption}\item[{flags}]{,  }\item[{\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a0e57e96c21b374bc51e0f5d12c612704}\label{make__abip_8m_a0e57e96c21b374bc51e0f5d12c612704}} 
+\index{make\_abip.m@{make\_abip.m}!compile\_indirect@{compile\_indirect}}
+\index{compile\_indirect@{compile\_indirect}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{compile\_indirect()}{compile\_indirect()}}
+{\footnotesize\ttfamily compile\+\_\+indirect (\begin{DoxyParamCaption}\item[{flags}]{,  }\item[{\mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\+\_\+abip}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a1217a141f130511d5ac2277872b77d9f}\label{make__abip_8m_a1217a141f130511d5ac2277872b77d9f}} 
+\index{make\_abip.m@{make\_abip.m}!delete@{delete}}
+\index{delete@{delete}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily end delete (\begin{DoxyParamCaption}\item[{fullfile(\char`\"{}.\char`\"{}, \char`\"{}interface\char`\"{}, \char`\"{}$\ast$.\char`\"{}+\mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_af8033cde77b7d79971dc87281682264a}\label{make__abip_8m_af8033cde77b7d79971dc87281682264a}} 
+\index{make\_abip.m@{make\_abip.m}!elseif@{elseif}}
+\index{elseif@{elseif}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{elseif()}{elseif()}}
+{\footnotesize\ttfamily elseif (\begin{DoxyParamCaption}\item[{ismac}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a153356591492e2cb0644e85b9ac13f2b}\label{make__abip_8m_a153356591492e2cb0644e85b9ac13f2b}} 
+\index{make\_abip.m@{make\_abip.m}!if@{if}}
+\index{if@{if}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{flags.}]{COMPILE\+\_\+\+WITH\+\_\+\+OPENMP }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a93f0c7e13cdc49889b7fda3c881ae6a6}\label{make__abip_8m_a93f0c7e13cdc49889b7fda3c881ae6a6}} 
+\index{make\_abip.m@{make\_abip.m}!if@{if}}
+\index{if@{if}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}{float}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_a21762f4c6c8ae092c9631f4a745b54c0}\label{make__abip_8m_a21762f4c6c8ae092c9631f4a745b54c0}} 
+\index{make\_abip.m@{make\_abip.m}!if@{if}}
+\index{if@{if}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_aad2344c947d37bb94803091dcc653dd4}\label{make__abip_8m_aad2344c947d37bb94803091dcc653dd4}} 
+\index{make\_abip.m@{make\_abip.m}!if@{if}}
+\index{if@{if}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{isunix \&\&$\sim$}]{ismac }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_aa1f670df3c26c1fd2c4d45eb0e675f9a}\label{make__abip_8m_aa1f670df3c26c1fd2c4d45eb0e675f9a}} 
+\index{make\_abip.m@{make\_abip.m}!if@{if}}
+\index{if@{if}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{$\sim$}]{isemptystrfind(computer, \textquotesingle{}64\textquotesingle{}) }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip_8m_aa55e65093c0a26f0c8a4a99f490aa562}\label{make__abip_8m_aa55e65093c0a26f0c8a4a99f490aa562}} 
+\index{make\_abip.m@{make\_abip.m}!movefile@{movefile}}
+\index{movefile@{movefile}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{movefile()}{movefile()}}
+{\footnotesize\ttfamily movefile (\begin{DoxyParamCaption}\item[{fullfile(\char`\"{}.\char`\"{}, \char`\"{}$\ast$.\char`\"{}+\mbox{\hyperlink{compile__direct_8m_a77d005b38081e6e930adb48b4662bf57}{mexext}})}]{,  }\item[{fullfile(\char`\"{}.\char`\"{}, \char`\"{}interface\char`\"{})}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}\label{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}} 
+\index{make\_abip.m@{make\_abip.m}!abip\_common\_linsys@{abip\_common\_linsys}}
+\index{abip\_common\_linsys@{abip\_common\_linsys}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{abip\_common\_linsys}{abip\_common\_linsys}}
+{\footnotesize\ttfamily abip\+\_\+common\+\_\+linsys = \mbox{[}\char`\"{}common.\+c\char`\"{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00021}{21}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}\label{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}} 
+\index{make\_abip.m@{make\_abip.m}!abip\_common\_src@{abip\_common\_src}}
+\index{abip\_common\_src@{abip\_common\_src}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{abip\_common\_src}{abip\_common\_src}}
+{\footnotesize\ttfamily abip\+\_\+common\+\_\+src = \mbox{[}\char`\"{}linalg.\+c\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00019}{19}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}\label{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}} 
+\index{make\_abip.m@{make\_abip.m}!abip\_mexfile@{abip\_mexfile}}
+\index{abip\_mexfile@{abip\_mexfile}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{abip\_mexfile}{abip\_mexfile}}
+{\footnotesize\ttfamily abip\+\_\+mexfile = \mbox{[}\char`\"{}abip\+\_\+mex.\+c\char`\"{}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00022}{22}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}\label{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}} 
+\index{make\_abip.m@{make\_abip.m}!arr@{arr}}
+\index{arr@{arr}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{arr}{arr}}
+{\footnotesize\ttfamily else flags arr = \textquotesingle{}\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00034}{34}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a63a313883bd2adaa2d01b1e4615490cb}\label{make__abip_8m_a63a313883bd2adaa2d01b1e4615490cb}} 
+\index{make\_abip.m@{make\_abip.m}!BLASLIB@{BLASLIB}}
+\index{BLASLIB@{BLASLIB}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{BLASLIB}{BLASLIB}}
+{\footnotesize\ttfamily flags BLASLIB = \textquotesingle{}\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00011}{11}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a5379398b9ffec817ff29d003b85cff31}\label{make__abip_8m_a5379398b9ffec817ff29d003b85cff31}} 
+\index{make\_abip.m@{make\_abip.m}!c@{c}}
+\index{c@{c}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily abip\+\_\+version c}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00019}{19}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}\label{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}} 
+\index{make\_abip.m@{make\_abip.m}!common\_abip@{common\_abip}}
+\index{common\_abip@{common\_abip}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{common\_abip}{common\_abip}}
+{\footnotesize\ttfamily common\+\_\+abip = strcat(\mbox{\hyperlink{make__abip_8m_ac7c0d45d7f4c941f1aa8abcde7c332fd}{abip\+\_\+common\+\_\+src}}, \char`\"{} \char`\"{}, \mbox{\hyperlink{make__abip_8m_a0bdb71bd603511c25aee7cb03a04c064}{abip\+\_\+common\+\_\+linsys}}, \char`\"{} \char`\"{}, \mbox{\hyperlink{make__abip_8m_afa3366ae470de05ea8099113c33b2ab5}{abip\+\_\+mexfile}})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00029}{29}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a6bb8ce5d84d402b19ab613b863477e9f}\label{make__abip_8m_a6bb8ce5d84d402b19ab613b863477e9f}} 
+\index{make\_abip.m@{make\_abip.m}!EXTRA\_VERBOSE@{EXTRA\_VERBOSE}}
+\index{EXTRA\_VERBOSE@{EXTRA\_VERBOSE}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_VERBOSE}{EXTRA\_VERBOSE}}
+{\footnotesize\ttfamily use bit integers for indexing use with caution openmp parallelizes the matrix multiply for the indirect solver (using CG) flags EXTRA\+\_\+\+VERBOSE = 0}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00009}{9}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}\label{make__abip_8m_a36641929752754cf319a4e59d6c75a6f}} 
+\index{make\_abip.m@{make\_abip.m}!float@{float}}
+\index{float@{float}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{float}{float}}
+{\footnotesize\ttfamily compile the \mbox{\hyperlink{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}{gpu}} \mbox{\hyperlink{abip_8h_a14b83612aa3efc7ef50c6f69af903cad}{version}} of \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}} float = false}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00003}{3}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}\label{make__abip_8m_a836ea6d60c7bf2edf60af2fe98e26a71}} 
+\index{make\_abip.m@{make\_abip.m}!gpu@{gpu}}
+\index{gpu@{gpu}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{gpu}{gpu}}
+{\footnotesize\ttfamily parameter setting for compiling the \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}} solver gpu = false}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00002}{2}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a913387b300daf852c9d46473133374da}\label{make__abip_8m_a913387b300daf852c9d46473133374da}} 
+\index{make\_abip.m@{make\_abip.m}!INCS@{INCS}}
+\index{INCS@{INCS}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{INCS}{INCS}}
+{\footnotesize\ttfamily flags INCS = \textquotesingle{}\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00014}{14}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}\label{make__abip_8m_ad902d35be7236d9fbb148cd01fc1db05}} 
+\index{make\_abip.m@{make\_abip.m}!INT@{INT}}
+\index{INT@{INT}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{INT}{INT}}
+{\footnotesize\ttfamily else flags INT = \textquotesingle{}-\/DDLONG\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00053}{53}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}\label{make__abip_8m_aaa8aa33c7ba2f51f07c8add03a4c3043}} 
+\index{make\_abip.m@{make\_abip.m}!LCFLAG@{LCFLAG}}
+\index{LCFLAG@{LCFLAG}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{LCFLAG}{LCFLAG}}
+{\footnotesize\ttfamily flags LCFLAG = \textquotesingle{}-\/DMATLAB\+\_\+\+MEX\+\_\+\+FILE -\/DUSE\+\_\+\+LAPACK -\/DCTRLC=1 -\/DCOPYAMATRIX\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00013}{13}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a0dce3c7c089f53b48718dcd1f39ed5be}\label{make__abip_8m_a0dce3c7c089f53b48718dcd1f39ed5be}} 
+\index{make\_abip.m@{make\_abip.m}!link@{link}}
+\index{link@{link}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{link}{link}}
+{\footnotesize\ttfamily else flags link = \textquotesingle{}-\/lut\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00042}{42}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_a1d9fd0cb2e05c83451d050ce7faa1e1e}\label{make__abip_8m_a1d9fd0cb2e05c83451d050ce7faa1e1e}} 
+\index{make\_abip.m@{make\_abip.m}!LOCS@{LOCS}}
+\index{LOCS@{LOCS}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{LOCS}{LOCS}}
+{\footnotesize\ttfamily flags LOCS = \textquotesingle{}\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00015}{15}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+
+\mbox{\Hypertarget{make__abip_8m_ad1da6aee73ae87e10805291deee2c8b3}\label{make__abip_8m_ad1da6aee73ae87e10805291deee2c8b3}} 
+\index{make\_abip.m@{make\_abip.m}!WARNING@{WARNING}}
+\index{WARNING@{WARNING}!make\_abip.m@{make\_abip.m}}
+\doxysubsubsection{\texorpdfstring{WARNING}{WARNING}}
+{\footnotesize\ttfamily use bit integers for indexing WARNING}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip_8m_source_l00006}{6}} of file \mbox{\hyperlink{make__abip_8m_source}{make\+\_\+abip.\+m}}.
+

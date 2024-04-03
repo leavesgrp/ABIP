@@ -1,0 +1,59 @@
+\hypertarget{cs__qrsol_8c_source}{}\doxysection{cs\+\_\+qrsol.\+c}
+\label{cs__qrsol_8c_source}\index{csparse/Source/cs\_qrsol.c@{csparse/Source/cs\_qrsol.c}}
+\mbox{\hyperlink{cs__qrsol_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00002}00002 \textcolor{comment}{/* x=A\(\backslash\)b where A can be rectangular; b overwritten with solution */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00003}\mbox{\hyperlink{cs_8h_a136e729a618c610422377201351db105}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__qrsol_8c_a136e729a618c610422377201351db105}{cs\_qrsol}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} order, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keywordtype}{double} *b)}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00005}00005     \textcolor{keywordtype}{double} *x ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00006}00006     \mbox{\hyperlink{structcs__symbolic}{css}} *S ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00007}00007     \mbox{\hyperlink{structcs__numeric}{csn}} *N ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00008}00008     \mbox{\hyperlink{structcs__sparse}{cs}} *AT = NULL ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00009}00009     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} k, m, n, ok ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !b) \textcolor{keywordflow}{return} (0) ; \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00011}00011     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00012}00012     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00013}00013     \textcolor{keywordflow}{if} (m >= n)}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00014}00014     \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00015}00015         S = \mbox{\hyperlink{cs_8h_a7cb77fc595740853b9d5f49df6d5f64c}{cs\_sqr}} (order, A, 1) ;          \textcolor{comment}{/* ordering and symbolic analysis */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00016}00016         N = \mbox{\hyperlink{cs_8h_ad50e945d7db927c8731fff2bcc962eea}{cs\_qr}} (A, S) ;                  \textcolor{comment}{/* numeric QR factorization */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00017}00017         x = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (S ? S-\/>\mbox{\hyperlink{structcs__symbolic_aa0227f03661c17f047757cad80d6f4d9}{m2}} : 1, sizeof (\textcolor{keywordtype}{double})) ;    \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00018}00018         ok = (S \&\& N \&\& x) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00019}00019         \textcolor{keywordflow}{if} (ok)}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00020}00020         \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00021}00021             \mbox{\hyperlink{cs_8h_a0938ec08825dc07a2dab8f9477ab053b}{cs\_ipvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}, b, x, m) ;   \textcolor{comment}{/* x(0:m-\/1) = b(p(0:m-\/1) */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00022}00022             \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)       \textcolor{comment}{/* apply Householder refl. to x */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00023}00023             \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00024}00024                 \mbox{\hyperlink{cs_8h_a88a82fabd191059a8db610fbfe6b008a}{cs\_happly}} (N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}}, k, N-\/>\mbox{\hyperlink{structcs__numeric_ad81bc354670c58c7e715293e98316152}{B}} [k], x) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00025}00025             \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00026}00026             \mbox{\hyperlink{cs_8h_aace9cc447db7e3e293431a31f6965730}{cs\_usolve}} (N-\/>\mbox{\hyperlink{structcs__numeric_a1e07204edb10064ca1e471289fced1cb}{U}}, x) ;           \textcolor{comment}{/* x = R\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00027}00027             \mbox{\hyperlink{cs_8h_a0938ec08825dc07a2dab8f9477ab053b}{cs\_ipvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}}, x, b, n) ;      \textcolor{comment}{/* b(q(0:n-\/1)) = x(0:n-\/1) */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00028}00028         \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00029}00029     \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00030}00030     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00031}00031     \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00032}00032         AT = \mbox{\hyperlink{cs_8h_a838dfaabdae54c408a4a696dfffa3dea}{cs\_transpose}} (A, 1) ;          \textcolor{comment}{/* Ax=b is underdetermined */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00033}00033         S = \mbox{\hyperlink{cs_8h_a7cb77fc595740853b9d5f49df6d5f64c}{cs\_sqr}} (order, AT, 1) ;         \textcolor{comment}{/* ordering and symbolic analysis */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00034}00034         N = \mbox{\hyperlink{cs_8h_ad50e945d7db927c8731fff2bcc962eea}{cs\_qr}} (AT, S) ;                 \textcolor{comment}{/* numeric QR factorization of A' */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00035}00035         x = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (S ? S-\/>\mbox{\hyperlink{structcs__symbolic_aa0227f03661c17f047757cad80d6f4d9}{m2}} : 1, sizeof (\textcolor{keywordtype}{double})) ;    \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00036}00036         ok = (AT \&\& S \&\& N \&\& x) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00037}00037         \textcolor{keywordflow}{if} (ok)}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00038}00038         \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00039}00039             \mbox{\hyperlink{cs_8h_a79d20fcd31c30d118075e08087127c4e}{cs\_pvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}}, b, x, m) ;       \textcolor{comment}{/* x(q(0:m-\/1)) = b(0:m-\/1) */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00040}00040             \mbox{\hyperlink{cs_8h_a63f6ad02ef0d33f9166966af3756c4d6}{cs\_utsolve}} (N-\/>\mbox{\hyperlink{structcs__numeric_a1e07204edb10064ca1e471289fced1cb}{U}}, x) ;          \textcolor{comment}{/* x = R'\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00041}00041             \textcolor{keywordflow}{for} (k = m-\/1 ; k >= 0 ; k-\/-\/)    \textcolor{comment}{/* apply Householder refl. to x */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00042}00042             \{}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00043}00043                 \mbox{\hyperlink{cs_8h_a88a82fabd191059a8db610fbfe6b008a}{cs\_happly}} (N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}}, k, N-\/>\mbox{\hyperlink{structcs__numeric_ad81bc354670c58c7e715293e98316152}{B}} [k], x) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00044}00044             \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00045}00045             \mbox{\hyperlink{cs_8h_a79d20fcd31c30d118075e08087127c4e}{cs\_pvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}, x, b, n) ;    \textcolor{comment}{/* b(0:n-\/1) = x(p(0:n-\/1)) */}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00046}00046         \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00047}00047     \}}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00048}00048     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (x) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00049}00049     \mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00050}00050     \mbox{\hyperlink{cs_8h_adabc8e810cec49307537b5e3368d53aa}{cs\_nfree}} (N) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00051}00051     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (AT) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00052}00052     \textcolor{keywordflow}{return} (ok) ;}
+\DoxyCodeLine{\Hypertarget{cs__qrsol_8c_source_l00053}00053 \}}
+
+\end{DoxyCode}

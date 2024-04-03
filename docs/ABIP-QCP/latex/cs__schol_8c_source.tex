@@ -1,0 +1,32 @@
+\hypertarget{cs__schol_8c_source}{}\doxysection{cs\+\_\+schol.\+c}
+\label{cs__schol_8c_source}\index{csparse/Source/cs\_schol.c@{csparse/Source/cs\_schol.c}}
+\mbox{\hyperlink{cs__schol_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00002}00002 \textcolor{comment}{/* ordering and symbolic analysis for a Cholesky factorization */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00003}\mbox{\hyperlink{cs_8h_a33a1dc7aff658c5699d6c6d4a0fa70d3}{00003}} \mbox{\hyperlink{structcs__symbolic}{css}} *\mbox{\hyperlink{cs__schol_8c_a33a1dc7aff658c5699d6c6d4a0fa70d3}{cs\_schol}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} order, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A)}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, *c, *post, *P ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00006}00006     \mbox{\hyperlink{structcs__sparse}{cs}} *C ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00007}00007     \mbox{\hyperlink{structcs__symbolic}{css}} *S ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00008}00008     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (NULL) ;        \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00009}00009     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00010}00010     S = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__symbolic}{css}})) ;       \textcolor{comment}{/* allocate result S */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00011}00011     \textcolor{keywordflow}{if} (!S) \textcolor{keywordflow}{return} (NULL) ;                 \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00012}00012     P = \mbox{\hyperlink{cs_8h_a8c0812b53c0937ab04dc22eae0fb5259}{cs\_amd}} (order, A) ;                 \textcolor{comment}{/* P = amd(A+A'), or natural */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00013}00013     S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}} = \mbox{\hyperlink{cs_8h_a2d711fa72bad4a3e94b3aeeb743e27ad}{cs\_pinv}} (P, n) ;              \textcolor{comment}{/* find inverse permutation */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00014}00014     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (P) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00015}00015     \textcolor{keywordflow}{if} (order \&\& !S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S)) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00016}00016     C = \mbox{\hyperlink{cs_8h_ad19ab7e30ae8e32fe9b000a1e7e30a1f}{cs\_symperm}} (A, S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}, 0) ;        \textcolor{comment}{/* C = spones(triu(A(P,P))) */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00017}00017     S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} = \mbox{\hyperlink{cs_8h_a86d7b84d5a4cdf928556bcd30a413a84}{cs\_etree}} (C, 0) ;           \textcolor{comment}{/* find etree of C */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00018}00018     post = \mbox{\hyperlink{cs_8h_ae8e3fc0a5f911aa66a95391b1be0c780}{cs\_post}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}, n) ;         \textcolor{comment}{/* postorder the etree */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00019}00019     c = \mbox{\hyperlink{cs_8h_ad97e14775c7d6b9f8f1e8c5ee0d63aa7}{cs\_counts}} (C, S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}, post, 0) ; \textcolor{comment}{/* find column counts of chol(C) */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00020}00020     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (post) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00021}00021     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00022}00022     S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n+1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ; \textcolor{comment}{/* allocate result S-\/>cp */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00023}00023     S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} = S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} = \mbox{\hyperlink{cs_8h_a4c92d1dd47385e119da4d37ca82c2baa}{cs\_cumsum}} (S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}}, c, n) ; \textcolor{comment}{/* find column pointers for L */}}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00024}00024     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (c) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00025}00025     \textcolor{keywordflow}{return} ((S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} >= 0) ? S : \mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S)) ;}
+\DoxyCodeLine{\Hypertarget{cs__schol_8c_source_l00026}00026 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,83 @@
+\hypertarget{abip__mex_8c}{}\doxysection{mexfile/abip\+\_\+mex.c File Reference}
+\label{abip__mex_8c}\index{mexfile/abip\_mex.c@{mexfile/abip\_mex.c}}
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}amatrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{abip__mex_8c_acef0d34546e50abc48f0315c55377186}{free\+\_\+mex}} (\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d)
+\begin{DoxyCompactList}\small\item\em set memory free \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{abip__mex_8c_aa5f7f5e713afde73a43bb38dd1fbab55}{parse\+\_\+warm\+\_\+start}} (const mx\+Array $\ast$p\+\_\+mex, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$$\ast$p, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$ \mbox{\hyperlink{abip__mex_8c_aac2c2ba18f12d878bd5c6b5866bc3575}{cast\+\_\+to\+\_\+abip\+\_\+int\+\_\+arr}} (mw\+Index $\ast$\mbox{\hyperlink{make__abip_8m_a62f7529a59ad1b24579b6435401fe96a}{arr}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\item 
+void \mbox{\hyperlink{abip__mex_8c_a459eaab7f8c836c1c48d447a74b67ec4}{set\+\_\+output\+\_\+field}} (mx\+Array $\ast$$\ast$pout, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$out, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\item 
+void \mbox{\hyperlink{abip__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{mex\+Function}} (\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} nlhs, mx\+Array $\ast$plhs\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} nrhs, const mx\+Array $\ast$prhs\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em obtain data from mex function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{abip__mex_8c_aac2c2ba18f12d878bd5c6b5866bc3575}\label{abip__mex_8c_aac2c2ba18f12d878bd5c6b5866bc3575}} 
+\index{abip\_mex.c@{abip\_mex.c}!cast\_to\_abip\_int\_arr@{cast\_to\_abip\_int\_arr}}
+\index{cast\_to\_abip\_int\_arr@{cast\_to\_abip\_int\_arr}!abip\_mex.c@{abip\_mex.c}}
+\doxysubsubsection{\texorpdfstring{cast\_to\_abip\_int\_arr()}{cast\_to\_abip\_int\_arr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$ cast\+\_\+to\+\_\+abip\+\_\+int\+\_\+arr (\begin{DoxyParamCaption}\item[{mw\+Index $\ast$}]{arr,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip__mex_8c_source_l00031}{31}} of file \mbox{\hyperlink{abip__mex_8c_source}{abip\+\_\+mex.\+c}}.
+
+\mbox{\Hypertarget{abip__mex_8c_acef0d34546e50abc48f0315c55377186}\label{abip__mex_8c_acef0d34546e50abc48f0315c55377186}} 
+\index{abip\_mex.c@{abip\_mex.c}!free\_mex@{free\_mex}}
+\index{free\_mex@{free\_mex}!abip\_mex.c@{abip\_mex.c}}
+\doxysubsubsection{\texorpdfstring{free\_mex()}{free\_mex()}}
+{\footnotesize\ttfamily void free\+\_\+mex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+set memory free 
+
+
+
+Definition at line \mbox{\hyperlink{abip__mex_8c_source_l00429}{429}} of file \mbox{\hyperlink{abip__mex_8c_source}{abip\+\_\+mex.\+c}}.
+
+\mbox{\Hypertarget{abip__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}\label{abip__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}} 
+\index{abip\_mex.c@{abip\_mex.c}!mexFunction@{mexFunction}}
+\index{mexFunction@{mexFunction}!abip\_mex.c@{abip\_mex.c}}
+\doxysubsubsection{\texorpdfstring{mexFunction()}{mexFunction()}}
+{\footnotesize\ttfamily void mex\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{nlhs,  }\item[{mx\+Array $\ast$}]{plhs\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{nrhs,  }\item[{const mx\+Array $\ast$}]{prhs\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+obtain data from mex function 
+
+
+
+Definition at line \mbox{\hyperlink{abip__mex_8c_source_l00083}{83}} of file \mbox{\hyperlink{abip__mex_8c_source}{abip\+\_\+mex.\+c}}.
+
+\mbox{\Hypertarget{abip__mex_8c_aa5f7f5e713afde73a43bb38dd1fbab55}\label{abip__mex_8c_aa5f7f5e713afde73a43bb38dd1fbab55}} 
+\index{abip\_mex.c@{abip\_mex.c}!parse\_warm\_start@{parse\_warm\_start}}
+\index{parse\_warm\_start@{parse\_warm\_start}!abip\_mex.c@{abip\_mex.c}}
+\doxysubsubsection{\texorpdfstring{parse\_warm\_start()}{parse\_warm\_start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} parse\+\_\+warm\+\_\+start (\begin{DoxyParamCaption}\item[{const mx\+Array $\ast$}]{p\+\_\+mex,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$$\ast$}]{p,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip__mex_8c_source_l00011}{11}} of file \mbox{\hyperlink{abip__mex_8c_source}{abip\+\_\+mex.\+c}}.
+
+\mbox{\Hypertarget{abip__mex_8c_a459eaab7f8c836c1c48d447a74b67ec4}\label{abip__mex_8c_a459eaab7f8c836c1c48d447a74b67ec4}} 
+\index{abip\_mex.c@{abip\_mex.c}!set\_output\_field@{set\_output\_field}}
+\index{set\_output\_field@{set\_output\_field}!abip\_mex.c@{abip\_mex.c}}
+\doxysubsubsection{\texorpdfstring{set\_output\_field()}{set\_output\_field()}}
+{\footnotesize\ttfamily void set\+\_\+output\+\_\+field (\begin{DoxyParamCaption}\item[{mx\+Array $\ast$$\ast$}]{pout,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{out,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip__mex_8c_source_l00067}{67}} of file \mbox{\hyperlink{abip__mex_8c_source}{abip\+\_\+mex.\+c}}.
+

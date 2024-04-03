@@ -1,0 +1,334 @@
+\hypertarget{direct_8c_source}{}\doxysection{direct.\+c}
+\label{direct_8c_source}\index{linsys/direct.c@{linsys/direct.c}}
+\mbox{\hyperlink{direct_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{direct_8h}{direct.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00003}00003 \textcolor{comment}{// use ldl to solve the linear system}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00005}\mbox{\hyperlink{linsys_8h_a6f4745f2a8f151cbfba288a3248bb397}{00005}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a6f4745f2a8f151cbfba288a3248bb397}{get\_lin\_sys\_method}}) ( \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00006}00006     \textcolor{keywordtype}{char} *tmp = (\textcolor{keywordtype}{char} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 128);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00007}00007 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00008}00008     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct-\/intel-\/pardiso, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p[\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n]);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00009}00009 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00010}00010     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p[\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n]);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00011}00011 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00012}00012     \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00013}00013 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00015}\mbox{\hyperlink{linsys_8h_a9324fcbdcbd2c577751203abc8ba28c4}{00015}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a9324fcbdcbd2c577751203abc8ba28c4}{get\_lin\_sys\_summary}}) ( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} *info ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00016}00016     \textcolor{keywordtype}{char} *str = (\textcolor{keywordtype}{char} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 128);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00017}00017 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00018}00018     sprintf(str, \textcolor{stringliteral}{"{}Linear system avg solve time: \%1.2es\(\backslash\)n"{}}, p-\/>total\_solve\_time / (info-\/>admm\_iter + 1) / 1e3);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00019}00019 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00020}00020     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = p-\/>L-\/>n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00021}00021     sprintf(str, \textcolor{stringliteral}{"{}\(\backslash\)tLin-\/sys: nnz in L factor: \%li, avg solve time: \%1.2es\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00022}00022             (\textcolor{keywordtype}{long})(p-\/>L-\/>p[n] + n), p-\/>total\_solve\_time / (info-\/>admm\_iter + 1) / 1e3);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00023}00023 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00024}00024     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00025}00025     p-\/>total\_solve\_time = 0; \textcolor{keywordflow}{return} str;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00028}\mbox{\hyperlink{linsys_8h_ad23b46969855636085b813a83c2489d2}{00028}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_ad23b46969855636085b813a83c2489d2}{free\_lin\_sys\_work}}) ( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00029}00029     \textcolor{keywordflow}{if} (p) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00030}00030         \textcolor{keywordflow}{if} (p-\/>L)  \{ \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(p-\/>L); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00031}00031         \textcolor{keywordflow}{if} (p-\/>P)  \{ \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p-\/>P); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00032}00032         \textcolor{keywordflow}{if} (p-\/>bp) \{ \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p-\/>bp); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00033}00033         \textcolor{keywordflow}{if} (p-\/>D)  \{ \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p-\/>D); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00034}00034         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00036}00036 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00038}00038 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00039}00039 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a905df62af2f6f126fa9e1a65dbc7d9f2}{free\_lin\_sys\_work\_pds}}) ( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p, \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00040}00040     \textcolor{keywordflow}{if} (p) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00041}00041         \mbox{\hyperlink{abip__pardiso_8c_ab384654c9cbe7d2a58b7b82869f81415}{pardisoFree}}(p, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00042}00042         \textcolor{keywordflow}{if} (p-\/>P)  \{ \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p-\/>D); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00043}00043         \textcolor{keywordflow}{if} (p-\/>D)  \{ \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p-\/>D); \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00044}00044         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00046}00046 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00047}00047 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00049}\mbox{\hyperlink{direct_8c_a9a2c55d644e0b823e6e61e14250170b2}{00049}} \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{direct_8c_a9a2c55d644e0b823e6e61e14250170b2}{form\_kkt}} ( \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *s ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00050}00050     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00051}00051     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j, k, kk; \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *K\_cs;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00052}00052     \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} Annz = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p[\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n];}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00053}00053     \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} Knnzmax = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n + Annz;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00054}00054     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00055}00055     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *K = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a9d109c20b96e5b73d84d6f552747067a}{cs\_spalloc}})(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, Knnzmax, 1, 1);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00056}00056     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00057}00057 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00058}00058     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}forming KKT\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00059}00059 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00060}00060     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00061}00061     \textcolor{keywordflow}{if} (!K)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00062}00062     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00063}00063         \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00064}00064     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00065}00065     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00066}00066     kk = 0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00067}00067     \textcolor{keywordflow}{for} (k = 0; k < \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m; k++)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00068}00068     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00069}00069         K-\/>i[kk] = k;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00070}00070         K-\/>p[kk] = k;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00071}00071         K-\/>x[kk] = s-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_a1dc645ca09874b4e8afe729a629b1210}{rho\_y}};}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00072}00072         kk++;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00073}00073     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00074}00074     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00075}00075     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n; j++)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00076}00076     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00077}00077         \textcolor{keywordflow}{for} (k = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p[j]; k < A-\/>p[j + 1]; k++)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00078}00078         \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00079}00079             K-\/>p[kk] = j + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00080}00080             K-\/>i[kk] = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i[k];}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00081}00081             K-\/>x[kk] = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>x[k];}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00082}00082             kk++;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00083}00083         \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00085}00085     \textcolor{keywordflow}{for} (k = 0; k < \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n; k++)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00086}00086     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00087}00087         K-\/>i[kk] = k + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00088}00088         K-\/>p[kk] = k + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00089}00089         K-\/>x[kk] = -\/1;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00090}00090         kk++;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00091}00091     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00092}00092     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00093}00093     K-\/>nnz = Knnzmax;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00094}00094     K\_cs = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a0067d5a454edd6a1b54951cb34ae4522}{cs\_compress}})(K);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00095}00095     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00096}00096 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00097}00097     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *KT = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_affcbccdcf617ee47accc795922ecb79f}{cs\_transpose}})(K\_cs, 1);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00098}00098     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(K); \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(K\_cs);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00099}00099     \textcolor{keywordflow}{return} (KT);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00100}00100 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00101}00101     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(K);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00102}00102     \textcolor{keywordflow}{return} (K\_cs);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00103}00103 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00104}00104 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00106}\mbox{\hyperlink{direct_8c_a429dbbf96ce59f6f02aff8b516a29206}{00106}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{direct_8c_a429dbbf96ce59f6f02aff8b516a29206}{\_ldl\_init}} ( \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} P[], \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} **info ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00107}00107 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00108}00108     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00109}00109 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00110}00110     *info = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\mbox{\hyperlink{amd_8h_ad4d0388011f3a533198976feb69ae5e4}{AMD\_INFO}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00111}00111     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00112}00112 \textcolor{preprocessor}{\#ifdef DLONG}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00113}00113     \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{amd\_l\_order}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, P, (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *) \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}, *info));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00114}00114 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00115}00115     \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\_order}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, P, (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *) \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}, *info));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00116}00116 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00117}00117     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00118}00118 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00119}00119 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00121}\mbox{\hyperlink{direct_8c_ac1e9c7792d0106929a616cd7295d9572}{00121}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{direct_8c_ac1e9c7792d0106929a616cd7295d9572}{\_ldl\_factor}} ( \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} P[], \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} Pinv[], \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} **L, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} **D ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00122}00122     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00123}00123 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00124}00124     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00125}00125 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00126}00126     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} kk;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00127}00127     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00128}00128     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00129}00129     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Parent = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00130}00130     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Lnnz = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00131}00131     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Flag = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00132}00132     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Pattern = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00133}00133     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Y = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00134}00134     (*L)-\/>p = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}((1 + n) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00135}00135     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00136}00136     \textcolor{comment}{/*abip\_int Parent[n], Lnz[n], Flag[n], Pattern[n]; */}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00137}00137     \textcolor{comment}{/*abip\_float Y[n]; */}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00138}00138     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00139}00139     \mbox{\hyperlink{ldl_8h_a1bd6e517a481c200672cd65e231cbc7d}{LDL\_symbolic}}(n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, (*L)-\/>p, Parent, Lnnz, Flag, P, Pinv);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00140}00140     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00141}00141     (*L)-\/>nnzmax = *((*L)-\/>p + n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00142}00142     (*L)-\/>x = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}((*L)-\/>nnzmax * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00143}00143     (*L)-\/>i = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}((*L)-\/>nnzmax * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00144}00144     *D = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00145}00145     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00146}00146     \textcolor{keywordflow}{if} (!(*D) || !(*L)-\/>i || !(*L)-\/>x || !Y || !Pattern || !Flag || !Lnnz || !Parent)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00147}00147     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00148}00148         \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Pattern); \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Y);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00149}00149         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00150}00150     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00151}00151     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00152}00152 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00153}00153     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}numeric factorization\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00154}00154 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00155}00155     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00156}00156     kk = \mbox{\hyperlink{ldl_8h_a3823f617a5ed31d05c4e6c5de387662b}{LDL\_numeric}}(n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>x, (*L)-\/>p, Parent, Lnnz, (*L)-\/>i, (*L)-\/>x, *D, Y, Pattern, Flag, P, Pinv);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00157}00157     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00158}00158 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00159}00159     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}finished numeric factorization\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00160}00160 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00161}00161     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00162}00162     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Parent);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00163}00163     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Lnnz);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00164}00164     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Flag);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00165}00165     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Pattern);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00166}00166     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Y);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00167}00167     \textcolor{keywordflow}{return} (kk -\/ n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00168}00168 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00169}00169     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00170}00170 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00172}\mbox{\hyperlink{direct_8c_a8c9bc538555c7156315325ba13688b8e}{00172}} \textcolor{keywordtype}{void} \mbox{\hyperlink{direct_8c_a8c9bc538555c7156315325ba13688b8e}{\_ldl\_solve}} ( \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}[], \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *L, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} D[],}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00173}00173                   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} P[], \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *bp ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00174}00174 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00175}00175     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00176}00176 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00177}00177     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = L-\/>n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00178}00178     \textcolor{keywordflow}{if} (P == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}})}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00179}00179     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00180}00180         \textcolor{keywordflow}{if} (\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}} != \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}})}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00181}00181         \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00182}00182             memcpy(\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00183}00183         \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00184}00184         }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00185}00185         \mbox{\hyperlink{ldl_8h_afdb77bf36411b8260203bebb80cfa9a9}{LDL\_lsolve}}(n, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, L-\/>p, L-\/>i, L-\/>x);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00186}00186         \mbox{\hyperlink{ldl_8h_a2be9aeac6a1874457c31bcb0d60e1405}{LDL\_dsolve}}(n, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, D);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00187}00187         \mbox{\hyperlink{ldl_8h_a68ee4bbad9b89f7316a624700ade67f4}{LDL\_ltsolve}}(n, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, L-\/>p, L-\/>i, L-\/>x);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00188}00188     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00189}00189     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00190}00190     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00191}00191         \mbox{\hyperlink{ldl_8h_ac01ccaa8b1e4bd420e0f5d969cb6123f}{LDL\_perm}}(n, bp, \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, P);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00192}00192         \mbox{\hyperlink{ldl_8h_afdb77bf36411b8260203bebb80cfa9a9}{LDL\_lsolve}}(n, bp, L-\/>p, L-\/>i, L-\/>x);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00193}00193         \mbox{\hyperlink{ldl_8h_a2be9aeac6a1874457c31bcb0d60e1405}{LDL\_dsolve}}(n, bp, D);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00194}00194         \mbox{\hyperlink{ldl_8h_a68ee4bbad9b89f7316a624700ade67f4}{LDL\_ltsolve}}(n, bp, L-\/>p, L-\/>i, L-\/>x);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00195}00195         \mbox{\hyperlink{ldl_8h_abf0c5a3231888516fc81e080389c836a}{LDL\_permt}}(n, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, bp, P);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00196}00196     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00197}00197 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00198}00198 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00200}\mbox{\hyperlink{linsys_8h_a258abad59f073a88954cde0430ef5965}{00200}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a258abad59f073a88954cde0430ef5965}{accum\_by\_Atrans}}) ( \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p,}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00201}00201                              \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00202}00202     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{common_8c_a6cc984c0fa9b216cc1ee351615abffd4}{\_accum\_by\_Atrans}})(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>x, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, y);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00203}00203 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00205}\mbox{\hyperlink{linsys_8h_a9487ca3dd47956f14600cf6be4149505}{00205}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a9487ca3dd47956f14600cf6be4149505}{accum\_by\_A}}) ( \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p,}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00206}00206                         \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00207}00207     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{common_8c_ae059a0129527e6c17abb27beb098ac74}{\_accum\_by\_A}})(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>x, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>i, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>p, \mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, y);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00208}00208 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00209}00209 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00210}\mbox{\hyperlink{linsys_8h_a8fb58ed8fb2e51d3b351642a176ed59b}{00210}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a8fb58ed8fb2e51d3b351642a176ed59b}{normalize\_A}}) ( \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs, \mbox{\hyperlink{struct_a_b_i_p___s_c_a_l_i_n_g}{ABIPScaling}} *scal ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00211}00211     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{common_8c_a940b2bf01fa27db9b56f64478dbaf653}{\_normalize\_A}})(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs, scal);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00212}00212 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00214}\mbox{\hyperlink{linsys_8h_a184cd0c90635e21071242946afc34efa}{00214}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_a184cd0c90635e21071242946afc34efa}{un\_normalize\_A}}) ( \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_c_a_l_i_n_g}{ABIPScaling}} *scal ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00215}00215     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{common_8c_a3b0995f0c352acbbedcff7b7dd2b65f7}{\_un\_normalize\_A}})(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs, scal);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00216}00216 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00218}\mbox{\hyperlink{direct_8c_a50e04a54e7fa72361904ccd8e8de8206}{00218}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{direct_8c_a50e04a54e7fa72361904ccd8e8de8206}{factorize}} ( \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p ) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00220}00220 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00221}00221     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} ret\_code = 0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00222}00222     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *K = \mbox{\hyperlink{direct_8c_a9a2c55d644e0b823e6e61e14250170b2}{form\_kkt}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00223}00223     \textcolor{keywordflow}{if} (!K) \{ \textcolor{keywordflow}{return} -\/1; \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00224}00224     ret\_code = \mbox{\hyperlink{abip__pardiso_8c_acb79006208bb6fe65286d87d3fcdf790}{pardisoFactorize}}(p, K);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00225}00225     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(K);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00226}00226     \textcolor{keywordflow}{return} ret\_code;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00227}00227 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00228}00228     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *info;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00229}00229     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Pinv;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00230}00230     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} amd\_status;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00231}00231     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} ldl\_status;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00232}00232     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00233}00233     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *C;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00234}00234     \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *K = \mbox{\hyperlink{direct_8c_a9a2c55d644e0b823e6e61e14250170b2}{form\_kkt}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00235}00235     \textcolor{keywordflow}{if} (!K)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00236}00236     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00237}00237         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00238}00238     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00239}00239     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00240}00240     amd\_status = \mbox{\hyperlink{direct_8c_a429dbbf96ce59f6f02aff8b516a29206}{\_ldl\_init}}(K, p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad0e64c8f8472332cf1563c61a098d32f}{P}}, \&info);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00241}00241     \textcolor{keywordflow}{if} (amd\_status < 0)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00242}00242     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00243}00243         \textcolor{keywordflow}{return} (amd\_status);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00244}00244     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00245}00245     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00246}00246 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00247}00247     \textcolor{keywordflow}{if} (stgs-\/>\mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s_ae1bb112687e5c368d134ed84d1600232}{verbose}})}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00248}00248     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00249}00249         \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}Matrix factorization info:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00250}00250         }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00251}00251 \textcolor{preprocessor}{\#ifdef DLONG}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00252}00252         \mbox{\hyperlink{amd_8h_a9863b7fb51073577f525dbd44c1832ae}{amd\_l\_info}}(info);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00253}00253 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00254}00254         \mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\_info}}(info);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00255}00255 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00256}00256     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00257}00257 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00258}00258     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00259}00259     Pinv = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a4a9038a6c1ce2775bf14f8791104942f}{cs\_pinv}})(p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad0e64c8f8472332cf1563c61a098d32f}{P}}, \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00260}00260     C = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a0d41e4df716c34cad926f66392344719}{cs\_symperm}})(K, Pinv, 1);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00261}00261     ldl\_status = \mbox{\hyperlink{direct_8c_ac1e9c7792d0106929a616cd7295d9572}{\_ldl\_factor}}(C, \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}, \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}, \&p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a195e3de8b8291122f7fc63cbe0464a7c}{L}}, \&p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad2ef50d78f60a72262ae0de1442c3ce5}{D}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00262}00262     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00263}00263     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(C);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00264}00264     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cs_8h_a346988833f616c482ab6cabdb89defca}{cs\_spfree}})(K);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00265}00265     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Pinv);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00266}00266     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(info);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00267}00267     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00268}00268     \textcolor{keywordflow}{return} (ldl\_status);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00269}00269 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00270}00270 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00273}\mbox{\hyperlink{linsys_8h_ade882d3f4d06d932341d13197881fbc9}{00273}} \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_ade882d3f4d06d932341d13197881fbc9}{init\_lin\_sys\_work}})}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00274}00274 (}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00275}00275  \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}},}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00276}00276  \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00277}00277  )}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00278}00278 \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00279}00279     \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p = (\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *) \mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00280}00280     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m\_plus\_n = \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>m + \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}-\/>n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00281}00281 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00282}00282     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad0e64c8f8472332cf1563c61a098d32f}{P}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * m\_plus\_n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00283}00283     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad2ef50d78f60a72262ae0de1442c3ce5}{D}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * m\_plus\_n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00284}00284     \textcolor{keywordflow}{if} (\mbox{\hyperlink{direct_8c_a50e04a54e7fa72361904ccd8e8de8206}{factorize}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs, p)) \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00285}00285         \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_ad23b46969855636085b813a83c2489d2}{free\_lin\_sys\_work}})(p); \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00286}00286     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00287}00287 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00288}00288     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ad0e64c8f8472332cf1563c61a098d32f}{P}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * m\_plus\_n);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00289}00289     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a195e3de8b8291122f7fc63cbe0464a7c}{L}} = (\mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00290}00290     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_aafe2278918fb31e5c85fe5d6c9fa6c33}{bp}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *) \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(m\_plus\_n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00291}00291     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a195e3de8b8291122f7fc63cbe0464a7c}{L}}-\/>m = m\_plus\_n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00292}00292     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a195e3de8b8291122f7fc63cbe0464a7c}{L}}-\/>n = m\_plus\_n;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00293}00293     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a195e3de8b8291122f7fc63cbe0464a7c}{L}}-\/>nnz = -\/1;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00294}00294     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00295}00295     \textcolor{keywordflow}{if} (\mbox{\hyperlink{direct_8c_a50e04a54e7fa72361904ccd8e8de8206}{factorize}}(\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, stgs, p) < 0)}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00296}00296     \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00297}00297         \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_ad23b46969855636085b813a83c2489d2}{free\_lin\_sys\_work}})(p);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00298}00298         \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00299}00299     \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00300}00300 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00301}00301     p-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a5fa3f8018536fd23e24c1e8082089559}{total\_solve\_time}} = 0.0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00302}00302     \textcolor{keywordflow}{return} p;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00303}00303 \}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00304}00304 }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00305}\mbox{\hyperlink{linsys_8h_ac1465df3228739549e5435792394d4bf}{00305}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{direct_8c_ac1465df3228739549e5435792394d4bf}{solve\_lin\_sys}})}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00306}00306 (}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00307}00307  \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}},}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00308}00308  \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___s_e_t_t_i_n_g_s}{ABIPSettings}} *stgs,}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00309}00309  \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p,}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00310}00310  \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}},}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00311}00311  \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *s,}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00312}00312  \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} iter}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00313}00313  )}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00314}00314 \{}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00315}00315     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) linsys\_timer;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00316}00316     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}})(\&linsys\_timer);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00317}00317 \textcolor{preprocessor}{\#ifdef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00318}00318     \mbox{\hyperlink{abip__pardiso_8c_a9cedb6b9358888fa07ea0ea920e6bb38}{pardisoSolve}}(p, (\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *) \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}});}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00319}00319 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00320}00320     \mbox{\hyperlink{direct_8c_a8c9bc538555c7156315325ba13688b8e}{\_ldl\_solve}}(\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, p-\/>L, p-\/>D, p-\/>P, p-\/>bp);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00321}00321 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00322}00322     p-\/>total\_solve\_time += \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\&linsys\_timer);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00323}00323 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00324}00324     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}linsys solve time: \%1.2es\(\backslash\)n"{}}, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\&linsys\_timer) / 1e3);}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00325}00325 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00326}00326     }
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00327}00327     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{direct_8c_source_l00328}00328 \}}
+
+\end{DoxyCode}

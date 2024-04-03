@@ -1,0 +1,41 @@
+\hypertarget{cs__multiply_8c_source}{}\doxysection{cs\+\_\+multiply.\+c}
+\label{cs__multiply_8c_source}\index{csparse/Source/cs\_multiply.c@{csparse/Source/cs\_multiply.c}}
+\mbox{\hyperlink{cs__multiply_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00002}00002 \textcolor{comment}{/* C = A*B */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00003}\mbox{\hyperlink{cs_8h_aa8d8dd148fab9e0a7811962c18d3ce61}{00003}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{cs__multiply_8c_aa8d8dd148fab9e0a7811962c18d3ce61}{cs\_multiply}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *B)}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} p, j, nz = 0, anz, *Cp, *Ci, *Bp, m, n, bnz, *w, values, *Bi ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00006}00006     \textcolor{keywordtype}{double} *x, *Bx, *Cx ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00007}00007     \mbox{\hyperlink{structcs__sparse}{cs}} *C ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00008}00008     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (B)) \textcolor{keywordflow}{return} (NULL) ;      \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00009}00009     \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} != B-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}}) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00010}00010     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; anz = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} [A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00011}00011     n = B-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Bp = B-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Bi = B-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Bx = B-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ; bnz = Bp [n] ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00012}00012     w = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (m, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;                    \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00013}00013     values = (A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} != NULL) \&\& (Bx != NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00014}00014     x = values ? \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) : NULL ; \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00015}00015     C = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (m, n, anz + bnz, values, 0) ;        \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00016}00016     \textcolor{keywordflow}{if} (!C || !w || (values \&\& !x)) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (C, w, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00017}00017     Cp = C-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00018}00018     \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00019}00019     \{}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00020}00020         \textcolor{keywordflow}{if} (nz + m > C-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} \&\& !\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (C, 2*(C-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}})+m))}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00021}00021         \{}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00022}00022             \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (C, w, x, 0)) ;             \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00023}00023         \} }
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00024}00024         Ci = C-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Cx = C-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;         \textcolor{comment}{/* C-\/>i and C-\/>x may be reallocated */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00025}00025         Cp [j] = nz ;                   \textcolor{comment}{/* column j of C starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00026}00026         \textcolor{keywordflow}{for} (p = Bp [j] ; p < Bp [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00027}00027         \{}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00028}00028             nz = \mbox{\hyperlink{cs_8h_a324e7bf547ed0b969275da4410563e6e}{cs\_scatter}} (A, Bi [p], Bx ? Bx [p] : 1, w, x, j+1, C, nz) ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00029}00029         \}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00030}00030         \textcolor{keywordflow}{if} (values) \textcolor{keywordflow}{for} (p = Cp [j] ; p < nz ; p++) Cx [p] = x [Ci [p]] ;}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00032}00032     Cp [n] = nz ;                       \textcolor{comment}{/* finalize the last column of C */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00033}00033     \mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (C, 0) ;               \textcolor{comment}{/* remove extra space from C */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00034}00034     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (C, w, x, 1)) ;     \textcolor{comment}{/* success; free workspace, return C */}}
+\DoxyCodeLine{\Hypertarget{cs__multiply_8c_source_l00035}00035 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,172 @@
+\hypertarget{glbopts_8h_source}{}\doxysection{glbopts.\+h}
+\label{glbopts_8h_source}\index{include/glbopts.h@{include/glbopts.h}}
+\mbox{\hyperlink{glbopts_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef GLB\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00002}00002 \textcolor{preprocessor}{\#define GLB\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00004}00004 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00005}00005 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00006}00006 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00010}00010 \textcolor{preprocessor}{\#ifndef ABIP}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00011}\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{00011}} \textcolor{preprocessor}{\#define ABIP(x) abip\_\#\#x}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00012}00012 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00014}00014 \textcolor{comment}{//\#ifndef ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00015}00015 \textcolor{comment}{//\#define ABIP\_PARDISO}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00016}00016 \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00018}00018 \textcolor{comment}{/* ABIP VERSION NUMBER -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/    */}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00019}\mbox{\hyperlink{glbopts_8h_aed03cf43b77bd494f8686de4608ebe01}{00019}} \textcolor{preprocessor}{\#define ABIP\_VERSION                                                            \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00020}00020 \textcolor{preprocessor}{  ("{}2.0.0"{}}) \textcolor{comment}{/* string literals automatically null-\/terminated */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00021}00021                         }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00022}\mbox{\hyperlink{glbopts_8h_a377d35f388c40b9c6d2fe0885a0d51c5}{00022}} \textcolor{preprocessor}{\#define ABIP\_INFEASIBLE\_INACCURATE (-\/7)  }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00023}\mbox{\hyperlink{glbopts_8h_ab0c4dbdb34ab50401413d6b59e2c0d8d}{00023}} \textcolor{preprocessor}{\#define ABIP\_UNBOUNDED\_INACCURATE (-\/6)  }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00024}\mbox{\hyperlink{glbopts_8h_a5ce7155e7ccab21936c5f33587071898}{00024}} \textcolor{preprocessor}{\#define ABIP\_SIGINT (-\/5) }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00025}\mbox{\hyperlink{glbopts_8h_abdf832542abc004c044a3a77b7953a0b}{00025}} \textcolor{preprocessor}{\#define ABIP\_FAILED (-\/4)  }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00026}\mbox{\hyperlink{glbopts_8h_aa69e51089d3210ef65ea9e1e980c0656}{00026}} \textcolor{preprocessor}{\#define ABIP\_INDETERMINATE (-\/3)  }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00027}\mbox{\hyperlink{glbopts_8h_adbefab5c0866849ad8d9da6d759b9770}{00027}} \textcolor{preprocessor}{\#define ABIP\_INFEASIBLE (-\/2) }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00028}\mbox{\hyperlink{glbopts_8h_a0b0ae45cf4ca0711f6085a143dc66faf}{00028}} \textcolor{preprocessor}{\#define ABIP\_UNBOUNDED (-\/1) }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00029}\mbox{\hyperlink{glbopts_8h_ab621bf53fde52d206337013bc344027b}{00029}} \textcolor{preprocessor}{\#define ABIP\_UNFINISHED (0) }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00030}\mbox{\hyperlink{glbopts_8h_a9b9c03f341c92e1bd5a7cb9eda0cf712}{00030}} \textcolor{preprocessor}{\#define ABIP\_SOLVED (1) }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00031}\mbox{\hyperlink{glbopts_8h_a2eeef2b4c5ba7d70e08adf2e2aa36565}{00031}} \textcolor{preprocessor}{\#define ABIP\_SOLVED\_INACCURATE (2)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00033}\mbox{\hyperlink{glbopts_8h_ace4a94c7f3ba6ca288986cbdc6dc420a}{00033}} \textcolor{preprocessor}{\#define MAX\_IPM\_ITERS (500)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00034}\mbox{\hyperlink{glbopts_8h_adb781b748be23cf47e14229754b54ccd}{00034}} \textcolor{preprocessor}{\#define MAX\_ADMM\_ITERS (1000000)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00035}\mbox{\hyperlink{glbopts_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}{00035}} \textcolor{preprocessor}{\#define EPS (1E-\/3)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00036}\mbox{\hyperlink{glbopts_8h_af5abd28c44c29b7397c84f1fec4b1d84}{00036}} \textcolor{preprocessor}{\#define ALPHA (1.8)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00037}\mbox{\hyperlink{glbopts_8h_a12bfb0313e34bbbe9b0d083d8249655b}{00037}} \textcolor{preprocessor}{\#define CG\_RATE (2.0)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00038}\mbox{\hyperlink{glbopts_8h_a29cf2d41341c861a02125541ee1c9368}{00038}} \textcolor{preprocessor}{\#define NORMALIZE (1)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00039}\mbox{\hyperlink{glbopts_8h_a0cbea62f1ce2043dd08108e65ed8de1d}{00039}} \textcolor{preprocessor}{\#define SCALE (1.0)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00040}\mbox{\hyperlink{glbopts_8h_a16e20738fcaf832adad13641d7b7b8b4}{00040}} \textcolor{preprocessor}{\#define SPARSITY\_RATIO (0.01)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00041}\mbox{\hyperlink{glbopts_8h_a3b3b811b2e8bc357be8f81cef34b1707}{00041}} \textcolor{preprocessor}{\#define RHO\_Y (1E-\/3)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00042}\mbox{\hyperlink{glbopts_8h_a464391e568178aa10799bce40d9a7792}{00042}} \textcolor{preprocessor}{\#define ADAPTIVE (1)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00043}\mbox{\hyperlink{glbopts_8h_a7a2686c17aa36e243cdf3e04c6795621}{00043}} \textcolor{preprocessor}{\#define EPS\_COR (0.2)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00044}\mbox{\hyperlink{glbopts_8h_ab23999cea61269a6ce67eb7bc0b08a94}{00044}} \textcolor{preprocessor}{\#define EPS\_PEN (0.1)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00045}\mbox{\hyperlink{glbopts_8h_ac3f20027de8e67abebbd8299b2fb770b}{00045}} \textcolor{preprocessor}{\#define ADAPTIVE\_LOOKBACK (20)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00046}\mbox{\hyperlink{glbopts_8h_a42f8c497a1968074f38bf5055c650dca}{00046}} \textcolor{preprocessor}{\#define VERBOSE (1)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00047}\mbox{\hyperlink{glbopts_8h_a2117977538fc37cd5f66997e2cfc89bf}{00047}} \textcolor{preprocessor}{\#define WARM\_START (0)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00049}00049 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00050}00050 \textcolor{preprocessor}{\#include "{}mex.h"{}}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00051}00051 \textcolor{preprocessor}{\#define abip\_printf mexPrintf}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00052}00052 \textcolor{preprocessor}{\#define \_abip\_free mxFree}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00053}00053 \textcolor{preprocessor}{\#define \_abip\_malloc mxMalloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00054}00054 \textcolor{preprocessor}{\#define \_abip\_calloc mxCalloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00055}00055 \textcolor{preprocessor}{\#define \_abip\_realloc mxRealloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00056}00056 \textcolor{preprocessor}{\#elif defined PYTHON}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00057}00057 \textcolor{preprocessor}{\#include <Python.h>}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00058}00058 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00059}00059 \textcolor{preprocessor}{\#define abip\_printf(...)                                                            \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00060}00060 \textcolor{preprocessor}{\{                                                                                               \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00061}00061 \textcolor{preprocessor}{      PyGILState\_STATE gilstate = PyGILState\_Ensure();       \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00062}00062 \textcolor{preprocessor}{      PySys\_WriteStdout(\_\_VA\_ARGS\_\_);                                 \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00063}00063 \textcolor{preprocessor}{      PyGILState\_Release(gilstate);                                          \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00064}00064 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00065}00065 \textcolor{preprocessor}{\#define \_abip\_free free}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00066}00066 \textcolor{preprocessor}{\#define \_abip\_malloc malloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00067}00067 \textcolor{preprocessor}{\#define \_abip\_calloc calloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00068}00068 \textcolor{preprocessor}{\#define \_abip\_realloc realloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00069}00069 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00070}00070 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00071}00071 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00072}\mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{00072}} \textcolor{preprocessor}{\#define abip\_printf printf}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00073}\mbox{\hyperlink{glbopts_8h_a24fe747589cbd8e1bc42ea8519f80ba3}{00073}} \textcolor{preprocessor}{\#define \_abip\_free free}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00074}\mbox{\hyperlink{glbopts_8h_a70eef5206777c5ca7413f495573608b5}{00074}} \textcolor{preprocessor}{\#define \_abip\_malloc malloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00075}\mbox{\hyperlink{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}{00075}} \textcolor{preprocessor}{\#define \_abip\_calloc calloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00076}\mbox{\hyperlink{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}{00076}} \textcolor{preprocessor}{\#define \_abip\_realloc realloc}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00077}00077 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00079}\mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{00079}} \textcolor{preprocessor}{\#define abip\_free(x)   \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00080}00080 \textcolor{preprocessor}{      \_abip\_free(x);          \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00081}00081 \textcolor{preprocessor}{      x = ABIP\_NULL }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00082}\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{00082}} \textcolor{preprocessor}{\#define abip\_malloc(x) \_abip\_malloc(x)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00083}\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{00083}} \textcolor{preprocessor}{\#define abip\_calloc(x, y) \_abip\_calloc(x, y)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00084}\mbox{\hyperlink{glbopts_8h_af7d18de888226d0ab9e248889d7516ab}{00084}} \textcolor{preprocessor}{\#define abip\_realloc(x, y) \_abip\_realloc(x, y)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00086}00086 \textcolor{preprocessor}{\#ifdef DLONG}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00087}00087 \textcolor{preprocessor}{\#ifdef \_WIN64}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00088}00088 \textcolor{keyword}{typedef} \_\_int64 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}; }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00089}00089 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00090}00090 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}};}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00091}00091 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00092}00092 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00093}\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{00093}} \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}};}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00094}00094 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00096}00096 \textcolor{preprocessor}{\#ifndef SFLOAT}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00097}\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{00097}} \textcolor{keyword}{typedef} \textcolor{keywordtype}{double} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}};}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00098}00098 \textcolor{preprocessor}{\#ifndef NAN}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00099}\mbox{\hyperlink{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}{00099}} \textcolor{preprocessor}{\#define NAN ((scs\_float)0x7ff8000000000000)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00100}00100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00101}00101 \textcolor{preprocessor}{\#ifndef INFINITY}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00102}\mbox{\hyperlink{glbopts_8h_a956e2723d559858d08644ac99146e910}{00102}} \textcolor{preprocessor}{\#define INFINITY NAN}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00103}00103 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00104}00104 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00105}00105 \textcolor{keyword}{typedef} \textcolor{keywordtype}{float} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}};}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00106}00106 \textcolor{preprocessor}{\#ifndef NAN}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00107}00107 \textcolor{preprocessor}{\#define NAN ((float)0x7fc00000)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00108}00108 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00109}00109 \textcolor{preprocessor}{\#ifndef INFINITY}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00110}00110 \textcolor{preprocessor}{\#define INFINITY NAN}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00111}00111 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00112}00112 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00114}\mbox{\hyperlink{glbopts_8h_adae2a4e360bd77801ffccfc6288f97c5}{00114}} \textcolor{preprocessor}{\#define ABIP\_NULL 0}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00116}00116 \textcolor{preprocessor}{\#ifndef MAX}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00117}\mbox{\hyperlink{glbopts_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{00117}} \textcolor{preprocessor}{\#define MAX(a, b) (((a) > (b)) ? (a) : (b))}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00118}00118 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00120}00120 \textcolor{preprocessor}{\#ifndef MIN}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00121}\mbox{\hyperlink{glbopts_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{00121}} \textcolor{preprocessor}{\#define MIN(a, b) (((a) < (b)) ? (a) : (b))}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00122}00122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00124}00124 \textcolor{preprocessor}{\#ifndef ABS}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00125}\mbox{\hyperlink{glbopts_8h_a996f7be338ccb40d1a2a5abc1ad61759}{00125}} \textcolor{preprocessor}{\#define ABS(x) (((x) < 0) ? -\/(x) : (x))}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00126}00126 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00128}00128 \textcolor{preprocessor}{\#ifndef POWF}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00129}00129 \textcolor{preprocessor}{\#ifdef SFLOAT}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00130}00130 \textcolor{preprocessor}{\#define POWF powf}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00131}00131 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00132}\mbox{\hyperlink{glbopts_8h_a5eb338b58f3b23067d6a87b00eca4971}{00132}} \textcolor{preprocessor}{\#define POWF pow}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00133}00133 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00134}00134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00136}00136 \textcolor{preprocessor}{\#ifndef SQRTF}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00137}00137 \textcolor{preprocessor}{\#ifdef SFLOAT}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00138}00138 \textcolor{preprocessor}{\#define SQRTF sqrtf}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00139}00139 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00140}\mbox{\hyperlink{glbopts_8h_a3b9d7d973bd11c5ad12d329c6ea8b308}{00140}} \textcolor{preprocessor}{\#define SQRTF sqrt}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00141}00141 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00142}00142 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00144}00144 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 1}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00145}00145 \textcolor{preprocessor}{\#if (defined \_WIN32 || defined \_WIN64 || defined \_WINDLL)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00146}00146 \textcolor{preprocessor}{\#define \_\_func\_\_ \_\_FUNCTION\_\_}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00147}00147 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00148}00148 \textcolor{preprocessor}{\#define DEBUG\_FUNC abip\_printf("{}IN function: \%s, time: \%4f ms, file: \%s, line: \%i\(\backslash\)n"{}}, \_\_func\_\_,  ABIP(tocq)(\&global\_timer), \_\_FILE\_\_, \_\_LINE\_\_);}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00149}00149 \textcolor{preprocessor}{\#define RETURN }}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00150}00150       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}EXIT function: \%s, time: \%4f ms, file: \%s, line: \%i\(\backslash\)n"{}}, \_\_func\_\_, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\&global\_timer), \_\_FILE\_\_, \_\_LINE\_\_);   \(\backslash\)}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00151}00151       \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00152}00152 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00153}\mbox{\hyperlink{glbopts_8h_a94c324ab9e9283e9ec9324baf52f8a71}{00153}} \textcolor{preprocessor}{\#define DEBUG\_FUNC}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00154}\mbox{\hyperlink{glbopts_8h_a6a0e6b80dd3d5ca395cf58151749f5e2}{00154}} \textcolor{preprocessor}{\#define RETURN return}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00155}00155 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00157}\mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{00157}} \textcolor{preprocessor}{\#define EPS\_TOL (1E-\/18)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00158}\mbox{\hyperlink{glbopts_8h_a274d5c6f0e4fc5e150e00e52a3f79a32}{00158}} \textcolor{preprocessor}{\#define SAFEDIV\_POS(X, Y) ((Y) < EPS\_TOL ? ((X) / EPS\_TOL) : (X) / (Y))}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00160}\mbox{\hyperlink{glbopts_8h_a4e4b717291d0110b79e2efb2e8499c55}{00160}} \textcolor{preprocessor}{\#define CONVERGED\_INTERVAL (1)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00161}\mbox{\hyperlink{glbopts_8h_a94f5bbb85116b138ba46912456f4b5e4}{00161}} \textcolor{preprocessor}{\#define INDETERMINATE\_TOL (1e-\/9)}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00163}00163 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00164}00164 \}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00165}00165 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{glbopts_8h_source_l00166}00166 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

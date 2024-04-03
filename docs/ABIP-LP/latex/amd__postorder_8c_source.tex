@@ -1,0 +1,238 @@
+\hypertarget{amd__postorder_8c_source}{}\doxysection{amd\+\_\+postorder.\+c}
+\label{amd__postorder_8c_source}\index{external/amd/amd\_postorder.c@{external/amd/amd\_postorder.c}}
+\mbox{\hyperlink{amd__postorder_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_postorder ======================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00011}00011 \textcolor{comment}{/* Perform a postordering (via depth-\/first search) of an assembly tree. */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00015}\mbox{\hyperlink{amd__internal_8h_a5f120a93853d9bd2f1111a6a78a8bc15}{00015}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}{AMD\_postorder}}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00016}00016 (}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00017}00017         \textcolor{comment}{/* inputs, not modified on output: */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00018}00018         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nn,          \textcolor{comment}{/* nodes are in the range 0..nn-\/1 */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00019}00019         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Parent [ ],      \textcolor{comment}{/* Parent [j] is the parent of j, or EMPTY if root */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00020}00020         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Nv [ ],      \textcolor{comment}{/* Nv [j] > 0 number of pivots represented by node j,}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00021}00021 \textcolor{comment}{                * or zero if j is not a node. */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00022}00022         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Fsize [ ],       \textcolor{comment}{/* Fsize [j]: size of node j */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00024}00024         \textcolor{comment}{/* output, not defined on input: */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00025}00025         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order [ ],       \textcolor{comment}{/* output post-\/order */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00027}00027         \textcolor{comment}{/* workspaces of size nn: */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00028}00028         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child [ ],}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00029}00029         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling [ ],}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00030}00030         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack [ ]}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00031}00031 )}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00032}00032 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00033}00033         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} i; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00034}00034         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} j; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00035}00035         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} k; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00037}00037         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} parent; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00038}00038         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} frsize; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00039}00039         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} f; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00040}00040         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} fprev; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00041}00041         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} maxfrsize; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00042}00042         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} bigfprev; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00043}00043         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} bigf; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00044}00044         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} fnext;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00046}00046         \textcolor{keywordflow}{for} (j = 0 ; j < nn ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00047}00047         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00048}00048         Child [j] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00049}00049         Sibling [j] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00050}00050         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00052}00052         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00053}00053         \textcolor{comment}{/* place the children in link lists -\/ bigger elements tend to be last */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00054}00054         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00056}00056         \textcolor{keywordflow}{for} (j = nn-\/1 ; j >= 0 ; j-\/-\/)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00057}00057         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00058}00058         \textcolor{keywordflow}{if} (Nv [j] > 0)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00059}00059         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00060}00060                 \textcolor{comment}{/* this is an element */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00061}00061                 parent = Parent [j] ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00062}00062                 \textcolor{keywordflow}{if} (parent != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00063}00063                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00064}00064                 \textcolor{comment}{/* place the element in link list of the children its parent */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00065}00065                 \textcolor{comment}{/* bigger elements will tend to be at the end of the list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00066}00066                 Sibling [j] = Child [parent] ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00067}00067                 Child [parent] = j ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00068}00068                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00069}00069         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00070}00070         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00072}00072 \textcolor{preprocessor}{    \#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00073}00073         }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00074}00074         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nels; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00075}00075         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} ff; }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00076}00076         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nchild;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00077}00077     \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n================================ AMD\_postorder:\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00078}00078     nels = 0;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00080}00080     \textcolor{keywordflow}{for} (j = 0 ; j < nn ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00082}00082             \textcolor{keywordflow}{if} (Nv [j] > 0)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00083}00083             \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00084}00084             \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} (( \textcolor{stringliteral}{"{}"{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} :  nels "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} npiv "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} size "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} parent "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} maxfr "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, j, nels, Nv [j], Fsize [j], Parent [j], Fsize [j])) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00085}00085             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00086}00086             \textcolor{comment}{/* this is an element */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00087}00087             \textcolor{comment}{/* dump the link list of children */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00088}00088             nchild = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00089}00089             \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}    Children: "{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00090}00090             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00091}00091             \textcolor{keywordflow}{for} (ff = Child [j] ; ff != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; ff = Sibling [ff])}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00092}00092             \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00093}00093                     \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} "{}}, ff)) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00094}00094                     \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (Parent [ff] == j) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00095}00095                     nchild++ ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00096}00096                     \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (nchild < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00097}00097             \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00098}00098             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00099}00099             \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00100}00100             parent = Parent [j] ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00101}00101             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00102}00102             \textcolor{keywordflow}{if} (parent != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00103}00103             \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00104}00104                     \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (Nv [parent] > 0) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00105}00105             \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00106}00106             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00107}00107             nels++ ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00108}00108             \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00109}00109     \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00111}00111         \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)nGo through the children of each node, and put\(\backslash\)n"{}} \textcolor{stringliteral}{"{}the biggest child last in each list:\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00112}00112     }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00113}00113 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00115}00115         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00116}00116         \textcolor{comment}{/* place the largest child last in the list of children for each node */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00117}00117         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00119}00119         \textcolor{keywordflow}{for} (i = 0 ; i < nn ; i++)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00120}00120         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00121}00121         \textcolor{keywordflow}{if} (Nv [i] > 0 \&\& Child [i] != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00122}00122         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00124}00124 \textcolor{preprocessor}{            \#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00125}00125                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00126}00126                 \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nchild ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00127}00127                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}Before partial sort, element "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, i)) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00128}00128                 nchild = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00129}00129                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00130}00130                 \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00131}00131                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00132}00132                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (f >= 0 \&\& f < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00133}00133                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}      f: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}  size: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, f, Fsize [f])) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00134}00134                 nchild++ ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00135}00135                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (nchild <= nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00136}00136                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00137}00137             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00138}00138 \textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00140}00140                 \textcolor{comment}{/* find the biggest element in the child list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00141}00141                 fprev = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00142}00142                 maxfrsize = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00143}00143                 bigfprev = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00144}00144                 bigf = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00145}00145                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00146}00146                 \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00147}00147                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00148}00148                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (f >= 0 \&\& f < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00149}00149                 frsize = Fsize [f] ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00150}00150                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00151}00151                 \textcolor{keywordflow}{if} (frsize >= maxfrsize)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00152}00152                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00153}00153                         \textcolor{comment}{/* this is the biggest seen so far */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00154}00154                         maxfrsize = frsize ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00155}00155                         bigfprev = fprev ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00156}00156                         bigf = f ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00157}00157                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00158}00158                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00159}00159                 fprev = f ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00160}00160                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00161}00161                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00162}00162                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (bigf != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00164}00164                 fnext = Sibling [bigf] ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00166}00166                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}bigf "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} maxfrsize "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} bigfprev "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} fnext "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} fprev "{}} \mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, bigf, maxfrsize, bigfprev, fnext, fprev)) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00168}00168                 \textcolor{keywordflow}{if} (fnext != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00169}00169                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00170}00170                 \textcolor{comment}{/* if fnext is EMPTY then bigf is already at the end of list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00172}00172                 \textcolor{keywordflow}{if} (bigfprev == \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00173}00173                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00174}00174                         \textcolor{comment}{/* delete bigf from the element of the list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00175}00175                         Child [i] = fnext ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00176}00176                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00177}00177                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00178}00178                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00179}00179                         \textcolor{comment}{/* delete bigf from the middle of the list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00180}00180                         Sibling [bigfprev] = fnext ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00181}00181                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00182}00182 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00183}00183                 \textcolor{comment}{/* put bigf at the end of the list */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00184}00184                 Sibling [bigf] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00185}00185                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (Child [i] != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00186}00186                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (fprev != bigf) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00187}00187                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (fprev != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00188}00188                 Sibling [fprev] = bigf ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00189}00189                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00190}00190 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00191}00191 \textcolor{preprocessor}{            \#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00192}00192                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00193}00193                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}After partial sort, element "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, i)) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00194}00194                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00195}00195                 \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00196}00196                 \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00197}00197                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (f >= 0 \&\& f < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00198}00198                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}        "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}  "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, f, Fsize [f])) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00199}00199                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (Nv [f] > 0) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00200}00200                 nchild-\/-\/ ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00201}00201                 \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00202}00202                 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00203}00203                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (nchild == 0) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00204}00204             }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00205}00205 \textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00206}00206         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00207}00207         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00209}00209         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00210}00210         \textcolor{comment}{/* postorder the assembly tree */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00211}00211         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00212}00212 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00213}00213         \textcolor{keywordflow}{for} (i = 0 ; i < nn ; i++)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00214}00214         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00215}00215         Order [i] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00216}00216         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00218}00218         k = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00220}00220         \textcolor{keywordflow}{for} (i = 0 ; i < nn ; i++)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00221}00221         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00222}00222         \textcolor{keywordflow}{if} (Parent [i] == \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} \&\& Nv [i] > 0)}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00223}00223         \{}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00224}00224                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}Root of assembly tree "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, i)) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00225}00225                 k = \mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{AMD\_post\_tree}} (i, k, Child, Sibling, Order, Stack}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00226}00226             \#ifndef NDEBUG}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00227}00227             , nn}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00228}00228             \#endif}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00229}00229             ) ;}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00230}00230         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00231}00231         \}}
+\DoxyCodeLine{\Hypertarget{amd__postorder_8c_source_l00232}00232 \}}
+
+\end{DoxyCode}

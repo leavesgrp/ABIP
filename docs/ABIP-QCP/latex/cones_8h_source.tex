@@ -1,0 +1,68 @@
+\hypertarget{cones_8h_source}{}\doxysection{cones.\+h}
+\label{cones_8h_source}\index{include/cones.h@{include/cones.h}}
+\mbox{\hyperlink{cones_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef CONES\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00002}00002 \textcolor{preprocessor}{\#define CONES\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00004}00004 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00005}00005 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00006}00006 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linalg_8h}{linalg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00011}00011 \textcolor{preprocessor}{\#include "{}mkl.h"{}}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00012}00012 \textcolor{preprocessor}{\#include "{}mkl\_lapacke.h"{}}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00016}00016 \textcolor{keywordtype}{char}* \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_a8d418aa3e258f1c384dea38f85c0485c}{get\_cone\_header}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}* k);}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00017}00017 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_ae4d0084da2ee1147e3d1975c7e8f9fef}{validate\_cones}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}* k);}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00019}00019 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_a17366e2ea0a226fe973299c868b1c1c1}{get\_cone\_dims}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}}* k);}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00022}00022 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_a4c3a53bd283754f061d1409600e06f48}{soc\_barrier\_subproblem}})(}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00023}00023     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00024}00024     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* tmp,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00025}00025     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lambda,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00026}00026     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00027}00027 );}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00029}00029 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_a33bc79e7f34eded9bdb37d3e4422c524}{rsoc\_barrier\_subproblem}})(}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00030}00030     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00031}00031     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* tmp,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00032}00032     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lambda,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00033}00033     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00034}00034 );}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00036}00036 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_ae74a134c65924fe4ef32c20a86a9a351}{free\_barrier\_subproblem}})(}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00037}00037     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00038}00038     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* tmp,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00039}00039     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lambda,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00040}00040     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00041}00041 );}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00043}00043 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_a28b10e8bee165021b43c9d50d47ead1a}{zero\_barrier\_subproblem}})(}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00044}00044     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00045}00045     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* tmp,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00046}00046     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lambda,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00047}00047     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00048}00048 );}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00050}00050 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{cones_8h_adbd1815529c04050d9d19ff27d0b1a95}{positive\_orthant\_barrier\_subproblem}})(}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00051}00051     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00052}00052     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* tmp,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00053}00053     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lambda,}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00054}00054     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00055}00055 );}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00058}00058 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00059}00059 \}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00060}00060 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00061}00061 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cones_8h_source_l00062}00062 }
+
+\end{DoxyCode}

@@ -1,0 +1,28 @@
+\hypertarget{cs__leaf_8c_source}{}\doxysection{cs\+\_\+leaf.\+c}
+\label{cs__leaf_8c_source}\index{csparse/Source/cs\_leaf.c@{csparse/Source/cs\_leaf.c}}
+\mbox{\hyperlink{cs__leaf_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00002}00002 \textcolor{comment}{/* consider A(i,j), node j in ith row subtree and return lca(jprev,j) */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00003}\mbox{\hyperlink{cs_8h_aaeedf973ec2de811ead0e47f8501a81d}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__leaf_8c_aaeedf973ec2de811ead0e47f8501a81d}{cs\_leaf}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} j, \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *first, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *maxfirst, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *prevleaf,}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00004}00004     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *ancestor, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *jleaf)}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00006}00006     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} q, s, sparent, jprev ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!first || !maxfirst || !prevleaf || !ancestor || !jleaf) \textcolor{keywordflow}{return} (-\/1) ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00008}00008     *jleaf = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00009}00009     \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} <= j || first [j] <= maxfirst [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) \textcolor{keywordflow}{return} (-\/1) ;  \textcolor{comment}{/* j not a leaf */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00010}00010     maxfirst [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = first [j] ;      \textcolor{comment}{/* update max first[j] seen so far */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00011}00011     jprev = prevleaf [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;          \textcolor{comment}{/* jprev = previous leaf of ith subtree */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00012}00012     prevleaf [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = j ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00013}00013     *jleaf = (jprev == -\/1) ? 1: 2 ; \textcolor{comment}{/* j is first or subsequent leaf */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00014}00014     \textcolor{keywordflow}{if} (*jleaf == 1) \textcolor{keywordflow}{return} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) ;   \textcolor{comment}{/* if 1st leaf, q = root of ith subtree */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00015}00015     \textcolor{keywordflow}{for} (q = jprev ; q != ancestor [q] ; q = ancestor [q]) ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00016}00016     \textcolor{keywordflow}{for} (s = jprev ; s != q ; s = sparent)}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00017}00017     \{}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00018}00018         sparent = ancestor [s] ;    \textcolor{comment}{/* path compression */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00019}00019         ancestor [s] = q ;}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00020}00020     \}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00021}00021     \textcolor{keywordflow}{return} (q) ;                    \textcolor{comment}{/* q = least common ancester (jprev,j) */}}
+\DoxyCodeLine{\Hypertarget{cs__leaf_8c_source_l00022}00022 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,113 @@
+\hypertarget{amd__valid_8c_source}{}\doxysection{amd\+\_\+valid.\+c}
+\label{amd__valid_8c_source}\index{external/amd/amd\_valid.c@{external/amd/amd\_valid.c}}
+\mbox{\hyperlink{amd__valid_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_valid =========================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00011}00011 \textcolor{comment}{/* Check if a column-\/form matrix is valid or not.  The matrix A is}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00012}00012 \textcolor{comment}{ * n\_row-\/by-\/n\_col.  The row indices of entries in column j are in}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00013}00013 \textcolor{comment}{ * Ai [Ap [j] ... Ap [j+1]-\/1].  Required conditions are:}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00014}00014 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00015}00015 \textcolor{comment}{ *  n\_row >= 0}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00016}00016 \textcolor{comment}{ *  n\_col >= 0}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00017}00017 \textcolor{comment}{ *  nz = Ap [n\_col] >= 0        number of entries in the matrix}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00018}00018 \textcolor{comment}{ *  Ap [0] == 0}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00019}00019 \textcolor{comment}{ *  Ap [j] <= Ap [j+1] for all j in the range 0 to n\_col.}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00020}00020 \textcolor{comment}{ *      Ai [0 ... nz-\/1] must be in the range 0 to n\_row-\/1.}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00021}00021 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00022}00022 \textcolor{comment}{ * If any of the above conditions hold, AMD\_INVALID is returned.  If the}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00023}00023 \textcolor{comment}{ * following condition holds, AMD\_OK\_BUT\_JUMBLED is returned (a warning,}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00024}00024 \textcolor{comment}{ * not an error):}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00025}00025 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00026}00026 \textcolor{comment}{ *  row indices in Ai [Ap [j] ... Ap [j+1]-\/1] are not sorted in ascending}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00027}00027 \textcolor{comment}{ *      order, and/or duplicate entries exist.}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00028}00028 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00029}00029 \textcolor{comment}{ * Otherwise, AMD\_OK is returned.}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00030}00030 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00031}00031 \textcolor{comment}{ * In v1.2 and earlier, this function returned TRUE if the matrix was valid}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00032}00032 \textcolor{comment}{ * (now returns AMD\_OK), or FALSE otherwise (now returns AMD\_INVALID or}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00033}00033 \textcolor{comment}{ * AMD\_OK\_BUT\_JUMBLED).}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00034}00034 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00036}00036 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00038}\mbox{\hyperlink{amd__valid_8c_a27cc60e86354a6e5c81c5d2f8c3f6874}{00038}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}{AMD\_valid}}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00039}00039 (}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00040}00040         \textcolor{comment}{/* inputs, not modified on output: */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00041}00041         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n\_row,       \textcolor{comment}{/* A is n\_row-\/by-\/n\_col */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00042}00042         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n\_col,}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00043}00043         \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap [ ],    \textcolor{comment}{/* column pointers of A, of size n\_col+1 */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00044}00044         \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai [ ]     \textcolor{comment}{/* row indices of A, of size nz = Ap [n\_col] */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00045}00045 )}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00046}00046 \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00047}00047         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nz; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00048}00048         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} j; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00049}00049         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} p1; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00050}00050         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} p2; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00051}00051         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} ilast; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00052}00052         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} i; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00053}00053         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} p; }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00054}00054         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} result = \mbox{\hyperlink{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}{AMD\_OK}} ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00056}00056         \textcolor{keywordflow}{if} (n\_row < 0 || n\_col < 0 || Ap == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} || Ai == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}})}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00057}00057         \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00058}00058         \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00059}00059         \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00060}00060         }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00061}00061         nz = Ap [n\_col] ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00062}00062         \textcolor{keywordflow}{if} (Ap [0] != 0 || nz < 0)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00063}00063         \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00064}00064         \textcolor{comment}{/* column pointers must start at Ap [0] = 0, and Ap [n] must be >= 0 */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00065}00065         \mbox{\hyperlink{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}{AMD\_DEBUG0}} ((\textcolor{stringliteral}{"{}column 0 pointer bad or nz < 0\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00066}00066         \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00067}00067         \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00068}00068         }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00069}00069         \textcolor{keywordflow}{for} (j = 0 ; j < n\_col ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00070}00070         \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00071}00071         p1 = Ap [j] ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00072}00072         p2 = Ap [j+1] ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00073}00073         \mbox{\hyperlink{amd__internal_8h_affe04eb97a59a9cb13e0b537b1844197}{AMD\_DEBUG2}} ((\textcolor{stringliteral}{"{}\(\backslash\)nColumn: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} p1: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} p2: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, j, p1, p2)) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00074}00074         }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00075}00075         \textcolor{keywordflow}{if} (p1 > p2)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00076}00076         \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00077}00077                 \textcolor{comment}{/* column pointers must be ascending */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00078}00078                 \mbox{\hyperlink{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}{AMD\_DEBUG0}} ((\textcolor{stringliteral}{"{}column "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} pointer bad\(\backslash\)n"{}}, j)) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00079}00079                 \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00080}00080         \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00081}00081         }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00082}00082         ilast = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00083}00083         \textcolor{keywordflow}{for} (p = p1 ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00084}00084         \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00085}00085                 i = Ai [p] ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00086}00086                 \mbox{\hyperlink{amd__internal_8h_afd254e4246734c9bb9bb01350196f2bd}{AMD\_DEBUG3}} ((\textcolor{stringliteral}{"{}row: "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, i)) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00087}00087                 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00088}00088                 \textcolor{keywordflow}{if} (i < 0 || i >= n\_row)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00089}00089                 \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00090}00090                 \textcolor{comment}{/* row index out of range */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00091}00091                 \mbox{\hyperlink{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}{AMD\_DEBUG0}} ((\textcolor{stringliteral}{"{}index out of range, col "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} row "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, j, i));}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00092}00092                 \textcolor{keywordflow}{return} (\mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00093}00093                 \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00094}00094                 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00095}00095                 \textcolor{keywordflow}{if} (i <= ilast)}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00096}00096                 \{}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00097}00097                 \textcolor{comment}{/* row index unsorted, or duplicate entry present */}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00098}00098                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}index unsorted/dupl col "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} row "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, j, i));}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00099}00099                 result = \mbox{\hyperlink{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}{AMD\_OK\_BUT\_JUMBLED}} ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00100}00100                 \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00101}00101                 }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00102}00102                 ilast = i;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00103}00103         \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00104}00104         \}}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00105}00105         }
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00106}00106         \textcolor{keywordflow}{return} (result) ;}
+\DoxyCodeLine{\Hypertarget{amd__valid_8c_source_l00107}00107 \}}
+
+\end{DoxyCode}

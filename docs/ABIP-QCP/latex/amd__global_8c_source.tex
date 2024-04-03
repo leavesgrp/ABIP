@@ -1,0 +1,81 @@
+\hypertarget{amd__global_8c_source}{}\doxysection{amd\+\_\+global.\+c}
+\label{amd__global_8c_source}\index{amd/amd\_global.c@{amd/amd\_global.c}}
+\mbox{\hyperlink{amd__global_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00002}00002 \textcolor{comment}{/* === amd\_global ========================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00011}00011 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00014}00014 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}mex.h"{}}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}matrix.h"{}}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00017}00017 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00019}00019 \textcolor{preprocessor}{\#ifndef ABIP\_NULL}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00020}\mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{00020}} \textcolor{preprocessor}{\#define ABIP\_NULL 0}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00021}00021 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00023}00023 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00024}00024 \textcolor{comment}{/* === Default AMD memory manager ========================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00025}00025 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00027}00027 \textcolor{comment}{/* The user can redefine these global pointers at run-\/time to change the memory}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00028}00028 \textcolor{comment}{ * manager used by AMD.  AMD only uses malloc and free; realloc and calloc are}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00029}00029 \textcolor{comment}{ * include for completeness, in case another package wants to use the same}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00030}00030 \textcolor{comment}{ * memory manager as AMD.}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00031}00031 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00032}00032 \textcolor{comment}{ * If compiling as a MATLAB mexFunction, the default memory manager is mxMalloc.}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00033}00033 \textcolor{comment}{ * You can also compile AMD as a standard ANSI-\/C library and link a mexFunction}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00034}00034 \textcolor{comment}{ * against it, and then redefine these pointers at run-\/time, in your}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00035}00035 \textcolor{comment}{ * mexFunction.}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00036}00036 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00037}00037 \textcolor{comment}{ * If -\/DNMALLOC is defined at compile-\/time, no memory manager is specified at}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00038}00038 \textcolor{comment}{ * compile-\/time.  You must then define these functions at run-\/time, before}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00039}00039 \textcolor{comment}{ * calling AMD, for AMD to work properly.}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00040}00040 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00042}00042 \textcolor{preprocessor}{\#ifndef NMALLOC}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00043}00043 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00044}00044 \textcolor{comment}{/* MATLAB mexFunction: */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00045}00045 \textcolor{keywordtype}{void} *(*amd\_malloc) (size\_t) = mxMalloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00046}00046 void (*\mbox{\hyperlink{amd__global_8c_a1bd11df9251d179434ba8aa2345e8887}{amd\_free}}) (\textcolor{keywordtype}{void} *) = mxFree ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00047}00047 \textcolor{keywordtype}{void} *(*amd\_realloc) (\textcolor{keywordtype}{void} *, size\_t) = mxRealloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00048}00048 \textcolor{keywordtype}{void} *(*amd\_calloc) (size\_t, size\_t) = mxCalloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00049}00049 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00050}00050 \textcolor{comment}{/* standard ANSI-\/C: */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00051}\mbox{\hyperlink{amd__global_8c_ac009a5cefae0633603849a49c77d2ece}{00051}} \textcolor{keywordtype}{void} *(*amd\_malloc) (size\_t) = malloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00052}\mbox{\hyperlink{amd__global_8c_a1bd11df9251d179434ba8aa2345e8887}{00052}} void (*\mbox{\hyperlink{amd__global_8c_a1bd11df9251d179434ba8aa2345e8887}{amd\_free}}) (\textcolor{keywordtype}{void} *) = free ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00053}\mbox{\hyperlink{amd__global_8c_a19d8197604f2d1333983442f9a43235f}{00053}} \textcolor{keywordtype}{void} *(*amd\_realloc) (\textcolor{keywordtype}{void} *, size\_t) = realloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00054}\mbox{\hyperlink{amd__global_8c_aba9c73c0c00e84adc5201fdb981597d4}{00054}} \textcolor{keywordtype}{void} *(*amd\_calloc) (size\_t, size\_t) = calloc ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00055}00055 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00056}00056 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00057}00057 \textcolor{comment}{/* no memory manager defined at compile-\/time; you MUST define one at run-\/time */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00058}00058 \textcolor{keywordtype}{void} *(*amd\_malloc) (size\_t) = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00059}00059 void (*\mbox{\hyperlink{amd__global_8c_a1bd11df9251d179434ba8aa2345e8887}{amd\_free}}) (\textcolor{keywordtype}{void} *) = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00060}00060 \textcolor{keywordtype}{void} *(*amd\_realloc) (\textcolor{keywordtype}{void} *, size\_t) = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00061}00061 \textcolor{keywordtype}{void} *(*amd\_calloc) (size\_t, size\_t) = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} ;}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00062}00062 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00064}00064 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00065}00065 \textcolor{comment}{/* === Default AMD printf routine ========================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00066}00066 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00068}00068 \textcolor{comment}{/* The user can redefine this global pointer at run-\/time to change the printf}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00069}00069 \textcolor{comment}{ * routine used by AMD.  If ABIP\_NULL, no printing occurs.  }}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00070}00070 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00071}00071 \textcolor{comment}{ * If -\/DNPRINT is defined at compile-\/time, stdio.h is not included.  Printing}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00072}00072 \textcolor{comment}{ * can then be enabled at run-\/time by setting amd\_printf to a non-\/ABIP\_NULL function.}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00073}00073 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{amd__global_8c_source_l00075}\mbox{\hyperlink{amd__global_8c_a902a04186092afb7c370a95bd0356665}{00075}} int (*\mbox{\hyperlink{amd__global_8c_a902a04186092afb7c370a95bd0356665}{amd\_printf}}) (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *, ...) = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}} ;}
+
+\end{DoxyCode}

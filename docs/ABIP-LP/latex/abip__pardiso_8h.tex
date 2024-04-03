@@ -1,0 +1,224 @@
+\hypertarget{abip__pardiso_8h}{}\doxysection{linsys/abip\+\_\+pardiso.h File Reference}
+\label{abip__pardiso_8h}\index{linsys/abip\_pardiso.h@{linsys/abip\_pardiso.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a27a0664d63e573557fbb08a7c2deba9e}{PARDISO\+\_\+\+OK}}~(  0)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_ace2297c33894c3d75a2c077871d6908a}{PARDISOINDEX}}~( 64)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_aa49ee2738b572fb5837bfcb0af1bb273}{PARDISO\+\_\+\+SYM}}~( 11)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_ab235ccd19803462f51a0011c8a53794f}{PARDISO\+\_\+\+FAC}}~( 22)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_aa3ce1a1103ece568c6dd03c9bb199bd5}{PARDISO\+\_\+\+SYM\+\_\+\+FAC}}~( 12)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_afd90df78609882f9ee85ab44ab09ce91}{PARDISO\+\_\+\+SOLVE}}~( 33)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a957f01863e27ffc6b77030e4abdc344b}{PARDISO\+\_\+\+FORWARD}}~(331)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a3e0442a61aa565d77578d1c6fb65bf28}{PARDISO\+\_\+\+BACKWARD}}~(333)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a053fad41faee203a85f92433b25ec076}{PARDISO\+\_\+\+FREE}}~( -\/1)
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_ad6063d3913159b01182152185b3bdc1e}{SYMBOLIC}}~3
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a8f4c765598cb3e3f3ec4f5067dc23bd3}{PIVOTING}}~2
+\item 
+\#define \mbox{\hyperlink{abip__pardiso_8h_a9cf92699ad42fd752eefb601412f6de2}{FACTORIZE}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{abip__pardiso_8h_a7bed2d2298b65b4a3fa90a65b0939ee9}{pardisoinit}} (void $\ast$, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$)
+\item 
+void \mbox{\hyperlink{abip__pardiso_8h_acec5e6fac4e7d13cde319b80999854d1}{pardiso}} (void $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, double $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$, double $\ast$, double $\ast$, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{abip__pardiso_8h_acb79006208bb6fe65286d87d3fcdf790}{pardiso\+Factorize}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em factorize matrix by pardiso \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{abip__pardiso_8h_ab384654c9cbe7d2a58b7b82869f81415}{pardiso\+Free}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em Free the internal structure of pardiso. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{abip__pardiso_8h_a9cedb6b9358888fa07ea0ea920e6bb38}{pardiso\+Solve}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}})
+\begin{DoxyCompactList}\small\item\em Solve the linear system S $\ast$ X = B using Pardiso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{abip__pardiso_8h_a9cf92699ad42fd752eefb601412f6de2}\label{abip__pardiso_8h_a9cf92699ad42fd752eefb601412f6de2}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!FACTORIZE@{FACTORIZE}}
+\index{FACTORIZE@{FACTORIZE}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{FACTORIZE}{FACTORIZE}}
+{\footnotesize\ttfamily \#define FACTORIZE~0}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00030}{30}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a3e0442a61aa565d77578d1c6fb65bf28}\label{abip__pardiso_8h_a3e0442a61aa565d77578d1c6fb65bf28}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_BACKWARD@{PARDISO\_BACKWARD}}
+\index{PARDISO\_BACKWARD@{PARDISO\_BACKWARD}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_BACKWARD}{PARDISO\_BACKWARD}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+BACKWARD~(333)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00016}{16}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_ab235ccd19803462f51a0011c8a53794f}\label{abip__pardiso_8h_ab235ccd19803462f51a0011c8a53794f}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_FAC@{PARDISO\_FAC}}
+\index{PARDISO\_FAC@{PARDISO\_FAC}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_FAC}{PARDISO\_FAC}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+FAC~( 22)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00012}{12}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a957f01863e27ffc6b77030e4abdc344b}\label{abip__pardiso_8h_a957f01863e27ffc6b77030e4abdc344b}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_FORWARD@{PARDISO\_FORWARD}}
+\index{PARDISO\_FORWARD@{PARDISO\_FORWARD}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_FORWARD}{PARDISO\_FORWARD}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+FORWARD~(331)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00015}{15}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a053fad41faee203a85f92433b25ec076}\label{abip__pardiso_8h_a053fad41faee203a85f92433b25ec076}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_FREE@{PARDISO\_FREE}}
+\index{PARDISO\_FREE@{PARDISO\_FREE}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_FREE}{PARDISO\_FREE}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+FREE~( -\/1)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00017}{17}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a27a0664d63e573557fbb08a7c2deba9e}\label{abip__pardiso_8h_a27a0664d63e573557fbb08a7c2deba9e}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_OK@{PARDISO\_OK}}
+\index{PARDISO\_OK@{PARDISO\_OK}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_OK}{PARDISO\_OK}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+OK~(  0)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00009}{9}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_afd90df78609882f9ee85ab44ab09ce91}\label{abip__pardiso_8h_afd90df78609882f9ee85ab44ab09ce91}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_SOLVE@{PARDISO\_SOLVE}}
+\index{PARDISO\_SOLVE@{PARDISO\_SOLVE}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_SOLVE}{PARDISO\_SOLVE}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+SOLVE~( 33)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00014}{14}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_aa49ee2738b572fb5837bfcb0af1bb273}\label{abip__pardiso_8h_aa49ee2738b572fb5837bfcb0af1bb273}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_SYM@{PARDISO\_SYM}}
+\index{PARDISO\_SYM@{PARDISO\_SYM}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_SYM}{PARDISO\_SYM}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+SYM~( 11)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00011}{11}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_aa3ce1a1103ece568c6dd03c9bb199bd5}\label{abip__pardiso_8h_aa3ce1a1103ece568c6dd03c9bb199bd5}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISO\_SYM\_FAC@{PARDISO\_SYM\_FAC}}
+\index{PARDISO\_SYM\_FAC@{PARDISO\_SYM\_FAC}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISO\_SYM\_FAC}{PARDISO\_SYM\_FAC}}
+{\footnotesize\ttfamily \#define PARDISO\+\_\+\+SYM\+\_\+\+FAC~( 12)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00013}{13}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_ace2297c33894c3d75a2c077871d6908a}\label{abip__pardiso_8h_ace2297c33894c3d75a2c077871d6908a}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PARDISOINDEX@{PARDISOINDEX}}
+\index{PARDISOINDEX@{PARDISOINDEX}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PARDISOINDEX}{PARDISOINDEX}}
+{\footnotesize\ttfamily \#define PARDISOINDEX~( 64)}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00010}{10}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a8f4c765598cb3e3f3ec4f5067dc23bd3}\label{abip__pardiso_8h_a8f4c765598cb3e3f3ec4f5067dc23bd3}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!PIVOTING@{PIVOTING}}
+\index{PIVOTING@{PIVOTING}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{PIVOTING}{PIVOTING}}
+{\footnotesize\ttfamily \#define PIVOTING~2}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00029}{29}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_ad6063d3913159b01182152185b3bdc1e}\label{abip__pardiso_8h_ad6063d3913159b01182152185b3bdc1e}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!SYMBOLIC@{SYMBOLIC}}
+\index{SYMBOLIC@{SYMBOLIC}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{SYMBOLIC}{SYMBOLIC}}
+{\footnotesize\ttfamily \#define SYMBOLIC~3}
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8h_source_l00028}{28}} of file \mbox{\hyperlink{abip__pardiso_8h_source}{abip\+\_\+pardiso.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{abip__pardiso_8h_acec5e6fac4e7d13cde319b80999854d1}\label{abip__pardiso_8h_acec5e6fac4e7d13cde319b80999854d1}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!pardiso@{pardiso}}
+\index{pardiso@{pardiso}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{pardiso()}{pardiso()}}
+{\footnotesize\ttfamily void pardiso (\begin{DoxyParamCaption}\item[{void $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{double $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{double $\ast$}]{,  }\item[{double $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{abip__pardiso_8h_acb79006208bb6fe65286d87d3fcdf790}\label{abip__pardiso_8h_acb79006208bb6fe65286d87d3fcdf790}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!pardisoFactorize@{pardisoFactorize}}
+\index{pardisoFactorize@{pardisoFactorize}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{pardisoFactorize()}{pardisoFactorize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} pardiso\+Factorize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+factorize matrix by pardiso 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00023}{23}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_ab384654c9cbe7d2a58b7b82869f81415}\label{abip__pardiso_8h_ab384654c9cbe7d2a58b7b82869f81415}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!pardisoFree@{pardisoFree}}
+\index{pardisoFree@{pardisoFree}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{pardisoFree()}{pardisoFree()}}
+{\footnotesize\ttfamily void pardiso\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+Free the internal structure of pardiso. 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00051}{51}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+
+\mbox{\Hypertarget{abip__pardiso_8h_a7bed2d2298b65b4a3fa90a65b0939ee9}\label{abip__pardiso_8h_a7bed2d2298b65b4a3fa90a65b0939ee9}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!pardisoinit@{pardisoinit}}
+\index{pardisoinit@{pardisoinit}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{pardisoinit()}{pardisoinit()}}
+{\footnotesize\ttfamily void pardisoinit (\begin{DoxyParamCaption}\item[{void $\ast$}]{,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{abip__pardiso_8h_a9cedb6b9358888fa07ea0ea920e6bb38}\label{abip__pardiso_8h_a9cedb6b9358888fa07ea0ea920e6bb38}} 
+\index{abip\_pardiso.h@{abip\_pardiso.h}!pardisoSolve@{pardisoSolve}}
+\index{pardisoSolve@{pardisoSolve}!abip\_pardiso.h@{abip\_pardiso.h}}
+\doxysubsubsection{\texorpdfstring{pardisoSolve()}{pardisoSolve()}}
+{\footnotesize\ttfamily void pardiso\+Solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Solve the linear system S $\ast$ X = B using Pardiso. 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00066}{66}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+

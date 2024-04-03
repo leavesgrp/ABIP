@@ -1,0 +1,116 @@
+\hypertarget{amd__info_8c_source}{}\doxysection{amd\+\_\+info.\+c}
+\label{amd__info_8c_source}\index{amd/amd\_info.c@{amd/amd\_info.c}}
+\mbox{\hyperlink{amd__info_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_info ============================================================ */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00011}00011 \textcolor{comment}{/* User-\/callable.  Prints the output statistics for AMD.  See amd.h}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00012}00012 \textcolor{comment}{ * for details.  If the ABIPInfo array is not present, nothing is printed.}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00013}00013 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00017}\mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{00017}} \textcolor{preprocessor}{\#define PRI(format,x) \{ if (x >= 0) \{ PRINTF ((format, x)) ; \}\}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00019}\mbox{\hyperlink{amd__info_8c_ad42b93d67bb3980352c9bc826f9f2721}{00019}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_a9f5748f9d35403b59f66710ee1212a82}{AMD\_info}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00020}00020 (}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00021}00021             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00022}00022 )}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00023}00023 \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00024}00024             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} n; }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00025}00025             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ndiv; }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00026}00026             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} nmultsubs\_ldl; }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00027}00027             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} nmultsubs\_lu;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00028}00028             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lnz;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00029}00029             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} lnzd;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00031}00031             \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}\(\backslash\)nAMD version \%d.\%d.\%d, \%s, results:\(\backslash\)n"{}}, \mbox{\hyperlink{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}{AMD\_MAIN\_VERSION}}, \mbox{\hyperlink{amd_8h_aa055fcdf57343e1744fb114add9d0086}{AMD\_SUB\_VERSION}}, \mbox{\hyperlink{amd_8h_ab2cabd46ed253019dee4cfa046e08dad}{AMD\_SUBSUB\_VERSION}}, \mbox{\hyperlink{amd_8h_a3cc33507c4130196ea26e685d9fd634d}{AMD\_DATE}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00033}00033             \textcolor{keywordflow}{if} (!\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}})}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00034}00034             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00035}00035                return ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00036}00036             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00038}00038             n = \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_ad593079a13107070ba76e539b3b1c19a}{AMD\_N}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00039}00039             ndiv = \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a35be9f9c7b66f2a449dbadd022ebb4df}{AMD\_NDIV}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00040}00040             nmultsubs\_ldl = \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_aa45c6a9529df13508f551cd9d366fe22}{AMD\_NMULTSUBS\_LDL}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00041}00041             nmultsubs\_lu = \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a6608c6d00d7e671f92baa675990619a5}{AMD\_NMULTSUBS\_LU}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00042}00042             lnz = \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a0bb2d3b5a2436760e9ea6cefdfcd90af}{AMD\_LNZ}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00043}00043             lnzd = (n >= 0 \&\& lnz >= 0) ? (n + lnz) : (-\/1) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00045}00045             \textcolor{comment}{/* AMD return status */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00046}00046             \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}    status: "{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00047}00047             \textcolor{keywordflow}{if} (\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{AMD\_STATUS}}] == \mbox{\hyperlink{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}{AMD\_OK}})}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00048}00048             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00049}00049                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}OK\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00050}00050             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00051}00051             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{AMD\_STATUS}}] == \mbox{\hyperlink{amd_8h_a3a1e5404ad34ec4faf624d2416410103}{AMD\_OUT\_OF\_MEMORY}})}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00052}00052             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00053}00053                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}out of memory\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00054}00054             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00055}00055             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{AMD\_STATUS}}] == \mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}})}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00056}00056             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00057}00057                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}invalid matrix\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00058}00058             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00059}00059             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{AMD\_STATUS}}] == \mbox{\hyperlink{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}{AMD\_OK\_BUT\_JUMBLED}})}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00060}00060             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00061}00061                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}OK, but jumbled\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00062}00062             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00063}00063             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00064}00064             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00065}00065                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}unknown\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00066}00066             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00068}00068             \textcolor{comment}{/* statistics about the input matrix */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00069}00069             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    n, dimension of A:                                  \%.20g\(\backslash\)n"{}}, n);}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00070}00070             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    nz, number of nonzeros in A:                        \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a4f88b4f4705995693bc017d717dad36e}{AMD\_NZ}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00071}00071             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    symmetry of A:                                      \%.4f\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_ae8211d71b1b50b77c06984a07275edd1}{AMD\_SYMMETRY}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00072}00072             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    number of nonzeros on diagonal:                     \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a835a095afffcd03e5ed5c2632c2dc1d9}{AMD\_NZDIAG}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00073}00073             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    nonzeros in pattern of A+A' (excl. diagonal):       \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a2f9a02baa3b1a848dce862fbea0f2e64}{AMD\_NZ\_A\_PLUS\_AT}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00074}00074             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    \# dense rows/columns of A+A':                       \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a17c486f4577c5914e975e270ea7c8b76}{AMD\_NDENSE}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00076}00076             \textcolor{comment}{/* statistics about AMD's behavior  */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00077}00077             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    memory used, in bytes:                              \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a947c29267a22a2c462c55e8912ba2432}{AMD\_MEMORY}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00078}00078             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    \# of memory compactions:                            \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_ae7b45589f33fbdad203bf330abb423e3}{AMD\_NCMPA}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00080}00080             \textcolor{comment}{/* statistics about the ordering quality */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00081}00081             \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00082}00082            \textcolor{stringliteral}{"{}    The following approximate statistics are for a subsequent\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00083}00083            \textcolor{stringliteral}{"{}    factorization of A(P,P) + A(P,P)'.  They are slight upper\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00084}00084            \textcolor{stringliteral}{"{}    bounds if there are no dense rows/columns in A+A', and become\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00085}00085            \textcolor{stringliteral}{"{}    looser if dense rows/columns exist.\(\backslash\)n\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00087}00087             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    nonzeros in L (excluding diagonal):                 \%.20g\(\backslash\)n"{}}, lnz) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00088}00088             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    nonzeros in L (including diagonal):                 \%.20g\(\backslash\)n"{}}, lnzd) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00089}00089             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    \# divide operations for LDL' or LU:                 \%.20g\(\backslash\)n"{}}, ndiv) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00090}00090             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    \# multiply-\/subtract operations for LDL':            \%.20g\(\backslash\)n"{}}, nmultsubs\_ldl) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00091}00091             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    \# multiply-\/subtract operations for LU:              \%.20g\(\backslash\)n"{}}, nmultsubs\_lu) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00092}00092             \mbox{\hyperlink{amd__info_8c_af42ac74333112ba9640a191bea4230c0}{PRI}} (\textcolor{stringliteral}{"{}    max nz. in any column of L (incl. diagonal):        \%.20g\(\backslash\)n"{}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [\mbox{\hyperlink{amd_8h_a7fa264773307cae6f5c829f29e2e8efa}{AMD\_DMAX}}]) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00094}00094             \textcolor{comment}{/* total flop counts for various factorizations */}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00096}00096             \textcolor{keywordflow}{if} (n >= 0 \&\& ndiv >= 0 \&\& nmultsubs\_ldl >= 0 \&\& nmultsubs\_lu >= 0)}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00097}00097             \{}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00098}00098                \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}} ((\textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00099}00099                            \textcolor{stringliteral}{"{}    chol flop count for real A, sqrt counted as 1 flop: \%.20g\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00100}00100                            \textcolor{stringliteral}{"{}    LDL' flop count for real A:                         \%.20g\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00101}00101                            \textcolor{stringliteral}{"{}    LDL' flop count for complex A:                      \%.20g\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00102}00102                            \textcolor{stringliteral}{"{}    LU flop count for real A (with no pivoting):        \%.20g\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00103}00103                            \textcolor{stringliteral}{"{}    LU flop count for complex A (with no pivoting):     \%.20g\(\backslash\)n\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00104}00104                            n + ndiv + 2*nmultsubs\_ldl,}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00105}00105                            ndiv + 2*nmultsubs\_ldl,}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00106}00106                            9*ndiv + 8*nmultsubs\_ldl,}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00107}00107                            ndiv + 2*nmultsubs\_lu,}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00108}00108                            9*ndiv + 8*nmultsubs\_lu)) ;}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00109}00109             \}}
+\DoxyCodeLine{\Hypertarget{amd__info_8c_source_l00110}00110 \}}
+
+\end{DoxyCode}

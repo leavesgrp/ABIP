@@ -1,0 +1,131 @@
+\hypertarget{amd__preprocess_8c_source}{}\doxysection{amd\+\_\+preprocess.\+c}
+\label{amd__preprocess_8c_source}\index{amd/amd\_preprocess.c@{amd/amd\_preprocess.c}}
+\mbox{\hyperlink{amd__preprocess_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_preprocess ====================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00011}00011 \textcolor{comment}{/* Sorts, removes duplicate entries, and transposes from the nonzero pattern of}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00012}00012 \textcolor{comment}{ * a column-\/form matrix A, to obtain the matrix R.  The input matrix can have}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00013}00013 \textcolor{comment}{ * duplicate entries and/or unsorted columns (AMD\_valid (n,Ap,Ai) must not be}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00014}00014 \textcolor{comment}{ * AMD\_INVALID).}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00015}00015 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00016}00016 \textcolor{comment}{ * This input condition is NOT checked.  This routine is not user-\/callable.}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00017}00017 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00019}00019 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00021}00021 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00022}00022 \textcolor{comment}{/* === AMD\_preprocess ====================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00023}00023 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00025}00025 \textcolor{comment}{/* AMD\_preprocess does not check its input for errors or allocate workspace.}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00026}00026 \textcolor{comment}{ * On input, the condition (AMD\_valid (n,n,Ap,Ai) != AMD\_INVALID) must hold.}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00027}00027 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00029}\mbox{\hyperlink{amd__internal_8h_abe9911e9d13c483af0160977d0894adf}{00029}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}{AMD\_preprocess}}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00030}00030 (}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00031}00031             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n,       \textcolor{comment}{/* input matrix: A is n-\/by-\/n */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00032}00032             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap [ ],    \textcolor{comment}{/* size n+1 */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00033}00033             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai [ ],    \textcolor{comment}{/* size nz = Ap [n] */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00035}00035             \textcolor{comment}{/* output matrix R: */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00036}00036             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Rp [ ],      \textcolor{comment}{/* size n+1 */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00037}00037             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ri [ ],      \textcolor{comment}{/* size nz (or less, if duplicates present) */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00039}00039             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} W [ ],       \textcolor{comment}{/* workspace of size n */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00040}00040             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Flag [ ] \textcolor{comment}{/* workspace of size n */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00041}00041 )}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00042}00042 \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00044}00044             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00045}00045             \textcolor{comment}{/* local variables */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00046}00046             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00048}00048             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}; }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00049}00049             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} j; }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00050}00050             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} p; }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00051}00051             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} p2;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00053}00053             \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (\mbox{\hyperlink{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}{AMD\_valid}} (n, n, Ap, Ai) != \mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\_INVALID}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00055}00055             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00056}00056             \textcolor{comment}{/* count the entries in each row of A (excluding duplicates) */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00057}00057             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00059}00059             \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00060}00060             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00061}00061                W [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;     \textcolor{comment}{/* \# of nonzeros in row i (excl duplicates) */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00062}00062                Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; \textcolor{comment}{/* Flag [i] = j if i appears in column j */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00063}00063             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00064}00064             }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00065}00065             \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00066}00066             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00067}00067                p2 = Ap [j+1] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00068}00068                \textcolor{keywordflow}{for} (p = Ap [j] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00069}00069                \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00070}00070                            \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ai [p] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00071}00071                            \textcolor{keywordflow}{if} (Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != j)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00072}00072                            \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00073}00073                                   \textcolor{comment}{/* row index i has not yet appeared in column j */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00074}00074                                   W [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]++ ;        \textcolor{comment}{/* one more entry in row i */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00075}00075                                   Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = j ;       \textcolor{comment}{/* flag row index i as appearing in col j*/}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00076}00076                            \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00077}00077                \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00078}00078             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00080}00080             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00081}00081             \textcolor{comment}{/* compute the row pointers for R */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00082}00082             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00084}00084             Rp [0] = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00085}00085             \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00086}00086             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00087}00087                Rp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}+1] = Rp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] + W [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00088}00088             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00089}00089             }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00090}00090             \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00091}00091             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00092}00092                W [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = Rp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00093}00093                Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00094}00094             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00096}00096             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00097}00097             \textcolor{comment}{/* construct the row form matrix R */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00098}00098             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00100}00100             \textcolor{comment}{/* R = row form of pattern of A */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00101}00101             \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00102}00102             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00103}00103                p2 = Ap [j+1] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00104}00104                \textcolor{keywordflow}{for} (p = Ap [j] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00105}00105                \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00106}00106                            \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ai [p] ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00107}00107                            \textcolor{keywordflow}{if} (Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != j)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00108}00108                            \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00109}00109                                   \textcolor{comment}{/* row index i has not yet appeared in column j */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00110}00110                                   Ri [W [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]++] = j ;  \textcolor{comment}{/* put col j in row i */}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00111}00111                                   Flag [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = j ;       \textcolor{comment}{/* flag row index i as appearing in col j*/}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00112}00112                            \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00113}00113                \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00114}00114             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00116}00116 \textcolor{preprocessor}{            \#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00117}00117             \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (\mbox{\hyperlink{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}{AMD\_valid}} (n, n, Rp, Ri) == \mbox{\hyperlink{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}{AMD\_OK}}) ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00118}00118             }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00119}00119             \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00120}00120             \{}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00121}00121                \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (W [j] == Rp [j+1]) ;}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00122}00122             \}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00123}00123             }
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00124}00124 \textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__preprocess_8c_source_l00125}00125 \}}
+
+\end{DoxyCode}

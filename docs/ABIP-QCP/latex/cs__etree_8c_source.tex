@@ -1,0 +1,36 @@
+\hypertarget{cs__etree_8c_source}{}\doxysection{cs\+\_\+etree.\+c}
+\label{cs__etree_8c_source}\index{csparse/Source/cs\_etree.c@{csparse/Source/cs\_etree.c}}
+\mbox{\hyperlink{cs__etree_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00002}00002 \textcolor{comment}{/* compute the etree of A (using triu(A), or A'A without forming A'A */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00003}\mbox{\hyperlink{cs_8h_a86d7b84d5a4cdf928556bcd30a413a84}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *\mbox{\hyperlink{cs__etree_8c_a86d7b84d5a4cdf928556bcd30a413a84}{cs\_etree}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ata)}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, k, p, m, n, inext, *Ap, *Ai, *w, *parent, *ancestor, *prev ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00006}00006     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (NULL) ;        \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00007}00007     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00008}00008     parent = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;              \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00009}00009     w = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n + (ata ? m : 0), \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;   \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!w || !parent) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a5f172de9436558173ef0b873d9e1a5db}{cs\_idone}} (parent, NULL, w, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00011}00011     ancestor = w ; prev = w + n ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00012}00012     \textcolor{keywordflow}{if} (ata) \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) prev [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00013}00013     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00014}00014     \{}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00015}00015         parent [k] = -\/1 ;                   \textcolor{comment}{/* node k has no parent yet */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00016}00016         ancestor [k] = -\/1 ;                 \textcolor{comment}{/* nor does k have an ancestor */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00017}00017         \textcolor{keywordflow}{for} (p = Ap [k] ; p < Ap [k+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00018}00018         \{}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00019}00019             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = ata ? (prev [Ai [p]]) : (Ai [p]) ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00020}00020             \textcolor{keywordflow}{for} ( ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} != -\/1 \&\& \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < k ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = inext)   \textcolor{comment}{/* traverse from i to k */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00021}00021             \{}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00022}00022                 inext = ancestor [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;              \textcolor{comment}{/* inext = ancestor of i */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00023}00023                 ancestor [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k ;                  \textcolor{comment}{/* path compression */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00024}00024                 \textcolor{keywordflow}{if} (inext == -\/1) parent [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k ;   \textcolor{comment}{/* no anc., parent is k */}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00025}00025             \}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00026}00026             \textcolor{keywordflow}{if} (ata) prev [Ai [p]] = k ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00027}00027         \}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00029}00029     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a5f172de9436558173ef0b873d9e1a5db}{cs\_idone}} (parent, NULL, w, 1)) ;}
+\DoxyCodeLine{\Hypertarget{cs__etree_8c_source_l00030}00030 \}}
+
+\end{DoxyCode}

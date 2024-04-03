@@ -1,0 +1,24 @@
+\hypertarget{compile__indirect_8m_source}{}\doxysection{compile\+\_\+indirect.\+m}
+\mbox{\hyperlink{compile__indirect_8m}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00001}\mbox{\hyperlink{compile__indirect_8m_a384e8c41b6b559353b6571806b8f8c65}{00001}} \textcolor{keyword}{function} \mbox{\hyperlink{compile__indirect_8m_a384e8c41b6b559353b6571806b8f8c65}{compile\_indirect}}(flags, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}})}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00003}00003 abip\_include = strjoin(\textcolor{stringliteral}{"{}-\/I"{}} + [fullfile(\textcolor{stringliteral}{"{}include"{}});}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00004}00004     fullfile(\textcolor{stringliteral}{"{}linsys"{}})]);}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00006}00006 \% compile indirect}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00007}\mbox{\hyperlink{compile__indirect_8m_af4c8e097a97b3fb80e7b49cffb28a523}{00007}} \textcolor{keywordflow}{if} (flags.COMPILE\_WITH\_OPENMP)}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00008}00008     \mbox{\hyperlink{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}{cmd}} = sprintf(\textcolor{stringliteral}{'mex -\/O \%s \%s \%s \%s COMPFLAGS="{}/openmp \(\backslash\)\(\backslash\)\$COMPFLAGS"{} CFLAGS="{}\(\backslash\)\(\backslash\)\$CFLAGS -\/fopenmp"{} \%s \%s \%s \%s \%s \%s -\/output abip\_indirect'},...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00009}00009         flags.arr, flags.LCFLAG, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}}, flags.INCS,...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00010}00010         fullfile(\textcolor{stringliteral}{"{}linsys"{}}, \textcolor{stringliteral}{"{}direct"{}}, \textcolor{stringliteral}{"{}private.c"{}}),...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00011}00011         flags.link, abip\_include, flags.LOCS, flags.BLASLIB, flags.INT);}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00012}00012 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00013}\mbox{\hyperlink{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}{00013}}     \mbox{\hyperlink{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}{cmd}} = sprintf(\textcolor{stringliteral}{'mex -\/O \%s \%s \%s \%s \%s \%s \%s \%s \%s \%s -\/output abip\_indirect'},...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00014}00014         flags.arr, flags.LCFLAG, \mbox{\hyperlink{make__abip_8m_a5b62d4672c9993a1842b0f8c538a27a3}{common\_abip}}, flags.INCS,...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00015}00015         fullfile(\textcolor{stringliteral}{"{}linsys"{}}, \textcolor{stringliteral}{"{}indirect.c"{}}),...}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00016}00016         flags.link, abip\_include, flags.LOCS, flags.BLASLIB, flags.INT);}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00017}00017 end}
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{compile__indirect_8m_source_l00019}\mbox{\hyperlink{compile__indirect_8m_a7a1782653b9210ddcbe070bff90935af}{00019}} \mbox{\hyperlink{compile__indirect_8m_a7a1782653b9210ddcbe070bff90935af}{eval}}(\mbox{\hyperlink{compile__indirect_8m_aa00df4d08137de2fcd402f253b876fbf}{cmd}});}
+
+\end{DoxyCode}

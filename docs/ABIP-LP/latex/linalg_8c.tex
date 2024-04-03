@@ -1,0 +1,266 @@
+\hypertarget{linalg_8c}{}\doxysection{src/linalg.c File Reference}
+\label{linalg_8c}\index{src/linalg.c@{src/linalg.c}}
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}{set\+\_\+as\+\_\+scaled\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute x = b$\ast$a \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ab045d903054511819fb79be60350cdae}{set\+\_\+as\+\_\+sqrt}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute x = sqrt(v) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}{set\+\_\+as\+\_\+sq}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute x = v.$^\wedge$2 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}{scale\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute a $\ast$= b \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}{dot}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute x\textquotesingle{}$\ast$y \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}{norm\+\_\+sq}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute$\vert$$\vert$v$\vert$$\vert$\+\_\+2$^\wedge$2 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute $\vert$$\vert$v$\vert$$\vert$\+\_\+2 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a3179474f70b3753e2e8c5b3b34e9d6ff}{min\+\_\+abs\+\_\+sqrt}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} ref)
+\begin{DoxyCompactList}\small\item\em compute square root of the minimal absolute value \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a05c9bb7356acc020dfda252525774262}{norm\+\_\+one}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute L1 norm \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_afd08fee50a30f3c56760d7e0ffd8a64f}{norm\+\_\+one\+\_\+sqrt}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute square root L1 norm \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}{norm\+\_\+inf}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute the infinity norm \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a409bef9ba0e61b9e8056a98a8a1b4339}{norm\+\_\+inf\+\_\+sqrt}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute square root infinity norm \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}{add\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute a .+= b \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a5c0e15e145cedea392a485ee079f036d}{add\+\_\+scaled\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} sc)
+\begin{DoxyCompactList}\small\item\em compute a += sc$\ast$b \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}{norm\+\_\+diff}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute $\vert$$\vert$a-\/b$\vert$$\vert$\+\_\+2$^\wedge$2 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a8fff53801fc643376bbc155489802a79}{norm\+\_\+inf\+\_\+diff}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em compute max($\vert$a-\/b$\vert$) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}\label{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}} 
+\index{linalg.c@{linalg.c}!add\_array@{add\_array}}
+\index{add\_array@{add\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{add\_array()}{add\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() add\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute a .+= b 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00218}{218}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a5c0e15e145cedea392a485ee079f036d}\label{linalg_8c_a5c0e15e145cedea392a485ee079f036d}} 
+\index{linalg.c@{linalg.c}!add\_scaled\_array@{add\_scaled\_array}}
+\index{add\_scaled\_array@{add\_scaled\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{add\_scaled\_array()}{add\_scaled\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() add\+\_\+scaled\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{sc }\end{DoxyParamCaption})}
+
+
+
+compute a += sc$\ast$b 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00235}{235}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}\label{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}} 
+\index{linalg.c@{linalg.c}!dot@{dot}}
+\index{dot@{dot}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute x\textquotesingle{}$\ast$y 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00078}{78}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a3179474f70b3753e2e8c5b3b34e9d6ff}\label{linalg_8c_a3179474f70b3753e2e8c5b3b34e9d6ff}} 
+\index{linalg.c@{linalg.c}!min\_abs\_sqrt@{min\_abs\_sqrt}}
+\index{min\_abs\_sqrt@{min\_abs\_sqrt}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{min\_abs\_sqrt()}{min\_abs\_sqrt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() min\+\_\+abs\+\_\+sqrt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ref }\end{DoxyParamCaption})}
+
+
+
+compute square root of the minimal absolute value 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00126}{126}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}\label{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}} 
+\index{linalg.c@{linalg.c}!norm@{norm}}
+\index{norm@{norm}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute $\vert$$\vert$v$\vert$$\vert$\+\_\+2 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00115}{115}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}\label{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}} 
+\index{linalg.c@{linalg.c}!norm\_diff@{norm\_diff}}
+\index{norm\_diff@{norm\_diff}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_diff()}{norm\_diff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute $\vert$$\vert$a-\/b$\vert$$\vert$\+\_\+2$^\wedge$2 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00253}{253}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}\label{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}} 
+\index{linalg.c@{linalg.c}!norm\_inf@{norm\_inf}}
+\index{norm\_inf@{norm\_inf}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_inf()}{norm\_inf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+inf (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute the infinity norm 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00182}{182}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a8fff53801fc643376bbc155489802a79}\label{linalg_8c_a8fff53801fc643376bbc155489802a79}} 
+\index{linalg.c@{linalg.c}!norm\_inf\_diff@{norm\_inf\_diff}}
+\index{norm\_inf\_diff@{norm\_inf\_diff}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_inf\_diff()}{norm\_inf\_diff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+inf\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute max($\vert$a-\/b$\vert$) 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00274}{274}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a409bef9ba0e61b9e8056a98a8a1b4339}\label{linalg_8c_a409bef9ba0e61b9e8056a98a8a1b4339}} 
+\index{linalg.c@{linalg.c}!norm\_inf\_sqrt@{norm\_inf\_sqrt}}
+\index{norm\_inf\_sqrt@{norm\_inf\_sqrt}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_inf\_sqrt()}{norm\_inf\_sqrt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+inf\+\_\+sqrt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute square root infinity norm 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00205}{205}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a05c9bb7356acc020dfda252525774262}\label{linalg_8c_a05c9bb7356acc020dfda252525774262}} 
+\index{linalg.c@{linalg.c}!norm\_one@{norm\_one}}
+\index{norm\_one@{norm\_one}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_one()}{norm\_one()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+one (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute L1 norm 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00149}{149}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_afd08fee50a30f3c56760d7e0ffd8a64f}\label{linalg_8c_afd08fee50a30f3c56760d7e0ffd8a64f}} 
+\index{linalg.c@{linalg.c}!norm\_one\_sqrt@{norm\_one\_sqrt}}
+\index{norm\_one\_sqrt@{norm\_one\_sqrt}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_one\_sqrt()}{norm\_one\_sqrt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+one\+\_\+sqrt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute square root L1 norm 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00167}{167}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}\label{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}} 
+\index{linalg.c@{linalg.c}!norm\_sq@{norm\_sq}}
+\index{norm\_sq@{norm\_sq}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_sq()}{norm\_sq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+sq (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute$\vert$$\vert$v$\vert$$\vert$\+\_\+2$^\wedge$2 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00097}{97}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}\label{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}} 
+\index{linalg.c@{linalg.c}!scale\_array@{scale\_array}}
+\index{scale\_array@{scale\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{scale\_array()}{scale\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() scale\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute a $\ast$= b 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00061}{61}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}\label{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}} 
+\index{linalg.c@{linalg.c}!set\_as\_scaled\_array@{set\_as\_scaled\_array}}
+\index{set\_as\_scaled\_array@{set\_as\_scaled\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_scaled\_array()}{set\_as\_scaled\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+scaled\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute x = b$\ast$a 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00009}{9}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}\label{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}} 
+\index{linalg.c@{linalg.c}!set\_as\_sq@{set\_as\_sq}}
+\index{set\_as\_sq@{set\_as\_sq}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_sq()}{set\_as\_sq()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+sq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute x = v.$^\wedge$2 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00044}{44}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ab045d903054511819fb79be60350cdae}\label{linalg_8c_ab045d903054511819fb79be60350cdae}} 
+\index{linalg.c@{linalg.c}!set\_as\_sqrt@{set\_as\_sqrt}}
+\index{set\_as\_sqrt@{set\_as\_sqrt}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_sqrt()}{set\_as\_sqrt()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+compute x = sqrt(v) 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00027}{27}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+

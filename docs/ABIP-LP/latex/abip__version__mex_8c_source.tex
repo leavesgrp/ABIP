@@ -1,0 +1,20 @@
+\hypertarget{abip__version__mex_8c_source}{}\doxysection{abip\+\_\+version\+\_\+mex.\+c}
+\label{abip__version__mex_8c_source}\index{mexfile/abip\_version\_mex.c@{mexfile/abip\_version\_mex.c}}
+\mbox{\hyperlink{abip__version__mex_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}mex.h"{}}}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00002}00002 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00004}\mbox{\hyperlink{abip__version__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{00004}} \textcolor{keywordtype}{void} \mbox{\hyperlink{abip__version__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{mexFunction}}(\textcolor{keywordtype}{int} nlhs, mxArray *plhs[], \textcolor{keywordtype}{int} nrhs, \textcolor{keyword}{const} mxArray *prhs[]) }
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00006}00006     \textcolor{keywordflow}{if} (nrhs != 0) \{}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00007}00007         mexErrMsgTxt(\textcolor{stringliteral}{"{}Too many input arguments."{}});}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00008}00008     \}}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00009}00009     \textcolor{keywordflow}{if} (nlhs > 1) \{}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00010}00010         mexErrMsgTxt(\textcolor{stringliteral}{"{}Too many output arguments."{}});}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00011}00011     \}}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00012}00012     plhs[0] = mxCreateString(abip\_version());}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00013}00013     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{abip__version__mex_8c_source_l00014}00014 \}}
+
+\end{DoxyCode}

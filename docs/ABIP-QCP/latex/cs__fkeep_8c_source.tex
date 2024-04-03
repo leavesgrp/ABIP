@@ -1,0 +1,31 @@
+\hypertarget{cs__fkeep_8c_source}{}\doxysection{cs\+\_\+fkeep.\+c}
+\label{cs__fkeep_8c_source}\index{csparse/Source/cs\_fkeep.c@{csparse/Source/cs\_fkeep.c}}
+\mbox{\hyperlink{cs__fkeep_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00002}00002 \textcolor{comment}{/* drop entries for which fkeep(A(i,j)) is false; return nz if OK, else -\/1 */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00003}\mbox{\hyperlink{cs_8h_a0467456f70ba2840b1876b42ae1f990b}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__fkeep_8c_a0467456f70ba2840b1876b42ae1f990b}{cs\_fkeep}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} (*fkeep) (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}, \textcolor{keywordtype}{double}, \textcolor{keywordtype}{void} *), \textcolor{keywordtype}{void} *other)}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} j, p, nz = 0, n, *Ap, *Ai ;}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00006}00006     \textcolor{keywordtype}{double} *Ax ;}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !fkeep) \textcolor{keywordflow}{return} (-\/1) ;    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00008}00008     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Ax = A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00009}00009     \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00011}00011         p = Ap [j] ;                        \textcolor{comment}{/* get current location of col j */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00012}00012         Ap [j] = nz ;                       \textcolor{comment}{/* record new location of col j */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00013}00013         \textcolor{keywordflow}{for} ( ; p < Ap [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00014}00014         \{}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00015}00015             \textcolor{keywordflow}{if} (fkeep (Ai [p], j, Ax ? Ax [p] : 1, other))}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00016}00016             \{}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00017}00017                 \textcolor{keywordflow}{if} (Ax) Ax [nz] = Ax [p] ;  \textcolor{comment}{/* keep A(i,j) */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00018}00018                 Ai [nz++] = Ai [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00019}00019             \}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00020}00020         \}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00021}00021     \}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00022}00022     Ap [n] = nz ;                           \textcolor{comment}{/* finalize A */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00023}00023     \mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (A, 0) ;                   \textcolor{comment}{/* remove extra space from A */}}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00024}00024     \textcolor{keywordflow}{return} (nz) ;}
+\DoxyCodeLine{\Hypertarget{cs__fkeep_8c_source_l00025}00025 \}}
+
+\end{DoxyCode}

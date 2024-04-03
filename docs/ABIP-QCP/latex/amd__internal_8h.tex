@@ -1,0 +1,519 @@
+\hypertarget{amd__internal_8h}{}\doxysection{amd/amd\+\_\+internal.h File Reference}
+\label{amd__internal_8h}\index{amd/amd\_internal.h@{amd/amd\_internal.h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}amd.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}~(-\/1)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}{FLIP}}(\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})~(-\/(\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})-\/2)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a58d80900906670c5df232e3c288dbec9}{UNFLIP}}(\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})~((\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} $<$ \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}) ? \mbox{\hyperlink{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}{FLIP}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \+: (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}))
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(a,  b)~(((a) $>$ (b)) ? (a) \+: (b))
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{MIN}}(a,  b)~(((a) $<$ (b)) ? (a) \+: (b))
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aa2faa268dbd9c43a8e7aac92bd70114f}{IMPLIES}}(p,  q)~(!(p) $\vert$$\vert$ (q))
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}}~(1)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}~(0)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a5e151c615eda34903514212f05a5ccf8}{PRIVATE}}~static
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}~(-\/1)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\+\_\+\+NULL}}~0
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_acfa3af56d5e0045c1d7a5682fd1d2853}{SIZE\+\_\+\+T\+\_\+\+MAX}}~((size\+\_\+t) (-\/1))
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}~int
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}~\char`\"{}\%d\char`\"{}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a487e0193fe74cf79f80a11b180afbd93}{Int\+\_\+\+MAX}}~INT\+\_\+\+MAX
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_ad0a7a2b7611f040ab0fe5b2d21315038}{AMD\+\_\+order}}~\mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\+\_\+order}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_ab95de05cfb0c5289b12c9680a38d2bd4}{AMD\+\_\+defaults}}~\mbox{\hyperlink{amd_8h_a0154a0afff23e3aad0130eafe07197df}{amd\+\_\+defaults}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a929f2d9484aa213d8d118b9020318d89}{AMD\+\_\+control}}~\mbox{\hyperlink{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}{amd\+\_\+control}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a9f5748f9d35403b59f66710ee1212a82}{AMD\+\_\+info}}~\mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\+\_\+info}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a94cc01405c92793818283753af88cd2b}{AMD\+\_\+1}}~amd\+\_\+1
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a84e7b06fe5121a773a03f601eb6b48ee}{AMD\+\_\+2}}~\mbox{\hyperlink{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}{amd\+\_\+2}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}{AMD\+\_\+valid}}~\mbox{\hyperlink{amd_8h_a27866de985cec7a835d86430cb6b3ce7}{amd\+\_\+valid}}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aaaf1c74d82ed1bc639d31aa886a26902}{AMD\+\_\+aat}}~amd\+\_\+aat
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}{AMD\+\_\+postorder}}~amd\+\_\+postorder
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{AMD\+\_\+post\+\_\+tree}}~amd\+\_\+post\+\_\+tree
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_ad6a599d15b6481a28fc572961e0c873a}{AMD\+\_\+dump}}~amd\+\_\+dump
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a345a39fc2e311324fa1d45033b692ff9}{AMD\+\_\+debug}}~amd\+\_\+debug
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_ad8e2519f3d40b5bc00b7d28c25b41903}{AMD\+\_\+debug\+\_\+init}}~amd\+\_\+debug\+\_\+init
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}{AMD\+\_\+preprocess}}~amd\+\_\+preprocess
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{PRINTF}}(params)~\{ \mbox{\hyperlink{make__abip__qcp_8m_ad75df51eb935e4bca1128c4abd8967e2}{if}} (\mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\+\_\+printf}} != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\+\_\+\+NULL}}) (void) \mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\+\_\+printf}} params ; \}
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}}(expression)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}{AMD\+\_\+\+DEBUG0}}(params)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\+\_\+\+DEBUG1}}(params)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_affe04eb97a59a9cb13e0b537b1844197}{AMD\+\_\+\+DEBUG2}}(params)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_afd254e4246734c9bb9bb01350196f2bd}{AMD\+\_\+\+DEBUG3}}(params)
+\item 
+\#define \mbox{\hyperlink{amd__internal_8h_aab6224578a8462cdc28a6e511cafa6b1}{AMD\+\_\+\+DEBUG4}}(params)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} size\+\_\+t \mbox{\hyperlink{amd__internal_8h_a0eb25204851c3ca59f14e8ca36a00c63}{AMD\+\_\+aat}} (\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Len\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Tp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void \mbox{\hyperlink{amd__internal_8h_afda3a11fc4f1ff6ae3f89e1cfc3458f1}{AMD\+\_\+1}} (\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Pinv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Len\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} slen, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} S\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void \mbox{\hyperlink{amd__internal_8h_a5f120a93853d9bd2f1111a6a78a8bc15}{AMD\+\_\+postorder}} (\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nn, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Parent\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Npiv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Fsize\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{amd__internal_8h_a6c748e1329d371cbd71bf9b1417bebb3}{AMD\+\_\+post\+\_\+tree}} (\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} root, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} k, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void \mbox{\hyperlink{amd__internal_8h_abe9911e9d13c483af0160977d0894adf}{AMD\+\_\+preprocess}} (\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Rp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ri\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} W\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Flag\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{amd__internal_8h_adae2a4e360bd77801ffccfc6288f97c5}\label{amd__internal_8h_adae2a4e360bd77801ffccfc6288f97c5}} 
+\index{amd\_internal.h@{amd\_internal.h}!ABIP\_NULL@{ABIP\_NULL}}
+\index{ABIP\_NULL@{ABIP\_NULL}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_NULL}{ABIP\_NULL}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+NULL~0}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00138}{138}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a94cc01405c92793818283753af88cd2b}\label{amd__internal_8h_a94cc01405c92793818283753af88cd2b}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_1@{AMD\_1}}
+\index{AMD\_1@{AMD\_1}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_1}{AMD\_1}}
+{\footnotesize\ttfamily \#define AMD\+\_\+1~amd\+\_\+1}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00187}{187}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a84e7b06fe5121a773a03f601eb6b48ee}\label{amd__internal_8h_a84e7b06fe5121a773a03f601eb6b48ee}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_2@{AMD\_2}}
+\index{AMD\_2@{AMD\_2}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_2}{AMD\_2}}
+{\footnotesize\ttfamily \#define AMD\+\_\+2~\mbox{\hyperlink{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}{amd\+\_\+2}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00188}{188}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aaaf1c74d82ed1bc639d31aa886a26902}\label{amd__internal_8h_aaaf1c74d82ed1bc639d31aa886a26902}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_aat@{AMD\_aat}}
+\index{AMD\_aat@{AMD\_aat}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_aat}{AMD\_aat}}
+{\footnotesize\ttfamily \#define AMD\+\_\+aat~amd\+\_\+aat}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00190}{190}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a929f2d9484aa213d8d118b9020318d89}\label{amd__internal_8h_a929f2d9484aa213d8d118b9020318d89}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_control@{AMD\_control}}
+\index{AMD\_control@{AMD\_control}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_control}{AMD\_control}}
+{\footnotesize\ttfamily \#define AMD\+\_\+control~\mbox{\hyperlink{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}{amd\+\_\+control}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00185}{185}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a345a39fc2e311324fa1d45033b692ff9}\label{amd__internal_8h_a345a39fc2e311324fa1d45033b692ff9}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_debug@{AMD\_debug}}
+\index{AMD\_debug@{AMD\_debug}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_debug}{AMD\_debug}}
+{\footnotesize\ttfamily \#define AMD\+\_\+debug~amd\+\_\+debug}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00194}{194}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}\label{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_DEBUG0@{AMD\_DEBUG0}}
+\index{AMD\_DEBUG0@{AMD\_DEBUG0}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEBUG0}{AMD\_DEBUG0}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEBUG0(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00328}{328}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}\label{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_DEBUG1@{AMD\_DEBUG1}}
+\index{AMD\_DEBUG1@{AMD\_DEBUG1}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEBUG1}{AMD\_DEBUG1}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEBUG1(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00329}{329}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_affe04eb97a59a9cb13e0b537b1844197}\label{amd__internal_8h_affe04eb97a59a9cb13e0b537b1844197}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_DEBUG2@{AMD\_DEBUG2}}
+\index{AMD\_DEBUG2@{AMD\_DEBUG2}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEBUG2}{AMD\_DEBUG2}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEBUG2(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00330}{330}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_afd254e4246734c9bb9bb01350196f2bd}\label{amd__internal_8h_afd254e4246734c9bb9bb01350196f2bd}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_DEBUG3@{AMD\_DEBUG3}}
+\index{AMD\_DEBUG3@{AMD\_DEBUG3}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEBUG3}{AMD\_DEBUG3}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEBUG3(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00331}{331}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aab6224578a8462cdc28a6e511cafa6b1}\label{amd__internal_8h_aab6224578a8462cdc28a6e511cafa6b1}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_DEBUG4@{AMD\_DEBUG4}}
+\index{AMD\_DEBUG4@{AMD\_DEBUG4}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEBUG4}{AMD\_DEBUG4}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEBUG4(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00332}{332}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_ad8e2519f3d40b5bc00b7d28c25b41903}\label{amd__internal_8h_ad8e2519f3d40b5bc00b7d28c25b41903}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_debug\_init@{AMD\_debug\_init}}
+\index{AMD\_debug\_init@{AMD\_debug\_init}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_debug\_init}{AMD\_debug\_init}}
+{\footnotesize\ttfamily \#define AMD\+\_\+debug\+\_\+init~amd\+\_\+debug\+\_\+init}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00195}{195}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_ab95de05cfb0c5289b12c9680a38d2bd4}\label{amd__internal_8h_ab95de05cfb0c5289b12c9680a38d2bd4}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_defaults@{AMD\_defaults}}
+\index{AMD\_defaults@{AMD\_defaults}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_defaults}{AMD\_defaults}}
+{\footnotesize\ttfamily \#define AMD\+\_\+defaults~\mbox{\hyperlink{amd_8h_a0154a0afff23e3aad0130eafe07197df}{amd\+\_\+defaults}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00184}{184}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_ad6a599d15b6481a28fc572961e0c873a}\label{amd__internal_8h_ad6a599d15b6481a28fc572961e0c873a}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_dump@{AMD\_dump}}
+\index{AMD\_dump@{AMD\_dump}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_dump}{AMD\_dump}}
+{\footnotesize\ttfamily \#define AMD\+\_\+dump~amd\+\_\+dump}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00193}{193}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a9f5748f9d35403b59f66710ee1212a82}\label{amd__internal_8h_a9f5748f9d35403b59f66710ee1212a82}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_info@{AMD\_info}}
+\index{AMD\_info@{AMD\_info}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_info}{AMD\_info}}
+{\footnotesize\ttfamily \#define AMD\+\_\+info~\mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\+\_\+info}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00186}{186}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_ad0a7a2b7611f040ab0fe5b2d21315038}\label{amd__internal_8h_ad0a7a2b7611f040ab0fe5b2d21315038}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_order@{AMD\_order}}
+\index{AMD\_order@{AMD\_order}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_order}{AMD\_order}}
+{\footnotesize\ttfamily \#define AMD\+\_\+order~\mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\+\_\+order}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00183}{183}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}\label{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_post\_tree@{AMD\_post\_tree}}
+\index{AMD\_post\_tree@{AMD\_post\_tree}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_post\_tree}{AMD\_post\_tree}}
+{\footnotesize\ttfamily \#define AMD\+\_\+post\+\_\+tree~amd\+\_\+post\+\_\+tree}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00192}{192}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}\label{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_postorder@{AMD\_postorder}}
+\index{AMD\_postorder@{AMD\_postorder}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_postorder}{AMD\_postorder}}
+{\footnotesize\ttfamily \#define AMD\+\_\+postorder~amd\+\_\+postorder}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00191}{191}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}\label{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_preprocess@{AMD\_preprocess}}
+\index{AMD\_preprocess@{AMD\_preprocess}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_preprocess}{AMD\_preprocess}}
+{\footnotesize\ttfamily \#define AMD\+\_\+preprocess~amd\+\_\+preprocess}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00196}{196}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}\label{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_valid@{AMD\_valid}}
+\index{AMD\_valid@{AMD\_valid}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_valid}{AMD\_valid}}
+{\footnotesize\ttfamily \#define AMD\+\_\+valid~\mbox{\hyperlink{amd_8h_a27866de985cec7a835d86430cb6b3ce7}{amd\+\_\+valid}}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00189}{189}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}\label{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}} 
+\index{amd\_internal.h@{amd\_internal.h}!ASSERT@{ASSERT}}
+\index{ASSERT@{ASSERT}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{ASSERT}{ASSERT}}
+{\footnotesize\ttfamily \#define ASSERT(\begin{DoxyParamCaption}\item[{}]{expression }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00327}{327}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}\label{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}} 
+\index{amd\_internal.h@{amd\_internal.h}!EMPTY@{EMPTY}}
+\index{EMPTY@{EMPTY}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{EMPTY}{EMPTY}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define EMPTY~(-\/1)}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00129}{129}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}\label{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}} 
+\index{amd\_internal.h@{amd\_internal.h}!EMPTY@{EMPTY}}
+\index{EMPTY@{EMPTY}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{EMPTY}{EMPTY}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define EMPTY~(-\/1)}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00129}{129}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}\label{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}} 
+\index{amd\_internal.h@{amd\_internal.h}!FALSE@{FALSE}}
+\index{FALSE@{FALSE}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{FALSE}{FALSE}}
+{\footnotesize\ttfamily \#define FALSE~(0)}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00126}{126}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}\label{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}} 
+\index{amd\_internal.h@{amd\_internal.h}!FLIP@{FLIP}}
+\index{FLIP@{FLIP}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{FLIP}{FLIP}}
+{\footnotesize\ttfamily \#define FLIP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} }\end{DoxyParamCaption})~(-\/(\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})-\/2)}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00106}{106}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}\label{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}} 
+\index{amd\_internal.h@{amd\_internal.h}!GLOBAL@{GLOBAL}}
+\index{GLOBAL@{GLOBAL}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{GLOBAL}{GLOBAL}}
+{\footnotesize\ttfamily \#define GLOBAL}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00128}{128}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}\label{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}} 
+\index{amd\_internal.h@{amd\_internal.h}!ID@{ID}}
+\index{ID@{ID}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \#define ID~\char`\"{}\%d\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00180}{180}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aa2faa268dbd9c43a8e7aac92bd70114f}\label{amd__internal_8h_aa2faa268dbd9c43a8e7aac92bd70114f}} 
+\index{amd\_internal.h@{amd\_internal.h}!IMPLIES@{IMPLIES}}
+\index{IMPLIES@{IMPLIES}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{IMPLIES}{IMPLIES}}
+{\footnotesize\ttfamily \#define IMPLIES(\begin{DoxyParamCaption}\item[{}]{p,  }\item[{}]{q }\end{DoxyParamCaption})~(!(p) $\vert$$\vert$ (q))}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00114}{114}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}\label{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}} 
+\index{amd\_internal.h@{amd\_internal.h}!Int@{Int}}
+\index{Int@{Int}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{Int}{Int}}
+{\footnotesize\ttfamily \#define Int~int}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00179}{179}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a487e0193fe74cf79f80a11b180afbd93}\label{amd__internal_8h_a487e0193fe74cf79f80a11b180afbd93}} 
+\index{amd\_internal.h@{amd\_internal.h}!Int\_MAX@{Int\_MAX}}
+\index{Int\_MAX@{Int\_MAX}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{Int\_MAX}{Int\_MAX}}
+{\footnotesize\ttfamily \#define Int\+\_\+\+MAX~INT\+\_\+\+MAX}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00181}{181}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}\label{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}} 
+\index{amd\_internal.h@{amd\_internal.h}!MAX@{MAX}}
+\index{MAX@{MAX}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define MAX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $>$ (b)) ? (a) \+: (b))}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00110}{110}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\label{amd__internal_8h_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{amd\_internal.h@{amd\_internal.h}!MIN@{MIN}}
+\index{MIN@{MIN}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define MIN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $<$ (b)) ? (a) \+: (b))}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00111}{111}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}\label{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}} 
+\index{amd\_internal.h@{amd\_internal.h}!PRINTF@{PRINTF}}
+\index{PRINTF@{PRINTF}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{PRINTF}{PRINTF}}
+{\footnotesize\ttfamily \#define PRINTF(\begin{DoxyParamCaption}\item[{}]{params }\end{DoxyParamCaption})~\{ \mbox{\hyperlink{make__abip__qcp_8m_ad75df51eb935e4bca1128c4abd8967e2}{if}} (\mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\+\_\+printf}} != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\+\_\+\+NULL}}) (void) \mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\+\_\+printf}} params ; \}}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00205}{205}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a5e151c615eda34903514212f05a5ccf8}\label{amd__internal_8h_a5e151c615eda34903514212f05a5ccf8}} 
+\index{amd\_internal.h@{amd\_internal.h}!PRIVATE@{PRIVATE}}
+\index{PRIVATE@{PRIVATE}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{PRIVATE}{PRIVATE}}
+{\footnotesize\ttfamily \#define PRIVATE~static}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00127}{127}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_acfa3af56d5e0045c1d7a5682fd1d2853}\label{amd__internal_8h_acfa3af56d5e0045c1d7a5682fd1d2853}} 
+\index{amd\_internal.h@{amd\_internal.h}!SIZE\_T\_MAX@{SIZE\_T\_MAX}}
+\index{SIZE\_T\_MAX@{SIZE\_T\_MAX}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_T\_MAX}{SIZE\_T\_MAX}}
+{\footnotesize\ttfamily \#define SIZE\+\_\+\+T\+\_\+\+MAX~((size\+\_\+t) (-\/1))}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00146}{146}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}\label{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}} 
+\index{amd\_internal.h@{amd\_internal.h}!TRUE@{TRUE}}
+\index{TRUE@{TRUE}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{TRUE}{TRUE}}
+{\footnotesize\ttfamily \#define TRUE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00125}{125}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a58d80900906670c5df232e3c288dbec9}\label{amd__internal_8h_a58d80900906670c5df232e3c288dbec9}} 
+\index{amd\_internal.h@{amd\_internal.h}!UNFLIP@{UNFLIP}}
+\index{UNFLIP@{UNFLIP}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{UNFLIP}{UNFLIP}}
+{\footnotesize\ttfamily \#define UNFLIP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} $<$ \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}}) ? \mbox{\hyperlink{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}{FLIP}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \+: (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}))}
+
+
+
+Definition at line \mbox{\hyperlink{amd__internal_8h_source_l00107}{107}} of file \mbox{\hyperlink{amd__internal_8h_source}{amd\+\_\+internal.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{amd__internal_8h_afda3a11fc4f1ff6ae3f89e1cfc3458f1}\label{amd__internal_8h_afda3a11fc4f1ff6ae3f89e1cfc3458f1}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_1@{AMD\_1}}
+\index{AMD\_1@{AMD\_1}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_1()}{AMD\_1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void AMD\+\_\+1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{n,  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Pinv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Len\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{slen,  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{S\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__1_8c_source_l00029}{29}} of file \mbox{\hyperlink{amd__1_8c_source}{amd\+\_\+1.\+c}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a0eb25204851c3ca59f14e8ca36a00c63}\label{amd__internal_8h_a0eb25204851c3ca59f14e8ca36a00c63}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_aat@{AMD\_aat}}
+\index{AMD\_aat@{AMD\_aat}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_aat()}{AMD\_aat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} size\+\_\+t AMD\+\_\+aat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{n,  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Len\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Tp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__aat_8c_source_l00020}{20}} of file \mbox{\hyperlink{amd__aat_8c_source}{amd\+\_\+aat.\+c}}.
+
+\mbox{\Hypertarget{amd__internal_8h_a6c748e1329d371cbd71bf9b1417bebb3}\label{amd__internal_8h_a6c748e1329d371cbd71bf9b1417bebb3}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_post\_tree@{AMD\_post\_tree}}
+\index{AMD\_post\_tree@{AMD\_post\_tree}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_post\_tree()}{AMD\_post\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} AMD\+\_\+post\+\_\+tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{root,  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{k,  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Child\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Sibling\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Order\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Stack\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd__internal_8h_a5f120a93853d9bd2f1111a6a78a8bc15}\label{amd__internal_8h_a5f120a93853d9bd2f1111a6a78a8bc15}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_postorder@{AMD\_postorder}}
+\index{AMD\_postorder@{AMD\_postorder}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_postorder()}{AMD\_postorder()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void AMD\+\_\+postorder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{nn,  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Parent\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Npiv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Fsize\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Order\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Child\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Sibling\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Stack\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__postorder_8c_source_l00015}{15}} of file \mbox{\hyperlink{amd__postorder_8c_source}{amd\+\_\+postorder.\+c}}.
+
+\mbox{\Hypertarget{amd__internal_8h_abe9911e9d13c483af0160977d0894adf}\label{amd__internal_8h_abe9911e9d13c483af0160977d0894adf}} 
+\index{amd\_internal.h@{amd\_internal.h}!AMD\_preprocess@{AMD\_preprocess}}
+\index{AMD\_preprocess@{AMD\_preprocess}!amd\_internal.h@{amd\_internal.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_preprocess()}{AMD\_preprocess()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} void AMD\+\_\+preprocess (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{n,  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Rp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Ri\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{W\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}}}]{Flag\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd__preprocess_8c_source_l00029}{29}} of file \mbox{\hyperlink{amd__preprocess_8c_source}{amd\+\_\+preprocess.\+c}}.
+

@@ -1,0 +1,370 @@
+\hypertarget{cs__amd_8c_source}{}\doxysection{cs\+\_\+amd.\+c}
+\label{cs__amd_8c_source}\index{csparse/Source/cs\_amd.c@{csparse/Source/cs\_amd.c}}
+\mbox{\hyperlink{cs__amd_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00002}00002 \textcolor{comment}{/* clear w */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00003}00003 \textcolor{keyword}{static} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} cs\_wclear (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} mark, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} lemax, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *w, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} k ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00006}00006     \textcolor{keywordflow}{if} (mark < 2 || (mark + lemax < 0))}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00007}00007     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00008}00008         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) \textcolor{keywordflow}{if} (w [k] != 0) w [k] = 1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00009}00009         mark = 2 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00010}00010     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00011}00011     \textcolor{keywordflow}{return} (mark) ;     \textcolor{comment}{/* at this point, w [0..n-\/1] < mark holds */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00012}00012 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00014}00014 \textcolor{comment}{/* keep off-\/diagonal entries; drop diagonal entries */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00015}00015 \textcolor{keyword}{static} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} cs\_diag (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} j, \textcolor{keywordtype}{double} aij, \textcolor{keywordtype}{void} *other) \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} != j) ; \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00017}00017 \textcolor{comment}{/* p = amd(A+A') if symmetric is true, or amd(A'A) otherwise */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00018}\mbox{\hyperlink{cs_8h_a8c0812b53c0937ab04dc22eae0fb5259}{00018}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *\mbox{\hyperlink{cs__amd_8c_a8c0812b53c0937ab04dc22eae0fb5259}{cs\_amd}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} order, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A)  \textcolor{comment}{/* order 0:natural, 1:Chol, 2:LU, 3:QR */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00020}00020     \mbox{\hyperlink{structcs__sparse}{cs}} *C, *A2, *AT ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00021}00021     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *Cp, *Ci, *last, *W, *len, *nv, *next, *P, *head, *elen, *degree, *w,}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00022}00022         *hhead, *ATp, *ATi, d, dk, dext, lemax = 0, e, elenk, eln, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, j, k, k1,}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00023}00023         k2, k3, jlast, ln, dense, nzmax, mindeg = 0, nvi, nvj, nvk, mark, wnvi,}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00024}00024         ok, cnz, nel = 0, p, p1, p2, p3, p4, pj, pk, pk1, pk2, pn, q, n, m, t ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00025}00025     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} h ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00026}00026     \textcolor{comment}{/* -\/-\/-\/ Construct matrix C -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00027}00027     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || order <= 0 || order > 3) \textcolor{keywordflow}{return} (NULL) ; \textcolor{comment}{/* check */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00028}00028     AT = \mbox{\hyperlink{cs_8h_a838dfaabdae54c408a4a696dfffa3dea}{cs\_transpose}} (A, 0) ;              \textcolor{comment}{/* compute A' */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00029}00029     \textcolor{keywordflow}{if} (!AT) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00030}00030     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00031}00031     dense = \mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (16, 10 * sqrt ((\textcolor{keywordtype}{double}) n)) ;   \textcolor{comment}{/* find dense threshold */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00032}00032     dense = \mbox{\hyperlink{cs_8h_a2635aa5c35f05bb0e4c88be5aabae949}{CS\_MIN}} (n-\/2, dense) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00033}00033     \textcolor{keywordflow}{if} (order == 1 \&\& n == m)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00034}00034     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00035}00035         C = \mbox{\hyperlink{cs_8h_ac549d2c79490db68e4c9361a951144dd}{cs\_add}} (A, AT, 0, 0) ;          \textcolor{comment}{/* C = A+A' */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00036}00036     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00037}00037     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (order == 2)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00038}00038     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00039}00039         ATp = AT-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;                       \textcolor{comment}{/* drop dense columns from AT */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00040}00040         ATi = AT-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00041}00041         \textcolor{keywordflow}{for} (p2 = 0, j = 0 ; j < m ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00042}00042         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00043}00043             p = ATp [j] ;                   \textcolor{comment}{/* column j of AT starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00044}00044             ATp [j] = p2 ;                  \textcolor{comment}{/* new column j starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00045}00045             \textcolor{keywordflow}{if} (ATp [j+1] -\/ p > dense) continue ;   \textcolor{comment}{/* skip dense col j */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00046}00046             \textcolor{keywordflow}{for} ( ; p < ATp [j+1] ; p++) ATi [p2++] = ATi [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00047}00047         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00048}00048         ATp [m] = p2 ;                      \textcolor{comment}{/* finalize AT */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00049}00049         A2 = \mbox{\hyperlink{cs_8h_a838dfaabdae54c408a4a696dfffa3dea}{cs\_transpose}} (AT, 0) ;         \textcolor{comment}{/* A2 = AT' */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00050}00050         C = A2 ? \mbox{\hyperlink{cs_8h_aa8d8dd148fab9e0a7811962c18d3ce61}{cs\_multiply}} (AT, A2) : NULL ;  \textcolor{comment}{/* C=A'*A with no dense rows */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00051}00051         \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (A2) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00052}00052     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00053}00053     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00054}00054     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00055}00055         C = \mbox{\hyperlink{cs_8h_aa8d8dd148fab9e0a7811962c18d3ce61}{cs\_multiply}} (AT, A) ;           \textcolor{comment}{/* C=A'*A */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00056}00056     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00057}00057     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (AT) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00058}00058     \textcolor{keywordflow}{if} (!C) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00059}00059     \mbox{\hyperlink{cs_8h_a0467456f70ba2840b1876b42ae1f990b}{cs\_fkeep}} (C, \&cs\_diag, NULL) ;          \textcolor{comment}{/* drop diagonal entries */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00060}00060     Cp = C-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00061}00061     cnz = Cp [n] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00062}00062     P = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n+1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;     \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00063}00063     W = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (8*(n+1), \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ; \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00064}00064     t = cnz + cnz/5 + 2*n ;                 \textcolor{comment}{/* add elbow room to C */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00065}00065     \textcolor{keywordflow}{if} (!P || !W || !\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (C, t)) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a5f172de9436558173ef0b873d9e1a5db}{cs\_idone}} (P, C, W, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00066}00066     len  = W           ; nv     = W +   (n+1) ; next   = W + 2*(n+1) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00067}00067     head = W + 3*(n+1) ; elen   = W + 4*(n+1) ; degree = W + 5*(n+1) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00068}00068     w    = W + 6*(n+1) ; hhead  = W + 7*(n+1) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00069}00069     last = P ;                              \textcolor{comment}{/* use P as workspace for last */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00070}00070     \textcolor{comment}{/* -\/-\/-\/ Initialize quotient graph -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00071}00071     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) len [k] = Cp [k+1] -\/ Cp [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00072}00072     len [n] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00073}00073     nzmax = C-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00074}00074     Ci = C-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00075}00075     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} <= n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00076}00076     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00077}00077         head [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;                     \textcolor{comment}{/* degree list i is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00078}00078         last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00079}00079         next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00080}00080         hhead [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;                    \textcolor{comment}{/* hash list i is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00081}00081         nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 1 ;                        \textcolor{comment}{/* node i is just one node */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00082}00082         w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 1 ;                         \textcolor{comment}{/* node i is alive */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00083}00083         elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;                      \textcolor{comment}{/* Ek of node i is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00084}00084         degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = len [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;              \textcolor{comment}{/* degree of node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00085}00085     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00086}00086     mark = cs\_wclear (0, 0, w, n) ;         \textcolor{comment}{/* clear w */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00087}00087     elen [n] = -\/2 ;                         \textcolor{comment}{/* n is a dead element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00088}00088     Cp [n] = -\/1 ;                           \textcolor{comment}{/* n is a root of assembly tree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00089}00089     w [n] = 0 ;                             \textcolor{comment}{/* n is a dead element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00090}00090     \textcolor{comment}{/* -\/-\/-\/ Initialize degree lists -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00091}00091     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00092}00092     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00093}00093         d = degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00094}00094         \textcolor{keywordflow}{if} (d == 0)                         \textcolor{comment}{/* node i is empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00095}00095         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00096}00096             elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/2 ;                 \textcolor{comment}{/* element i is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00097}00097             nel++ ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00098}00098             Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;                   \textcolor{comment}{/* i is a root of assembly tree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00099}00099             w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00100}00100         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00101}00101         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (d > dense)                 \textcolor{comment}{/* node i is dense */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00102}00102         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00103}00103             nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;                    \textcolor{comment}{/* absorb i into element n */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00104}00104             elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;                 \textcolor{comment}{/* node i is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00105}00105             nel++ ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00106}00106             Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (n) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00107}00107             nv [n]++ ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00108}00108         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00109}00109         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00110}00110         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00111}00111             \textcolor{keywordflow}{if} (head [d] != -\/1) last [head [d]] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00112}00112             next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = head [d] ;           \textcolor{comment}{/* put node i in degree list d */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00113}00113             head [d] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00114}00114         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00115}00115     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00116}00116     \textcolor{keywordflow}{while} (nel < n)                         \textcolor{comment}{/* while (selecting pivots) do */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00117}00117     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00118}00118         \textcolor{comment}{/* -\/-\/-\/ Select node of minimum approximate degree -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00119}00119         \textcolor{keywordflow}{for} (k = -\/1 ; mindeg < n \&\& (k = head [mindeg]) == -\/1 ; mindeg++) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00120}00120         \textcolor{keywordflow}{if} (next [k] != -\/1) last [next [k]] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00121}00121         head [mindeg] = next [k] ;          \textcolor{comment}{/* remove k from degree list */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00122}00122         elenk = elen [k] ;                  \textcolor{comment}{/* elenk = |Ek| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00123}00123         nvk = nv [k] ;                      \textcolor{comment}{/* \# of nodes k represents */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00124}00124         nel += nvk ;                        \textcolor{comment}{/* nv[k] nodes of A eliminated */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00125}00125         \textcolor{comment}{/* -\/-\/-\/ Garbage collection -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00126}00126         \textcolor{keywordflow}{if} (elenk > 0 \&\& cnz + mindeg >= nzmax)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00127}00127         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00128}00128             \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00129}00129             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00130}00130                 \textcolor{keywordflow}{if} ((p = Cp [j]) >= 0)      \textcolor{comment}{/* j is a live node or element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00131}00131                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00132}00132                     Cp [j] = Ci [p] ;       \textcolor{comment}{/* save first entry of object */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00133}00133                     Ci [p] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (j) ;  \textcolor{comment}{/* first entry is now CS\_FLIP(j) */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00134}00134                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00135}00135             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00136}00136             \textcolor{keywordflow}{for} (q = 0, p = 0 ; p < cnz ; ) \textcolor{comment}{/* scan all of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00137}00137             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00138}00138                 \textcolor{keywordflow}{if} ((j = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (Ci [p++])) >= 0)  \textcolor{comment}{/* found object j */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00139}00139                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00140}00140                     Ci [q] = Cp [j] ;       \textcolor{comment}{/* restore first entry of object */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00141}00141                     Cp [j] = q++ ;          \textcolor{comment}{/* new pointer to object j */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00142}00142                     \textcolor{keywordflow}{for} (k3 = 0 ; k3 < len [j]-\/1 ; k3++) Ci [q++] = Ci [p++] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00143}00143                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00144}00144             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00145}00145             cnz = q ;                       \textcolor{comment}{/* Ci [cnz...nzmax-\/1] now free */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00146}00146         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00147}00147         \textcolor{comment}{/* -\/-\/-\/ Construct new element -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00148}00148         dk = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00149}00149         nv [k] = -\/nvk ;                     \textcolor{comment}{/* flag k as in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00150}00150         p = Cp [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00151}00151         pk1 = (elenk == 0) ? p : cnz ;      \textcolor{comment}{/* do in place if elen[k] == 0 */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00152}00152         pk2 = pk1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00153}00153         \textcolor{keywordflow}{for} (k1 = 1 ; k1 <= elenk + 1 ; k1++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00154}00154         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00155}00155             \textcolor{keywordflow}{if} (k1 > elenk)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00156}00156             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00157}00157                 e = k ;                     \textcolor{comment}{/* search the nodes in k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00158}00158                 pj = p ;                    \textcolor{comment}{/* list of nodes starts at Ci[pj]*/}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00159}00159                 ln = len [k] -\/ elenk ;      \textcolor{comment}{/* length of list of nodes in k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00160}00160             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00161}00161             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00162}00162             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00163}00163                 e = Ci [p++] ;              \textcolor{comment}{/* search the nodes in e */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00164}00164                 pj = Cp [e] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00165}00165                 ln = len [e] ;              \textcolor{comment}{/* length of list of nodes in e */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00166}00166             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00167}00167             \textcolor{keywordflow}{for} (k2 = 1 ; k2 <= ln ; k2++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00168}00168             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00169}00169                 \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ci [pj++] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00170}00170                 \textcolor{keywordflow}{if} ((nvi = nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) <= 0) \textcolor{keywordflow}{continue} ; \textcolor{comment}{/* node i dead, or seen */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00171}00171                 dk += nvi ;                 \textcolor{comment}{/* degree[Lk] += size of node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00172}00172                 nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/nvi ;             \textcolor{comment}{/* negate nv[i] to denote i in Lk*/}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00173}00173                 Ci [pk2++] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;            \textcolor{comment}{/* place i in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00174}00174                 \textcolor{keywordflow}{if} (next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != -\/1) last [next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]] = last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00175}00175                 \textcolor{keywordflow}{if} (last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != -\/1)         \textcolor{comment}{/* remove i from degree list */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00176}00176                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00177}00177                     next [last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]] = next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00178}00178                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00179}00179                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00180}00180                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00181}00181                     head [degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]] = next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00182}00182                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00183}00183             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00184}00184             \textcolor{keywordflow}{if} (e != k)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00185}00185             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00186}00186                 Cp [e] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (k) ;      \textcolor{comment}{/* absorb e into k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00187}00187                 w [e] = 0 ;                 \textcolor{comment}{/* e is now a dead element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00188}00188             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00189}00189         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00190}00190         \textcolor{keywordflow}{if} (elenk != 0) cnz = pk2 ;         \textcolor{comment}{/* Ci [cnz...nzmax] is free */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00191}00191         degree [k] = dk ;                   \textcolor{comment}{/* external degree of k -\/ |Lk\(\backslash\)i| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00192}00192         Cp [k] = pk1 ;                      \textcolor{comment}{/* element k is in Ci[pk1..pk2-\/1] */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00193}00193         len [k] = pk2 -\/ pk1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00194}00194         elen [k] = -\/2 ;                     \textcolor{comment}{/* k is now an element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00195}00195         \textcolor{comment}{/* -\/-\/-\/ Find set differences -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00196}00196         mark = cs\_wclear (mark, lemax, w, n) ;  \textcolor{comment}{/* clear w if necessary */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00197}00197         \textcolor{keywordflow}{for} (pk = pk1 ; pk < pk2 ; pk++)    \textcolor{comment}{/* scan 1: find |Le\(\backslash\)Lk| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00198}00198         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00199}00199             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ci [pk] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00200}00200             \textcolor{keywordflow}{if} ((eln = elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) <= 0) continue ;\textcolor{comment}{/* skip if elen[i] empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00201}00201             nvi = -\/nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;                      \textcolor{comment}{/* nv [i] was negated */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00202}00202             wnvi = mark -\/ nvi ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00203}00203             \textcolor{keywordflow}{for} (p = Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ; p <= Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] + eln -\/ 1 ; p++)  \textcolor{comment}{/* scan Ei */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00204}00204             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00205}00205                 e = Ci [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00206}00206                 \textcolor{keywordflow}{if} (w [e] >= mark)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00207}00207                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00208}00208                     w [e] -\/= nvi ;          \textcolor{comment}{/* decrement |Le\(\backslash\)Lk| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00209}00209                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00210}00210                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (w [e] != 0)        \textcolor{comment}{/* ensure e is a live element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00211}00211                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00212}00212                     w [e] = degree [e] + wnvi ; \textcolor{comment}{/* 1st time e seen in scan 1 */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00213}00213                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00214}00214             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00215}00215         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00216}00216         \textcolor{comment}{/* -\/-\/-\/ Degree update -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00217}00217         \textcolor{keywordflow}{for} (pk = pk1 ; pk < pk2 ; pk++)    \textcolor{comment}{/* scan2: degree update */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00218}00218         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00219}00219             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ci [pk] ;                   \textcolor{comment}{/* consider node i in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00220}00220             p1 = Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00221}00221             p2 = p1 + elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] -\/ 1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00222}00222             pn = p1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00223}00223             \textcolor{keywordflow}{for} (h = 0, d = 0, p = p1 ; p <= p2 ; p++)    \textcolor{comment}{/* scan Ei */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00224}00224             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00225}00225                 e = Ci [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00226}00226                 \textcolor{keywordflow}{if} (w [e] != 0)             \textcolor{comment}{/* e is an unabsorbed element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00227}00227                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00228}00228                     dext = w [e] -\/ mark ;   \textcolor{comment}{/* dext = |Le\(\backslash\)Lk| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00229}00229                     \textcolor{keywordflow}{if} (dext > 0)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00230}00230                     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00231}00231                         d += dext ;         \textcolor{comment}{/* sum up the set differences */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00232}00232                         Ci [pn++] = e ;     \textcolor{comment}{/* keep e in Ei */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00233}00233                         h += e ;            \textcolor{comment}{/* compute the hash of node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00234}00234                     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00235}00235                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00236}00236                     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00237}00237                         Cp [e] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (k) ;  \textcolor{comment}{/* aggressive absorb. e-\/>k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00238}00238                         w [e] = 0 ;             \textcolor{comment}{/* e is a dead element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00239}00239                     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00240}00240                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00241}00241             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00242}00242             elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = pn -\/ p1 + 1 ;        \textcolor{comment}{/* elen[i] = |Ei| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00243}00243             p3 = pn ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00244}00244             p4 = p1 + len [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00245}00245             \textcolor{keywordflow}{for} (p = p2 + 1 ; p < p4 ; p++) \textcolor{comment}{/* prune edges in Ai */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00246}00246             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00247}00247                 j = Ci [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00248}00248                 \textcolor{keywordflow}{if} ((nvj = nv [j]) <= 0) continue ; \textcolor{comment}{/* node j dead or in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00249}00249                 d += nvj ;                  \textcolor{comment}{/* degree(i) += |j| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00250}00250                 Ci [pn++] = j ;             \textcolor{comment}{/* place j in node list of i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00251}00251                 h += j ;                    \textcolor{comment}{/* compute hash for node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00252}00252             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00253}00253             \textcolor{keywordflow}{if} (d == 0)                     \textcolor{comment}{/* check for mass elimination */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00254}00254             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00255}00255                 Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (k) ;      \textcolor{comment}{/* absorb i into k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00256}00256                 nvi = -\/nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00257}00257                 dk -\/= nvi ;                 \textcolor{comment}{/* |Lk| -\/= |i| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00258}00258                 nvk += nvi ;                \textcolor{comment}{/* |k| += nv[i] */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00259}00259                 nel += nvi ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00260}00260                 nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00261}00261                 elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;             \textcolor{comment}{/* node i is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00262}00262             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00263}00263             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00264}00264             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00265}00265                 degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{cs_8h_a2635aa5c35f05bb0e4c88be5aabae949}{CS\_MIN}} (degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}], d) ;   \textcolor{comment}{/* update degree(i) */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00266}00266                 Ci [pn] = Ci [p3] ;         \textcolor{comment}{/* move first node to end */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00267}00267                 Ci [p3] = Ci [p1] ;         \textcolor{comment}{/* move 1st el. to end of Ei */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00268}00268                 Ci [p1] = k ;               \textcolor{comment}{/* add k as 1st element in of Ei */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00269}00269                 len [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = pn -\/ p1 + 1 ;     \textcolor{comment}{/* new len of adj. list of node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00270}00270                 h = ((h<0) ? (-\/h):h) \% n ;  \textcolor{comment}{/* finalize hash of i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00271}00271                 next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = hhead [h] ;      \textcolor{comment}{/* place i in hash bucket */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00272}00272                 hhead [h] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00273}00273                 last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = h ;              \textcolor{comment}{/* save hash of i in last[i] */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00274}00274             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00275}00275         \}                                   \textcolor{comment}{/* scan2 is done */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00276}00276         degree [k] = dk ;                   \textcolor{comment}{/* finalize |Lk| */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00277}00277         lemax = \mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (lemax, dk) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00278}00278         mark = cs\_wclear (mark+lemax, lemax, w, n) ;    \textcolor{comment}{/* clear w */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00279}00279         \textcolor{comment}{/* -\/-\/-\/ Supernode detection -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00280}00280         \textcolor{keywordflow}{for} (pk = pk1 ; pk < pk2 ; pk++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00281}00281         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00282}00282             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ci [pk] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00283}00283             \textcolor{keywordflow}{if} (nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] >= 0) continue ;         \textcolor{comment}{/* skip if i is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00284}00284             h = last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;                      \textcolor{comment}{/* scan hash bucket of node i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00285}00285             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = hhead [h] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00286}00286             hhead [h] = -\/1 ;                    \textcolor{comment}{/* hash bucket will be empty */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00287}00287             \textcolor{keywordflow}{for} ( ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} != -\/1 \&\& next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != -\/1 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}], mark++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00288}00288             \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00289}00289                 ln = len [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00290}00290                 eln = elen [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00291}00291                 \textcolor{keywordflow}{for} (p = Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]+1 ; p <= Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] + ln-\/1 ; p++) w [Ci [p]] = mark;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00292}00292                 jlast = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00293}00293                 \textcolor{keywordflow}{for} (j = next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ; j != -\/1 ; ) \textcolor{comment}{/* compare i with all j */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00294}00294                 \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00295}00295                     ok = (len [j] == ln) \&\& (elen [j] == eln) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00296}00296                     \textcolor{keywordflow}{for} (p = Cp [j] + 1 ; ok \&\& p <= Cp [j] + ln -\/ 1 ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00297}00297                     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00298}00298                         \textcolor{keywordflow}{if} (w [Ci [p]] != mark) ok = 0 ;    \textcolor{comment}{/* compare i and j*/}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00299}00299                     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00300}00300                     \textcolor{keywordflow}{if} (ok)                     \textcolor{comment}{/* i and j are identical */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00301}00301                     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00302}00302                         Cp [j] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) ;  \textcolor{comment}{/* absorb j into i */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00303}00303                         nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] += nv [j] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00304}00304                         nv [j] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00305}00305                         elen [j] = -\/1 ;         \textcolor{comment}{/* node j is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00306}00306                         j = next [j] ;          \textcolor{comment}{/* delete j from hash bucket */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00307}00307                         next [jlast] = j ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00308}00308                     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00309}00309                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00310}00310                     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00311}00311                         jlast = j ;             \textcolor{comment}{/* j and i are different */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00312}00312                         j = next [j] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00313}00313                     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00314}00314                 \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00315}00315             \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00316}00316         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00317}00317         \textcolor{comment}{/* -\/-\/-\/ Finalize new element-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00318}00318         \textcolor{keywordflow}{for} (p = pk1, pk = pk1 ; pk < pk2 ; pk++)   \textcolor{comment}{/* finalize Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00319}00319         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00320}00320             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ci [pk] ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00321}00321             \textcolor{keywordflow}{if} ((nvi = -\/nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) <= 0) continue ;\textcolor{comment}{/* skip if i is dead */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00322}00322             nv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = nvi ;                      \textcolor{comment}{/* restore nv[i] */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00323}00323             d = degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] + dk -\/ nvi ;         \textcolor{comment}{/* compute external degree(i) */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00324}00324             d = \mbox{\hyperlink{cs_8h_a2635aa5c35f05bb0e4c88be5aabae949}{CS\_MIN}} (d, n -\/ nel -\/ nvi) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00325}00325             \textcolor{keywordflow}{if} (head [d] != -\/1) last [head [d]] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00326}00326             next [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = head [d] ;               \textcolor{comment}{/* put i back in degree list */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00327}00327             last [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00328}00328             head [d] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00329}00329             mindeg = \mbox{\hyperlink{cs_8h_a2635aa5c35f05bb0e4c88be5aabae949}{CS\_MIN}} (mindeg, d) ;       \textcolor{comment}{/* find new minimum degree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00330}00330             degree [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = d ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00331}00331             Ci [p++] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;                      \textcolor{comment}{/* place i in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00332}00332         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00333}00333         nv [k] = nvk ;                      \textcolor{comment}{/* \# nodes absorbed into k */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00334}00334         \textcolor{keywordflow}{if} ((len [k] = p-\/pk1) == 0)         \textcolor{comment}{/* length of adj list of element k*/}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00335}00335         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00336}00336             Cp [k] = -\/1 ;                   \textcolor{comment}{/* k is a root of the tree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00337}00337             w [k] = 0 ;                     \textcolor{comment}{/* k is now a dead element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00338}00338         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00339}00339         \textcolor{keywordflow}{if} (elenk != 0) cnz = p ;           \textcolor{comment}{/* free unused space in Lk */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00340}00340     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00341}00341     \textcolor{comment}{/* -\/-\/-\/ Postordering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00342}00342     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{cs_8h_aa64f99348d6e0bd00fd5f974199b685a}{CS\_FLIP}} (Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) ;\textcolor{comment}{/* fix assembly tree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00343}00343     \textcolor{keywordflow}{for} (j = 0 ; j <= n ; j++) head [j] = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00344}00344     \textcolor{keywordflow}{for} (j = n ; j >= 0 ; j-\/-\/)              \textcolor{comment}{/* place unordered nodes in lists */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00345}00345     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00346}00346         \textcolor{keywordflow}{if} (nv [j] > 0) continue ;          \textcolor{comment}{/* skip if j is an element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00347}00347         next [j] = head [Cp [j]] ;          \textcolor{comment}{/* place j in list of its parent */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00348}00348         head [Cp [j]] = j ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00349}00349     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00350}00350     \textcolor{keywordflow}{for} (e = n ; e >= 0 ; e-\/-\/)              \textcolor{comment}{/* place elements in lists */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00351}00351     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00352}00352         \textcolor{keywordflow}{if} (nv [e] <= 0) continue ;         \textcolor{comment}{/* skip unless e is an element */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00353}00353         \textcolor{keywordflow}{if} (Cp [e] != -\/1)}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00354}00354         \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00355}00355             next [e] = head [Cp [e]] ;      \textcolor{comment}{/* place e in list of its parent */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00356}00356             head [Cp [e]] = e ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00357}00357         \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00358}00358     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00359}00359     \textcolor{keywordflow}{for} (k = 0, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} <= n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)       \textcolor{comment}{/* postorder the assembly tree */}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00360}00360     \{}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00361}00361         \textcolor{keywordflow}{if} (Cp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] == -\/1) k = \mbox{\hyperlink{cs_8h_a763cce1cc37a21b58c8493c6c28e4afe}{cs\_tdfs}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, k, head, next, P, w) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00362}00362     \}}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00363}00363     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a5f172de9436558173ef0b873d9e1a5db}{cs\_idone}} (P, C, W, 1)) ;}
+\DoxyCodeLine{\Hypertarget{cs__amd_8c_source_l00364}00364 \}}
+
+\end{DoxyCode}

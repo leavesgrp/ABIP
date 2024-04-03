@@ -1,0 +1,195 @@
+\hypertarget{svm__qp__config_8h}{}\doxysection{include/svm\+\_\+qp\+\_\+config.h File Reference}
+\label{svm__qp__config_8h}\index{include/svm\_qp\_config.h@{include/svm\_qp\_config.h}}
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}amatrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_s_v_mqp}{SVMqp}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_s_v_mqp}{SVMqp}} \mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__qp__config_8h_acf6fcf5eb46466b0b7cc490552f53dd4}{init\+\_\+svmqp}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$$\ast$gen\+\_\+svm, \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\begin{DoxyCompactList}\small\item\em Initialize the svm qp formulation structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_ae8948b8342b6558ce3e50ed74e53d63a}{scaling\+\_\+svmqp\+\_\+data}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Customized scaling procedure for the svm qp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_a912e909f49f83060eeb3826abfe24bfb}{un\+\_\+scaling\+\_\+svmqp\+\_\+sol}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution of the original svm problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_ae81dcde09a2a2ff59c51feacf4c4a9b9}{calc\+\_\+svmqp\+\_\+residuals}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\begin{DoxyCompactList}\small\item\em Calculate the residuals of the svm qp formulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__qp__config_8h_acc7f1c6bfc7a8c8ea72b8556a9b23597}{init\+\_\+svmqp\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the linear system solver work space for the svm qp formulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__qp__config_8h_af1ec5f6f4e775e5b777d0e9e72875e83}{solve\+\_\+svmqp\+\_\+linsys}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\begin{DoxyCompactList}\small\item\em Customized linear system solver for the svm qp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_ab65f9bcd4f36cd8c7c56456df6a9c8dc}{free\+\_\+svmqp\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Free the linear system solver work space for the svm qp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_abad0067b46404d1cf4990bf1af3e6aa9}{svmqp\+\_\+\+A\+\_\+times}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the svm qp formulation with A untransposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__qp__config_8h_ad94a9fa4ae877db00f7af6f22f558212}{svmqp\+\_\+\+AT\+\_\+times}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the svm qp formulation with A transposed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{svm__qp__config_8h_a7f7ed59eb12d2e811d17f2e9b82d0d30}{svmqp\+\_\+inner\+\_\+conv\+\_\+check}} (\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\begin{DoxyCompactList}\small\item\em Check whether the inner loop of the svm qp formulation has converged. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}\label{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!svmqp@{svmqp}}
+\index{svmqp@{svmqp}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{svmqp}{svmqp}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_s_v_mqp}{SVMqp}} \mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}}}
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8h_source_l00012}{12}} of file \mbox{\hyperlink{svm__qp__config_8h_source}{svm\+\_\+qp\+\_\+config.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{svm__qp__config_8h_ae81dcde09a2a2ff59c51feacf4c4a9b9}\label{svm__qp__config_8h_ae81dcde09a2a2ff59c51feacf4c4a9b9}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!calc\_svmqp\_residuals@{calc\_svmqp\_residuals}}
+\index{calc\_svmqp\_residuals@{calc\_svmqp\_residuals}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{calc\_svmqp\_residuals()}{calc\_svmqp\_residuals()}}
+{\footnotesize\ttfamily void calc\+\_\+svmqp\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{ipm\+\_\+iter,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{admm\+\_\+iter }\end{DoxyParamCaption})}
+
+
+
+Calculate the residuals of the svm qp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00628}{628}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_ab65f9bcd4f36cd8c7c56456df6a9c8dc}\label{svm__qp__config_8h_ab65f9bcd4f36cd8c7c56456df6a9c8dc}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!free\_svmqp\_linsys\_work@{free\_svmqp\_linsys\_work}}
+\index{free\_svmqp\_linsys\_work@{free\_svmqp\_linsys\_work}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{free\_svmqp\_linsys\_work()}{free\_svmqp\_linsys\_work()}}
+{\footnotesize\ttfamily void free\+\_\+svmqp\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Free the linear system solver work space for the svm qp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l01002}{1002}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_acf6fcf5eb46466b0b7cc490552f53dd4}\label{svm__qp__config_8h_acf6fcf5eb46466b0b7cc490552f53dd4}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!init\_svmqp@{init\_svmqp}}
+\index{init\_svmqp@{init\_svmqp}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{init\_svmqp()}{init\_svmqp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+svmqp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$$\ast$}]{gen\+\_\+svm,  }\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Initialize the svm qp formulation structure. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00008}{8}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_acc7f1c6bfc7a8c8ea72b8556a9b23597}\label{svm__qp__config_8h_acc7f1c6bfc7a8c8ea72b8556a9b23597}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!init\_svmqp\_linsys\_work@{init\_svmqp\_linsys\_work}}
+\index{init\_svmqp\_linsys\_work@{init\_svmqp\_linsys\_work}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{init\_svmqp\_linsys\_work()}{init\_svmqp\_linsys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+svmqp\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the linear system solver work space for the svm qp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00868}{868}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_ae8948b8342b6558ce3e50ed74e53d63a}\label{svm__qp__config_8h_ae8948b8342b6558ce3e50ed74e53d63a}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!scaling\_svmqp\_data@{scaling\_svmqp\_data}}
+\index{scaling\_svmqp\_data@{scaling\_svmqp\_data}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{scaling\_svmqp\_data()}{scaling\_svmqp\_data()}}
+{\footnotesize\ttfamily void scaling\+\_\+svmqp\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Customized scaling procedure for the svm qp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00196}{196}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_af1ec5f6f4e775e5b777d0e9e72875e83}\label{svm__qp__config_8h_af1ec5f6f4e775e5b777d0e9e72875e83}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!solve\_svmqp\_linsys@{solve\_svmqp\_linsys}}
+\index{solve\_svmqp\_linsys@{solve\_svmqp\_linsys}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{solve\_svmqp\_linsys()}{solve\_svmqp\_linsys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+svmqp\+\_\+linsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{pcg\+\_\+warm\+\_\+start,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio }\end{DoxyParamCaption})}
+
+
+
+Customized linear system solver for the svm qp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00894}{894}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_abad0067b46404d1cf4990bf1af3e6aa9}\label{svm__qp__config_8h_abad0067b46404d1cf4990bf1af3e6aa9}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!svmqp\_A\_times@{svmqp\_A\_times}}
+\index{svmqp\_A\_times@{svmqp\_A\_times}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{svmqp\_A\_times()}{svmqp\_A\_times()}}
+{\footnotesize\ttfamily void svmqp\+\_\+\+A\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the svm qp formulation with A untransposed. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00128}{128}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_ad94a9fa4ae877db00f7af6f22f558212}\label{svm__qp__config_8h_ad94a9fa4ae877db00f7af6f22f558212}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!svmqp\_AT\_times@{svmqp\_AT\_times}}
+\index{svmqp\_AT\_times@{svmqp\_AT\_times}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{svmqp\_AT\_times()}{svmqp\_AT\_times()}}
+{\footnotesize\ttfamily void svmqp\+\_\+\+AT\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the svm qp formulation with A transposed. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00141}{141}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_a7f7ed59eb12d2e811d17f2e9b82d0d30}\label{svm__qp__config_8h_a7f7ed59eb12d2e811d17f2e9b82d0d30}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!svmqp\_inner\_conv\_check@{svmqp\_inner\_conv\_check}}
+\index{svmqp\_inner\_conv\_check@{svmqp\_inner\_conv\_check}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{svmqp\_inner\_conv\_check()}{svmqp\_inner\_conv\_check()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} svmqp\+\_\+inner\+\_\+conv\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Check whether the inner loop of the svm qp formulation has converged. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00152}{152}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__qp__config_8h_a912e909f49f83060eeb3826abfe24bfb}\label{svm__qp__config_8h_a912e909f49f83060eeb3826abfe24bfb}} 
+\index{svm\_qp\_config.h@{svm\_qp\_config.h}!un\_scaling\_svmqp\_sol@{un\_scaling\_svmqp\_sol}}
+\index{un\_scaling\_svmqp\_sol@{un\_scaling\_svmqp\_sol}!svm\_qp\_config.h@{svm\_qp\_config.h}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_svmqp\_sol()}{un\_scaling\_svmqp\_sol()}}
+{\footnotesize\ttfamily void un\+\_\+scaling\+\_\+svmqp\+\_\+sol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__qp__config_8h_a76473bfd9df1df7a25e0a5f4eb862b1b}{svmqp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution of the original svm problem. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__qp__config_8c_source_l00597}{597}} of file \mbox{\hyperlink{svm__qp__config_8c_source}{svm\+\_\+qp\+\_\+config.\+c}}.
+

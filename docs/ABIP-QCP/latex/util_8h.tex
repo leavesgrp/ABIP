@@ -1,0 +1,172 @@
+\hypertarget{util_8h}{}\doxysection{include/util.h File Reference}
+\label{util_8h}\index{include/util.h@{include/util.h}}
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{util_8h_a016a520dc275fc34ac8d42f08d42907d}{ABIP}} (timer)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$t)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_aa7591bd70f5d6b2829acd74494406750}{toc}} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$t)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_a78921c28c024e8f10a3b977c8cca003b}{str\+\_\+toc}} (char $\ast$str, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$t)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$t)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_a893b043e418cf590dfb2ebdc20d16707}{print\+\_\+data}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_aa457d8036e1b283d3b3a828d21c99f25}{print\+\_\+work}} (const \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_af5ef9bd4107f69ed63c6656b9865d633}{print\+\_\+array}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$arr, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n, const char $\ast$name)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_a64b69194e80b7a516cfde034ce1e7bed}{set\+\_\+default\+\_\+settings}} (\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d)
+\begin{DoxyCompactList}\small\item\em Default parameter settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_afed1472f1e5ebfa1128ab4dd6589907f}{free\+\_\+info}} (\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_a9b7601a00625868a64bd2bc6b4f4a744}{free\+\_\+sol}} (\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_afc758b41c7b6cbeccbd8a5c02f2b0732}{free\+\_\+data}} (\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{util_8h_aa933bd02296b9689aa33877eae2bb23b}{free\+\_\+cone}} (\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{util_8h_a016a520dc275fc34ac8d42f08d42907d}\label{util_8h_a016a520dc275fc34ac8d42f08d42907d}} 
+\index{util.h@{util.h}!ABIP@{ABIP}}
+\index{ABIP@{ABIP}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{ABIP()}{ABIP()}}
+{\footnotesize\ttfamily ABIP (\begin{DoxyParamCaption}\item[{timer}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8h_source_l00001}{1}} of file \mbox{\hyperlink{util_8h_source}{util.\+h}}.
+
+\mbox{\Hypertarget{util_8h_aa933bd02296b9689aa33877eae2bb23b}\label{util_8h_aa933bd02296b9689aa33877eae2bb23b}} 
+\index{util.h@{util.h}!free\_cone@{free\_cone}}
+\index{free\_cone@{free\_cone}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{free\_cone()}{free\_cone()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+cone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00148}{148}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_afc758b41c7b6cbeccbd8a5c02f2b0732}\label{util_8h_afc758b41c7b6cbeccbd8a5c02f2b0732}} 
+\index{util.h@{util.h}!free\_data@{free\_data}}
+\index{free\_data@{free\_data}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{free\_data()}{free\_data()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00160}{160}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_afed1472f1e5ebfa1128ab4dd6589907f}\label{util_8h_afed1472f1e5ebfa1128ab4dd6589907f}} 
+\index{util.h@{util.h}!free\_info@{free\_info}}
+\index{free\_info@{free\_info}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{free\_info()}{free\_info()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00142}{142}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_a9b7601a00625868a64bd2bc6b4f4a744}\label{util_8h_a9b7601a00625868a64bd2bc6b4f4a744}} 
+\index{util.h@{util.h}!free\_sol@{free\_sol}}
+\index{free\_sol@{free\_sol}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{free\_sol()}{free\_sol()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+sol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00182}{182}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_af5ef9bd4107f69ed63c6656b9865d633}\label{util_8h_af5ef9bd4107f69ed63c6656b9865d633}} 
+\index{util.h@{util.h}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() print\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{arr,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00119}{119}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_a893b043e418cf590dfb2ebdc20d16707}\label{util_8h_a893b043e418cf590dfb2ebdc20d16707}} 
+\index{util.h@{util.h}!print\_data@{print\_data}}
+\index{print\_data@{print\_data}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{print\_data()}{print\_data()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() print\+\_\+data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00100}{100}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_aa457d8036e1b283d3b3a828d21c99f25}\label{util_8h_aa457d8036e1b283d3b3a828d21c99f25}} 
+\index{util.h@{util.h}!print\_work@{print\_work}}
+\index{print\_work@{print\_work}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{print\_work()}{print\_work()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() print\+\_\+work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00080}{80}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_a64b69194e80b7a516cfde034ce1e7bed}\label{util_8h_a64b69194e80b7a516cfde034ce1e7bed}} 
+\index{util.h@{util.h}!set\_default\_settings@{set\_default\_settings}}
+\index{set\_default\_settings@{set\_default\_settings}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{set\_default\_settings()}{set\_default\_settings()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+default\+\_\+settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Default parameter settings. 
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00203}{203}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_a78921c28c024e8f10a3b977c8cca003b}\label{util_8h_a78921c28c024e8f10a3b977c8cca003b}} 
+\index{util.h@{util.h}!str\_toc@{str\_toc}}
+\index{str\_toc@{str\_toc}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{str\_toc()}{str\_toc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() str\+\_\+toc (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00074}{74}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_aeafa89f9003430cc0822231f8c5d85d2}\label{util_8h_aeafa89f9003430cc0822231f8c5d85d2}} 
+\index{util.h@{util.h}!tic@{tic}}
+\index{tic@{tic}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{tic()}{tic()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() tic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00048}{48}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_aa7591bd70f5d6b2829acd74494406750}\label{util_8h_aa7591bd70f5d6b2829acd74494406750}} 
+\index{util.h@{util.h}!toc@{toc}}
+\index{toc@{toc}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{toc()}{toc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() toc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00068}{68}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+
+\mbox{\Hypertarget{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}\label{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}} 
+\index{util.h@{util.h}!tocq@{tocq}}
+\index{tocq@{tocq}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{tocq()}{tocq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() tocq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{util_8c_source_l00050}{50}} of file \mbox{\hyperlink{util_8c_source}{util.\+c}}.
+

@@ -1,0 +1,138 @@
+\hypertarget{linsys_8h_source}{}\doxysection{linsys.\+h}
+\label{linsys_8h_source}\index{include/linsys.h@{include/linsys.h}}
+\mbox{\hyperlink{linsys_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef LINSYS\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00002}00002 \textcolor{preprocessor}{\#define LINSYS\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00004}00004 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00005}00005 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00006}00006 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amatrix_8h}{amatrix.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linalg_8h}{linalg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00014}00014 \textcolor{preprocessor}{\#include "{}mkl.h"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00015}00015 \textcolor{preprocessor}{\#include "{}mkl\_dss.h"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00016}00016 \textcolor{preprocessor}{\#include "{}mkl\_pardiso.h"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00017}00017 \textcolor{preprocessor}{\#include "{}mkl\_types.h"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00018}00018 \textcolor{preprocessor}{\#include "{}mkl\_lapacke.h"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00019}00019 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{util_8h}{util.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00020}00020 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{qdldl_8h}{qdldl.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00023}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{00023}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIP\_LIN\_SYS\_WORK}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00024}00024 \{}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00025}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ac94e05c80ca0c535520b8d72d8f7aa43}{00025}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ac94e05c80ca0c535520b8d72d8f7aa43}{total\_solve\_time}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00027}00027     \textcolor{comment}{//matrix to factorize}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00028}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{00028}}     \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{K}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00030}00030     \textcolor{comment}{//mkl-\/dss}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00031}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a46400eafd3dfa374390bb814e88ea785}{00031}}     \_MKL\_DSS\_HANDLE\_t \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a46400eafd3dfa374390bb814e88ea785}{handle}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00034}00034     \textcolor{comment}{//mkl-\/pardiso}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00035}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ab2dd9b27761d6135a587ab90a2ce6688}{00035}}     \textcolor{keywordtype}{void} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ab2dd9b27761d6135a587ab90a2ce6688}{pt}}[64];}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00036}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ab5e86a14270007d696a5a02dfe40c8a2}{00036}}     MKL\_INT \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ab5e86a14270007d696a5a02dfe40c8a2}{iparm}}[64];}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00037}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a34623e6e0d2600316897026dffcc9c79}{00037}}     MKL\_INT \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a056de3f3a018c3a0a77d6702c136f92c}{maxfct}}, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a5caadf9be0d3806394b2a3b9c5dc60b5}{mnum}}, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a34623e6e0d2600316897026dffcc9c79}{error}}, \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ac911ab9576dd957282aff4b6edff095b}{msglvl}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00038}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a35a55d099799121db4934bd8e6e631b5}{00038}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a35a55d099799121db4934bd8e6e631b5}{ddum}};          \textcolor{comment}{/* Double dummy */}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00039}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a0614bff6a060c4d8fb1ea0c59d29b6c4}{00039}}     MKL\_INT \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a0614bff6a060c4d8fb1ea0c59d29b6c4}{idum}}; }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00040}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1327c83a752f3e7a414d2b52ad26e657}{00040}}     MKL\_INT \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1327c83a752f3e7a414d2b52ad26e657}{mtype}}; }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00044}00044     \textcolor{comment}{//pcg}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00045}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_abe5c4929b9cfaf44980a3d12fa0446c8}{00045}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_abe5c4929b9cfaf44980a3d12fa0446c8}{M}};     \textcolor{comment}{//preconditioner for pcg}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00046}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a21e0bcdfaa9dbc71e631dcab9686fd55}{00046}}     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a21e0bcdfaa9dbc71e631dcab9686fd55}{total\_cg\_iters}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00047}00047     }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00049}00049     \textcolor{comment}{//sparse cholesky}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00050}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_aa8c286302f3218ce80dc922031832783}{00050}}     \mbox{\hyperlink{structcs__symbolic}{css}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_aa8c286302f3218ce80dc922031832783}{S}} ;}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00051}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a88263ba33b59726d351b08f8c0a7313d}{00051}}     \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a88263ba33b59726d351b08f8c0a7313d}{N}} ;}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00054}00054     \textcolor{comment}{//qdldl}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00055}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a6a5b6214a1612b45de0762b44c9ef751}{00055}}     \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a6a5b6214a1612b45de0762b44c9ef751}{L}};             \textcolor{comment}{//matrix L of LDL' factorization  }}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00056}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ae1562831d934a6c60e32e64ee990545e}{00056}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ae1562831d934a6c60e32e64ee990545e}{Dinv}};    \textcolor{comment}{//the diagonal vector of the diagonal matrix D L of LDL' factorization       }}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00057}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1df4def1c9e1fd5cdcd8f9ec01ccf979}{00057}}     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1df4def1c9e1fd5cdcd8f9ec01ccf979}{nnz\_LDL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00058}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a490121f7eb98fd60a2ba4d657da34837}{00058}}     \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a490121f7eb98fd60a2ba4d657da34837}{P}};  \textcolor{comment}{//permutation for KKT matrix}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00059}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ace150a0ea0c6f999dd01ff8fda32a923}{00059}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_ace150a0ea0c6f999dd01ff8fda32a923}{bp}}; }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00062}00062     \textcolor{comment}{//lapack dense cholesky}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00063}00063     \textcolor{comment}{// A = UTU}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00064}\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{00064}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00065}00065 \};}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00067}00067 \textcolor{comment}{/*   y += A'*x}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00068}00068 \textcolor{comment}{        A in column compressed format}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00069}00069 \textcolor{comment}{        parallelizes over columns (rows of A')}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00070}00070 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00071}00071 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a6a10a6ad51ebaddf7debcbd5f69658db}{accum\_by\_Atrans}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00072}00072 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00073}00073     \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}}* A,}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00074}00074     \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00075}00075     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* y}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00076}00076 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00078}00078 \textcolor{comment}{/*  y += A*x}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00079}00079 \textcolor{comment}{    A in column compressed format}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00080}00080 \textcolor{comment}{    this parallelizes over columns and uses}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00081}00081 \textcolor{comment}{    pragma atomic to prevent concurrent writes to y}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00082}00082 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00083}00083 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a3667da138a27de4922674cce82e63911}{accum\_by\_A}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00084}00084 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00085}00085     \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}}* A,}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00086}00086     \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* x,}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00087}00087     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}* y}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00088}00088 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00092}00092 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_ae1e5d79ab31d4c0b81adfbeaf20c0456}{validate\_lin\_sys}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00093}00093 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00094}00094     \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00095}00095 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00097}00097 \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a551899162d85c6806bb21d8fa28edbd8}{get\_lin\_sys\_method}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00098}00098 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00099}00099     \mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00100}00100 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00102}00102 \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_aca7da880f1cd60333a28bcdbcec07919}{get\_lin\_sys\_summary}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00103}00103 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00104}00104     \mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}},}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00105}00105     \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} *info}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00106}00106 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00108}00108 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a429675ba14ca33e555093446664eae95}{free\_A\_matrix}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00109}00109 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00110}00110     \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00111}00111 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00113}00113 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a9e197c43e5f3b3ab5e69a10b9bdcea1a}{copy\_A\_matrix}})}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00114}00114 (}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00115}00115     \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} **dstp, }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00116}00116     \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00117}00117 );}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00119}00119 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8h_a278fc0320bd923f29dfea915ac051aef}{LDL\_factor}}(\mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{structcs__sparse}{cs}} **L, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Dinv);}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00121}00121 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_aa2aef9ad692f39f3d516065c2c95dd13}{init\_linsys\_work}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00124}00124 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_a276a8d85ef26c22b040493495a05f6b5}{solve\_linsys}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *pcg\_warm\_start, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} pcg\_tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00127}00127 \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8h_ac653ebc726afc6abfeae30578921d847}{free\_linsys}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00128}00128 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00129}00129 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00130}00130 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{linsys_8h_source_l00132}00132 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

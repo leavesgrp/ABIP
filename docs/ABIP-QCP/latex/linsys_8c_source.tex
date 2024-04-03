@@ -1,0 +1,1170 @@
+\hypertarget{linsys_8c_source}{}\doxysection{linsys.\+c}
+\label{linsys_8c_source}\index{source/linsys.c@{source/linsys.c}}
+\mbox{\hyperlink{linsys_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00001}\mbox{\hyperlink{linsys_8c_af08ec37a8c99d747fb60fa15bc28678b}{00001}} \textcolor{preprocessor}{\#define \_CRT\_SECURE\_NO\_WARNINGS}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00002}00002 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linsys_8h}{linsys.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd_8h}{amd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00006}\mbox{\hyperlink{linsys_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{00006}} \textcolor{preprocessor}{\#define MIN\_SCALE (1e-\/3)}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00007}\mbox{\hyperlink{linsys_8c_a0706168c32c39d519133d981a3df0687}{00007}} \textcolor{preprocessor}{\#define MAX\_SCALE (1e3)}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00012}\mbox{\hyperlink{linsys_8h_a9e197c43e5f3b3ab5e69a10b9bdcea1a}{00012}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a9e197c43e5f3b3ab5e69a10b9bdcea1a}{copy\_A\_matrix}})(\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} **dstp, \textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00013}00013   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} Annz = \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>n];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00014}00014   \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A = (\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00015}00015   \textcolor{keywordflow}{if} (!A) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00016}00016     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00017}00017   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00018}00018   A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}} = \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>n;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00019}00019   A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a79066c221d815b12d2972b10f8d75460}{m}} = \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00020}00020   A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}} = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * Annz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00021}00021   A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * Annz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00022}00022   A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}} = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * (\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>n + 1));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00024}00024   \textcolor{keywordflow}{if} (!A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}} || !A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}} || !A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00025}00025     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00026}00026   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00028}00028   memcpy(A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}}, \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>x, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * Annz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00029}00029   memcpy(A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}}, \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>i, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * Annz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00030}00030   memcpy(A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}, \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>p, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}) * (\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}-\/>n + 1));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00032}00032   *dstp = A;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00033}00033   \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00034}00034 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00039}\mbox{\hyperlink{linsys_8h_a551899162d85c6806bb21d8fa28edbd8}{00039}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a551899162d85c6806bb21d8fa28edbd8}{get\_lin\_sys\_method}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00040}00040   \textcolor{keywordtype}{char} *tmp = (\textcolor{keywordtype}{char} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 128);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00042}00042   \textcolor{keywordflow}{if} (spe-\/>data-\/>A == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00043}00043     sprintf(tmp, \textcolor{stringliteral}{"{}This problem has no linear constraints"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00044}00044     \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00045}00045   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00047}00047   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = spe-\/>data-\/>A-\/>p[spe-\/>data-\/>A-\/>n];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00049}00049   \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00050}00050     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct using MKL-\/DSS, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00051}00051   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 1) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00052}00052     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct using QDLDL, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00053}00053   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 2) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00054}00054     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct using sparse cholesky, nnz in A = \%li"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00055}00055             (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00056}00056   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 3) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00057}00057     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/indirect using pcg, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00058}00058   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 4) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00059}00059     sprintf(tmp, \textcolor{stringliteral}{"{}sparse-\/direct using MKL-\/PARDISO, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00060}00060   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 5) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00061}00061     sprintf(tmp, \textcolor{stringliteral}{"{}dense-\/direct using dense cholesky, nnz in A = \%li"{}}, (\textcolor{keywordtype}{long})n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00062}00062   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00063}00063     sprintf(tmp, \textcolor{stringliteral}{"{}\(\backslash\)nlinsys solver type error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00064}00064   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00065}00065   \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00066}00066 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00071}\mbox{\hyperlink{linsys_8h_aca7da880f1cd60333a28bcdbcec07919}{00071}} \textcolor{keywordtype}{char} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_aca7da880f1cd60333a28bcdbcec07919}{get\_lin\_sys\_summary}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} *info) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00072}00072   \textcolor{keywordtype}{char} *str = (\textcolor{keywordtype}{char} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 128);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00074}00074   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>nnz\_LDL;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00075}00075   info-\/>avg\_linsys\_time =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00076}00076       \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>total\_solve\_time / (info-\/>admm\_iter + 1) / 1e3;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00078}00078   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>stgs-\/>linsys\_solver == 3) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00079}00079     sprintf(str,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00080}00080             \textcolor{stringliteral}{"{}\(\backslash\)tLin-\/sys: avg \# CG iterations: \%2.2f, avg solve time per admm "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00081}00081             \textcolor{stringliteral}{"{}iter: \%1.2es\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00082}00082             (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>total\_cg\_iters / (info-\/>admm\_iter + 1),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00083}00083             info-\/>avg\_linsys\_time);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00084}00084   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00085}00085     sprintf(str,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00086}00086             \textcolor{stringliteral}{"{}\(\backslash\)tLin-\/sys: nnz in L factor: \%li, avg solve time per admm iter: "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00087}00087             \textcolor{stringliteral}{"{}\%1.2es\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00088}00088             (\textcolor{keywordtype}{long})n, info-\/>avg\_linsys\_time);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00089}00089   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00091}00091   info-\/>avg\_cg\_iters =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00092}00092       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>total\_cg\_iters / (info-\/>admm\_iter + 1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00093}00093   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>total\_solve\_time = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00094}00094   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>total\_cg\_iters = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00096}00096   \textcolor{keywordflow}{return} str;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00097}00097 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00102}\mbox{\hyperlink{linsys_8h_ae1e5d79ab31d4c0b81adfbeaf20c0456}{00102}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_ae1e5d79ab31d4c0b81adfbeaf20c0456}{validate\_lin\_sys}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00103}00103   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00104}00104   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} r\_max;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00105}00105   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} Annz;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00107}00107   \textcolor{keywordflow}{if} (A == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00108}00108     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00109}00109   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00111}00111   \textcolor{keywordflow}{if} (!A-\/>x || !A-\/>i || !A-\/>p) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00112}00112     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}ERROR: incomplete data!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00113}00113     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00114}00114   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00116}00116   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < A-\/>n; ++\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00117}00117     \textcolor{keywordflow}{if} (A-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] == A-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1]) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00118}00118       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}WARN: the \%li-\/th column empty!\(\backslash\)n"{}}, (\textcolor{keywordtype}{long})\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00119}00119     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (A-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] > A-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1]) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00120}00120       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}ERROR: the column pointers decreases!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00121}00121       \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00122}00122     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00123}00123   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00125}00125   Annz = A-\/>p[A-\/>n];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00126}00126   \textcolor{keywordflow}{if} (((\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})Annz / A-\/>m > A-\/>n) || (Annz <= 0)) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00127}00127     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00128}00128         \textcolor{stringliteral}{"{}ERROR: the number of nonzeros in A = \%li, outside of valid range!\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00129}00129         (\textcolor{keywordtype}{long})Annz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00130}00130     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00131}00131   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00133}00133   r\_max = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00134}00134   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < Annz; ++\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00135}00135     \textcolor{keywordflow}{if} (A-\/>i[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] > r\_max) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00136}00136       r\_max = A-\/>i[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00137}00137     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00138}00138   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00139}00139   \textcolor{keywordflow}{if} (r\_max > A-\/>m -\/ 1) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00140}00140     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00141}00141         \textcolor{stringliteral}{"{}ERROR: the number of rows in A is inconsistent with input "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00142}00142         \textcolor{stringliteral}{"{}dimension!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00143}00143     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00144}00144   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00146}00146   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00147}00147 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00152}\mbox{\hyperlink{linsys_8h_a429675ba14ca33e555093446664eae95}{00152}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a429675ba14ca33e555093446664eae95}{free\_A\_matrix}})(\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00153}00153   \textcolor{keywordflow}{if} (A-\/>x) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00154}00154     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(A-\/>x);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00155}00155   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00156}00156   \textcolor{keywordflow}{if} (A-\/>i) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00157}00157     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(A-\/>i);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00158}00158   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00159}00159   \textcolor{keywordflow}{if} (A-\/>p) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00160}00160     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(A-\/>p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00161}00161   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00163}00163   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(A);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00164}00164 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00166}00166 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00168}00168 \textcolor{keyword}{static} \textcolor{keywordtype}{void} print\_A\_matrix(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00169}00169   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00170}00170   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00172}00172   \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}}] < 2500) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00173}00173     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00174}00174     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}}; ++\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00175}00175       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}Col \%li: "{}}, (\textcolor{keywordtype}{long})\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00176}00176       \textcolor{keywordflow}{for} (j = A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]; j < A-\/>p[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1]; j++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00177}00177         \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}A[\%li,\%li] = \%4f, "{}}, (\textcolor{keywordtype}{long})A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_aeba726caa0a05fb7b0287654a95ca00d}{i}}[j], (\textcolor{keywordtype}{long})\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}}[j]);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00178}00178       \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00179}00179       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}norm col = \%4f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00180}00180                   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(\&(A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}}[A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]]), A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1] -\/ A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00181}00181     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00182}00182     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}norm A = \%4f\(\backslash\)n"{}}, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a0dc9134e84f7d7efc27658e6c5d9d480}{x}}, A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_a2211924e1d99d6d76f57b23525948f9f}{p}}[A-\/>\mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x_abc68bb59df233317de40edfd334aed42}{n}}]));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00183}00183   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00184}00184 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00185}00185 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00190}00190 \textcolor{comment}{// y += A'*x}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00191}\mbox{\hyperlink{linsys_8h_a6a10a6ad51ebaddf7debcbd5f69658db}{00191}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a6a10a6ad51ebaddf7debcbd5f69658db}{accum\_by\_Atrans}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00192}00192                            \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00193}00193   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} p;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00194}00194   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00196}00196   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} c1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00197}00197   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} c2;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00198}00198   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} yj;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00200}00200 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00201}00201   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) mult\_by\_Atrans\_timer;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00202}00202   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}})(\&mult\_by\_Atrans\_timer);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00203}00203 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00205}00205 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00206}00206 \textcolor{preprocessor}{\#pragma omp parallel for private(p, c1, c2, yj)}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00207}00207 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00209}00209   \textcolor{keywordflow}{for} (j = 0; j < A-\/>n; j++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00210}00210     yj = y[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00211}00211     c1 = A-\/>p[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00212}00212     c2 = A-\/>p[j + 1];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00213}00213     \textcolor{keywordflow}{for} (p = c1; p < c2; p++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00214}00214       yj += A-\/>x[p] * x[A-\/>i[p]];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00215}00215     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00216}00216     y[j] = yj;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00217}00217   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00219}00219 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00220}00220   \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}mult By A trans time: \%1.2e seconds. \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00221}00221               \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\&mult\_by\_Atrans\_timer) / 1e3);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00222}00222 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00223}00223 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00228}00228 \textcolor{comment}{// y += A*x}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00229}\mbox{\hyperlink{linsys_8h_a3667da138a27de4922674cce82e63911}{00229}} \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a3667da138a27de4922674cce82e63911}{accum\_by\_A}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00230}00230   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} p;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00231}00231   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00233}00233   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} c1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00234}00234   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} c2;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00235}00235   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} xj;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00237}00237 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00238}00238   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) mult\_by\_A\_timer;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00239}00239   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}})(\&mult\_by\_A\_timer);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00240}00240 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00241}00241 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00242}00242 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00243}00243 \textcolor{preprocessor}{\#pragma omp parallel for private(p, c1, c2, xj)}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00244}00244   \textcolor{keywordflow}{for} (j = 0; j < n; j++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00245}00245     xj = x[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00246}00246     c1 = A-\/>p[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00247}00247     c2 = A-\/>p[j + 1];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00248}00248     \textcolor{keywordflow}{for} (p = c1; p < c2; p++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00249}00249 \textcolor{preprocessor}{\#pragma omp atomic}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00250}00250       y[A-\/>i[p]] += A-\/>x[p] * xj;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00251}00251     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00252}00252   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00253}00253 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00254}00254 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00255}00255   \textcolor{keywordflow}{for} (j = 0; j < A-\/>n; j++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00256}00256     xj = x[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00257}00257     c1 = A-\/>p[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00258}00258     c2 = A-\/>p[j + 1];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00259}00259     \textcolor{keywordflow}{for} (p = c1; p < c2; p++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00260}00260       y[A-\/>i[p]] += A-\/>x[p] * xj;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00261}00261     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00262}00262   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00263}00263 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00264}00264 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00265}00265   \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}mult By A time: \%1.2e seconds \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00266}00266               \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\&mult\_by\_A\_timer) / 1e3);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00267}00267 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00268}00268 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00269}00269 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00270}00270 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \_ldl\_init(\mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *P, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} **info) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00271}00271   *info = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(\mbox{\hyperlink{amd_8h_ad4d0388011f3a533198976feb69ae5e4}{AMD\_INFO}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00272}00272   \textcolor{keywordflow}{return} \mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\_order}}(A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, P, (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}, *info);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00273}00273 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00275}\mbox{\hyperlink{linsys_8c_a625a6de74008f705f69788ffa18567e9}{00275}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{linsys_8c_a625a6de74008f705f69788ffa18567e9}{permute\_kkt}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00276}00276   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *info;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00277}00277   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *Pinv, amd\_status, *idx\_mapping, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00278}00278   \mbox{\hyperlink{structcs__sparse}{cs}} *kkt = spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{K}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00279}00279   \mbox{\hyperlink{structcs__sparse}{cs}} *kkt\_perm;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00280}00280   \textcolor{keywordflow}{if} (!kkt) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00281}00281     \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00282}00282   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00283}00283   amd\_status = \_ldl\_init(kkt, spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a490121f7eb98fd60a2ba4d657da34837}{P}}, \&info);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00284}00284   \textcolor{keywordflow}{if} (amd\_status < 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00285}00285     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}AMD permutatation error.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00286}00286     \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00287}00287   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00288}00288 \textcolor{preprocessor}{\#if VERBOSITY > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00289}00289   \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}Matrix factorization info:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00290}00290   \mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\_info}}(info);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00291}00291 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00292}00292   Pinv = \mbox{\hyperlink{cs_8h_a2d711fa72bad4a3e94b3aeeb743e27ad}{cs\_pinv}}(spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a490121f7eb98fd60a2ba4d657da34837}{P}}, spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{K}}-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00293}00293   kkt\_perm = \mbox{\hyperlink{cs_8h_ad19ab7e30ae8e32fe9b000a1e7e30a1f}{cs\_symperm}}(kkt, Pinv, 1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00294}00294   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Pinv);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00295}00295   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(info);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00296}00296   \textcolor{keywordflow}{return} kkt\_perm;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00297}00297 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00298}00298 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00299}00299 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \_ldl\_perm(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *P) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00300}00300   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00301}00301   \textcolor{keywordflow}{for} (j = 0; j < n; j++) x[j] = b[P[j]];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00302}00302 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00304}00304 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \_ldl\_permt(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *P) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00305}00305   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00306}00306   \textcolor{keywordflow}{for} (j = 0; j < n; j++) x[P[j]] = b[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00307}00307 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00308}00308 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00309}00309 \textcolor{keyword}{static} \textcolor{keywordtype}{void} \_ldl\_solve(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{structcs__sparse}{cs}} *L, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Dinv, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *P,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00310}00310                        \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *bp) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00311}00311   \textcolor{comment}{/* solves PLDL'P' x = b for x */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00312}00312   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = L-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00313}00313   \_ldl\_perm(n, bp, b, P);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00314}00314   \mbox{\hyperlink{qdldl_8h_a8cac09620d52e066bb429088fdf1c328}{QDLDL\_solve}}(n, L-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, L-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}, Dinv, bp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00315}00315   \_ldl\_permt(n, b, bp, P);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00316}00316 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00317}00317 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00318}\mbox{\hyperlink{linsys_8c_aa2b98d61e5608d0f844bf029431bf122}{00318}} \_MKL\_DSS\_HANDLE\_t \mbox{\hyperlink{linsys_8c_aa2b98d61e5608d0f844bf029431bf122}{init\_mkl\_work}}(\mbox{\hyperlink{structcs__sparse}{cs}} *K) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00319}00319   \_INTEGER\_t \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00320}00320   MKL\_INT create\_opt = MKL\_DSS\_ZERO\_BASED\_INDEXING;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00321}00321   MKL\_INT order\_opt = MKL\_DSS\_DEFAULTS;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00322}00322   MKL\_INT sym = MKL\_DSS\_SYMMETRIC;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00323}00323   MKL\_INT type = MKL\_DSS\_INDEFINITE;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00324}00324 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00325}00325   \_MKL\_DSS\_HANDLE\_t handle;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00326}00326 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00327}00327   \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} = dss\_create(handle, create\_opt);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00328}00328   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} != MKL\_DSS\_SUCCESS) \textcolor{keywordflow}{goto} printError;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00330}00330   \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} = dss\_define\_structure(handle, sym, K-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, K-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}}, K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, K-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, K-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}[K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}]);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00331}00331   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} != MKL\_DSS\_SUCCESS) \textcolor{keywordflow}{goto} printError;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00332}00332 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00333}00333   \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} = dss\_reorder(handle, order\_opt, 0);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00334}00334   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} != MKL\_DSS\_SUCCESS) \textcolor{keywordflow}{goto} printError;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00335}00335 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00336}00336   \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} = dss\_factor\_real(handle, type, K-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00337}00337   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} != MKL\_DSS\_SUCCESS) \textcolor{keywordflow}{goto} printError;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00338}00338 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00339}00339   \textcolor{keywordflow}{return} handle;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00340}00340 printError:}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00341}00341   printf(\textcolor{stringliteral}{"{}MKL-\/DSS returned error code \%i\(\backslash\)n"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00342}00342   \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00343}00343 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00344}00344 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00345}\mbox{\hyperlink{linsys_8c_a5a203f7c991e072e8430c7f4f3c756b7}{00345}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a5a203f7c991e072e8430c7f4f3c756b7}{mkl\_solve\_linsys}}(\_MKL\_DSS\_HANDLE\_t handle, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00346}00346   \_INTEGER\_t \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00347}00347   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} nrhs = 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00348}00348   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *solValues = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00349}00349   MKL\_INT opt = MKL\_DSS\_DEFAULTS;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00350}00350   \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} = dss\_solve\_real(handle, opt, b, nrhs, solValues);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00351}00351   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} != MKL\_DSS\_SUCCESS) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00352}00352     printf(\textcolor{stringliteral}{"{}solve err"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00353}00353     exit(1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00354}00354   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00355}00355 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00356}00356   memcpy(b, solValues, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00357}00357   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(solValues);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00358}00358   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00359}00359 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00360}00360 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00361}\mbox{\hyperlink{linsys_8c_a0bea5d6e8ef284973bd5035b8d07e1e7}{00361}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a0bea5d6e8ef284973bd5035b8d07e1e7}{init\_pardiso}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00362}00362   MKL\_INT PARDISO\_PARAMS\_LDL[64] = \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00363}00363 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00364}00364       1,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00365}00365       \textcolor{comment}{/* Non-\/default value */} 3,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00366}00366       \textcolor{comment}{/* P Nested dissection */} 0, \textcolor{comment}{/* Reserved          */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00367}00367       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00368}00368       \textcolor{comment}{/* No CG             */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00369}00369       \textcolor{comment}{/* No user permutation */} 0, \textcolor{comment}{/* Overwriting    */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00370}00370       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00371}00371       \textcolor{comment}{/* Refinement report */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00372}00372       \textcolor{comment}{/* Auto ItRef step     */} 0, \textcolor{comment}{/* Reserved          */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00373}00373       8,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00374}00374       \textcolor{comment}{/* Perturb           */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00375}00375       \textcolor{comment}{/* Disable scaling     */} 0, \textcolor{comment}{/* No transpose      */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00376}00376       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00377}00377       \textcolor{comment}{/* Disable matching  */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00378}00378       \textcolor{comment}{/* Report on pivots    */} 0, \textcolor{comment}{/* Output            */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00379}00379       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00380}00380       \textcolor{comment}{/* Output            */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00381}00381       \textcolor{comment}{/* Output              */} -\/1, \textcolor{comment}{/* No report         */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00382}00382       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00383}00383       \textcolor{comment}{/* No report         */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00384}00384       \textcolor{comment}{/* Output              */} 2, \textcolor{comment}{/* Pivoting          */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00385}00385       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00386}00386       \textcolor{comment}{/* nPosEigVals       */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00387}00387       \textcolor{comment}{/* nNegEigVals         */} 0, \textcolor{comment}{/* Classic factorize */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00388}00388       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00389}00389       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00390}00390       0, \textcolor{comment}{/* Matrix checker    */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00391}00391       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00392}00392       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00393}00393       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00394}00394       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00395}00395       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00396}00396       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00397}00397       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00398}00398       1,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00399}00399       \textcolor{comment}{/* 0-\/based solve       */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00400}00400       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00401}00401       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00402}00402       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00403}00403       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00404}00404       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00405}00405       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00406}00406       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00407}00407       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00408}00408       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00409}00409       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00410}00410       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00411}00411       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00412}00412       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00413}00413       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00414}00414       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00415}00415       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00416}00416       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00417}00417       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00418}00418       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00419}00419       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00420}00420       \textcolor{comment}{/* No diagonal         */} 0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00421}00421       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00422}00422       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00423}00423       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00424}00424       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00425}00425       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00426}00426       0,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00427}00427       0\};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00428}00428 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00429}00429   \mbox{\hyperlink{structcs__sparse}{cs}} *K = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>K;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00430}00430   MKL\_INT n = K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00431}00431   MKL\_INT *ia = K-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00432}00432   MKL\_INT *ja = K-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00433}00433   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *a = K-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00434}00434 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00435}00435   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mtype = -\/2; \textcolor{comment}{/* Real symmetric matrix */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00436}00436   \textcolor{comment}{/* RHS and solution vectors. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00437}00437   MKL\_INT nrhs = 1; \textcolor{comment}{/* Number of right hand sides. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00438}00438   \textcolor{comment}{/* Internal solver memory pointer pt, */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00439}00439   \textcolor{comment}{/* 32-\/bit: int pt[64]; 64-\/bit: long int pt[64] */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00440}00440   \textcolor{comment}{/* or void *pt[64] should be OK on both architectures */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00441}00441   \textcolor{comment}{// void *pt[64];}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00442}00442   \textcolor{comment}{/* Pardiso control parameters. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00443}00443   \textcolor{comment}{// MKL\_INT iparm[64];}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00444}00444   MKL\_INT phase;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00445}00445   \textcolor{comment}{/* Auxiliary variables. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00446}00446   MKL\_INT \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00447}00447 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00448}00448   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00449}00449   \textcolor{comment}{/* .. Setup Pardiso control parameters. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00450}00450   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00451}00451   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < 64; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00452}00452     \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00453}00453   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00454}00454 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00455}00455   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < 64; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00456}00456     \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = PARDISO\_PARAMS\_LDL[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00457}00457   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00458}00458 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00459}00459   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>maxfct = 1; \textcolor{comment}{/* Maximum number of numerical factorizations. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00460}00460   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mnum = 1;   \textcolor{comment}{/* Which factorization to use. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00461}00461   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>msglvl = 1; \textcolor{comment}{/* Print statistical information in file */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00462}00462   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error = 0;  \textcolor{comment}{/* Initialize error flag */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00463}00463   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00464}00464   \textcolor{comment}{/* .. Initialize the internal solver memory pointer. This is only  */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00465}00465   \textcolor{comment}{/*   necessary for the FIRST call of the PARDISO solver.           */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00466}00466   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00467}00467   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < 64; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00468}00468     \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>pt[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00469}00469   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00470}00470   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00471}00471   \textcolor{comment}{/* .. Reordering and Symbolic Factorization. This step also allocates  */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00472}00472   \textcolor{comment}{/*    all memory that is necessary for the factorization.              */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00473}00473   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00474}00474   phase = 11;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00475}00475   PARDISO(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>pt, \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>maxfct), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mnum), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mtype),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00476}00476           \&phase, \&n, a, ja, ia, \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>idum), \&nrhs, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00477}00477           \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>msglvl), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00478}00478           \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00479}00479   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error != 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00480}00480     printf(\textcolor{stringliteral}{"{}\(\backslash\)nERROR during symbolic factorization: \%i"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00481}00481     exit(1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00482}00482   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00483}00483   printf(\textcolor{stringliteral}{"{}\(\backslash\)nReordering completed ... "{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00484}00484   printf(\textcolor{stringliteral}{"{}\(\backslash\)nNumber of nonzeros in factors = \%i"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm[17]);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00485}00485   printf(\textcolor{stringliteral}{"{}\(\backslash\)nNumber of factorization MFLOPS = \%i"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm[18]);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00486}00486   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00487}00487   \textcolor{comment}{/* .. Numerical factorization. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00488}00488   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00489}00489   phase = 22;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00490}00490   PARDISO(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>pt, \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>maxfct), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mnum), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mtype),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00491}00491           \&phase, \&n, a, ja, ia, \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>idum), \&nrhs, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00492}00492           \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>msglvl), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum), \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00493}00493           \&(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00494}00494   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error != 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00495}00495     printf(\textcolor{stringliteral}{"{}\(\backslash\)nERROR during numerical factorization: \%i"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00496}00496     exit(2);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00497}00497   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00498}00498   printf(\textcolor{stringliteral}{"{}\(\backslash\)nFactorization completed ... "{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00500}00500   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00501}00501 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00502}00502 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00503}\mbox{\hyperlink{linsys_8c_a1e18bd8473669632327ee3aca32742a1}{00503}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a1e18bd8473669632327ee3aca32742a1}{pardiso\_solve}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00504}00504   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00505}00505   \textcolor{comment}{/* .. Back substitution and iterative refinement. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00506}00506   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00507}00507   \mbox{\hyperlink{structcs__sparse}{cs}} *K = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>K;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00508}00508   MKL\_INT phase = 33;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00509}00509   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm[7] = 2; \textcolor{comment}{/* Max numbers of iterative refinement steps. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00510}00510   \textcolor{comment}{/* Set right hand side to one. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00511}00511   MKL\_INT nrhs = 1; \textcolor{comment}{/* Number of right hand sides. */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00512}00512   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00513}00513 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00514}00514   PARDISO(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>pt, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>maxfct, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mnum, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mtype,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00515}00515           \&phase, \&n, K-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}, K-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, K-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>idum, \&nrhs, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00516}00516           \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>msglvl, b, x, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00517}00517   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error != 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00518}00518     printf(\textcolor{stringliteral}{"{}\(\backslash\)nERROR during solution: \%i"{}}, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00519}00519     exit(3);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00520}00520   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00521}00521   memcpy(b, x, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00522}00522   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(x);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00523}00523 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00524}00524   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00525}00525 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00526}00526 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00527}\mbox{\hyperlink{linsys_8c_a927ffd9f339e972768a21809c2bc348f}{00527}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a927ffd9f339e972768a21809c2bc348f}{pardiso\_free}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00528}00528   \mbox{\hyperlink{structcs__sparse}{cs}} *K = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>K;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00529}00529   MKL\_INT phase = -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00530}00530   MKL\_INT nrhs = 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00531}00531   MKL\_INT n = K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00532}00532   PARDISO(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>pt, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>maxfct, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mnum, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>mtype,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00533}00533           \&phase, \&n, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum, K-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, K-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>idum, \&nrhs,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00534}00534           \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>iparm, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>msglvl, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum, \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>ddum,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00535}00535           \&\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>error);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00536}00536 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00537}00537   \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00538}00538 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00539}00539   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00540}00540 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00541}00541 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00542}\mbox{\hyperlink{linsys_8h_a278fc0320bd923f29dfea915ac051aef}{00542}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a278fc0320bd923f29dfea915ac051aef}{LDL\_factor}}(\mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{structcs__sparse}{cs}} **L, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Dinv) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00543}00543   \textcolor{comment}{// data for elim tree calculation}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00544}00544   \mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *etree;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00545}00545   \mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *Lnz;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00546}00546   \mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} sumLnz;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00547}00547 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00548}00548   \textcolor{comment}{// working data for factorisation}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00549}00549   \mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *iwork;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00550}00550   \mbox{\hyperlink{qdldl__types_8h_a58d5afed3632489e60573125142d1212}{QDLDL\_bool}} *bwork;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00551}00551   \mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}} *fwork;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00552}00552 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00553}00553   \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00554}00554 \textcolor{comment}{   * pre-\/factorisation memory allocations}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00555}00555 \textcolor{comment}{   *-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00556}00556 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00557}00557   \textcolor{comment}{// These can happen *before* the etree is calculated}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00558}00558   \textcolor{comment}{// since the sizes are not sparsity pattern specific}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00559}00559 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00560}00560   \textcolor{comment}{// For the elimination tree}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00561}00561   etree = (\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}}) * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00562}00562   Lnz = (\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}}) * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00563}00563 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00564}00564   \textcolor{comment}{// For the L factors.   Li and Lx are sparsity dependent}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00565}00565   \textcolor{comment}{// so must be done after the etree is constructed}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00566}00566 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00567}00567   \mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}} *D = (\mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}}) * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00568}00568   \textcolor{comment}{//   (*Dinv) = (QDLDL\_float*)malloc(sizeof(QDLDL\_float) * A-\/>n);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00569}00569 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00570}00570   \textcolor{comment}{// Working memory.  Note that both the etree and factor}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00571}00571   \textcolor{comment}{// calls requires a working vector of QDLDL\_int, with}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00572}00572   \textcolor{comment}{// the factor function requiring 3*An elements and the}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00573}00573   \textcolor{comment}{// etree only An elements.   Just allocate the larger}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00574}00574   \textcolor{comment}{// amount here and use it in both places}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00575}00575   iwork = (\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_ae11ba65646333405250d5be400094f83}{QDLDL\_int}}) * (3 * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00576}00576   bwork = (\mbox{\hyperlink{qdldl__types_8h_a58d5afed3632489e60573125142d1212}{QDLDL\_bool}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_a58d5afed3632489e60573125142d1212}{QDLDL\_bool}}) * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00577}00577   fwork = (\mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{qdldl__types_8h_a92d3691c5ccda7049c33d00c63ba7d7d}{QDLDL\_float}}) * A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00578}00578 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00579}00579   \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00580}00580 \textcolor{comment}{   * elimination tree calculation}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00581}00581 \textcolor{comment}{   *-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00582}00582   sumLnz = \mbox{\hyperlink{qdldl_8h_ab6073eb3c57c7de1d3ff34660bfbea5d}{QDLDL\_etree}}(A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, iwork, Lnz, etree);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00583}00583 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00584}00584   \textcolor{keywordflow}{if} (sumLnz < 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00585}00585     \textcolor{keywordflow}{return} sumLnz;  \textcolor{comment}{// error}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00586}00586   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00587}00587   \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00588}00588 \textcolor{comment}{   * LDL factorisation}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00589}00589 \textcolor{comment}{   *-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00590}00590 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00591}00591   \textcolor{comment}{// First allocate memory for Li and Lx}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00592}00592   (*L) = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}}(A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, sumLnz, 1, 0);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00593}00593   \textcolor{comment}{//   L-\/>p    = (QDLDL\_int*)malloc(sizeof(QDLDL\_int)*(A-\/>n+1));}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00594}00594   \textcolor{comment}{//   L-\/>i    = (QDLDL\_int*)malloc(sizeof(QDLDL\_int)*sumLnz);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00595}00595   \textcolor{comment}{//   L-\/>x    = (QDLDL\_float*)malloc(sizeof(QDLDL\_float)*sumLnz);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00596}00596   \textcolor{comment}{//   Dinv  = (QDLDL\_float*)malloc(sizeof(QDLDL\_float)*A-\/>n);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00597}00597 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00598}00598   \textcolor{comment}{// now factor}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00599}00599   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} status =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00600}00600       \mbox{\hyperlink{qdldl_8h_afb0d66c8d79bf61800805af3cb7740f3}{QDLDL\_factor}}(A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}, (*L)-\/>p, (*L)-\/>i, (*L)-\/>x, D, Dinv,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00601}00601                    Lnz, etree, bwork, iwork, fwork);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00602}00602 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00603}00603   free(D);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00604}00604   free(etree);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00605}00605   free(Lnz);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00606}00606   free(iwork);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00607}00607   free(bwork);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00608}00608   free(fwork);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00609}00609 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00610}00610   \textcolor{keywordflow}{return} status;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00611}00611 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00612}00612 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00613}\mbox{\hyperlink{linsys_8c_aa0dd61e6bf23897061859fa2440aad5e}{00613}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_aa0dd61e6bf23897061859fa2440aad5e}{abip\_cholsol}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00614}00614   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00615}00615   x = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00616}00616   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} ok = (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>S \&\& \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>N \&\& x);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00617}00617   \textcolor{keywordflow}{if} (ok) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00618}00618     \mbox{\hyperlink{cs_8h_a0938ec08825dc07a2dab8f9477ab053b}{cs\_ipvec}}(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>S-\/>pinv, b, x, n); \textcolor{comment}{/* x = P*b */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00619}00619     \mbox{\hyperlink{cs_8h_adefe244fe8757d1d7b4de55e0c81561f}{cs\_lsolve}}(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>N-\/>L, x);         \textcolor{comment}{/* x = L\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00620}00620     \mbox{\hyperlink{cs_8h_a470ceabef51cc5f2d522587aa9470eb6}{cs\_ltsolve}}(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>N-\/>L, x);        \textcolor{comment}{/* x = L'\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00621}00621     \mbox{\hyperlink{cs_8h_a79d20fcd31c30d118075e08087127c4e}{cs\_pvec}}(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>S-\/>pinv, x, b, n);  \textcolor{comment}{/* b = P'*x */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00622}00622   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00623}00623   \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}}(x);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00624}00624   \textcolor{keywordflow}{return} (ok);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00625}00625 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00626}00626 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00630}\mbox{\hyperlink{linsys_8c_a6855d1795be44eb753b05a15f44654f5}{00630}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a6855d1795be44eb753b05a15f44654f5}{pcg}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} rho\_x,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00631}00631              \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} max\_iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00632}00632   \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00633}00633 \textcolor{comment}{      x is used for warm start}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00634}00634 \textcolor{comment}{      result overwrite b}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00635}00635 \textcolor{comment}{  */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00636}00636 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00637}00637   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>p;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00638}00638   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>q;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00639}00639 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00640}00640   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *ATx = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00641}00641   memset(ATx, 0, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00642}00642   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_AT\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, x, ATx);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00643}00643   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(ATx, -\/1, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00644}00644 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00645}00645   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *r = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00646}00646   memcpy(r, b, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00647}00647   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_A\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, ATx, r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00648}00648   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, x, m, -\/rho\_x);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00649}00649 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00650}00650   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *z = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00651}00651   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < m; k++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00652}00652     z[k] = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M[k] * r[k];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00653}00653   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00654}00654 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00655}00655   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *p = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00656}00656   memcpy(p, z, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00657}00657 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00658}00658   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ip = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(r, z, m);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00659}00659 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00660}00660   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00661}00661   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Ap = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00662}00662   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} alpha, ipold, beta;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00663}00663 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00664}00664   memcpy(b, x, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00665}00665 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00666}00666   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < max\_iter; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00667}00667     memset(ATx, 0, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00668}00668     \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_AT\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, p, ATx);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00669}00669     memcpy(Ap, p, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00670}00670     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(Ap, rho\_x, m);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00671}00671     \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_A\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, ATx, Ap);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00672}00672 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00673}00673     alpha = ip / (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(Ap, p, m));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00674}00674 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00675}00675     \textcolor{comment}{// ABIP(add\_scaled\_array)(x, p, m, alpha);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00676}00676     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(b, p, m, alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00677}00677 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00678}00678     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, Ap, m, -\/alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00679}00679 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00680}00680     \textcolor{keywordflow}{if} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(r, m) < tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00681}00681 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 0}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00682}00682       \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00683}00683           \textcolor{stringliteral}{"{}CG took \%d iterations to converge, resisdual \%4f <= tolerance \%4f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00684}00684           \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(r, m), tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00685}00685 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00686}00686 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00687}00687       \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(ATx);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00688}00688       \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00689}00689       \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00690}00690       \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00691}00691       \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Ap);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00692}00692 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00693}00693       \textcolor{keywordflow}{return} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00694}00694     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00695}00695 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00696}00696     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < m; j++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00697}00697       z[j] = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M[j] * r[j];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00698}00698     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00699}00699 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00700}00700     ipold = ip;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00701}00701     ip = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(z, r, m);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00702}00702     beta = ip / ipold;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00703}00703 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00704}00704     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(p, beta, m);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00705}00705     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(p, z, m, 1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00706}00706   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00707}00707 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00708}00708   printf(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00709}00709       \textcolor{stringliteral}{"{}CG did not converge within \%d iterations, resisdual \%4f > tolerance "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00710}00710       \textcolor{stringliteral}{"{}\%4f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00711}00711       max\_iter, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(r, m), tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00712}00712 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00713}00713   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(ATx);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00714}00714   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00715}00715   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00716}00716   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00717}00717   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Ap);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00718}00718 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00719}00719   \textcolor{keywordflow}{return} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00720}00720 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00721}00721 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00725}00725 \textcolor{keyword}{static} \textcolor{keywordtype}{void} mat\_vec(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00726}00726   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00727}00727   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>n;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00728}00728   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00729}00729 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00730}00730   memcpy(y, x, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00731}00731 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00732}00732   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00733}00733     y[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] *= \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>rho\_dr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + m];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00734}00734   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00735}00735 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00736}00736   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>Q != \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00737}00737     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a3667da138a27de4922674cce82e63911}{accum\_by\_A}})(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>Q, x, y);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00738}00738   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00739}00739 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00740}00740   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *tem = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * m);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00741}00741   memset(tem, 0, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00742}00742   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a3667da138a27de4922674cce82e63911}{accum\_by\_A}})(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>A, x, tem);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00743}00743   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00744}00744     tem[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] /= \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>rho\_dr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00745}00745   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00746}00746 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00747}00747   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a6a10a6ad51ebaddf7debcbd5f69658db}{accum\_by\_Atrans}})(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>A, tem, y);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00748}00748 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00749}00749   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(tem);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00750}00750 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00751}00751 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00755}\mbox{\hyperlink{linsys_8c_a20054f1e250f3219101346aca921cc2a}{00755}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a20054f1e250f3219101346aca921cc2a}{qcp\_pcg}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00756}00756                  \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} max\_iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00757}00757   \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00758}00758 \textcolor{comment}{      x is used for warm start}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00759}00759 \textcolor{comment}{      result overwrite b}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00760}00760 \textcolor{comment}{  */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00761}00761 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00762}00762   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>m;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00763}00763   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>n;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00764}00764   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00765}00765 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00766}00766   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ztr, ztr\_prev, alpha;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00767}00767   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *p =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00768}00768       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* cg direction */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00769}00769   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Gp = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00770}00770       n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* updated CG direction */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00771}00771   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *r =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00772}00772       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* cg residual */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00773}00773   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *z = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00774}00774   ; \textcolor{comment}{/* for preconditioning */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00775}00775 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00776}00776   \textcolor{keywordflow}{if} (x == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00777}00777     \textcolor{comment}{/* no warm\_start, take x = 0 */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00778}00778     \textcolor{comment}{/* r = b */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00779}00779     memcpy(r, b, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00780}00780     \textcolor{comment}{/* b = 0 */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00781}00781     memset(b, 0, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00782}00782   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00783}00783     \textcolor{comment}{/* r = Mat * s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00784}00784     mat\_vec(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, x, r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00785}00785     \textcolor{comment}{/* r = Mat * s -\/ b */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00786}00786     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, b, n, -\/1.);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00787}00787     \textcolor{comment}{/* r = b -\/ Mat * s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00788}00788     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(r, -\/1., n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00789}00789     \textcolor{comment}{/* b = s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00790}00790     memcpy(b, x, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00791}00791   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00792}00792   \textcolor{comment}{/* check to see if we need to run CG at all */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00793}00793   \textcolor{keywordflow}{if} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n) < \mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(tol, 1e-\/12)) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00794}00794     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00795}00795     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00796}00796     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00797}00797     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00798}00798     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00799}00799   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00800}00800 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00801}00801   \textcolor{comment}{/* z = M r (M is inverse preconditioner) */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00802}00802   memcpy(z, r, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00803}00803   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a0f03690d0630553d53d94cafd984ea56}{c\_dot}})(z, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00804}00804 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00805}00805   \textcolor{comment}{/* ztr = z'r */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00806}00806   ztr = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(z, r, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00807}00807   \textcolor{comment}{/* p = z */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00808}00808   memcpy(p, z, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00809}00809 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00810}00810   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < max\_iter; ++\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00811}00811     \textcolor{comment}{/* Gp = Mat * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00812}00812     mat\_vec(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, p, Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00813}00813     \textcolor{comment}{/* alpha = z'r / p'G p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00814}00814     alpha = ztr / \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(p, Gp, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00815}00815     \textcolor{comment}{/* b += alpha * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00816}00816     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(b, p, n, alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00817}00817     \textcolor{comment}{/* r -\/= alpha * G p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00818}00818     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, Gp, n, -\/alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00819}00819 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00820}00820     \textcolor{keywordflow}{if} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n) < tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00821}00821       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00822}00822     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00823}00823     \textcolor{comment}{/* z = M r (M is inverse preconditioner) */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00824}00824     memcpy(z, r, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00825}00825     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a0f03690d0630553d53d94cafd984ea56}{c\_dot}})(z, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00826}00826 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00827}00827     ztr\_prev = ztr;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00828}00828     \textcolor{comment}{/* ztr = z'r */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00829}00829     ztr = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(z, r, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00830}00830     \textcolor{comment}{/* p = beta * p, where beta = ztr / ztr\_prev */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00831}00831     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(p, ztr / ztr\_prev, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00832}00832     \textcolor{comment}{/* p = z + beta * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00833}00833     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(p, z, n, 1.);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00834}00834   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00835}00835 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00836}00836   printf(\textcolor{stringliteral}{"{}tol: \%.4e, resid: \%.4e, iters: \%li\(\backslash\)n"{}}, tol, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00837}00837          (\textcolor{keywordtype}{long})\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00838}00838   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} == max\_iter -\/ 1) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00839}00839     printf(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00840}00840         \textcolor{stringliteral}{"{}CG did not converge within \%d iterations, resisdual \%4f > tolerance "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00841}00841         \textcolor{stringliteral}{"{}\%4f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00842}00842         max\_iter, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(r, m), tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00843}00843   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00844}00844 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00845}00845   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00846}00846   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00847}00847   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00848}00848   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00849}00849 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00850}00850   \textcolor{keywordflow}{return} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00851}00851 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00852}00852 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00856}00856 \textcolor{keyword}{static} \textcolor{keywordtype}{void} svm\_mat\_vec(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *y) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00857}00857   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} m = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>p;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00858}00858   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>q;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00859}00859   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00860}00860 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00861}00861   memcpy(y, x, m * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00862}00862 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00863}00863   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00864}00864     y[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] *= \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>rho\_dr[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00865}00865   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00866}00866 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00867}00867   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *tem = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00868}00868   memset(tem, 0, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00869}00869   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_AT\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, x, tem);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00870}00870 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00871}00871   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *H = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) * n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00872}00872   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>q; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00873}00873     \textcolor{keywordflow}{if} (i < self-\/>n)}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00874}00874       H[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>stgs-\/>rho\_x + \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>Q-\/>x[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00875}00875     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00876}00876       H[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>stgs-\/>rho\_x;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00877}00877   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00878}00878 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00879}00879   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00880}00880     \textcolor{comment}{// tem[i] /= self-\/>H[i];}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00881}00881     tem[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] /= H[\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}];}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00882}00882   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00883}00883 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00884}00884   \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>spe\_A\_times(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, tem, y);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00885}00885 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00886}00886   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(tem);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00887}00887   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(H);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00888}00888 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00889}00889 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00894}\mbox{\hyperlink{linsys_8c_abed32b51c0a72cc6b4787da743dd69ef}{00894}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_abed32b51c0a72cc6b4787da743dd69ef}{svmqp\_pcg}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *x,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00895}00895                    \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} max\_iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00896}00896   \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00897}00897 \textcolor{comment}{      x is used for warm start}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00898}00898 \textcolor{comment}{      result overwrite b}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00899}00899 \textcolor{comment}{  */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00900}00900 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00901}00901   \textcolor{comment}{// abip\_int m = self-\/>p;}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00902}00902   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>p;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00903}00903   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, j;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00904}00904 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00905}00905   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ztr, ztr\_prev, alpha;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00906}00906   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *p =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00907}00907       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* cg direction */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00908}00908   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *Gp = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00909}00909       n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* updated CG direction */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00910}00910   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *r =}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00911}00911       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}})); \textcolor{comment}{/* cg residual */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00912}00912   \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *z = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\_calloc}}(n, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00913}00913   ; \textcolor{comment}{/* for preconditioning */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00914}00914 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00915}00915   \textcolor{keywordflow}{if} (x == \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00916}00916     \textcolor{comment}{/* no warm\_start, take x = 0 */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00917}00917     \textcolor{comment}{/* r = b */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00918}00918     memcpy(r, b, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00919}00919     \textcolor{comment}{/* b = 0 */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00920}00920     memset(b, 0, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00921}00921   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00922}00922     \textcolor{comment}{/* r = Mat * s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00923}00923     svm\_mat\_vec(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, x, r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00924}00924     \textcolor{comment}{/* r = Mat * s -\/ b */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00925}00925     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, b, n, -\/1.);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00926}00926     \textcolor{comment}{/* r = b -\/ Mat * s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00927}00927     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(r, -\/1., n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00928}00928     \textcolor{comment}{/* b = s */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00929}00929     memcpy(b, x, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00930}00930   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00931}00931   \textcolor{comment}{/* check to see if we need to run CG at all */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00932}00932   \textcolor{keywordflow}{if} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n) < \mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(tol, 1e-\/12)) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00933}00933     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00934}00934     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00935}00935     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00936}00936     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00937}00937     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00938}00938   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00939}00939 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00940}00940   \textcolor{comment}{/* z = M r (M is inverse preconditioner) */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00941}00941   memcpy(z, r, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00942}00942   \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a0f03690d0630553d53d94cafd984ea56}{c\_dot}})(z, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00943}00943 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00944}00944   \textcolor{comment}{/* ztr = z'r */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00945}00945   ztr = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(z, r, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00946}00946   \textcolor{comment}{/* p = z */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00947}00947   memcpy(p, z, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00948}00948 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00949}00949   \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < max\_iter; ++\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00950}00950     \textcolor{comment}{/* Gp = Mat * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00951}00951     svm\_mat\_vec(\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, p, Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00952}00952     \textcolor{comment}{/* alpha = z'r / p'G p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00953}00953     alpha = ztr / \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(p, Gp, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00954}00954     \textcolor{comment}{/* b += alpha * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00955}00955     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(b, p, n, alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00956}00956     \textcolor{comment}{/* r -\/= alpha * G p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00957}00957     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(r, Gp, n, -\/alpha);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00958}00958 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00959}00959     \textcolor{keywordflow}{if} (\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n) < tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00960}00960       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00961}00961     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00962}00962     \textcolor{comment}{/* z = M r (M is inverse preconditioner) */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00963}00963     memcpy(z, r, n * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00964}00964     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a0f03690d0630553d53d94cafd984ea56}{c\_dot}})(z, \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}-\/>L-\/>M, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00965}00965 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00966}00966     ztr\_prev = ztr;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00967}00967     \textcolor{comment}{/* ztr = z'r */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00968}00968     ztr = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a9162b9be5eb294b90c94566cf9ec7782}{dot}})(z, r, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00969}00969     \textcolor{comment}{/* p = beta * p, where beta = ztr / ztr\_prev */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00970}00970     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a34974ea7b0ad17a4052a8048bb77a83b}{scale\_array}})(p, ztr / ztr\_prev, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00971}00971     \textcolor{comment}{/* p = z + beta * p */}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00972}00972     \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a94e767ccc46f7d0b247e2e4b185d0997}{add\_scaled\_array}})(p, z, n, 1.);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00973}00973   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00974}00974 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00975}00975   printf(\textcolor{stringliteral}{"{}tol: \%.4e, resid: \%.4e, iters: \%li\(\backslash\)n"{}}, tol, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_a87df852cf8a772bc8dd634492f50fc0c}{norm\_inf}})(r, n),}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00976}00976          (\textcolor{keywordtype}{long})\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00977}00977   \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} == max\_iter -\/ 1) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00978}00978     printf(}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00979}00979         \textcolor{stringliteral}{"{}CG did not converge within \%d iterations, resisdual \%4f > tolerance "{}}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00980}00980         \textcolor{stringliteral}{"{}\%4f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00981}00981         max\_iter, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}})(r, n), tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00982}00982   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00983}00983 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00984}00984   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(p);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00985}00985   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(Gp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00986}00986   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(r);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00987}00987   \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(z);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00988}00988 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00989}00989   \textcolor{keywordflow}{return} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} + 1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00990}00990 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00991}00991 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00995}\mbox{\hyperlink{linsys_8c_aa83ed2f9fb4211b290af73b843f515e9}{00995}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_aa83ed2f9fb4211b290af73b843f515e9}{init\_dense\_chol}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00996}00996   \textcolor{comment}{// K is CSC format and only stores upper triangle}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00997}00997   spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}} = \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linalg_8h_ac162f7385c4fbc92a6f8d516ea4c3a9b}{csc\_to\_dense}})(spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{K}}, \mbox{\hyperlink{linalg_8h_a70400f1c768c834d1e438db9b68b0b8d}{ColMajor}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00998}00998   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} info;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l00999}00999   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n = spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a4f740edb84224055ad9495db5c75561e}{K}}-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01000}01000 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01001}01001   info = LAPACKE\_dpotrf(LAPACK\_COL\_MAJOR, \textcolor{charliteral}{'U'}, n, spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}}, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01002}01002   \textcolor{keywordflow}{return} info;  \textcolor{comment}{// 0 if successful}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01003}01003 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01004}01004 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01005}\mbox{\hyperlink{linsys_8c_a5e0b54129ec278f1f330ee4fa01e23bd}{01005}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a5e0b54129ec278f1f330ee4fa01e23bd}{dense\_chol\_sol}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01006}01006   \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} info;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01007}01007 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01008}01008   info = LAPACKE\_dpotrs(LAPACK\_COL\_MAJOR, \textcolor{charliteral}{'U'}, n, 1, spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}}, n, b, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01009}01009   \textcolor{keywordflow}{return} info;  \textcolor{comment}{// 0 if successful}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01010}01010 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01011}01011 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01012}\mbox{\hyperlink{linsys_8c_a4fc7a2b817323d28693e0c64064db2e2}{01012}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{linsys_8c_a4fc7a2b817323d28693e0c64064db2e2}{dense\_chol\_free}}(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01013}01013   \textcolor{keywordflow}{if} (spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01014}01014     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}-\/>\mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k_a1634020c8a91226dedcbc621ed564011}{U}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01015}01015   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01016}01016   \textcolor{keywordflow}{if} (spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}}) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01017}01017     \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>\mbox{\hyperlink{structsolve__specific__problem_a77b39eece2091d055c8efafb9a9b3fed}{L}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01018}01018   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01019}01019 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01020}01020   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01021}01021 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01022}01022 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01023}01023 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01027}\mbox{\hyperlink{linsys_8h_aa2aef9ad692f39f3d516065c2c95dd13}{01027}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_aa2aef9ad692f39f3d516065c2c95dd13}{init\_linsys\_work}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01028}01028   \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 3) \{  \textcolor{comment}{// pcg}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01029}01029     spe-\/>L-\/>S = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01030}01030     spe-\/>L-\/>N = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01031}01031     spe-\/>L-\/>handle = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01032}01032     spe-\/>L-\/>Dinv = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01033}01033     spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01034}01034     spe-\/>L-\/>P = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01035}01035     spe-\/>L-\/>U = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01036}01036 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01037}01037     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01038}01038     spe-\/>L-\/>total\_cg\_iters = 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01039}01039 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01040}01040     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01041}01041   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01042}01042 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01043}01043   \mbox{\hyperlink{structcs__sparse}{cs}} *K = spe-\/>L-\/>K;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01044}01044   spe-\/>L-\/>nnz\_LDL = K-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}};  \textcolor{comment}{// K is NULL ptr if using pcg}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01045}01045 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01046}01046   printf(\textcolor{stringliteral}{"{}\(\backslash\)nStarting decomposition, with\(\backslash\)nn = \%d, m = \%d , nnz = \%d\(\backslash\)n"{}}, K-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}},}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01047}01047          K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}, K-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01048}01048 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01049}01049   \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 0) \{  \textcolor{comment}{// mkl\_dss}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01050}01050     spe-\/>L-\/>handle = \mbox{\hyperlink{linsys_8c_aa2b98d61e5608d0f844bf029431bf122}{init\_mkl\_work}}(K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01051}01051     \textcolor{keywordflow}{if} (spe-\/>L-\/>handle == -\/1) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01052}01052       printf(\textcolor{stringliteral}{"{}\(\backslash\)nerror in LDL factorization using MKL-\/DSS\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01053}01053       \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01054}01054     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01055}01055     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01056}01056     spe-\/>L-\/>Dinv = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01057}01057     spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01058}01058     spe-\/>L-\/>P = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01059}01059     spe-\/>L-\/>M = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01060}01060     spe-\/>L-\/>S = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01061}01061     spe-\/>L-\/>N = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01062}01062     spe-\/>L-\/>U = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01063}01063 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01064}01064     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01065}01065     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01066}01066   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01067}01067 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01068}01068   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 1) \{  \textcolor{comment}{// qdldl}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01069}01069 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01070}01070     spe-\/>L-\/>Dinv = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01071}01071     spe-\/>L-\/>bp = (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01072}01072     spe-\/>L-\/>P = (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *)\mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\_malloc}}(K-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}));}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01073}01073     \mbox{\hyperlink{structcs__sparse}{cs}} *kkt\_perm = \mbox{\hyperlink{linsys_8c_a625a6de74008f705f69788ffa18567e9}{permute\_kkt}}(spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01074}01074     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01075}01075     \textcolor{keywordflow}{if} (\mbox{\hyperlink{linsys_8c_a278fc0320bd923f29dfea915ac051aef}{LDL\_factor}}(kkt\_perm, \&(spe-\/>L-\/>L), spe-\/>L-\/>Dinv) < 0) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01076}01076       spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01077}01077       printf(\textcolor{stringliteral}{"{}\(\backslash\)nerror in LDL factorization using QDLDL\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01078}01078       \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01079}01079     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01080}01080     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(kkt\_perm);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01081}01081 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01082}01082     spe-\/>L-\/>handle = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01083}01083     spe-\/>L-\/>M = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01084}01084     spe-\/>L-\/>S = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01085}01085     spe-\/>L-\/>N = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01086}01086     spe-\/>L-\/>U = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01087}01087 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01088}01088     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01089}01089     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01090}01090 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01091}01091   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 2) \{  \textcolor{comment}{// cholesky}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01092}01092     spe-\/>L-\/>S = \mbox{\hyperlink{cs_8h_a33a1dc7aff658c5699d6c6d4a0fa70d3}{cs\_schol}}(1, K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01093}01093     spe-\/>L-\/>N = \mbox{\hyperlink{cs_8h_ad68a5d313333e08e69d6d781b65af55c}{cs\_chol}}(K, spe-\/>L-\/>S);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01094}01094     \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(K);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01095}01095     spe-\/>L-\/>handle = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01096}01096     spe-\/>L-\/>Dinv = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01097}01097     spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01098}01098     spe-\/>L-\/>P = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01099}01099     spe-\/>L-\/>M = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01100}01100     spe-\/>L-\/>U = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01101}01101 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01102}01102     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01103}01103     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01104}01104   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 4) \{  \textcolor{comment}{// mkl\_parsido}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01105}01105     \mbox{\hyperlink{linsys_8c_a0bea5d6e8ef284973bd5035b8d07e1e7}{init\_pardiso}}(spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01106}01106     spe-\/>L-\/>Dinv = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01107}01107     spe-\/>L-\/>handle = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01108}01108     spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01109}01109     spe-\/>L-\/>P = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01110}01110     spe-\/>L-\/>M = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01111}01111     spe-\/>L-\/>S = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01112}01112     spe-\/>L-\/>N = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01113}01113     spe-\/>L-\/>U = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01114}01114 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01115}01115     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01116}01116     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01117}01117   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 5) \{  \textcolor{comment}{// lapack dense chol}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01118}01118 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01119}01119     \mbox{\hyperlink{linsys_8c_aa83ed2f9fb4211b290af73b843f515e9}{init\_dense\_chol}}(spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01120}01120     spe-\/>L-\/>handle = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01121}01121     spe-\/>L-\/>Dinv = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01122}01122     spe-\/>L-\/>L = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01123}01123     spe-\/>L-\/>P = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01124}01124     spe-\/>L-\/>M = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01125}01125     spe-\/>L-\/>S = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01126}01126     spe-\/>L-\/>N = \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}};}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01127}01127 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01128}01128     spe-\/>L-\/>total\_solve\_time = 0.0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01129}01129     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01130}01130   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01131}01131 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01132}01132   \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01133}01133     printf(\textcolor{stringliteral}{"{}\(\backslash\)nlinsys solver type error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01134}01134     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01135}01135   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01136}01136 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01137}01137 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01141}\mbox{\hyperlink{linsys_8h_a276a8d85ef26c22b040493495a05f6b5}{01141}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_a276a8d85ef26c22b040493495a05f6b5}{solve\_linsys}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n,}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01142}01142                             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *pcg\_warm\_start, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} pcg\_tol) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01143}01143   \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 0) \{  \textcolor{comment}{// mkl\_dss}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01144}01144     \mbox{\hyperlink{linsys_8c_a5a203f7c991e072e8430c7f4f3c756b7}{mkl\_solve\_linsys}}(spe-\/>L-\/>handle, b, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01145}01145     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01146}01146   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 1) \{  \textcolor{comment}{// qdldl}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01147}01147     \textcolor{comment}{// QDLDL\_solve(spe-\/>L-\/>L-\/>n,spe-\/>L-\/>L-\/>p,spe-\/>L-\/>L-\/>i,spe-\/>L-\/>L-\/>x,spe-\/>L-\/>Dinv,b);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01148}01148     \textcolor{comment}{// return 0;}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01149}01149 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01150}01150     \textcolor{comment}{// for new ldl}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01151}01151     \_ldl\_solve(b, spe-\/>L-\/>L, spe-\/>L-\/>Dinv, spe-\/>L-\/>P, spe-\/>L-\/>bp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01152}01152     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01153}01153   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 2) \{  \textcolor{comment}{// cholesky}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01154}01154     \mbox{\hyperlink{linsys_8c_aa0dd61e6bf23897061859fa2440aad5e}{abip\_cholsol}}(spe, b, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01155}01155     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01156}01156   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 3) \{  \textcolor{comment}{// PCG}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01157}01157 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01158}01158     \textcolor{keywordflow}{if} (spe-\/>stgs-\/>prob\_type == 3) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01159}01159       \textcolor{comment}{// return qcp\_pcg(spe, b, pcg\_warm\_start, n, pcg\_tol);}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01160}01160       \textcolor{keywordflow}{return} \mbox{\hyperlink{linsys_8c_a20054f1e250f3219101346aca921cc2a}{qcp\_pcg}}(spe, b, pcg\_warm\_start, n, pcg\_tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01161}01161     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>prob\_type == 4) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01162}01162       \textcolor{keywordflow}{return} \mbox{\hyperlink{linsys_8c_abed32b51c0a72cc6b4787da743dd69ef}{svmqp\_pcg}}(spe, b, pcg\_warm\_start, n, pcg\_tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01163}01163     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01164}01164       \textcolor{keywordflow}{return} \mbox{\hyperlink{linsys_8c_a6855d1795be44eb753b05a15f44654f5}{pcg}}(spe, b, pcg\_warm\_start, spe-\/>stgs-\/>rho\_y, n, pcg\_tol);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01165}01165     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01166}01166   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 4) \{  \textcolor{comment}{// mkl\_pardiso}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01167}01167     \mbox{\hyperlink{linsys_8c_a1e18bd8473669632327ee3aca32742a1}{pardiso\_solve}}(spe, b, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01168}01168     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01169}01169   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 5) \{  \textcolor{comment}{// lapack dense chol}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01170}01170     \mbox{\hyperlink{linsys_8c_a5e0b54129ec278f1f330ee4fa01e23bd}{dense\_chol\_sol}}(spe, b, n);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01171}01171     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01172}01172   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01173}01173     printf(\textcolor{stringliteral}{"{}\(\backslash\)nlinsys solver type error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01174}01174     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01175}01175   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01176}01176 \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01177}01177 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01181}\mbox{\hyperlink{linsys_8h_ac653ebc726afc6abfeae30578921d847}{01181}} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{linsys_8c_ac653ebc726afc6abfeae30578921d847}{free\_linsys}})(\mbox{\hyperlink{structsolve__specific__problem}{spe\_problem}} *spe) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01182}01182   \textcolor{keywordflow}{if} (spe-\/>L) \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01183}01183     \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 0) \{  \textcolor{comment}{// mkl\_dss}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01184}01184       MKL\_INT opt = MKL\_DSS\_DEFAULTS;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01185}01185       dss\_delete(spe-\/>L-\/>handle, opt);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01186}01186       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01187}01187     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 1) \{  \textcolor{comment}{// qdldl}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01188}01188       \textcolor{keywordflow}{if} (spe-\/>L-\/>Dinv) \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>L-\/>Dinv);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01189}01189       \textcolor{keywordflow}{if} (spe-\/>L-\/>L) \mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}}(spe-\/>L-\/>L);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01190}01190       \textcolor{keywordflow}{if} (spe-\/>L-\/>P) \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>L-\/>P);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01191}01191       \textcolor{keywordflow}{if} (spe-\/>L-\/>bp) \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>L-\/>bp);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01192}01192       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01193}01193     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 2) \{  \textcolor{comment}{// cholesky}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01194}01194       \textcolor{keywordflow}{if} (spe-\/>L-\/>S) \mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}}(spe-\/>L-\/>S);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01195}01195       \textcolor{keywordflow}{if} (spe-\/>L-\/>N) \mbox{\hyperlink{cs_8h_adabc8e810cec49307537b5e3368d53aa}{cs\_nfree}}(spe-\/>L-\/>N);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01196}01196       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01197}01197     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 3) \{  \textcolor{comment}{// pcg}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01198}01198       \textcolor{keywordflow}{if} (spe-\/>L-\/>M) \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\_free}}(spe-\/>L-\/>M);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01199}01199       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01200}01200     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 4) \{  \textcolor{comment}{// mkl\_pardiso}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01201}01201       \mbox{\hyperlink{linsys_8c_a927ffd9f339e972768a21809c2bc348f}{pardiso\_free}}(spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01202}01202       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01203}01203     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (spe-\/>stgs-\/>linsys\_solver == 5) \{  \textcolor{comment}{// lapack dense chol}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01204}01204       \mbox{\hyperlink{linsys_8c_a4fc7a2b817323d28693e0c64064db2e2}{dense\_chol\_free}}(spe);}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01205}01205       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01206}01206     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01207}01207 }
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01208}01208     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01209}01209       printf(\textcolor{stringliteral}{"{}\(\backslash\)nlinsys solver type error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01210}01210       \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01211}01211     \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01212}01212   \}}
+\DoxyCodeLine{\Hypertarget{linsys_8c_source_l01213}01213 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+\hypertarget{cs__chol_8c_source}{}\doxysection{cs\+\_\+chol.\+c}
+\label{cs__chol_8c_source}\index{csparse/Source/cs\_chol.c@{csparse/Source/cs\_chol.c}}
+\mbox{\hyperlink{cs__chol_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00002}00002 \textcolor{comment}{/* L = chol (A, [pinv parent cp]), pinv is optional */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00003}\mbox{\hyperlink{cs_8h_ad68a5d313333e08e69d6d781b65af55c}{00003}} \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{cs__chol_8c_ad68a5d313333e08e69d6d781b65af55c}{cs\_chol}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__symbolic}{css}} *S)}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00005}00005     \textcolor{keywordtype}{double} d, lki, *Lx, *x, *Cx ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00006}00006     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} top, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, p, k, n, *Li, *Lp, *cp, *pinv, *s, *c, *parent, *Cp, *Ci ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00007}00007     \mbox{\hyperlink{structcs__sparse}{cs}} *L, *C, *E ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00008}00008     \mbox{\hyperlink{structcs__numeric}{csn}} *N ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00009}00009     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !S || !S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} || !S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00010}00010     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00011}00011     N = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__numeric}{csn}})) ;       \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00012}00012     c = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (2*n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;     \textcolor{comment}{/* get csi workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00013}00013     x = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;    \textcolor{comment}{/* get double workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00014}00014     cp = S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}} ; pinv = S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}} ; parent = S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00015}00015     C = pinv ? \mbox{\hyperlink{cs_8h_ad19ab7e30ae8e32fe9b000a1e7e30a1f}{cs\_symperm}} (A, pinv, 1) : ((\mbox{\hyperlink{structcs__sparse}{cs}} *) A) ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00016}00016     E = pinv ? C : NULL ;           \textcolor{comment}{/* E is alias for A, or a copy E=A(p,p) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00017}00017     \textcolor{keywordflow}{if} (!N || !c || !x || !C) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, E, c, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00018}00018     s = c + n ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00019}00019     Cp = C-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ci = C-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Cx = C-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00020}00020     N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}} = L = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (n, n, cp [n], 1, 0) ;    \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00021}00021     \textcolor{keywordflow}{if} (!L) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, E, c, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00022}00022     Lp = L-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Li = L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Lx = L-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00023}00023     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) Lp [k] = c [k] = cp [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00024}00024     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)       \textcolor{comment}{/* compute L(k,:) for L*L' = C */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00026}00026         \textcolor{comment}{/* -\/-\/-\/ Nonzero pattern of L(k,:) -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00027}00027         top = \mbox{\hyperlink{cs_8h_ab6bc6149bec190fcbdc19058e7d54034}{cs\_ereach}} (C, k, parent, s, c) ;      \textcolor{comment}{/* find pattern of L(k,:) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00028}00028         x [k] = 0 ;                                 \textcolor{comment}{/* x (0:k) is now zero */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00029}00029         \textcolor{keywordflow}{for} (p = Cp [k] ; p < Cp [k+1] ; p++)       \textcolor{comment}{/* x = full(triu(C(:,k))) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00030}00030         \{}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00031}00031             \textcolor{keywordflow}{if} (Ci [p] <= k) x [Ci [p]] = Cx [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00032}00032         \}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00033}00033         d = x [k] ;                     \textcolor{comment}{/* d = C(k,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00034}00034         x [k] = 0 ;                     \textcolor{comment}{/* clear x for k+1st iteration */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00035}00035         \textcolor{comment}{/* -\/-\/-\/ Triangular solve -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00036}00036         \textcolor{keywordflow}{for} ( ; top < n ; top++)    \textcolor{comment}{/* solve L(0:k-\/1,0:k-\/1) * x = C(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00037}00037         \{}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00038}00038             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = s [top] ;               \textcolor{comment}{/* s [top..n-\/1] is pattern of L(k,:) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00039}00039             lki = x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] / Lx [Lp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]] ; \textcolor{comment}{/* L(k,i) = x (i) / L(i,i) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00040}00040             x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;                 \textcolor{comment}{/* clear x for k+1st iteration */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00041}00041             \textcolor{keywordflow}{for} (p = Lp [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] + 1 ; p < c [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00042}00042             \{}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00043}00043                 x [Li [p]] -\/= Lx [p] * lki ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00044}00044             \}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00045}00045             d -\/= lki * lki ;            \textcolor{comment}{/* d = d -\/ L(k,i)*L(k,i) */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00046}00046             p = c [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]++ ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00047}00047             Li [p] = k ;                \textcolor{comment}{/* store L(k,i) in column i */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00048}00048             Lx [p] = lki ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00049}00049         \}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00050}00050         \textcolor{comment}{/* -\/-\/-\/ Compute L(k,k) -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00051}00051         \textcolor{keywordflow}{if} (d <= 0) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, E, c, x, 0)) ; \textcolor{comment}{/* not pos def */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00052}00052         p = c [k]++ ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00053}00053         Li [p] = k ;                \textcolor{comment}{/* store L(k,k) = sqrt (d) in column k */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00054}00054         Lx [p] = sqrt (d) ;}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00055}00055     \}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00056}00056     Lp [n] = cp [n] ;               \textcolor{comment}{/* finalize L */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00057}00057     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, E, c, x, 1)) ; \textcolor{comment}{/* success: free E,s,x; return N */}}
+\DoxyCodeLine{\Hypertarget{cs__chol_8c_source_l00058}00058 \}}
+
+\end{DoxyCode}

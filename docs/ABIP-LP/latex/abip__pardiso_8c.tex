@@ -1,0 +1,62 @@
+\hypertarget{abip__pardiso_8c}{}\doxysection{linsys/abip\+\_\+pardiso.c File Reference}
+\label{abip__pardiso_8c}\index{linsys/abip\_pardiso.c@{linsys/abip\_pardiso.c}}
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}amd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ldl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}direct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip\+\_\+pardiso.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{abip__pardiso_8c_acb79006208bb6fe65286d87d3fcdf790}{pardiso\+Factorize}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em factorize matrix by pardiso \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{abip__pardiso_8c_ab384654c9cbe7d2a58b7b82869f81415}{pardiso\+Free}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em Free the internal structure of pardiso. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{abip__pardiso_8c_a9cedb6b9358888fa07ea0ea920e6bb38}{pardiso\+Solve}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}})
+\begin{DoxyCompactList}\small\item\em Solve the linear system S $\ast$ X = B using Pardiso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{abip__pardiso_8c_acb79006208bb6fe65286d87d3fcdf790}\label{abip__pardiso_8c_acb79006208bb6fe65286d87d3fcdf790}} 
+\index{abip\_pardiso.c@{abip\_pardiso.c}!pardisoFactorize@{pardisoFactorize}}
+\index{pardisoFactorize@{pardisoFactorize}!abip\_pardiso.c@{abip\_pardiso.c}}
+\doxysubsubsection{\texorpdfstring{pardisoFactorize()}{pardisoFactorize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} pardiso\+Factorize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+factorize matrix by pardiso 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00023}{23}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+
+\mbox{\Hypertarget{abip__pardiso_8c_ab384654c9cbe7d2a58b7b82869f81415}\label{abip__pardiso_8c_ab384654c9cbe7d2a58b7b82869f81415}} 
+\index{abip\_pardiso.c@{abip\_pardiso.c}!pardisoFree@{pardisoFree}}
+\index{pardisoFree@{pardisoFree}!abip\_pardiso.c@{abip\_pardiso.c}}
+\doxysubsubsection{\texorpdfstring{pardisoFree()}{pardisoFree()}}
+{\footnotesize\ttfamily void pardiso\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+Free the internal structure of pardiso. 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00051}{51}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+
+\mbox{\Hypertarget{abip__pardiso_8c_a9cedb6b9358888fa07ea0ea920e6bb38}\label{abip__pardiso_8c_a9cedb6b9358888fa07ea0ea920e6bb38}} 
+\index{abip\_pardiso.c@{abip\_pardiso.c}!pardisoSolve@{pardisoSolve}}
+\index{pardisoSolve@{pardisoSolve}!abip\_pardiso.c@{abip\_pardiso.c}}
+\doxysubsubsection{\texorpdfstring{pardisoSolve()}{pardisoSolve()}}
+{\footnotesize\ttfamily void pardiso\+Solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Solve the linear system S $\ast$ X = B using Pardiso. 
+
+
+
+Definition at line \mbox{\hyperlink{abip__pardiso_8c_source_l00066}{66}} of file \mbox{\hyperlink{abip__pardiso_8c_source}{abip\+\_\+pardiso.\+c}}.
+

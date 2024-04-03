@@ -1,0 +1,41 @@
+\hypertarget{cs__malloc_8c_source}{}\doxysection{cs\+\_\+malloc.\+c}
+\label{cs__malloc_8c_source}\index{csparse/Source/cs\_malloc.c@{csparse/Source/cs\_malloc.c}}
+\mbox{\hyperlink{cs__malloc_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00002}00002 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00003}00003 \textcolor{preprocessor}{\#define malloc mxMalloc}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00004}00004 \textcolor{preprocessor}{\#define free mxFree}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00005}00005 \textcolor{preprocessor}{\#define realloc mxRealloc}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00006}00006 \textcolor{preprocessor}{\#define calloc mxCalloc}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00007}00007 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00009}00009 \textcolor{comment}{/* wrapper for malloc */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00010}\mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{00010}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{cs__malloc_8c_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \textcolor{keywordtype}{size\_t} size)}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00012}00012     \textcolor{keywordflow}{return} (malloc (\mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (n,1) * size)) ;}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00013}00013 \}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00015}00015 \textcolor{comment}{/* wrapper for calloc */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00016}\mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{00016}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{cs__malloc_8c_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \textcolor{keywordtype}{size\_t} size)}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00017}00017 \{}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00018}00018     \textcolor{keywordflow}{return} (calloc (\mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (n,1), size)) ;}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00019}00019 \}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00021}00021 \textcolor{comment}{/* wrapper for free */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00022}\mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{00022}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{cs__malloc_8c_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (\textcolor{keywordtype}{void} *p)}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00023}00023 \{}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00024}00024     \textcolor{keywordflow}{if} (p) free (p) ;       \textcolor{comment}{/* free p if it is not already NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00025}00025     \textcolor{keywordflow}{return} (NULL) ;         \textcolor{comment}{/* return NULL to simplify the use of cs\_free */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00028}00028 \textcolor{comment}{/* wrapper for realloc */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00029}\mbox{\hyperlink{cs_8h_a6e24151b1b4d6711299022113e3c26d6}{00029}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{cs__malloc_8c_a6e24151b1b4d6711299022113e3c26d6}{cs\_realloc}} (\textcolor{keywordtype}{void} *p, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \textcolor{keywordtype}{size\_t} size, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *ok)}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00030}00030 \{}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00031}00031     \textcolor{keywordtype}{void} *pnew ;}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00032}00032     pnew = realloc (p, \mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (n,1) * size) ; \textcolor{comment}{/* realloc the block */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00033}00033     *ok = (pnew != NULL) ;                  \textcolor{comment}{/* realloc fails if pnew is NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00034}00034     \textcolor{keywordflow}{return} ((*ok) ? pnew : p) ;             \textcolor{comment}{/* return original p if failure */}}
+\DoxyCodeLine{\Hypertarget{cs__malloc_8c_source_l00035}00035 \}}
+
+\end{DoxyCode}

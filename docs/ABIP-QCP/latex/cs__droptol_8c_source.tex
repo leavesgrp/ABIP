@@ -1,0 +1,15 @@
+\hypertarget{cs__droptol_8c_source}{}\doxysection{cs\+\_\+droptol.\+c}
+\label{cs__droptol_8c_source}\index{csparse/Source/cs\_droptol.c@{csparse/Source/cs\_droptol.c}}
+\mbox{\hyperlink{cs__droptol_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00002}00002 \textcolor{keyword}{static} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} cs\_tol (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} j, \textcolor{keywordtype}{double} aij, \textcolor{keywordtype}{void} *tol)}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00003}00003 \{}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00004}00004     \textcolor{keywordflow}{return} (fabs (aij) > *((\textcolor{keywordtype}{double} *) tol)) ;}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00005}00005 \}}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00006}\mbox{\hyperlink{cs_8h_a40bd42bbf6db19e2c068da3a7f429dac}{00006}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__droptol_8c_a40bd42bbf6db19e2c068da3a7f429dac}{cs\_droptol}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keywordtype}{double} tol)}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00008}00008     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a0467456f70ba2840b1876b42ae1f990b}{cs\_fkeep}} (A, \&cs\_tol, \&tol)) ;    \textcolor{comment}{/* keep all large entries */}}
+\DoxyCodeLine{\Hypertarget{cs__droptol_8c_source_l00009}00009 \}}
+
+\end{DoxyCode}

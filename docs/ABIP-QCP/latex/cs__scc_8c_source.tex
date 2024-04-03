@@ -1,0 +1,47 @@
+\hypertarget{cs__scc_8c_source}{}\doxysection{cs\+\_\+scc.\+c}
+\label{cs__scc_8c_source}\index{csparse/Source/cs\_scc.c@{csparse/Source/cs\_scc.c}}
+\mbox{\hyperlink{cs__scc_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00002}00002 \textcolor{comment}{/* find the strongly connected components of a square matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00003}\mbox{\hyperlink{cs_8h_a195331bbf7d2aa87b1a94158c5d56d17}{00003}} \mbox{\hyperlink{structcs__dmperm__results}{csd}} *\mbox{\hyperlink{cs__scc_8c_a195331bbf7d2aa87b1a94158c5d56d17}{cs\_scc}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A)     \textcolor{comment}{/* matrix A temporarily modified, then restored */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, k, b, nb = 0, top, *xi, *pstack, *p, *r, *Ap, *ATp, *rcopy, *Blk ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00006}00006     \mbox{\hyperlink{structcs__sparse}{cs}} *AT ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00007}00007     \mbox{\hyperlink{structcs__dmperm__results}{csd}} *D ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00008}00008     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (NULL) ;                \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00009}00009     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00010}00010     D = \mbox{\hyperlink{cs_8h_a5b17812b02b3c113ce0088870aaeffd9}{cs\_dalloc}} (n, 0) ;                          \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00011}00011     AT = \mbox{\hyperlink{cs_8h_a838dfaabdae54c408a4a696dfffa3dea}{cs\_transpose}} (A, 0) ;                      \textcolor{comment}{/* AT = A' */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00012}00012     xi = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (2*n+1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;          \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00013}00013     \textcolor{keywordflow}{if} (!D || !AT || !xi) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_aa848643a3fad58acb3b400c36de5dd3e}{cs\_ddone}} (D, AT, xi, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00014}00014     Blk = xi ; rcopy = pstack = xi + n ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00015}00015     p = D-\/>\mbox{\hyperlink{structcs__dmperm__results_aa1cdef46dad146c0d64d64dbda23f44e}{p}} ; r = D-\/>\mbox{\hyperlink{structcs__dmperm__results_a193ebe355ad15e9408fdf705e197833f}{r}} ; ATp = AT-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00016}00016     top = n ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00017}00017     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)   \textcolor{comment}{/* first dfs(A) to find finish times (xi) */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00018}00018     \{}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00019}00019         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_ad5ef446ddee80d5771be956a23520bf5}{CS\_MARKED}} (Ap, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})) top = \mbox{\hyperlink{cs_8h_a43a06094fee0e062b78fd70d1c70b9c4}{cs\_dfs}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, A, top, xi, pstack, NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00020}00020     \}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00021}00021     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) \mbox{\hyperlink{cs_8h_ad5096d9a8169cff461816575072022f0}{CS\_MARK}} (Ap, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}) ; \textcolor{comment}{/* restore A; unmark all nodes*/}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00022}00022     top = n ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00023}00023     nb = n ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00024}00024     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)   \textcolor{comment}{/* dfs(A') to find strongly connnected comp */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00026}00026         \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = xi [k] ;            \textcolor{comment}{/* get i in reverse order of finish times */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00027}00027         \textcolor{keywordflow}{if} (\mbox{\hyperlink{cs_8h_ad5ef446ddee80d5771be956a23520bf5}{CS\_MARKED}} (ATp, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})) continue ;  \textcolor{comment}{/* skip node i if already ordered */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00028}00028         r [nb-\/-\/] = top ;        \textcolor{comment}{/* node i is the start of a component in p */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00029}00029         top = \mbox{\hyperlink{cs_8h_a43a06094fee0e062b78fd70d1c70b9c4}{cs\_dfs}} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, AT, top, p, pstack, NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00030}00030     \}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00031}00031     r [nb] = 0 ;                \textcolor{comment}{/* first block starts at zero; shift r up */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00032}00032     \textcolor{keywordflow}{for} (k = nb ; k <= n ; k++) r [k-\/nb] = r [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00033}00033     D-\/>\mbox{\hyperlink{structcs__dmperm__results_aecf39880909b599bcbf205e214e99354}{nb}} = nb = n-\/nb ;         \textcolor{comment}{/* nb = \# of strongly connected components */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00034}00034     \textcolor{keywordflow}{for} (b = 0 ; b < nb ; b++)  \textcolor{comment}{/* sort each block in natural order */}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00035}00035     \{}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00036}00036         \textcolor{keywordflow}{for} (k = r [b] ; k < r [b+1] ; k++) Blk [p [k]] = b ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00037}00037     \}}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00038}00038     \textcolor{keywordflow}{for} (b = 0 ; b <= nb ; b++) rcopy [b] = r [b] ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00039}00039     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) p [rcopy [Blk [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]]++] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00040}00040     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_aa848643a3fad58acb3b400c36de5dd3e}{cs\_ddone}} (D, AT, xi, 1)) ;}
+\DoxyCodeLine{\Hypertarget{cs__scc_8c_source_l00041}00041 \}}
+
+\end{DoxyCode}

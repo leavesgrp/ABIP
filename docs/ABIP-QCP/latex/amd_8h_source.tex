@@ -1,0 +1,414 @@
+\hypertarget{amd_8h_source}{}\doxysection{amd.\+h}
+\label{amd_8h_source}\index{amd/amd.h@{amd/amd.h}}
+\mbox{\hyperlink{amd_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00002}00002 \textcolor{comment}{/* === AMD:  approximate minimum degree ordering =========================== */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00006}00006 \textcolor{comment}{/* AMD Version 2.4, Copyright (c) 1996-\/2013 by Timothy A. Davis,             */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00011}00011 \textcolor{comment}{/* AMD finds a symmetric ordering P of a matrix A so that the Cholesky}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00012}00012 \textcolor{comment}{ * factorization of P*A*P' has fewer nonzeros and takes less work than the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00013}00013 \textcolor{comment}{ * Cholesky factorization of A.  If A is not symmetric, then it performs its}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00014}00014 \textcolor{comment}{ * ordering on the matrix A+A'.  Two sets of user-\/callable routines are}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00015}00015 \textcolor{comment}{ * provided, one for int integers and the other for SuiteSparse\_long integers.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00016}00016 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00017}00017 \textcolor{comment}{ * The method is based on the approximate minimum degree algorithm, discussed}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00018}00018 \textcolor{comment}{ * in Amestoy, Davis, and Duff, "{}An approximate degree ordering algorithm"{},}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00019}00019 \textcolor{comment}{ * SIAM Journal of Matrix Analysis and Applications, vol. 17, no. 4, pp.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00020}00020 \textcolor{comment}{ * 886-\/905, 1996.  This package can perform both the AMD ordering (with}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00021}00021 \textcolor{comment}{ * aggressive absorption), and the AMDBAR ordering (without aggressive}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00022}00022 \textcolor{comment}{ * absorption) discussed in the above paper.  This package differs from the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00023}00023 \textcolor{comment}{ * Fortran codes discussed in the paper:}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00024}00024 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00025}00025 \textcolor{comment}{ *       (1) it can ignore "{}dense"{} rows and columns, leading to faster run times}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00026}00026 \textcolor{comment}{ *       (2) it computes the ordering of A+A' if A is not symmetric}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00027}00027 \textcolor{comment}{ *       (3) it is followed by a depth-\/first post-\/ordering of the assembly tree}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00028}00028 \textcolor{comment}{ *           (or supernodal elimination tree)}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00029}00029 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00030}00030 \textcolor{comment}{ * For historical reasons, the Fortran versions, amd.f and amdbar.f, have}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00031}00031 \textcolor{comment}{ * been left (nearly) unchanged.  They compute the identical ordering as}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00032}00032 \textcolor{comment}{ * described in the above paper.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00033}00033 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00035}00035 \textcolor{preprocessor}{\#ifndef AMD\_H}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00036}00036 \textcolor{preprocessor}{\#define AMD\_H}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00038}00038 \textcolor{comment}{/* make it easy for C++ programs to include AMD */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00039}00039 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00040}00040 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00041}00041 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00043}00043 \textcolor{comment}{/* get the definition of size\_t: */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00044}00044 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00046}00046 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_suite_sparse__config_8h}{SuiteSparse\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00048}\mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{00048}} \textcolor{keywordtype}{int} \mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\_order}}                        \textcolor{comment}{/* returns AMD\_OK, AMD\_OK\_BUT\_JUMBLED,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00049}00049 \textcolor{comment}{                                               * AMD\_INVALID, or AMD\_OUT\_OF\_MEMORY */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00050}00050 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00051}00051             \textcolor{keywordtype}{int} n,     \textcolor{comment}{/* A is n-\/by-\/n.  n must be >= 0. */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00052}00052             \textcolor{keyword}{const} \textcolor{keywordtype}{int} Ap [ ],     \textcolor{comment}{/* column pointers for A, of size n+1 */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00053}00053             \textcolor{keyword}{const} \textcolor{keywordtype}{int} Ai [ ],     \textcolor{comment}{/* row indices of A, of size nz = Ap [n] */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00054}00054             \textcolor{keywordtype}{int} P [ ],     \textcolor{comment}{/* output permutation, of size n */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00055}00055             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ],     \textcolor{comment}{/* input Control settings, of size AMD\_CONTROL */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00056}00056             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]     \textcolor{comment}{/* output ABIPInfo statistics, of size AMD\_INFO */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00057}00057 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00059}\mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{00059}} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} \mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{amd\_l\_order}}    \textcolor{comment}{/* see above for description of arguments */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00060}00060 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00061}00061             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} n,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00062}00062             \textcolor{keyword}{const} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00063}00063             \textcolor{keyword}{const} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Ai [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00064}00064             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} P [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00065}00065             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00066}00066             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00067}00067 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00069}00069 \textcolor{comment}{/* Input arguments (not modified):}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00070}00070 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00071}00071 \textcolor{comment}{ *       n: the matrix A is n-\/by-\/n.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00072}00072 \textcolor{comment}{ *       Ap: an int/SuiteSparse\_long array of size n+1, containing column}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00073}00073 \textcolor{comment}{ *              pointers of A.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00074}00074 \textcolor{comment}{ *       Ai: an int/SuiteSparse\_long array of size nz, containing the row}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00075}00075 \textcolor{comment}{ *              indices of A, where nz = Ap [n].}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00076}00076 \textcolor{comment}{ *       Control:  a double array of size AMD\_CONTROL, containing control}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00077}00077 \textcolor{comment}{ *           parameters.  Defaults are used if Control is ABIP\_NULL.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00078}00078 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00079}00079 \textcolor{comment}{ * Output arguments (not defined on input):}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00080}00080 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00081}00081 \textcolor{comment}{ *       P: an int/SuiteSparse\_long array of size n, containing the output}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00082}00082 \textcolor{comment}{ *           permutation. If row i is the kth pivot row, then P [k] = i.  In}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00083}00083 \textcolor{comment}{ *           MATLAB notation, the reordered matrix is A (P,P).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00084}00084 \textcolor{comment}{ *       ABIPInfo: a double array of size AMD\_INFO, containing statistical}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00085}00085 \textcolor{comment}{ *           information.  Ignored if ABIPInfo is ABIP\_NULL.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00086}00086 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00087}00087 \textcolor{comment}{ * On input, the matrix A is stored in column-\/oriented form.  The row indices}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00088}00088 \textcolor{comment}{ * of nonzero entries in column j are stored in Ai [Ap [j] ... Ap [j+1]-\/1].}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00089}00089 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00090}00090 \textcolor{comment}{ * If the row indices appear in ascending order in each column, and there}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00091}00091 \textcolor{comment}{ * are no duplicate entries, then amd\_order is slightly more efficient in}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00092}00092 \textcolor{comment}{ * terms of time and memory usage.  If this condition does not hold, a copy}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00093}00093 \textcolor{comment}{ * of the matrix is created (where these conditions do hold), and the copy is}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00094}00094 \textcolor{comment}{ * ordered.  This feature is new to v2.0 (v1.2 and earlier required this}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00095}00095 \textcolor{comment}{ * condition to hold for the input matrix).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00096}00096 \textcolor{comment}{ * }}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00097}00097 \textcolor{comment}{ * Row indices must be in the range 0 to}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00098}00098 \textcolor{comment}{ * n-\/1.  Ap [0] must be zero, and thus nz = Ap [n] is the number of nonzeros}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00099}00099 \textcolor{comment}{ * in A.  The array Ap is of size n+1, and the array Ai is of size nz = Ap [n].}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00100}00100 \textcolor{comment}{ * The matrix does not need to be symmetric, and the diagonal does not need to}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00101}00101 \textcolor{comment}{ * be present (if diagonal entries are present, they are ignored except for}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00102}00102 \textcolor{comment}{ * the output statistic Info [AMD\_NZDIAG]).  The arrays Ai and Ap are not}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00103}00103 \textcolor{comment}{ * modified.  This form of the Ap and Ai arrays to represent the nonzero}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00104}00104 \textcolor{comment}{ * pattern of the matrix A is the same as that used internally by MATLAB.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00105}00105 \textcolor{comment}{ * If you wish to use a more flexible input structure, please see the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00106}00106 \textcolor{comment}{ * umfpack\_*\_triplet\_to\_col routines in the UMFPACK package, at}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00107}00107 \textcolor{comment}{ * http://www.suitesparse.com.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00108}00108 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00109}00109 \textcolor{comment}{ * Restrictions:  n >= 0.  Ap [0] = 0.  Ap [j] <= Ap [j+1] for all j in the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00110}00110 \textcolor{comment}{ *       range 0 to n-\/1.  nz = Ap [n] >= 0.  Ai [0..nz-\/1] must be in the range 0}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00111}00111 \textcolor{comment}{ *       to n-\/1.  Finally, Ai, Ap, and P must not be NULL.  If any of these}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00112}00112 \textcolor{comment}{ *       restrictions are not met, AMD returns AMD\_INVALID.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00113}00113 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00114}00114 \textcolor{comment}{ * AMD returns:}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00115}00115 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00116}00116 \textcolor{comment}{ *       AMD\_OK if the matrix is valid and sufficient memory can be allocated to}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00117}00117 \textcolor{comment}{ *           perform the ordering.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00118}00118 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00119}00119 \textcolor{comment}{ *       AMD\_OUT\_OF\_MEMORY if not enough memory can be allocated.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00120}00120 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00121}00121 \textcolor{comment}{ *       AMD\_INVALID if the input arguments n, Ap, Ai are invalid, or if P is}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00122}00122 \textcolor{comment}{ *           NULL.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00123}00123 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00124}00124 \textcolor{comment}{ *       AMD\_OK\_BUT\_JUMBLED if the matrix had unsorted columns, and/or duplicate}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00125}00125 \textcolor{comment}{ *           entries, but was otherwise valid.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00126}00126 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00127}00127 \textcolor{comment}{ * The AMD routine first forms the pattern of the matrix A+A', and then}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00128}00128 \textcolor{comment}{ * computes a fill-\/reducing ordering, P.  If P [k] = i, then row/column i of}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00129}00129 \textcolor{comment}{ * the original is the kth pivotal row.  In MATLAB notation, the permuted}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00130}00130 \textcolor{comment}{ * matrix is A (P,P), except that 0-\/based indexing is used instead of the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00131}00131 \textcolor{comment}{ * 1-\/based indexing in MATLAB.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00132}00132 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00133}00133 \textcolor{comment}{ * The Control array is used to set various parameters for AMD.  If a NULL}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00134}00134 \textcolor{comment}{ * pointer is passed, default values are used.  The Control array is not}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00135}00135 \textcolor{comment}{ * modified.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00136}00136 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00137}00137 \textcolor{comment}{ *       Control [AMD\_DENSE]:  controls the threshold for "{}dense"{} rows/columns.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00138}00138 \textcolor{comment}{ *           A dense row/column in A+A' can cause AMD to spend a lot of time in}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00139}00139 \textcolor{comment}{ *           ordering the matrix.  If Control [AMD\_DENSE] >= 0, rows/columns}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00140}00140 \textcolor{comment}{ *           with more than Control [AMD\_DENSE] * sqrt (n) entries are ignored}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00141}00141 \textcolor{comment}{ *           during the ordering, and placed last in the output order.  The}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00142}00142 \textcolor{comment}{ *           default value of Control [AMD\_DENSE] is 10.  If negative, no}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00143}00143 \textcolor{comment}{ *           rows/columns are treated as "{}dense"{}.  Rows/columns with 16 or}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00144}00144 \textcolor{comment}{ *           fewer off-\/diagonal entries are never considered "{}dense"{}.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00145}00145 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00146}00146 \textcolor{comment}{ *       Control [AMD\_AGGRESSIVE]: controls whether or not to use aggressive}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00147}00147 \textcolor{comment}{ *           absorption, in which a prior element is absorbed into the current}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00148}00148 \textcolor{comment}{ *           element if is a subset of the current element, even if it is not}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00149}00149 \textcolor{comment}{ *           adjacent to the current pivot element (refer to Amestoy, Davis,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00150}00150 \textcolor{comment}{ *           \& Duff, 1996, for more details).  The default value is nonzero,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00151}00151 \textcolor{comment}{ *           which means to perform aggressive absorption.  This nearly always}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00152}00152 \textcolor{comment}{ *           leads to a better ordering (because the approximate degrees are}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00153}00153 \textcolor{comment}{ *           more accurate) and a lower execution time.  There are cases where}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00154}00154 \textcolor{comment}{ *           it can lead to a slightly worse ordering, however.  To turn it off,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00155}00155 \textcolor{comment}{ *           set Control [AMD\_AGGRESSIVE] to 0.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00156}00156 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00157}00157 \textcolor{comment}{ *       Control [2..4] are not used in the current version, but may be used in}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00158}00158 \textcolor{comment}{ *           future versions.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00159}00159 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00160}00160 \textcolor{comment}{ * The ABIPInfo array provides statistics about the ordering on output.  If it is}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00161}00161 \textcolor{comment}{ * not present, the statistics are not returned.  This is not an error}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00162}00162 \textcolor{comment}{ * condition.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00163}00163 \textcolor{comment}{ * }}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00164}00164 \textcolor{comment}{ *       ABIPInfo [AMD\_STATUS]:  the return value of AMD, either AMD\_OK,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00165}00165 \textcolor{comment}{ *           AMD\_OK\_BUT\_JUMBLED, AMD\_OUT\_OF\_MEMORY, or AMD\_INVALID.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00166}00166 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00167}00167 \textcolor{comment}{ *       ABIPInfo [AMD\_N]: n, the size of the input matrix}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00168}00168 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00169}00169 \textcolor{comment}{ *       ABIPInfo [AMD\_NZ]: the number of nonzeros in A, nz = Ap [n]}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00170}00170 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00171}00171 \textcolor{comment}{ *       ABIPInfo [AMD\_SYMMETRY]:  the symmetry of the matrix A.  It is the number}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00172}00172 \textcolor{comment}{ *           of "{}matched"{} off-\/diagonal entries divided by the total number of}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00173}00173 \textcolor{comment}{ *           off-\/diagonal entries.  An entry A(i,j) is matched if A(j,i) is also}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00174}00174 \textcolor{comment}{ *           an entry, for any pair (i,j) for which i != j.  In MATLAB notation,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00175}00175 \textcolor{comment}{ *                S = spones (A) ;}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00176}00176 \textcolor{comment}{ *                B = tril (S, -\/1) + triu (S, 1) ;}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00177}00177 \textcolor{comment}{ *                symmetry = nnz (B \& B') / nnz (B) ;}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00178}00178 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00179}00179 \textcolor{comment}{ *       ABIPInfo [AMD\_NZDIAG]: the number of entries on the diagonal of A.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00180}00180 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00181}00181 \textcolor{comment}{ *       ABIPInfo [AMD\_NZ\_A\_PLUS\_AT]:  the number of nonzeros in A+A', excluding the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00182}00182 \textcolor{comment}{ *           diagonal.  If A is perfectly symmetric (Info [AMD\_SYMMETRY] = 1)}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00183}00183 \textcolor{comment}{ *           with a fully nonzero diagonal, then Info [AMD\_NZ\_A\_PLUS\_AT] = nz-\/n}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00184}00184 \textcolor{comment}{ *           (the smallest possible value).  If A is perfectly unsymmetric}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00185}00185 \textcolor{comment}{ *           (Info [AMD\_SYMMETRY] = 0, for an upper triangular matrix, for}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00186}00186 \textcolor{comment}{ *           example) with no diagonal, then Info [AMD\_NZ\_A\_PLUS\_AT] = 2*nz}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00187}00187 \textcolor{comment}{ *           (the largest possible value).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00188}00188 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00189}00189 \textcolor{comment}{ *       ABIPInfo [AMD\_NDENSE]: the number of "{}dense"{} rows/columns of A+A' that were}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00190}00190 \textcolor{comment}{ *           removed from A prior to ordering.  These are placed last in the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00191}00191 \textcolor{comment}{ *           output order P.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00192}00192 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00193}00193 \textcolor{comment}{ *       ABIPInfo [AMD\_MEMORY]: the amount of memory used by AMD, in bytes.  In the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00194}00194 \textcolor{comment}{ *           current version, this is 1.2 * Info  [AMD\_NZ\_A\_PLUS\_AT] + 9*n}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00195}00195 \textcolor{comment}{ *           times the size of an integer.  This is at most 2.4nz + 9n.  This}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00196}00196 \textcolor{comment}{ *           excludes the size of the input arguments Ai, Ap, and P, which have}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00197}00197 \textcolor{comment}{ *           a total size of nz + 2*n + 1 integers.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00198}00198 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00199}00199 \textcolor{comment}{ *       ABIPInfo [AMD\_NCMPA]: the number of garbage collections performed.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00200}00200 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00201}00201 \textcolor{comment}{ *       ABIPInfo [AMD\_LNZ]: the number of nonzeros in L (excluding the diagonal).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00202}00202 \textcolor{comment}{ *           This is a slight upper bound because mass elimination is combined}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00203}00203 \textcolor{comment}{ *           with the approximate degree update.  It is a rough upper bound if}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00204}00204 \textcolor{comment}{ *           there are many "{}dense"{} rows/columns.  The rest of the statistics,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00205}00205 \textcolor{comment}{ *           below, are also slight or rough upper bounds, for the same reasons.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00206}00206 \textcolor{comment}{ *           The post-\/ordering of the assembly tree might also not exactly}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00207}00207 \textcolor{comment}{ *           correspond to a true elimination tree postordering.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00208}00208 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00209}00209 \textcolor{comment}{ *       ABIPInfo [AMD\_NDIV]: the number of divide operations for a subsequent LDL'}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00210}00210 \textcolor{comment}{ *           or LU factorization of the permuted matrix A (P,P).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00211}00211 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00212}00212 \textcolor{comment}{ *       ABIPInfo [AMD\_NMULTSUBS\_LDL]:  the number of multiply-\/subtract pairs for a}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00213}00213 \textcolor{comment}{ *           subsequent LDL' factorization of A (P,P).}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00214}00214 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00215}00215 \textcolor{comment}{ *       ABIPInfo [AMD\_NMULTSUBS\_LU]:  the number of multiply-\/subtract pairs for a}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00216}00216 \textcolor{comment}{ *           subsequent LU factorization of A (P,P), assuming that no numerical}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00217}00217 \textcolor{comment}{ *           pivoting is required.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00218}00218 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00219}00219 \textcolor{comment}{ *       ABIPInfo [AMD\_DMAX]:  the maximum number of nonzeros in any column of L,}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00220}00220 \textcolor{comment}{ *           including the diagonal.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00221}00221 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00222}00222 \textcolor{comment}{ *       ABIPInfo [14..19] are not used in the current version, but may be used in}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00223}00223 \textcolor{comment}{ *           future versions.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00224}00224 \textcolor{comment}{ */}    }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00226}00226 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00227}00227 \textcolor{comment}{/* direct interface to AMD */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00228}00228 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00230}00230 \textcolor{comment}{/* amd\_2 is the primary AMD ordering routine.  It is not meant to be}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00231}00231 \textcolor{comment}{ * user-\/callable because of its restrictive inputs and because it destroys}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00232}00232 \textcolor{comment}{ * the user's input matrix.  It does not check its inputs for errors, either.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00233}00233 \textcolor{comment}{ * However, if you can work with these restrictions it can be faster than}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00234}00234 \textcolor{comment}{ * amd\_order and use less memory (assuming that you can create your own copy}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00235}00235 \textcolor{comment}{ * of the matrix for AMD to destroy).  Refer to AMD/Source/amd\_2.c for a}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00236}00236 \textcolor{comment}{ * description of each parameter. */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00237}00237 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00238}\mbox{\hyperlink{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}{00238}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}{amd\_2}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00239}00239 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00240}00240             \textcolor{keywordtype}{int} n,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00241}00241             \textcolor{keywordtype}{int} Pe [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00242}00242             \textcolor{keywordtype}{int} Iw [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00243}00243             \textcolor{keywordtype}{int} Len [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00244}00244             \textcolor{keywordtype}{int} iwlen,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00245}00245             \textcolor{keywordtype}{int} pfree,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00246}00246             \textcolor{keywordtype}{int} Nv [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00247}00247             \textcolor{keywordtype}{int} Next [ ], }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00248}00248             \textcolor{keywordtype}{int} Last [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00249}00249             \textcolor{keywordtype}{int} Head [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00250}00250             \textcolor{keywordtype}{int} Elen [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00251}00251             \textcolor{keywordtype}{int} Degree [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00252}00252             \textcolor{keywordtype}{int} W [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00253}00253             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00254}00254             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00255}00255 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00257}\mbox{\hyperlink{amd_8h_a7fceed4b9f84d05c83a106bbf8779c71}{00257}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a7fceed4b9f84d05c83a106bbf8779c71}{amd\_l2}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00258}00258 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00259}00259             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} n,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00260}00260             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Pe [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00261}00261             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Iw [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00262}00262             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Len [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00263}00263             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} iwlen,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00264}00264             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} pfree,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00265}00265             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Nv [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00266}00266             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Next [ ], }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00267}00267             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Last [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00268}00268             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Head [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00269}00269             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Elen [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00270}00270             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Degree [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00271}00271             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} W [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00272}00272             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00273}00273             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00274}00274 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00276}00276 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00277}00277 \textcolor{comment}{/* amd\_valid */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00278}00278 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00279}00279 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00280}00280 \textcolor{comment}{/* Returns AMD\_OK or AMD\_OK\_BUT\_JUMBLED if the matrix is valid as input to}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00281}00281 \textcolor{comment}{ * amd\_order; the latter is returned if the matrix has unsorted and/or}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00282}00282 \textcolor{comment}{ * duplicate row indices in one or more columns.  Returns AMD\_INVALID if the}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00283}00283 \textcolor{comment}{ * matrix cannot be passed to amd\_order.  For amd\_order, the matrix must also}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00284}00284 \textcolor{comment}{ * be square.  The first two arguments are the number of rows and the number}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00285}00285 \textcolor{comment}{ * of columns of the matrix.  For its use in AMD, these must both equal n.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00286}00286 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00287}00287 \textcolor{comment}{ * NOTE: this routine returned TRUE/FALSE in v1.2 and earlier.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00288}00288 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00289}00289 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00290}\mbox{\hyperlink{amd_8h_a27866de985cec7a835d86430cb6b3ce7}{00290}} \textcolor{keywordtype}{int} \mbox{\hyperlink{amd_8h_a27866de985cec7a835d86430cb6b3ce7}{amd\_valid}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00291}00291 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00292}00292             \textcolor{keywordtype}{int} n\_row,                   \textcolor{comment}{/* \# of rows */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00293}00293             \textcolor{keywordtype}{int} n\_col,                    \textcolor{comment}{/* \# of columns */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00294}00294             \textcolor{keyword}{const} \textcolor{keywordtype}{int} Ap [ ],          \textcolor{comment}{/* column pointers, of size n\_col+1 */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00295}00295             \textcolor{keyword}{const} \textcolor{keywordtype}{int} Ai [ ]            \textcolor{comment}{/* row indices, of size Ap [n\_col] */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00296}00296 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00297}00297 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00298}\mbox{\hyperlink{amd_8h_a046c86e2bb7a9dd585c358a456bb0e92}{00298}} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} \mbox{\hyperlink{amd_8h_a046c86e2bb7a9dd585c358a456bb0e92}{amd\_l\_valid}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00299}00299 (}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00300}00300             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} n\_row,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00301}00301             \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} n\_col,}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00302}00302             \textcolor{keyword}{const} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00303}00303             \textcolor{keyword}{const} \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{SuiteSparse\_long}} Ai [ ]}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00304}00304 ) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00305}00305 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00306}00306 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00307}00307 \textcolor{comment}{/* AMD memory manager and printf routines */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00308}00308 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00309}00309 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00310}00310 \textcolor{preprocessor}{\#ifndef EXTERN}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00311}\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{00311}} \textcolor{preprocessor}{\#define EXTERN extern}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00312}00312 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00313}00313 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00314}\mbox{\hyperlink{amd_8h_aad03ab24d52b470a3834c3ca628f1b93}{00314}} \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \textcolor{keywordtype}{void} *(*amd\_malloc) (size\_t) ;                     \textcolor{comment}{/* pointer to malloc */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00315}\mbox{\hyperlink{amd_8h_a4a20ed8093682b7589431dc1ca9a7f0b}{00315}} \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void (*\mbox{\hyperlink{amd_8h_a4a20ed8093682b7589431dc1ca9a7f0b}{amd\_free}}) (\textcolor{keywordtype}{void} *) ;                           \textcolor{comment}{/* pointer to free */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00316}\mbox{\hyperlink{amd_8h_a3e28fc50f9effa04e74c05fb84cdca84}{00316}} \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \textcolor{keywordtype}{void} *(*amd\_realloc) (\textcolor{keywordtype}{void} *, size\_t) ;           \textcolor{comment}{/* pointer to realloc */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00317}\mbox{\hyperlink{amd_8h_a4093915e4aab0d4bc3b3592ca4847c7c}{00317}} \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \textcolor{keywordtype}{void} *(*amd\_calloc) (size\_t, size\_t) ;             \textcolor{comment}{/* pointer to calloc */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00318}\mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{00318}} \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} int (*\mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\_printf}}) (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *, ...) ;              \textcolor{comment}{/* pointer to printf */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00320}00320 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00321}00321 \textcolor{comment}{/* AMD Control and Info arrays */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00322}00322 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00323}00323 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00324}00324 \textcolor{comment}{/* amd\_defaults:  sets the default control settings */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00325}\mbox{\hyperlink{amd_8h_a0154a0afff23e3aad0130eafe07197df}{00325}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a0154a0afff23e3aad0130eafe07197df}{amd\_defaults}}   (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00326}\mbox{\hyperlink{amd_8h_a3f6e5570a601182c58851e3f3acebc0c}{00326}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a3f6e5570a601182c58851e3f3acebc0c}{amd\_l\_defaults}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00327}00327 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00328}00328 \textcolor{comment}{/* amd\_control: prints the control settings */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00329}\mbox{\hyperlink{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}{00329}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}{amd\_control}}    (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00330}\mbox{\hyperlink{amd_8h_a1245ac30e3ae313eb1c0ec563b5190e8}{00330}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a1245ac30e3ae313eb1c0ec563b5190e8}{amd\_l\_control}}  (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00331}00331 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00332}00332 \textcolor{comment}{/* amd\_info: prints the statistics */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00333}\mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{00333}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\_info}}       (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00334}\mbox{\hyperlink{amd_8h_a9863b7fb51073577f525dbd44c1832ae}{00334}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd_8h_a9863b7fb51073577f525dbd44c1832ae}{amd\_l\_info}}     (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]) ;}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00335}00335 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00336}\mbox{\hyperlink{amd_8h_affdc598f13446fa7f4dbd2e55aeeba36}{00336}} \textcolor{preprocessor}{\#define AMD\_CONTROL 5          }\textcolor{comment}{/* size of Control array */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00337}\mbox{\hyperlink{amd_8h_ad4d0388011f3a533198976feb69ae5e4}{00337}} \textcolor{preprocessor}{\#define AMD\_INFO 20            }\textcolor{comment}{/* size of Info array */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00338}00338 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00339}00339 \textcolor{comment}{/* contents of Control */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00340}\mbox{\hyperlink{amd_8h_aa5d6b72c4e51b57087a55b99d5072792}{00340}} \textcolor{preprocessor}{\#define AMD\_DENSE 0            }\textcolor{comment}{/* "{}dense"{} if degree > Control [0] * sqrt (n) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00341}\mbox{\hyperlink{amd_8h_a51a25f4c648f8be90e5db00ff10f89c6}{00341}} \textcolor{preprocessor}{\#define AMD\_AGGRESSIVE 1    }\textcolor{comment}{/* do aggressive absorption if Control [1] != 0 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00342}00342 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00343}00343 \textcolor{comment}{/* default Control settings */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00344}\mbox{\hyperlink{amd_8h_a4ab439dcb1b2034b0cf7b92c5ad60e6d}{00344}} \textcolor{preprocessor}{\#define AMD\_DEFAULT\_DENSE 10.0          }\textcolor{comment}{/* default "{}dense"{} degree 10*sqrt(n) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00345}\mbox{\hyperlink{amd_8h_a2da83d1a74137be92385ffd239e5e4df}{00345}} \textcolor{preprocessor}{\#define AMD\_DEFAULT\_AGGRESSIVE 1    }\textcolor{comment}{/* do aggressive absorption by default */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00346}00346 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00347}00347 \textcolor{comment}{/* contents of Info */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00348}\mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{00348}} \textcolor{preprocessor}{\#define AMD\_STATUS 0           }\textcolor{comment}{/* return value of amd\_order and amd\_l\_order */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00349}\mbox{\hyperlink{amd_8h_ad593079a13107070ba76e539b3b1c19a}{00349}} \textcolor{preprocessor}{\#define AMD\_N 1                }\textcolor{comment}{/* A is n-\/by-\/n */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00350}\mbox{\hyperlink{amd_8h_a4f88b4f4705995693bc017d717dad36e}{00350}} \textcolor{preprocessor}{\#define AMD\_NZ 2      }\textcolor{comment}{/* number of nonzeros in A */}\textcolor{preprocessor}{ }}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00351}\mbox{\hyperlink{amd_8h_ae8211d71b1b50b77c06984a07275edd1}{00351}} \textcolor{preprocessor}{\#define AMD\_SYMMETRY 3         }\textcolor{comment}{/* symmetry of pattern (1 is sym., 0 is unsym.) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00352}\mbox{\hyperlink{amd_8h_a835a095afffcd03e5ed5c2632c2dc1d9}{00352}} \textcolor{preprocessor}{\#define AMD\_NZDIAG 4           }\textcolor{comment}{/* \# of entries on diagonal */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00353}\mbox{\hyperlink{amd_8h_a2f9a02baa3b1a848dce862fbea0f2e64}{00353}} \textcolor{preprocessor}{\#define AMD\_NZ\_A\_PLUS\_AT 5  }\textcolor{comment}{/* nz in A+A' */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00354}\mbox{\hyperlink{amd_8h_a17c486f4577c5914e975e270ea7c8b76}{00354}} \textcolor{preprocessor}{\#define AMD\_NDENSE 6           }\textcolor{comment}{/* number of "{}dense"{} rows/columns in A */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00355}\mbox{\hyperlink{amd_8h_a947c29267a22a2c462c55e8912ba2432}{00355}} \textcolor{preprocessor}{\#define AMD\_MEMORY 7           }\textcolor{comment}{/* amount of memory used by AMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00356}\mbox{\hyperlink{amd_8h_ae7b45589f33fbdad203bf330abb423e3}{00356}} \textcolor{preprocessor}{\#define AMD\_NCMPA 8            }\textcolor{comment}{/* number of garbage collections in AMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00357}\mbox{\hyperlink{amd_8h_a0bb2d3b5a2436760e9ea6cefdfcd90af}{00357}} \textcolor{preprocessor}{\#define AMD\_LNZ 9     }\textcolor{comment}{/* approx. nz in L, excluding the diagonal */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00358}\mbox{\hyperlink{amd_8h_a35be9f9c7b66f2a449dbadd022ebb4df}{00358}} \textcolor{preprocessor}{\#define AMD\_NDIV 10            }\textcolor{comment}{/* number of fl. point divides for LU and LDL' */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00359}\mbox{\hyperlink{amd_8h_aa45c6a9529df13508f551cd9d366fe22}{00359}} \textcolor{preprocessor}{\#define AMD\_NMULTSUBS\_LDL 11 }\textcolor{comment}{/* number of fl. point (*,-\/) pairs for LDL' */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00360}\mbox{\hyperlink{amd_8h_a6608c6d00d7e671f92baa675990619a5}{00360}} \textcolor{preprocessor}{\#define AMD\_NMULTSUBS\_LU 12  }\textcolor{comment}{/* number of fl. point (*,-\/) pairs for LU */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00361}\mbox{\hyperlink{amd_8h_a7fa264773307cae6f5c829f29e2e8efa}{00361}} \textcolor{preprocessor}{\#define AMD\_DMAX 13             }\textcolor{comment}{/* max nz. in any column of L, incl. diagonal */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00362}00362 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00363}00363 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00364}00364 \textcolor{comment}{/* return values of AMD */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00365}00365 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00366}00366 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00367}\mbox{\hyperlink{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}{00367}} \textcolor{preprocessor}{\#define AMD\_OK 0           }\textcolor{comment}{/* success */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00368}\mbox{\hyperlink{amd_8h_a3a1e5404ad34ec4faf624d2416410103}{00368}} \textcolor{preprocessor}{\#define AMD\_OUT\_OF\_MEMORY -\/1        }\textcolor{comment}{/* malloc failed, or problem too large */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00369}\mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{00369}} \textcolor{preprocessor}{\#define AMD\_INVALID -\/2              }\textcolor{comment}{/* input arguments are not valid */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00370}\mbox{\hyperlink{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}{00370}} \textcolor{preprocessor}{\#define AMD\_OK\_BUT\_JUMBLED 1        }\textcolor{comment}{/* input matrix is OK for amd\_order, but}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00371}00371 \textcolor{comment}{    * columns were not sorted, and/or duplicate entries were present.  AMD had}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00372}00372 \textcolor{comment}{    * to do extra work before ordering the matrix.  This is a warning, not an}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00373}00373 \textcolor{comment}{    * error.  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00374}00374 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00375}00375 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00376}00376 \textcolor{comment}{/* === AMD version ========================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00377}00377 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00378}00378 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00379}00379 \textcolor{comment}{/* AMD Version 1.2 and later include the following definitions.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00380}00380 \textcolor{comment}{ * As an example, to test if the version you are using is 1.2 or later:}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00381}00381 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00382}00382 \textcolor{comment}{ * \#ifdef AMD\_VERSION}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00383}00383 \textcolor{comment}{ *       if (AMD\_VERSION >= AMD\_VERSION\_CODE (1,2)) ...}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00384}00384 \textcolor{comment}{ * \#endif}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00385}00385 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00386}00386 \textcolor{comment}{ * This also works during compile-\/time:}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00387}00387 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00388}00388 \textcolor{comment}{ *       \#if defined(AMD\_VERSION) \&\& (AMD\_VERSION >= AMD\_VERSION\_CODE (1,2))}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00389}00389 \textcolor{comment}{ *           printf ("{}This is version 1.2 or later\(\backslash\)n"{}) ;}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00390}00390 \textcolor{comment}{ *       \#else}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00391}00391 \textcolor{comment}{ *           printf ("{}This is an early version\(\backslash\)n"{}) ;}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00392}00392 \textcolor{comment}{ *       \#endif}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00393}00393 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00394}\mbox{\hyperlink{amd_8h_a3cc33507c4130196ea26e685d9fd634d}{00394}} \textcolor{comment}{ * Versions 1.1 and earlier of AMD do not include a \#define'd version number.}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00395}\mbox{\hyperlink{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}{00395}} \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00396}\mbox{\hyperlink{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}{00396}} }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00397}\mbox{\hyperlink{amd_8h_aa055fcdf57343e1744fb114add9d0086}{00397}} \textcolor{preprocessor}{\#define AMD\_DATE "{}May 4, 2016"{}}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00398}\mbox{\hyperlink{amd_8h_ab2cabd46ed253019dee4cfa046e08dad}{00398}} \textcolor{preprocessor}{\#define AMD\_VERSION\_CODE(main,sub) ((main) * 1000 + (sub))}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00399}\mbox{\hyperlink{amd_8h_ac15fe8d35e7859df7fa5d8fbc892d42d}{00399}} \textcolor{preprocessor}{\#define AMD\_MAIN\_VERSION 2}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00400}00400 \textcolor{preprocessor}{\#define AMD\_SUB\_VERSION 4}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00401}00401 \textcolor{preprocessor}{\#define AMD\_SUBSUB\_VERSION 6}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00402}00402 \textcolor{preprocessor}{\#define AMD\_VERSION AMD\_VERSION\_CODE(AMD\_MAIN\_VERSION,AMD\_SUB\_VERSION)}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00403}00403 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00404}00404 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00405}00405 \}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00406}00406 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00407}00407 }
+\DoxyCodeLine{\Hypertarget{amd_8h_source_l00408}00408 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

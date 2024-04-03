@@ -1,0 +1,133 @@
+\hypertarget{amd__post__tree_8c_source}{}\doxysection{amd\+\_\+post\+\_\+tree.\+c}
+\label{amd__post__tree_8c_source}\index{external/amd/amd\_post\_tree.c@{external/amd/amd\_post\_tree.c}}
+\mbox{\hyperlink{amd__post__tree_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_post\_tree ======================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00011}00011 \textcolor{comment}{/* Post-\/ordering of a supernodal elimination tree.  */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00015}\mbox{\hyperlink{amd__post__tree_8c_afa29d5e69f6511b9de8281a892ef3c21}{00015}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{AMD\_post\_tree}}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00016}00016 (}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00017}00017         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} root,        \textcolor{comment}{/* root of the tree */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00018}00018         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} k,           \textcolor{comment}{/* start numbering at k */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00019}00019         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child [ ],       \textcolor{comment}{/* input argument of size nn, undefined on}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00020}00020 \textcolor{comment}{                 * output.  Child [i] is the head of a link}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00021}00021 \textcolor{comment}{                 * list of all nodes that are children of node}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00022}00022 \textcolor{comment}{                 * i in the tree. */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00023}00023         \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling [ ],   \textcolor{comment}{/* input argument of size nn, not modified.}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00024}00024 \textcolor{comment}{                 * If f is a node in the link list of the}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00025}00025 \textcolor{comment}{                 * children of node i, then Sibling [f] is the}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00026}00026 \textcolor{comment}{                 * next child of node i.}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00027}00027 \textcolor{comment}{                 */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00028}00028         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order [ ],       \textcolor{comment}{/* output order, of size nn.  Order [i] = k}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00029}00029 \textcolor{comment}{                 * if node i is the kth node of the reordered}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00030}00030 \textcolor{comment}{                 * tree. */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00031}00031         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack [ ]        \textcolor{comment}{/* workspace of size nn */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00032}00032     \#ifndef NDEBUG}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00033}00033         , \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nn         \textcolor{comment}{/* nodes are in the range 0..nn-\/1. */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00034}00034     \#endif}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00035}00035 )}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00036}00036 \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00037}00037         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} f; }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00038}00038         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} head; }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00039}00039         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} h; }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00040}00040         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} i;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00042}00042 \textcolor{preprocessor}{    \#if 0}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00043}00043             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00044}00044             \textcolor{comment}{/* recursive version (Stack [ ] is not used): */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00045}00045             \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00047}00047             \textcolor{comment}{/* this is simple, but can caouse stack overflow if nn is large */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00048}00048             i = root ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00049}00049             \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00050}00050             \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00051}00051             k = \mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{AMD\_post\_tree}} (f, k, Child, Sibling, Order, Stack, nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00052}00052             \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00053}00053             Order [i] = k++ ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00054}00054             \textcolor{keywordflow}{return} (k) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00055}00055 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00057}00057         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00058}00058         \textcolor{comment}{/* non-\/recursive version, using an explicit stack */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00059}00059         \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00061}00061         \textcolor{comment}{/* push root on the stack */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00062}00062         head = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00063}00063         Stack [0] = root ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00065}00065         \textcolor{keywordflow}{while} (head >= 0)}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00066}00066         \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00067}00067         \textcolor{comment}{/* get head of stack */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00068}00068         \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (head < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00069}00069         i = Stack [head] ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00070}00070         \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}head of stack "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} \(\backslash\)n"{}}, i)) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00071}00071         \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (i >= 0 \&\& i < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00073}00073         \textcolor{keywordflow}{if} (Child [i] != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}})}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00074}00074         \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00075}00075                 \textcolor{comment}{/* the children of i are not yet ordered */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00076}00076                 \textcolor{comment}{/* push each child onto the stack in reverse order */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00077}00077                 \textcolor{comment}{/* so that small ones at the head of the list get popped first */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00078}00078                 \textcolor{comment}{/* and the biggest one at the end of the list gets popped last */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00079}00079                 \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00080}00080                 \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00081}00081                 head++ ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00082}00082                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (head < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00083}00083                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (f >= 0 \&\& f < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00084}00084                 \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00085}00085                 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00086}00086                 h = head ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00087}00087                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (head < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00088}00088                 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00089}00089                 \textcolor{keywordflow}{for} (f = Child [i] ; f != \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ; f = Sibling [f])}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00090}00090                 \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00091}00091                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (h > 0) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00092}00092                 Stack [h-\/-\/] = f ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00093}00093                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}push "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} on stack\(\backslash\)n"{}}, f)) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00094}00094                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (f >= 0 \&\& f < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00095}00095                 \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00096}00096                 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00097}00097                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (Stack [h] == i) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00099}00099                 \textcolor{comment}{/* delete child list so that i gets ordered next time we see it */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00100}00100                 Child [i] = \mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{EMPTY}} ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00101}00101         \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00102}00102         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00103}00103         \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00104}00104                 \textcolor{comment}{/* the children of i (if there were any) are already ordered */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00105}00105                 \textcolor{comment}{/* remove i from the stack and order it.  Front i is kth front */}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00106}00106                 head-\/-\/ ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00107}00107                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}pop "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{} order "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}\textcolor{stringliteral}{"{}\(\backslash\)n"{}}, i, k)) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00108}00108                 Order [i] = k++ ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00109}00109                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (k <= nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00110}00110         \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00112}00112 \textcolor{preprocessor}{        \#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00113}00113         \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}\(\backslash\)nStack:"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00114}00114         }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00115}00115         \textcolor{keywordflow}{for} (h = head ; h >= 0 ; h-\/-\/)}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00116}00116         \{}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00117}00117                 \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} j = Stack [h] ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00118}00118                 \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{} "{}}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}, j)) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00119}00119                 \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (j >= 0 \&\& j < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00120}00120         \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00121}00121         }
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00122}00122         \mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{AMD\_DEBUG1}} ((\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}})) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00123}00123         \mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{ASSERT}} (head < nn) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00124}00124 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00125}00125     \}}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00126}00126         \textcolor{keywordflow}{return} (k) ;}
+\DoxyCodeLine{\Hypertarget{amd__post__tree_8c_source_l00127}00127 \}}
+
+\end{DoxyCode}

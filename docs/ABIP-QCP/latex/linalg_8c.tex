@@ -1,0 +1,294 @@
+\hypertarget{linalg_8c}{}\doxysection{source/linalg.c File Reference}
+\label{linalg_8c}\index{source/linalg.c@{source/linalg.c}}
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a0f03690d0630553d53d94cafd984ea56}{c\+\_\+dot}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise multiplication of two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a7a789a533d2be58614d68921dba2ff4e}{vec\+\_\+mean}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Calculate the mean of a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}{set\+\_\+as\+\_\+scaled\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise multiplication of a vector by a scalar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ab045d903054511819fb79be60350cdae}{set\+\_\+as\+\_\+sqrt}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise square root of a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}{set\+\_\+as\+\_\+sq}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise square of a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}{scale\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise multiplication of a vector by a scalar with replacement. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}{dot}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Dot product of two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}{norm\+\_\+sq}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em L2 norm of a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}{norm}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$v, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Square of L2 norm of a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ac8f8f4a73417e8fcec82fc984da838cf}{norm\+\_\+1}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em L1 norm of a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_aa11f886c7cb635b196fef431179c2cd5}{cone\+\_\+norm\+\_\+1}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em The absolute value of the largest component of x. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}{norm\+\_\+inf}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Calculate the maximum absolute value of a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}{add\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Elementwise addition of two vectors with coefficients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a5c0e15e145cedea392a485ee079f036d}{add\+\_\+scaled\+\_\+array}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} sc)
+\begin{DoxyCompactList}\small\item\em Elementwise addition of two vectors with coefficients 1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}{norm\+\_\+diff}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em L2 norm of the difference of two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_a8fff53801fc643376bbc155489802a79}{norm\+\_\+inf\+\_\+diff}} (const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$a, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} len)
+\begin{DoxyCompactList}\small\item\em Maximum of the difference of two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{linalg_8c_a4f07c4a040f1be32cff780aa2742edc1}{arr\+\_\+ind}} (const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} i\+\_\+col, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} i\+\_\+row, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} nrows, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ncols, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} format)
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{linalg_8c_ac162f7385c4fbc92a6f8d516ea4c3a9b}{csc\+\_\+to\+\_\+dense}} (const \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$in\+\_\+csc, const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} out\+\_\+format)
+\begin{DoxyCompactList}\small\item\em Convert a CSC matrix to a dense matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}\label{linalg_8c_a4a51fee8c6c7a4d53a753410a7753b40}} 
+\index{linalg.c@{linalg.c}!add\_array@{add\_array}}
+\index{add\_array@{add\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{add\_array()}{add\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() add\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise addition of two vectors with coefficients. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00181}{181}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a5c0e15e145cedea392a485ee079f036d}\label{linalg_8c_a5c0e15e145cedea392a485ee079f036d}} 
+\index{linalg.c@{linalg.c}!add\_scaled\_array@{add\_scaled\_array}}
+\index{add\_scaled\_array@{add\_scaled\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{add\_scaled\_array()}{add\_scaled\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() add\+\_\+scaled\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{sc }\end{DoxyParamCaption})}
+
+
+
+Elementwise addition of two vectors with coefficients 1. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00192}{192}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a4f07c4a040f1be32cff780aa2742edc1}\label{linalg_8c_a4f07c4a040f1be32cff780aa2742edc1}} 
+\index{linalg.c@{linalg.c}!arr\_ind@{arr\_ind}}
+\index{arr\_ind@{arr\_ind}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{arr\_ind()}{arr\_ind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} arr\+\_\+ind (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{i\+\_\+col,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{i\+\_\+row,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{nrows,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{ncols,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{format }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00237}{237}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a0f03690d0630553d53d94cafd984ea56}\label{linalg_8c_a0f03690d0630553d53d94cafd984ea56}} 
+\index{linalg.c@{linalg.c}!c\_dot@{c\_dot}}
+\index{c\_dot@{c\_dot}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{c\_dot()}{c\_dot()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() c\+\_\+dot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise multiplication of two vectors. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00009}{9}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_aa11f886c7cb635b196fef431179c2cd5}\label{linalg_8c_aa11f886c7cb635b196fef431179c2cd5}} 
+\index{linalg.c@{linalg.c}!cone\_norm\_1@{cone\_norm\_1}}
+\index{cone\_norm\_1@{cone\_norm\_1}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{cone\_norm\_1()}{cone\_norm\_1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() cone\+\_\+norm\+\_\+1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+The absolute value of the largest component of x. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00144}{144}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ac162f7385c4fbc92a6f8d516ea4c3a9b}\label{linalg_8c_ac162f7385c4fbc92a6f8d516ea4c3a9b}} 
+\index{linalg.c@{linalg.c}!csc\_to\_dense@{csc\_to\_dense}}
+\index{csc\_to\_dense@{csc\_to\_dense}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{csc\_to\_dense()}{csc\_to\_dense()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() csc\+\_\+to\+\_\+dense (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$}]{in\+\_\+csc,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{out\+\_\+format }\end{DoxyParamCaption})}
+
+
+
+Convert a CSC matrix to a dense matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00247}{247}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}\label{linalg_8c_a9162b9be5eb294b90c94566cf9ec7782}} 
+\index{linalg.c@{linalg.c}!dot@{dot}}
+\index{dot@{dot}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Dot product of two vectors. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00085}{85}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}\label{linalg_8c_ae42aa3e96b2a75b8e8fe4cd4c716c728}} 
+\index{linalg.c@{linalg.c}!norm@{norm}}
+\index{norm@{norm}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Square of L2 norm of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00119}{119}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ac8f8f4a73417e8fcec82fc984da838cf}\label{linalg_8c_ac8f8f4a73417e8fcec82fc984da838cf}} 
+\index{linalg.c@{linalg.c}!norm\_1@{norm\_1}}
+\index{norm\_1@{norm\_1}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_1()}{norm\_1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+L1 norm of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00130}{130}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}\label{linalg_8c_a6536e656e8641e0c023a471f3ad0bfb8}} 
+\index{linalg.c@{linalg.c}!norm\_diff@{norm\_diff}}
+\index{norm\_diff@{norm\_diff}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_diff()}{norm\_diff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+L2 norm of the difference of two vectors. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00207}{207}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}\label{linalg_8c_a87df852cf8a772bc8dd634492f50fc0c}} 
+\index{linalg.c@{linalg.c}!norm\_inf@{norm\_inf}}
+\index{norm\_inf@{norm\_inf}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_inf()}{norm\_inf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+inf (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Calculate the maximum absolute value of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00161}{161}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a8fff53801fc643376bbc155489802a79}\label{linalg_8c_a8fff53801fc643376bbc155489802a79}} 
+\index{linalg.c@{linalg.c}!norm\_inf\_diff@{norm\_inf\_diff}}
+\index{norm\_inf\_diff@{norm\_inf\_diff}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_inf\_diff()}{norm\_inf\_diff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+inf\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Maximum of the difference of two vectors. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00223}{223}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}\label{linalg_8c_ab1ab07f830a7ea67da7f6fe1642b4733}} 
+\index{linalg.c@{linalg.c}!norm\_sq@{norm\_sq}}
+\index{norm\_sq@{norm\_sq}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{norm\_sq()}{norm\_sq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() norm\+\_\+sq (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+L2 norm of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00102}{102}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}\label{linalg_8c_a34974ea7b0ad17a4052a8048bb77a83b}} 
+\index{linalg.c@{linalg.c}!scale\_array@{scale\_array}}
+\index{scale\_array@{scale\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{scale\_array()}{scale\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() scale\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise multiplication of a vector by a scalar with replacement. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00071}{71}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}\label{linalg_8c_a13a70542a7be79a69bb5ab9ee5976378}} 
+\index{linalg.c@{linalg.c}!set\_as\_scaled\_array@{set\_as\_scaled\_array}}
+\index{set\_as\_scaled\_array@{set\_as\_scaled\_array}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_scaled\_array()}{set\_as\_scaled\_array()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+scaled\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{a,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise multiplication of a vector by a scalar. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00037}{37}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}\label{linalg_8c_a6d0ddf1ff18c66f2275558abdc4a92ba}} 
+\index{linalg.c@{linalg.c}!set\_as\_sq@{set\_as\_sq}}
+\index{set\_as\_sq@{set\_as\_sq}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_sq()}{set\_as\_sq()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+sq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise square of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00060}{60}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_ab045d903054511819fb79be60350cdae}\label{linalg_8c_ab045d903054511819fb79be60350cdae}} 
+\index{linalg.c@{linalg.c}!set\_as\_sqrt@{set\_as\_sqrt}}
+\index{set\_as\_sqrt@{set\_as\_sqrt}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{set\_as\_sqrt()}{set\_as\_sqrt()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() set\+\_\+as\+\_\+sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{v,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Elementwise square root of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00049}{49}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+
+\mbox{\Hypertarget{linalg_8c_a7a789a533d2be58614d68921dba2ff4e}\label{linalg_8c_a7a789a533d2be58614d68921dba2ff4e}} 
+\index{linalg.c@{linalg.c}!vec\_mean@{vec\_mean}}
+\index{vec\_mean@{vec\_mean}!linalg.c@{linalg.c}}
+\doxysubsubsection{\texorpdfstring{vec\_mean()}{vec\_mean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() vec\+\_\+mean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{len }\end{DoxyParamCaption})}
+
+
+
+Calculate the mean of a vector. 
+
+
+
+Definition at line \mbox{\hyperlink{linalg_8c_source_l00019}{19}} of file \mbox{\hyperlink{linalg_8c_source}{linalg.\+c}}.
+

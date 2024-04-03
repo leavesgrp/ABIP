@@ -1,0 +1,103 @@
+\hypertarget{ctrlc_8c_source}{}\doxysection{ctrlc.\+c}
+\label{ctrlc_8c_source}\index{source/ctrlc.c@{source/ctrlc.c}}
+\mbox{\hyperlink{ctrlc_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00002}00002 \textcolor{comment}{ * Implements signal handling (ctrl-\/c) for ABIP.}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00004}00004 \textcolor{comment}{ * Under Windows, we use SetConsoleCtrlHandler.}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00005}00005 \textcolor{comment}{ * Under Unix systems, we use sigaction.}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00006}00006 \textcolor{comment}{ * For Mex files, we use utSetInterruptEnabled/utIsInterruptPending.}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00008}00008 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00010}00010 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{ctrlc_8h}{ctrlc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00012}00012 \textcolor{preprocessor}{\#if CTRLC > 0}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00014}00014 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00016}00016 \textcolor{keyword}{static} \textcolor{keywordtype}{int} istate;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00017}00017 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a552c3d351e28e079ebc3b8d4a10a96bf}{abip\_start\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00019}00019       istate = utSetInterruptEnabled(1);}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00020}00020 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00022}00022 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a0caa1b4c025641b1a1032b442688d2f7}{abip\_end\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00023}00023 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00024}00024       utSetInterruptEnabled(istate);}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00025}00025 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00027}00027 \textcolor{keywordtype}{int} \mbox{\hyperlink{ctrlc_8h_a8f2c2baa5191f1af58ff9a660b84610a}{abip\_is\_interrupted}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00028}00028 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00029}00029       \textcolor{keywordflow}{return} utIsInterruptPending();}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00030}00030 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00032}00032 \textcolor{preprocessor}{\#elif(defined \_WIN32 || \_WIN64 || defined \_WINDLL)}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00034}00034 \textcolor{keyword}{static} \textcolor{keywordtype}{int} int\_detected;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00035}00035 \textcolor{keyword}{static} BOOL WINAPI abip\_handle\_ctrlc(DWORD dwCtrlType) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00036}00036 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00037}00037       \textcolor{keywordflow}{if} (dwCtrlType != CTRL\_C\_EVENT) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00038}00038       \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00039}00039             \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00040}00040       \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00041}00041       }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00042}00042       int\_detected = 1;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00043}00043       \textcolor{keywordflow}{return} \mbox{\hyperlink{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00046}00046 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a552c3d351e28e079ebc3b8d4a10a96bf}{abip\_start\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00047}00047 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00048}00048       int\_detected = 0;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00049}00049       SetConsoleCtrlHandler(abip\_handle\_ctrlc, \mbox{\hyperlink{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}});}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00050}00050 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00052}00052 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a0caa1b4c025641b1a1032b442688d2f7}{abip\_end\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00053}00053 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00054}00054       SetConsoleCtrlHandler(abip\_handle\_ctrlc, \mbox{\hyperlink{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}});}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00055}00055 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00057}00057 \textcolor{keywordtype}{int} \mbox{\hyperlink{ctrlc_8h_a8f2c2baa5191f1af58ff9a660b84610a}{abip\_is\_interrupted}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00058}00058 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00059}00059       \textcolor{keywordflow}{return} int\_detected;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00060}00060 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00062}00062 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* Unix */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00064}00064 \textcolor{preprocessor}{\#include <signal.h>}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00065}00065 \textcolor{keyword}{static} \textcolor{keywordtype}{int} int\_detected;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00066}00066 \textcolor{keyword}{struct }sigaction oact;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00067}00067 \textcolor{keyword}{static} \textcolor{keywordtype}{void} abip\_handle\_ctrlc(\textcolor{keywordtype}{int} dummy) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00068}00068 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00069}00069       int\_detected = dummy ? dummy : -\/1;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00070}00070 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00072}00072 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a552c3d351e28e079ebc3b8d4a10a96bf}{abip\_start\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00073}00073 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00074}00074       \textcolor{keyword}{struct }sigaction act;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00075}00075       int\_detected = 0;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00076}00076       }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00077}00077       act.sa\_flags = 0;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00078}00078       sigemptyset(\&act.sa\_mask);}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00079}00079       }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00080}00080       act.sa\_handler = abip\_handle\_ctrlc;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00081}00081       sigaction(SIGINT, \&act, \&oact);}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00082}00082 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00084}00084 \textcolor{keywordtype}{void} \mbox{\hyperlink{ctrlc_8h_a0caa1b4c025641b1a1032b442688d2f7}{abip\_end\_interrupt\_listener}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00085}00085 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00086}00086       \textcolor{keyword}{struct }sigaction act;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00087}00087       sigaction(SIGINT, \&oact, \&act);}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00088}00088 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00090}00090 \textcolor{keywordtype}{int} \mbox{\hyperlink{ctrlc_8h_a8f2c2baa5191f1af58ff9a660b84610a}{abip\_is\_interrupted}}(\textcolor{keywordtype}{void}) }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00091}00091 \{}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00092}00092       \textcolor{keywordflow}{return} int\_detected;}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00093}00093 \}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00095}00095 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* END IF MATLAB\_MEX\_FILE / WIN32 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{ctrlc_8c_source_l00097}00097 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* END IF CTRLC > 0 */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

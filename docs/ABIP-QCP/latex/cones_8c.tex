@@ -1,0 +1,155 @@
+\hypertarget{cones_8c}{}\doxysection{source/cones.c File Reference}
+\label{cones_8c}\index{source/cones.c@{source/cones.c}}
+{\ttfamily \#include \char`\"{}cones.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cones_8c_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_a17366e2ea0a226fe973299c868b1c1c1}{get\+\_\+cone\+\_\+dims}} (const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Calculate the total number of dimensions of all the cones. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_ae4d0084da2ee1147e3d1975c7e8f9fef}{validate\+\_\+cones}} (\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$spe, const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Check if the cone dimensions are valid. \end{DoxyCompactList}\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_a8d418aa3e258f1c384dea38f85c0485c}{get\+\_\+cone\+\_\+header}} (const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Get the number of variables and blocks of each cone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_a4c3a53bd283754f061d1409600e06f48}{soc\+\_\+barrier\+\_\+subproblem}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$tmp, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lambda, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em Barrier subproblem for the second order cone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_a33bc79e7f34eded9bdb37d3e4422c524}{rsoc\+\_\+barrier\+\_\+subproblem}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$tmp, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lambda, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em Barrier subproblem for the rotated second order cone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_ae74a134c65924fe4ef32c20a86a9a351}{free\+\_\+barrier\+\_\+subproblem}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$tmp, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lambda, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em Barrier subproblem for the free cone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_a28b10e8bee165021b43c9d50d47ead1a}{zero\+\_\+barrier\+\_\+subproblem}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$tmp, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lambda, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em Barrier subproblem for the zero cone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{cones_8c_adbd1815529c04050d9d19ff27d0b1a95}{positive\+\_\+orthant\+\_\+barrier\+\_\+subproblem}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$tmp, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} lambda, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em Barrier subproblem for the positive orthant cone. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cones_8c_af08ec37a8c99d747fb60fa15bc28678b}\label{cones_8c_af08ec37a8c99d747fb60fa15bc28678b}} 
+\index{cones.c@{cones.c}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00001}{1}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cones_8c_ae74a134c65924fe4ef32c20a86a9a351}\label{cones_8c_ae74a134c65924fe4ef32c20a86a9a351}} 
+\index{cones.c@{cones.c}!free\_barrier\_subproblem@{free\_barrier\_subproblem}}
+\index{free\_barrier\_subproblem@{free\_barrier\_subproblem}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{free\_barrier\_subproblem()}{free\_barrier\_subproblem()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+barrier\+\_\+subproblem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{tmp,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{lambda,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Barrier subproblem for the free cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00255}{255}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_a17366e2ea0a226fe973299c868b1c1c1}\label{cones_8c_a17366e2ea0a226fe973299c868b1c1c1}} 
+\index{cones.c@{cones.c}!get\_cone\_dims@{get\_cone\_dims}}
+\index{get\_cone\_dims@{get\_cone\_dims}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{get\_cone\_dims()}{get\_cone\_dims()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+cone\+\_\+dims (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Calculate the total number of dimensions of all the cones. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00008}{8}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_a8d418aa3e258f1c384dea38f85c0485c}\label{cones_8c_a8d418aa3e258f1c384dea38f85c0485c}} 
+\index{cones.c@{cones.c}!get\_cone\_header@{get\_cone\_header}}
+\index{get\_cone\_header@{get\_cone\_header}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{get\_cone\_header()}{get\_cone\_header()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+cone\+\_\+header (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Get the number of variables and blocks of each cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00087}{87}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_adbd1815529c04050d9d19ff27d0b1a95}\label{cones_8c_adbd1815529c04050d9d19ff27d0b1a95}} 
+\index{cones.c@{cones.c}!positive\_orthant\_barrier\_subproblem@{positive\_orthant\_barrier\_subproblem}}
+\index{positive\_orthant\_barrier\_subproblem@{positive\_orthant\_barrier\_subproblem}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{positive\_orthant\_barrier\_subproblem()}{positive\_orthant\_barrier\_subproblem()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() positive\+\_\+orthant\+\_\+barrier\+\_\+subproblem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{tmp,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{lambda,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Barrier subproblem for the positive orthant cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00279}{279}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_a33bc79e7f34eded9bdb37d3e4422c524}\label{cones_8c_a33bc79e7f34eded9bdb37d3e4422c524}} 
+\index{cones.c@{cones.c}!rsoc\_barrier\_subproblem@{rsoc\_barrier\_subproblem}}
+\index{rsoc\_barrier\_subproblem@{rsoc\_barrier\_subproblem}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{rsoc\_barrier\_subproblem()}{rsoc\_barrier\_subproblem()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() rsoc\+\_\+barrier\+\_\+subproblem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{tmp,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{lambda,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Barrier subproblem for the rotated second order cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00169}{169}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_a4c3a53bd283754f061d1409600e06f48}\label{cones_8c_a4c3a53bd283754f061d1409600e06f48}} 
+\index{cones.c@{cones.c}!soc\_barrier\_subproblem@{soc\_barrier\_subproblem}}
+\index{soc\_barrier\_subproblem@{soc\_barrier\_subproblem}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{soc\_barrier\_subproblem()}{soc\_barrier\_subproblem()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() soc\+\_\+barrier\+\_\+subproblem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{tmp,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{lambda,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Barrier subproblem for the second order cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00130}{130}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_ae4d0084da2ee1147e3d1975c7e8f9fef}\label{cones_8c_ae4d0084da2ee1147e3d1975c7e8f9fef}} 
+\index{cones.c@{cones.c}!validate\_cones@{validate\_cones}}
+\index{validate\_cones@{validate\_cones}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{validate\_cones()}{validate\_cones()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() validate\+\_\+cones (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a487fcb297626be8ff2ef4056bd38f4a6}{spe\+\_\+problem}} $\ast$}]{spe,  }\item[{const \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Check if the cone dimensions are valid. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00037}{37}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+
+\mbox{\Hypertarget{cones_8c_a28b10e8bee165021b43c9d50d47ead1a}\label{cones_8c_a28b10e8bee165021b43c9d50d47ead1a}} 
+\index{cones.c@{cones.c}!zero\_barrier\_subproblem@{zero\_barrier\_subproblem}}
+\index{zero\_barrier\_subproblem@{zero\_barrier\_subproblem}!cones.c@{cones.c}}
+\doxysubsubsection{\texorpdfstring{zero\_barrier\_subproblem()}{zero\_barrier\_subproblem()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() zero\+\_\+barrier\+\_\+subproblem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{tmp,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{lambda,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Barrier subproblem for the zero cone. 
+
+
+
+Definition at line \mbox{\hyperlink{cones_8c_source_l00267}{267}} of file \mbox{\hyperlink{cones_8c_source}{cones.\+c}}.
+

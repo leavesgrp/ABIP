@@ -1,0 +1,67 @@
+\hypertarget{adaptive_8c}{}\doxysection{src/adaptive.c File Reference}
+\label{adaptive_8c}\index{src/adaptive.c@{src/adaptive.c}}
+{\ttfamily \#include \char`\"{}adaptive.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip\+\_\+blas.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_a_b_i_p___a_d_a_p_t_i_v_e___w_o_r_k}{ABIP\+\_\+\+ADAPTIVE\+\_\+\+WORK}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{adaptive_8c_aacaaaaa9a67c3b2cab1e95e02651e71f}{init\+\_\+adapt}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{adaptive_8c_abfe679edd7c5ff08f8536686f75269a6}{adaptive}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{adaptive_8c_ab745e389d10fd1ab73e044b13a735ec6}{free\+\_\+adapt}} (\mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$a)
+\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{adaptive_8c_ab3966c2c1948a7b80c88104689d6dae7}{get\+\_\+adapt\+\_\+summary}} (const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info, \mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$a)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{adaptive_8c_abfe679edd7c5ff08f8536686f75269a6}\label{adaptive_8c_abfe679edd7c5ff08f8536686f75269a6}} 
+\index{adaptive.c@{adaptive.c}!adaptive@{adaptive}}
+\index{adaptive@{adaptive}!adaptive.c@{adaptive.c}}
+\doxysubsubsection{\texorpdfstring{adaptive()}{adaptive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() adaptive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{adaptive_8c_source_l00305}{305}} of file \mbox{\hyperlink{adaptive_8c_source}{adaptive.\+c}}.
+
+\mbox{\Hypertarget{adaptive_8c_ab745e389d10fd1ab73e044b13a735ec6}\label{adaptive_8c_ab745e389d10fd1ab73e044b13a735ec6}} 
+\index{adaptive.c@{adaptive.c}!free\_adapt@{free\_adapt}}
+\index{free\_adapt@{free\_adapt}!adaptive.c@{adaptive.c}}
+\doxysubsubsection{\texorpdfstring{free\_adapt()}{free\_adapt()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+adapt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{adaptive_8c_source_l00336}{336}} of file \mbox{\hyperlink{adaptive_8c_source}{adaptive.\+c}}.
+
+\mbox{\Hypertarget{adaptive_8c_ab3966c2c1948a7b80c88104689d6dae7}\label{adaptive_8c_ab3966c2c1948a7b80c88104689d6dae7}} 
+\index{adaptive.c@{adaptive.c}!get\_adapt\_summary@{get\_adapt\_summary}}
+\index{get\_adapt\_summary@{get\_adapt\_summary}!adaptive.c@{adaptive.c}}
+\doxysubsubsection{\texorpdfstring{get\_adapt\_summary()}{get\_adapt\_summary()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+adapt\+\_\+summary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info,  }\item[{\mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{adaptive_8c_source_l00406}{406}} of file \mbox{\hyperlink{adaptive_8c_source}{adaptive.\+c}}.
+
+\mbox{\Hypertarget{adaptive_8c_aacaaaaa9a67c3b2cab1e95e02651e71f}\label{adaptive_8c_aacaaaaa9a67c3b2cab1e95e02651e71f}} 
+\index{adaptive.c@{adaptive.c}!init\_adapt@{init\_adapt}}
+\index{init\_adapt@{init\_adapt}!adaptive.c@{adaptive.c}}
+\doxysubsubsection{\texorpdfstring{init\_adapt()}{init\_adapt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_afc849e176ecdf333018fa8bc39b7bad8}{ABIPAdapt\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init\+\_\+adapt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{adaptive_8c_source_l00258}{258}} of file \mbox{\hyperlink{adaptive_8c_source}{adaptive.\+c}}.
+

@@ -1,0 +1,168 @@
+\hypertarget{common_8c}{}\doxysection{linsys/common.c File Reference}
+\label{common_8c}\index{linsys/common.c@{linsys/common.c}}
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{common_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{MIN\+\_\+\+SCALE}}~(1e-\/3)
+\item 
+\#define \mbox{\hyperlink{common_8c_a0706168c32c39d519133d981a3df0687}{MAX\+\_\+\+SCALE}}~(1e3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a9e197c43e5f3b3ab5e69a10b9bdcea1a}{copy\+\_\+\+A\+\_\+matrix}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$$\ast$dstp, const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$src)
+\begin{DoxyCompactList}\small\item\em copy matrix A \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_ae1e5d79ab31d4c0b81adfbeaf20c0456}{validate\+\_\+lin\+\_\+sys}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em validate the linear system \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a429675ba14ca33e555093446664eae95}{free\+\_\+\+A\+\_\+matrix}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}})
+\begin{DoxyCompactList}\small\item\em set the memory of matrix A free \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a940b2bf01fa27db9b56f64478dbaf653}{\+\_\+normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\begin{DoxyCompactList}\small\item\em normalize matrix A \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a3b0995f0c352acbbedcff7b7dd2b65f7}{\+\_\+un\+\_\+normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\begin{DoxyCompactList}\small\item\em unnormalize matrix A \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a6cc984c0fa9b216cc1ee351615abffd4}{\+\_\+accum\+\_\+by\+\_\+\+Atrans}} (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_a6f38c508d6eaa93690533c1e2af0443f}{Ax}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$Ai, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$Ap, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em compute A$^\wedge$\+Tx \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_ae059a0129527e6c17abb27beb098ac74}{\+\_\+accum\+\_\+by\+\_\+A}} (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_a6f38c508d6eaa93690533c1e2af0443f}{Ax}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$Ai, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$Ap, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em compute Ax \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{common_8c_a6dbf2c6e317a3d6a4d76b838870e0849}{cumsum}} (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$p, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$\mbox{\hyperlink{abip__direct_8m_a5379398b9ffec817ff29d003b85cff31}{c}}, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} n)
+\begin{DoxyCompactList}\small\item\em compute cumulative sum of c \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{common_8c_a0706168c32c39d519133d981a3df0687}\label{common_8c_a0706168c32c39d519133d981a3df0687}} 
+\index{common.c@{common.c}!MAX\_SCALE@{MAX\_SCALE}}
+\index{MAX\_SCALE@{MAX\_SCALE}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_SCALE}{MAX\_SCALE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SCALE~(1e3)}
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00005}{5}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}\label{common_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}} 
+\index{common.c@{common.c}!MIN\_SCALE@{MIN\_SCALE}}
+\index{MIN\_SCALE@{MIN\_SCALE}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_SCALE}{MIN\_SCALE}}
+{\footnotesize\ttfamily \#define MIN\+\_\+\+SCALE~(1e-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00004}{4}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{common_8c_ae059a0129527e6c17abb27beb098ac74}\label{common_8c_ae059a0129527e6c17abb27beb098ac74}} 
+\index{common.c@{common.c}!\_accum\_by\_A@{\_accum\_by\_A}}
+\index{\_accum\_by\_A@{\_accum\_by\_A}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{\_accum\_by\_A()}{\_accum\_by\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \+\_\+accum\+\_\+by\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{Ax,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{Ai,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{Ap,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+compute Ax 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00644}{644}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a6cc984c0fa9b216cc1ee351615abffd4}\label{common_8c_a6cc984c0fa9b216cc1ee351615abffd4}} 
+\index{common.c@{common.c}!\_accum\_by\_Atrans@{\_accum\_by\_Atrans}}
+\index{\_accum\_by\_Atrans@{\_accum\_by\_Atrans}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{\_accum\_by\_Atrans()}{\_accum\_by\_Atrans()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \+\_\+accum\+\_\+by\+\_\+\+Atrans (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{Ax,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{Ai,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{Ap,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+compute A$^\wedge$\+Tx 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00598}{598}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a940b2bf01fa27db9b56f64478dbaf653}\label{common_8c_a940b2bf01fa27db9b56f64478dbaf653}} 
+\index{common.c@{common.c}!\_normalize\_A@{\_normalize\_A}}
+\index{\_normalize\_A@{\_normalize\_A}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{\_normalize\_A()}{\_normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \+\_\+normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{\mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+normalize matrix A 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00150}{150}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a3b0995f0c352acbbedcff7b7dd2b65f7}\label{common_8c_a3b0995f0c352acbbedcff7b7dd2b65f7}} 
+\index{common.c@{common.c}!\_un\_normalize\_A@{\_un\_normalize\_A}}
+\index{\_un\_normalize\_A@{\_un\_normalize\_A}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{\_un\_normalize\_A()}{\_un\_normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \+\_\+un\+\_\+normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+unnormalize matrix A 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00569}{569}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a9e197c43e5f3b3ab5e69a10b9bdcea1a}\label{common_8c_a9e197c43e5f3b3ab5e69a10b9bdcea1a}} 
+\index{common.c@{common.c}!copy\_A\_matrix@{copy\_A\_matrix}}
+\index{copy\_A\_matrix@{copy\_A\_matrix}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{copy\_A\_matrix()}{copy\_A\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() copy\+\_\+\+A\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$$\ast$}]{dstp,  }\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{src }\end{DoxyParamCaption})}
+
+
+
+copy matrix A 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00010}{10}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a6dbf2c6e317a3d6a4d76b838870e0849}\label{common_8c_a6dbf2c6e317a3d6a4d76b838870e0849}} 
+\index{common.c@{common.c}!cumsum@{cumsum}}
+\index{cumsum@{cumsum}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{cumsum()}{cumsum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() cumsum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+compute cumulative sum of c 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00700}{700}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_a429675ba14ca33e555093446664eae95}\label{common_8c_a429675ba14ca33e555093446664eae95}} 
+\index{common.c@{common.c}!free\_A\_matrix@{free\_A\_matrix}}
+\index{free\_A\_matrix@{free\_A\_matrix}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{free\_A\_matrix()}{free\_A\_matrix()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+\+A\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+set the memory of matrix A free 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00099}{99}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+
+\mbox{\Hypertarget{common_8c_ae1e5d79ab31d4c0b81adfbeaf20c0456}\label{common_8c_ae1e5d79ab31d4c0b81adfbeaf20c0456}} 
+\index{common.c@{common.c}!validate\_lin\_sys@{validate\_lin\_sys}}
+\index{validate\_lin\_sys@{validate\_lin\_sys}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{validate\_lin\_sys()}{validate\_lin\_sys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() validate\+\_\+lin\+\_\+sys (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+validate the linear system 
+
+
+
+Definition at line \mbox{\hyperlink{common_8c_source_l00045}{45}} of file \mbox{\hyperlink{common_8c_source}{common.\+c}}.
+

@@ -1,0 +1,247 @@
+\hypertarget{qcp__config_8c}{}\doxysection{source/qcp\+\_\+config.c File Reference}
+\label{qcp__config_8c}\index{source/qcp\_config.c@{source/qcp\_config.c}}
+{\ttfamily \#include \char`\"{}qcp\+\_\+config.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{qcp__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}{MIN\+\_\+\+SCALE}}~(1e-\/3)
+\item 
+\#define \mbox{\hyperlink{qcp__config_8c_a0706168c32c39d519133d981a3df0687}{MAX\+\_\+\+SCALE}}~(1e3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{qcp__config_8c_a16eee35b430b3beff923d928cbb160da}{init\+\_\+qcp}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$$\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\begin{DoxyCompactList}\small\item\em Initialize the qcp problem structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_a1f343c5149122bdaf5946546523b5f5d}{qcp\+\_\+\+A\+\_\+times}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Matrix-\/vector multiplication for the general qcp problem with A untransposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_acf54bd1b2d516f2ec680de80ce0f88ac}{qcp\+\_\+\+AT\+\_\+times}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Matrix-\/vector multiplication for the general qcp problem with A transposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_a533070a89a1db30bf94d91312681de0b}{scaling\+\_\+qcp\+\_\+data}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Scale the data for the qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_a08db7c37680540e9497325c8aa5e3f30}{un\+\_\+scaling\+\_\+qcp\+\_\+sol}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution of the general qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{qcp__config_8c_adc64739eb1c22ef96cfd13866b985a05}{qcp\+\_\+inner\+\_\+conv\+\_\+check}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\begin{DoxyCompactList}\small\item\em Check whether the inner loop of the genral qcp problem has converged. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_a031c6d08d41795a5d17da3986992318e}{calc\+\_\+qcp\+\_\+residuals}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\begin{DoxyCompactList}\small\item\em Calculate the residuals of the general qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ \mbox{\hyperlink{qcp__config_8c_a650a2a25bdcec61b39b50b0bb25b4eb5}{form\+\_\+qcp\+\_\+kkt}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Formulate the qcp KKT matrix of the general qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_afd1abb620331b22a69a7b37c8f206209}{init\+\_\+qcp\+\_\+precon}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the preconditioner of conjugate gradient method for the general qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{qcp__config_8c_aca90cb23b489c1f460012701e16a0ee9}{get\+\_\+qcp\+\_\+pcg\+\_\+tol}} (\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} k, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} norm\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the tolerance of the conjugate gradient method for the general qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{qcp__config_8c_ae3a3632c4864e7a716de380bbb9cb83d}{init\+\_\+qcp\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the linear system solver work space for the general qcp problem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{qcp__config_8c_ab2b37986a7117b9d05cef3b8e60863d7}{solve\+\_\+qcp\+\_\+linsys}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\begin{DoxyCompactList}\small\item\em Linear system solver for the general qcp problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qcp__config_8c_a6b83ead8b09decb978aa9bf7448319f2}{free\+\_\+qcp\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{structqcp}{qcp}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Free the linear system solver work space for the general qcp problem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{qcp__config_8c_a0706168c32c39d519133d981a3df0687}\label{qcp__config_8c_a0706168c32c39d519133d981a3df0687}} 
+\index{qcp\_config.c@{qcp\_config.c}!MAX\_SCALE@{MAX\_SCALE}}
+\index{MAX\_SCALE@{MAX\_SCALE}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_SCALE}{MAX\_SCALE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SCALE~(1e3)}
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00003}{3}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}\label{qcp__config_8c_a5c9b0db0503faa2e5b82de06ef0db6ad}} 
+\index{qcp\_config.c@{qcp\_config.c}!MIN\_SCALE@{MIN\_SCALE}}
+\index{MIN\_SCALE@{MIN\_SCALE}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_SCALE}{MIN\_SCALE}}
+{\footnotesize\ttfamily \#define MIN\+\_\+\+SCALE~(1e-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00002}{2}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{qcp__config_8c_a031c6d08d41795a5d17da3986992318e}\label{qcp__config_8c_a031c6d08d41795a5d17da3986992318e}} 
+\index{qcp\_config.c@{qcp\_config.c}!calc\_qcp\_residuals@{calc\_qcp\_residuals}}
+\index{calc\_qcp\_residuals@{calc\_qcp\_residuals}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{calc\_qcp\_residuals()}{calc\_qcp\_residuals()}}
+{\footnotesize\ttfamily void calc\+\_\+qcp\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{ipm\+\_\+iter,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{admm\+\_\+iter }\end{DoxyParamCaption})}
+
+
+
+Calculate the residuals of the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00562}{562}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a650a2a25bdcec61b39b50b0bb25b4eb5}\label{qcp__config_8c_a650a2a25bdcec61b39b50b0bb25b4eb5}} 
+\index{qcp\_config.c@{qcp\_config.c}!form\_qcp\_kkt@{form\_qcp\_kkt}}
+\index{form\_qcp\_kkt@{form\_qcp\_kkt}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{form\_qcp\_kkt()}{form\_qcp\_kkt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} $\ast$ form\+\_\+qcp\+\_\+kkt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Formulate the qcp KKT matrix of the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00699}{699}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a6b83ead8b09decb978aa9bf7448319f2}\label{qcp__config_8c_a6b83ead8b09decb978aa9bf7448319f2}} 
+\index{qcp\_config.c@{qcp\_config.c}!free\_qcp\_linsys\_work@{free\_qcp\_linsys\_work}}
+\index{free\_qcp\_linsys\_work@{free\_qcp\_linsys\_work}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{free\_qcp\_linsys\_work()}{free\_qcp\_linsys\_work()}}
+{\footnotesize\ttfamily void free\+\_\+qcp\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Free the linear system solver work space for the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00886}{886}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_aca90cb23b489c1f460012701e16a0ee9}\label{qcp__config_8c_aca90cb23b489c1f460012701e16a0ee9}} 
+\index{qcp\_config.c@{qcp\_config.c}!get\_qcp\_pcg\_tol@{get\_qcp\_pcg\_tol}}
+\index{get\_qcp\_pcg\_tol@{get\_qcp\_pcg\_tol}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{get\_qcp\_pcg\_tol()}{get\_qcp\_pcg\_tol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} get\+\_\+qcp\+\_\+pcg\+\_\+tol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{k,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{norm\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Get the tolerance of the conjugate gradient method for the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00786}{786}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a16eee35b430b3beff923d928cbb160da}\label{qcp__config_8c_a16eee35b430b3beff923d928cbb160da}} 
+\index{qcp\_config.c@{qcp\_config.c}!init\_qcp@{init\_qcp}}
+\index{init\_qcp@{init\_qcp}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_qcp()}{init\_qcp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+qcp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$$\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Initialize the qcp problem structure. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00008}{8}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_ae3a3632c4864e7a716de380bbb9cb83d}\label{qcp__config_8c_ae3a3632c4864e7a716de380bbb9cb83d}} 
+\index{qcp\_config.c@{qcp\_config.c}!init\_qcp\_linsys\_work@{init\_qcp\_linsys\_work}}
+\index{init\_qcp\_linsys\_work@{init\_qcp\_linsys\_work}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_qcp\_linsys\_work()}{init\_qcp\_linsys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+qcp\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the linear system solver work space for the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00799}{799}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_afd1abb620331b22a69a7b37c8f206209}\label{qcp__config_8c_afd1abb620331b22a69a7b37c8f206209}} 
+\index{qcp\_config.c@{qcp\_config.c}!init\_qcp\_precon@{init\_qcp\_precon}}
+\index{init\_qcp\_precon@{init\_qcp\_precon}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{init\_qcp\_precon()}{init\_qcp\_precon()}}
+{\footnotesize\ttfamily void init\+\_\+qcp\+\_\+precon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the preconditioner of conjugate gradient method for the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00754}{754}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a1f343c5149122bdaf5946546523b5f5d}\label{qcp__config_8c_a1f343c5149122bdaf5946546523b5f5d}} 
+\index{qcp\_config.c@{qcp\_config.c}!qcp\_A\_times@{qcp\_A\_times}}
+\index{qcp\_A\_times@{qcp\_A\_times}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{qcp\_A\_times()}{qcp\_A\_times()}}
+{\footnotesize\ttfamily void qcp\+\_\+\+A\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Matrix-\/vector multiplication for the general qcp problem with A untransposed. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00072}{72}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_acf54bd1b2d516f2ec680de80ce0f88ac}\label{qcp__config_8c_acf54bd1b2d516f2ec680de80ce0f88ac}} 
+\index{qcp\_config.c@{qcp\_config.c}!qcp\_AT\_times@{qcp\_AT\_times}}
+\index{qcp\_AT\_times@{qcp\_AT\_times}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{qcp\_AT\_times()}{qcp\_AT\_times()}}
+{\footnotesize\ttfamily void qcp\+\_\+\+AT\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Matrix-\/vector multiplication for the general qcp problem with A transposed. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00082}{82}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_adc64739eb1c22ef96cfd13866b985a05}\label{qcp__config_8c_adc64739eb1c22ef96cfd13866b985a05}} 
+\index{qcp\_config.c@{qcp\_config.c}!qcp\_inner\_conv\_check@{qcp\_inner\_conv\_check}}
+\index{qcp\_inner\_conv\_check@{qcp\_inner\_conv\_check}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{qcp\_inner\_conv\_check()}{qcp\_inner\_conv\_check()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} qcp\+\_\+inner\+\_\+conv\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Check whether the inner loop of the genral qcp problem has converged. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00518}{518}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a533070a89a1db30bf94d91312681de0b}\label{qcp__config_8c_a533070a89a1db30bf94d91312681de0b}} 
+\index{qcp\_config.c@{qcp\_config.c}!scaling\_qcp\_data@{scaling\_qcp\_data}}
+\index{scaling\_qcp\_data@{scaling\_qcp\_data}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{scaling\_qcp\_data()}{scaling\_qcp\_data()}}
+{\footnotesize\ttfamily void scaling\+\_\+qcp\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Scale the data for the qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00091}{91}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_ab2b37986a7117b9d05cef3b8e60863d7}\label{qcp__config_8c_ab2b37986a7117b9d05cef3b8e60863d7}} 
+\index{qcp\_config.c@{qcp\_config.c}!solve\_qcp\_linsys@{solve\_qcp\_linsys}}
+\index{solve\_qcp\_linsys@{solve\_qcp\_linsys}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{solve\_qcp\_linsys()}{solve\_qcp\_linsys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+qcp\+\_\+linsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{pcg\+\_\+warm\+\_\+start,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio }\end{DoxyParamCaption})}
+
+
+
+Linear system solver for the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00826}{826}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{qcp__config_8c_a08db7c37680540e9497325c8aa5e3f30}\label{qcp__config_8c_a08db7c37680540e9497325c8aa5e3f30}} 
+\index{qcp\_config.c@{qcp\_config.c}!un\_scaling\_qcp\_sol@{un\_scaling\_qcp\_sol}}
+\index{un\_scaling\_qcp\_sol@{un\_scaling\_qcp\_sol}!qcp\_config.c@{qcp\_config.c}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_qcp\_sol()}{un\_scaling\_qcp\_sol()}}
+{\footnotesize\ttfamily void un\+\_\+scaling\+\_\+qcp\+\_\+sol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqcp}{qcp}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution of the general qcp problem. 
+
+
+
+Definition at line \mbox{\hyperlink{qcp__config_8c_source_l00496}{496}} of file \mbox{\hyperlink{qcp__config_8c_source}{qcp\+\_\+config.\+c}}.
+

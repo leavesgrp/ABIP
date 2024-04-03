@@ -1,0 +1,28 @@
+\hypertarget{cs__randperm_8c_source}{}\doxysection{cs\+\_\+randperm.\+c}
+\label{cs__randperm_8c_source}\index{csparse/Source/cs\_randperm.c@{csparse/Source/cs\_randperm.c}}
+\mbox{\hyperlink{cs__randperm_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00002}00002 \textcolor{comment}{/* return a random permutation vector, the identity perm, or p = n-\/1:-\/1:0.}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00003}00003 \textcolor{comment}{ * seed = -\/1 means p = n-\/1:-\/1:0.  seed = 0 means p = identity.  otherwise}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00004}00004 \textcolor{comment}{ * p = random permutation.  */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00005}\mbox{\hyperlink{cs_8h_aa4e3a12345c15d293c72cdb54c1bcdda}{00005}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *\mbox{\hyperlink{cs__randperm_8c_aa4e3a12345c15d293c72cdb54c1bcdda}{cs\_randperm}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} seed)}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00006}00006 \{}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00007}00007     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *p, k, j, t ;}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00008}00008     \textcolor{keywordflow}{if} (seed == 0) \textcolor{keywordflow}{return} (NULL) ;      \textcolor{comment}{/* return p = NULL (identity) */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00009}00009     p = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;   \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!p) \textcolor{keywordflow}{return} (NULL) ;             \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00011}00011     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) p [k] = n-\/k-\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00012}00012     \textcolor{keywordflow}{if} (seed == -\/1) \textcolor{keywordflow}{return} (p) ;        \textcolor{comment}{/* return reverse permutation */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00013}00013     srand (seed) ;                      \textcolor{comment}{/* get new random number seed */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00014}00014     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00015}00015     \{}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00016}00016         j = k + (rand ( ) \% (n-\/k)) ;    \textcolor{comment}{/* j = rand integer in range k to n-\/1 */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00017}00017         t = p [j] ;                     \textcolor{comment}{/* swap p[k] and p[j] */}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00018}00018         p [j] = p [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00019}00019         p [k] = t ;}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00020}00020     \}}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00021}00021     \textcolor{keywordflow}{return} (p) ;}
+\DoxyCodeLine{\Hypertarget{cs__randperm_8c_source_l00022}00022 \}}
+
+\end{DoxyCode}

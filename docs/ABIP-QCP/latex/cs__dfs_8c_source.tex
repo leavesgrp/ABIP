@@ -1,0 +1,42 @@
+\hypertarget{cs__dfs_8c_source}{}\doxysection{cs\+\_\+dfs.\+c}
+\label{cs__dfs_8c_source}\index{csparse/Source/cs\_dfs.c@{csparse/Source/cs\_dfs.c}}
+\mbox{\hyperlink{cs__dfs_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00002}00002 \textcolor{comment}{/* depth-\/first-\/search of the graph of a matrix, starting at node j */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00003}\mbox{\hyperlink{cs_8h_a43a06094fee0e062b78fd70d1c70b9c4}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__dfs_8c_a43a06094fee0e062b78fd70d1c70b9c4}{cs\_dfs}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} j, \mbox{\hyperlink{structcs__sparse}{cs}} *G, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} top, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *xi, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *pstack, \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *pinv)}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, p, p2, done, jnew, head = 0, *Gp, *Gi ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00006}00006     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (G) || !xi || !pstack) \textcolor{keywordflow}{return} (-\/1) ;    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00007}00007     Gp = G-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Gi = G-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00008}00008     xi [0] = j ;                \textcolor{comment}{/* initialize the recursion stack */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00009}00009     \textcolor{keywordflow}{while} (head >= 0)}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00011}00011         j = xi [head] ;         \textcolor{comment}{/* get j from the top of the recursion stack */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00012}00012         jnew = pinv ? (pinv [j]) : j ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00013}00013         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_ad5ef446ddee80d5771be956a23520bf5}{CS\_MARKED}} (Gp, j))}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00014}00014         \{}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00015}00015             \mbox{\hyperlink{cs_8h_ad5096d9a8169cff461816575072022f0}{CS\_MARK}} (Gp, j) ;       \textcolor{comment}{/* mark node j as visited */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00016}00016             pstack [head] = (jnew < 0) ? 0 : \mbox{\hyperlink{cs_8h_ac9ba6b1092f27aeed7f94a418610aff9}{CS\_UNFLIP}} (Gp [jnew]) ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00017}00017         \}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00018}00018         done = 1 ;                  \textcolor{comment}{/* node j done if no unvisited neighbors */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00019}00019         p2 = (jnew < 0) ? 0 : \mbox{\hyperlink{cs_8h_ac9ba6b1092f27aeed7f94a418610aff9}{CS\_UNFLIP}} (Gp [jnew+1]) ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00020}00020         \textcolor{keywordflow}{for} (p = pstack [head] ; p < p2 ; p++)  \textcolor{comment}{/* examine all neighbors of j */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00021}00021         \{}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00022}00022             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Gi [p] ;            \textcolor{comment}{/* consider neighbor node i */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00023}00023             \textcolor{keywordflow}{if} (\mbox{\hyperlink{cs_8h_ad5ef446ddee80d5771be956a23520bf5}{CS\_MARKED}} (Gp, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}})) \textcolor{keywordflow}{continue} ;   \textcolor{comment}{/* skip visited node i */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00024}00024             pstack [head] = p ;     \textcolor{comment}{/* pause depth-\/first search of node j */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00025}00025             xi [++head] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;       \textcolor{comment}{/* start dfs at node i */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00026}00026             done = 0 ;              \textcolor{comment}{/* node j is not done */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00027}00027             break ;                 \textcolor{comment}{/* break, to start dfs (i) */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00028}00028         \}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00029}00029         \textcolor{keywordflow}{if} (done)               \textcolor{comment}{/* depth-\/first search at node j is done */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00030}00030         \{}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00031}00031             head-\/-\/ ;            \textcolor{comment}{/* remove j from the recursion stack */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00032}00032             xi [-\/-\/top] = j ;    \textcolor{comment}{/* and place in the output stack */}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00033}00033         \}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00034}00034     \}}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00035}00035     \textcolor{keywordflow}{return} (top) ;}
+\DoxyCodeLine{\Hypertarget{cs__dfs_8c_source_l00036}00036 \}}
+
+\end{DoxyCode}

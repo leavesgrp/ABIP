@@ -1,0 +1,36 @@
+\hypertarget{abip__indirect_8m_source}{}\doxysection{abip\+\_\+indirect.\+m}
+\label{abip__indirect_8m_source}\index{interface/abip\_indirect.m@{interface/abip\_indirect.m}}
+\mbox{\hyperlink{abip__indirect_8m}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00001}\mbox{\hyperlink{abip__indirect_8m_a267d0ce52d8688bab09dac188f7cff81}{00001}} \textcolor{keyword}{function} [x, y, s, info] = abip\_indirect(data, params)              }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00003}00003 \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00004}00004 \%\% ADMM-\/Based Interior-\/Point Method for solving linear programs (abip\_indirect):  }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00005}00005 \%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00006}00006 \% This implements a LP solver using sparse LDL\string^T factorization. It solves: }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00007}00007 \% }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00008}00008 \% min. c'x, }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00009}\mbox{\hyperlink{abip__indirect_8m_a6f38c508d6eaa93690533c1e2af0443f}{00009}} \% s.t. Ax = b, x>=0. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00010}00010 \%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00011}\mbox{\hyperlink{abip__indirect_8m_a88767bec2bbbe32b30fad9a84c96424e}{00011}} \% where x \(\backslash\)in R\string^n, A \(\backslash\)in R\string^(m*n) and b \(\backslash\)in R\string^m. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00012}00012 \% }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00013}00013 \% this uses the indirect linear equation solver version of ABIP. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00014}00014 \%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00015}\mbox{\hyperlink{abip__indirect_8m_a505587068efcde0cc482e8c40e756ede}{00015}} \% data must consist of data.A, data.b, data.c, where A,b,c used as above.}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00016}00016 \%  }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00017}00017 \% Optional fields in the params struct are:}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00018}00018 \%   max\_ipm\_iters :     maximum number of IPM iterations. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00019}00019 \%   max\_admm\_iters :    maximum number of ADMM iterations.}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00020}00020 \%   eps :               quitting tolerance.}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00021}00021 \%   sigma :             aggressiveness measurement of the IPM framework. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00022}00022 \%   alpha :             over-\/relaxation parameter, between (0,2), alpha=1 is unrelaxed.}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00023}00023 \%   normalize :         heuristic nomarlization procedure, between 0 and 1, off or on. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00024}00024 \%   scale :             heuristic rescale procedure, only used if normalize=1. }
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00025}00025 \%   adaptive :          heuristic barzilai-\/borwein spectral procedure.}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00026}00026 \%   verbose :           verbosity level (0 or 1)}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00027}00027 \%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00028}00028 \% to warm-\/start the solver add guesses for (\mbox{\hyperlink{abip__indirect_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, y, s) to the data struct}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00029}00029 \%}
+\DoxyCodeLine{\Hypertarget{abip__indirect_8m_source_l00030}00030 error ('abip\_indirect \mbox{\hyperlink{abip__mex_8c_a6a215cbfde54f82a3ce599228fc3fce5}{mexFunction}} not found') ;}
+
+\end{DoxyCode}

@@ -1,0 +1,25 @@
+\hypertarget{cs__reach_8c_source}{}\doxysection{cs\+\_\+reach.\+c}
+\label{cs__reach_8c_source}\index{csparse/Source/cs\_reach.c@{csparse/Source/cs\_reach.c}}
+\mbox{\hyperlink{cs__reach_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00002}00002 \textcolor{comment}{/* xi [top...n-\/1] = nodes reachable from graph of G*P' via nodes in B(:,k).}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00003}00003 \textcolor{comment}{ * xi [n...2n-\/1] used as workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00004}\mbox{\hyperlink{cs_8h_aa3ab9062fd3f90144bc78c76090c225c}{00004}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__reach_8c_aa3ab9062fd3f90144bc78c76090c225c}{cs\_reach}} (\mbox{\hyperlink{structcs__sparse}{cs}} *G, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *B, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} k, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *xi, \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *pinv)}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00006}00006     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} p, n, top, *Bp, *Bi, *Gp ;}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (G) || !\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (B) || !xi) \textcolor{keywordflow}{return} (-\/1) ;    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00008}00008     n = G-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Bp = B-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Bi = B-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Gp = G-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00009}00009     top = n ;}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00010}00010     \textcolor{keywordflow}{for} (p = Bp [k] ; p < Bp [k+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00011}00011     \{}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00012}00012         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_ad5ef446ddee80d5771be956a23520bf5}{CS\_MARKED}} (Gp, Bi [p]))    \textcolor{comment}{/* start a dfs at unmarked node i */}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00013}00013         \{}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00014}00014             top = \mbox{\hyperlink{cs_8h_a43a06094fee0e062b78fd70d1c70b9c4}{cs\_dfs}} (Bi [p], G, top, xi, xi+n, pinv) ;}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00015}00015         \}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00016}00016     \}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00017}00017     \textcolor{keywordflow}{for} (p = top ; p < n ; p++) \mbox{\hyperlink{cs_8h_ad5096d9a8169cff461816575072022f0}{CS\_MARK}} (Gp, xi [p]) ;  \textcolor{comment}{/* restore G */}}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00018}00018     \textcolor{keywordflow}{return} (top) ;}
+\DoxyCodeLine{\Hypertarget{cs__reach_8c_source_l00019}00019 \}}
+
+\end{DoxyCode}

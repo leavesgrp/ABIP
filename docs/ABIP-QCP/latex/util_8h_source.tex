@@ -1,0 +1,72 @@
+\hypertarget{util_8h_source}{}\doxysection{util.\+h}
+\label{util_8h_source}\index{include/util.h@{include/util.h}}
+\mbox{\hyperlink{util_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00001}\mbox{\hyperlink{util_8h_a016a520dc275fc34ac8d42f08d42907d}{00001}} \textcolor{preprocessor}{\#ifndef UTIL\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00002}00002 \textcolor{preprocessor}{\#define UTIL\_H\_GUARD}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00004}00004 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00005}00005 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00006}00006 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{abip_8h}{abip.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00012}00012 \textcolor{preprocessor}{\#if (defined NOTIMER)}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00013}00013 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void} *\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00015}00015 \textcolor{preprocessor}{\#elif(defined \_WIN32 || defined \_WIN64 || defined \_WINDLL)}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00017}00017 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00018}00018 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ABIP(timer) }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00020}00020       LARGE\_INTEGER \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00021}00021       LARGE\_INTEGER \mbox{\hyperlink{util_8h_aa7591bd70f5d6b2829acd74494406750}{toc}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00022}00022       LARGE\_INTEGER freq;}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00023}00023 \} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00025}00025 \textcolor{preprocessor}{\#elif(defined \_\_APPLE\_\_)}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00027}00027 \textcolor{preprocessor}{\#include <mach/mach\_time.h>}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00028}00028 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ABIP(timer) }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00029}00029 \{}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00030}00030       uint64\_t \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00031}00031       uint64\_t \mbox{\hyperlink{util_8h_aa7591bd70f5d6b2829acd74494406750}{toc}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00032}00032       mach\_timebase\_info\_data\_t tinfo;}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00033}00033 \} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00035}00035 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00037}00037 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00038}00038 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ABIP(timer) }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00039}00039 \{}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00040}00040       \textcolor{keyword}{struct }timespec \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00041}00041       \textcolor{keyword}{struct }timespec \mbox{\hyperlink{util_8h_aa7591bd70f5d6b2829acd74494406750}{toc}};}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00042}00042 \} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00044}00044 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00046}00046 \textcolor{preprocessor}{\#if EXTRA\_VERBOSE > 1}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00047}00047 \textcolor{keyword}{extern} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) global\_timer;}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00048}00048 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00050}00050 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}})(\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) *t);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00051}00051 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aa7591bd70f5d6b2829acd74494406750}{toc}})(\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) *t);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00052}00052 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a78921c28c024e8f10a3b977c8cca003b}{str\_toc}})(\textcolor{keywordtype}{char} *str, \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) *t);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00053}00053 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a4162bd51f8d6d907b23d7930e7c44b1a}{tocq}})(\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(timer) *t);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00055}00055 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a893b043e418cf590dfb2ebdc20d16707}{print\_data}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}} *d);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00056}00056 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aa457d8036e1b283d3b3a828d21c99f25}{print\_work}})(\textcolor{keyword}{const} \mbox{\hyperlink{struct_a_b_i_p___w_o_r_k}{ABIPWork}} *w);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00057}00057 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_af5ef9bd4107f69ed63c6656b9865d633}{print\_array}})(\textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *arr, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} n, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00058}00058 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a64b69194e80b7a516cfde034ce1e7bed}{set\_default\_settings}})(\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}} *d);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00059}00059 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_afed1472f1e5ebfa1128ab4dd6589907f}{free\_info}})(\mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} *info);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00060}00060 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_a9b7601a00625868a64bd2bc6b4f4a744}{free\_sol}})(\mbox{\hyperlink{struct_a_b_i_p___s_o_l___v_a_r_s}{ABIPSolution}} *sol);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00061}00061 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_afc758b41c7b6cbeccbd8a5c02f2b0732}{free\_data}})(\mbox{\hyperlink{struct_a_b_i_p___p_r_o_b_l_e_m___d_a_t_a}{ABIPData}} *d); }
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00062}00062 \textcolor{keywordtype}{void} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(\mbox{\hyperlink{util_8h_aa933bd02296b9689aa33877eae2bb23b}{free\_cone}})(\mbox{\hyperlink{struct_a_b_i_p___c_o_n_e}{ABIPCone}} *k);}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00063}00063 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00064}00064 \}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00065}00065 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{util_8h_source_l00066}00066 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

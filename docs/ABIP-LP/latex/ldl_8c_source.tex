@@ -1,0 +1,641 @@
+\hypertarget{ldl_8c_source}{}\doxysection{ldl.\+c}
+\label{ldl_8c_source}\index{external/ldl/ldl.c@{external/ldl/ldl.c}}
+\mbox{\hyperlink{ldl_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00002}00002 \textcolor{comment}{/* === ldl.c: sparse LDL' factorization and solve package =================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00005}00005 \textcolor{comment}{/* LDL:  a simple set of routines for sparse LDL' factorization.  These routines}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00006}00006 \textcolor{comment}{ * are not terrifically fast (they do not use dense matrix kernels), but the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00007}00007 \textcolor{comment}{ * code is very short.  The purpose is to illustrate the algorithms in a very}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00008}00008 \textcolor{comment}{ * concise manner, primarily for educational purposes.  Although the code is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00009}00009 \textcolor{comment}{ * very concise, this package is slightly faster than the built-\/in sparse}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00010}00010 \textcolor{comment}{ * Cholesky factorization in MATLAB 7.0 (chol), when using the same input}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00011}00011 \textcolor{comment}{ * permutation.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00012}00012 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00013}00013 \textcolor{comment}{ * The routines compute the LDL' factorization of a real sparse symmetric}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00014}00014 \textcolor{comment}{ * matrix A (or PAP' if a permutation P is supplied), and solve upper}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00015}00015 \textcolor{comment}{ * and lower triangular systems with the resulting L and D factors.  If A is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00016}00016 \textcolor{comment}{ * positive definite then the factorization will be accurate.  A can be}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00017}00017 \textcolor{comment}{ * indefinite (with negative values on the diagonal D), but in this case no}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00018}00018 \textcolor{comment}{ * guarantee of accuracy is provided, since no numeric pivoting is performed.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00019}00019 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00020}00020 \textcolor{comment}{ * The n-\/by-\/n sparse matrix A is in compressed-\/column form.  The nonzero values}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00021}00021 \textcolor{comment}{ * in column j are stored in Ax [Ap [j] ... Ap [j+1]-\/1], with corresponding row}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00022}00022 \textcolor{comment}{ * indices in Ai [Ap [j] ... Ap [j+1]-\/1].  Ap [0] = 0 is required, and thus}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00023}00023 \textcolor{comment}{ * nz = Ap [n] is the number of nonzeros in A.  Ap is an int array of size n+1.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00024}00024 \textcolor{comment}{ * The int array Ai and the abip\_float array Ax are of size nz.  This data structure}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00025}00025 \textcolor{comment}{ * is identical to the one used by MATLAB, except for the following}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00026}00026 \textcolor{comment}{ * generalizations.  The row indices in each column of A need not be in any}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00027}00027 \textcolor{comment}{ * particular order, although they must be in the range 0 to n-\/1.  Duplicate}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00028}00028 \textcolor{comment}{ * entries can be present; any duplicates are summed.  That is, if row index i}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00029}00029 \textcolor{comment}{ * appears twice in a column j, then the value of A (i,j) is the sum of the two}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00030}00030 \textcolor{comment}{ * entries.  The data structure used here for the input matrix A is more}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00031}00031 \textcolor{comment}{ * flexible than MATLAB's, which requires sorted columns with no duplicate}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00032}00032 \textcolor{comment}{ * entries.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00033}00033 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00034}00034 \textcolor{comment}{ * Only the diagonal and upper triangular part of A (or PAP' if a permutation}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00035}00035 \textcolor{comment}{ * P is provided) is accessed.  The lower triangular parts of the matrix A or}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00036}00036 \textcolor{comment}{ * PAP' can be present, but they are ignored.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00037}00037 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00038}00038 \textcolor{comment}{ * The optional input permutation is provided as an array P of length n.  If}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00039}00039 \textcolor{comment}{ * P [k] = j, the row and column j of A is the kth row and column of PAP'.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00040}00040 \textcolor{comment}{ * If P is present then the factorization is LDL' = PAP' or L*D*L' = A(P,P) in}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00041}00041 \textcolor{comment}{ * 0-\/based MATLAB notation.  If P is not present (a null pointer) then no}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00042}00042 \textcolor{comment}{ * permutation is performed, and the factorization is LDL' = A.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00043}00043 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00044}00044 \textcolor{comment}{ * The lower triangular matrix L is stored in the same compressed-\/column}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00045}00045 \textcolor{comment}{ * form (an int Lp array of size n+1, an int Li array of size Lp [n], and a}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00046}00046 \textcolor{comment}{ * abip\_float array Lx of the same size as Li).  It has a unit diagonal, which is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00047}00047 \textcolor{comment}{ * not stored.  The row indices in each column of L are always returned in}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00048}00048 \textcolor{comment}{ * ascending order, with no duplicate entries.  This format is compatible with}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00049}00049 \textcolor{comment}{ * MATLAB, except that it would be more convenient for MATLAB to include the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00050}00050 \textcolor{comment}{ * unit diagonal of L.  Doing so here would add additional complexity to the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00051}00051 \textcolor{comment}{ * code, and is thus omitted in the interest of keeping this code short and}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00052}00052 \textcolor{comment}{ * readable.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00053}00053 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00054}00054 \textcolor{comment}{ * The elimination tree is held in the Parent [0..n-\/1] array.  It is normally}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00055}00055 \textcolor{comment}{ * not required by the user, but it is required by ldl\_numeric.  The diagonal}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00056}00056 \textcolor{comment}{ * matrix D is held as an array D [0..n-\/1] of size n.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00057}00057 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00058}00058 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00059}00059 \textcolor{comment}{ * C-\/callable routines:}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00060}00060 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00061}00061 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00062}00062 \textcolor{comment}{ *  ldl\_symbolic:  Given the pattern of A, computes the Lp and Parent arrays}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00063}00063 \textcolor{comment}{ *      required by ldl\_numeric.  Takes time proportional to the number of}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00064}00064 \textcolor{comment}{ *      nonzeros in L.  Computes the inverse Pinv of P if P is provided.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00065}00065 \textcolor{comment}{ *      Also returns Lnz, the count of nonzeros in each column of L below}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00066}00066 \textcolor{comment}{ *      the diagonal (this is not required by ldl\_numeric).}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00067}00067 \textcolor{comment}{ *  ldl\_numeric:  Given the pattern and numerical values of A, the Lp array,}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00068}00068 \textcolor{comment}{ *      the Parent array, and P and Pinv if applicable, computes the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00069}00069 \textcolor{comment}{ *      pattern and numerical values of L and D.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00070}00070 \textcolor{comment}{ *  ldl\_lsolve:  Solves Lx=b for a dense vector b.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00071}00071 \textcolor{comment}{ *  ldl\_dsolve:  Solves Dx=b for a dense vector b.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00072}00072 \textcolor{comment}{ *  ldl\_ltsolve: Solves L'x=b for a dense vector b.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00073}00073 \textcolor{comment}{ *  ldl\_perm:    Computes x=Pb for a dense vector b.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00074}00074 \textcolor{comment}{ *  ldl\_permt:   Computes x=P'b for a dense vector b.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00075}00075 \textcolor{comment}{ *  ldl\_valid\_perm:  checks the validity of a permutation vector}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00076}00076 \textcolor{comment}{ *  ldl\_valid\_matrix:  checks the validity of the sparse matrix A}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00077}00077 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00078}00078 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00079}00079 \textcolor{comment}{ * Limitations of this package:}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00080}00080 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00081}00081 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00082}00082 \textcolor{comment}{ * In the interest of keeping this code simple and readable, ldl\_symbolic and}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00083}00083 \textcolor{comment}{ * ldl\_numeric assume their inputs are valid.  You can check your own inputs}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00084}00084 \textcolor{comment}{ * prior to calling these routines with the ldl\_valid\_perm and ldl\_valid\_matrix}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00085}00085 \textcolor{comment}{ * routines.  Except for the two ldl\_valid\_* routines, no routine checks to see}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00086}00086 \textcolor{comment}{ * if the array arguments are present (non-\/NULL).  Like all C routines, no}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00087}00087 \textcolor{comment}{ * routine can determine if the arrays are long enough and don't overlap.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00088}00088 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00089}00089 \textcolor{comment}{ * The ldl\_numeric does check the numerical factorization, however.  It returns}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00090}00090 \textcolor{comment}{ * n if the factorization is successful.  If D (k,k) is zero, then k is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00091}00091 \textcolor{comment}{ * returned, and L is only partially computed.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00092}00092 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00093}00093 \textcolor{comment}{ * No pivoting to control fill-\/in is performed, which is often critical for}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00094}00094 \textcolor{comment}{ * obtaining good performance.  I recommend that you compute the permutation P}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00095}00095 \textcolor{comment}{ * using AMD or SYMAMD (approximate minimum degree ordering routines), or an}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00096}00096 \textcolor{comment}{ * appropriate graph-\/partitioning based ordering.  See the ldldemo.m routine for}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00097}00097 \textcolor{comment}{ * an example in MATLAB, and the ldlmain.c stand-\/alone C program for examples of}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00098}00098 \textcolor{comment}{ * how to find P.  Routines for manipulating compressed-\/column matrices are}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00099}00099 \textcolor{comment}{ * available in UMFPACK.  AMD, SYMAMD, UMFPACK, and this LDL package are all}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00100}00100 \textcolor{comment}{ * available at http://www.suitesparse.com.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00101}00101 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00102}00102 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00103}00103 \textcolor{comment}{ * Possible simplifications:}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00104}00104 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00105}00105 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00106}00106 \textcolor{comment}{ * These routines could be made even simpler with a few additional assumptions.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00107}00107 \textcolor{comment}{ * If no input permutation were performed, the caller would have to permute the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00108}00108 \textcolor{comment}{ * matrix first, but the computation of Pinv, and the use of P and Pinv could be}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00109}00109 \textcolor{comment}{ * removed.  If only the diagonal and upper triangular part of A or PAP' are}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00110}00110 \textcolor{comment}{ * present, then the tests in the "{}if (i < k)"{} statement in ldl\_symbolic and}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00111}00111 \textcolor{comment}{ * "{}if (i <= k)"{} in ldl\_numeric, are always true, and could be removed (i can}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00112}00112 \textcolor{comment}{ * equal k in ldl\_symbolic, but then the body of the if statement would}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00113}00113 \textcolor{comment}{ * correctly do no work since Flag [k] == k).  If we could assume that no}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00114}00114 \textcolor{comment}{ * duplicate entries are present, then the statement Y [i] += Ax [p] could be}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00115}00115 \textcolor{comment}{ * replaced with Y [i] = Ax [p] in ldl\_numeric.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00116}00116 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00117}00117 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00118}00118 \textcolor{comment}{ * Description of the method:}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00119}00119 \textcolor{comment}{ * -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00120}00120 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00121}00121 \textcolor{comment}{ * LDL computes the symbolic factorization by finding the pattern of L one row}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00122}00122 \textcolor{comment}{ * at a time.  It does this based on the following theory.  Consider a sparse}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00123}00123 \textcolor{comment}{ * system Lx=b, where L, x, and b, are all sparse, and where L comes from a}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00124}00124 \textcolor{comment}{ * Cholesky (or LDL') factorization.  The elimination tree (etree) of L is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00125}00125 \textcolor{comment}{ * defined as follows.  The parent of node j is the smallest k > j such that}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00126}00126 \textcolor{comment}{ * L (k,j) is nonzero.  Node j has no parent if column j of L is completely zero}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00127}00127 \textcolor{comment}{ * below the diagonal (j is a root of the etree in this case).  The nonzero}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00128}00128 \textcolor{comment}{ * pattern of x is the union of the paths from each node i to the root, for}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00129}00129 \textcolor{comment}{ * each nonzero b (i).  To compute the numerical solution to Lx=b, we can}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00130}00130 \textcolor{comment}{ * traverse the columns of L corresponding to nonzero values of x.  This}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00131}00131 \textcolor{comment}{ * traversal does not need to be done in the order 0 to n-\/1.  It can be done in}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00132}00132 \textcolor{comment}{ * any "{}topological"{} order, such that x (i) is computed before x (j) if i is a}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00133}00133 \textcolor{comment}{ * descendant of j in the elimination tree.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00134}00134 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00135}00135 \textcolor{comment}{ * The row-\/form of the LDL' factorization is shown in the MATLAB function}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00136}00136 \textcolor{comment}{ * ldlrow.m in this LDL package.  Note that row k of L is found via a sparse}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00137}00137 \textcolor{comment}{ * triangular solve of L (1:k-\/1, 1:k-\/1) \(\backslash\) A (1:k-\/1, k), to use 1-\/based MATLAB}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00138}00138 \textcolor{comment}{ * notation.  Thus, we can start with the nonzero pattern of the kth column of}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00139}00139 \textcolor{comment}{ * A (above the diagonal), follow the paths up to the root of the etree of the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00140}00140 \textcolor{comment}{ * (k-\/1)-\/by-\/(k-\/1) leading submatrix of L, and obtain the pattern of the kth row}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00141}00141 \textcolor{comment}{ * of L.  Note that we only need the leading (k-\/1)-\/by-\/(k-\/1) submatrix of L to}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00142}00142 \textcolor{comment}{ * do this.  The elimination tree can be constructed as we go.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00143}00143 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00144}00144 \textcolor{comment}{ * The symbolic factorization does the same thing, except that it discards the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00145}00145 \textcolor{comment}{ * pattern of L as it is computed.  It simply counts the number of nonzeros in}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00146}00146 \textcolor{comment}{ * each column of L and then constructs the Lp index array when it's done.  The}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00147}00147 \textcolor{comment}{ * symbolic factorization does not need to do this in topological order.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00148}00148 \textcolor{comment}{ * Compare ldl\_symbolic with the first part of ldl\_numeric, and note that the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00149}00149 \textcolor{comment}{ * while (len > 0) loop is not present in ldl\_symbolic.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00150}00150 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00151}00151 \textcolor{comment}{ * Copyright (c) 2006 by Timothy A Davis, http://www.suitesparse.com.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00152}00152 \textcolor{comment}{ * All Rights Reserved.  Developed while on sabbatical}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00153}00153 \textcolor{comment}{ * at Stanford University and Lawrence Berkeley National Laboratory.  Refer to}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00154}00154 \textcolor{comment}{ * the README file for the License.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00155}00155 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00157}00157 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{ldl_8h}{ldl.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00159}00159 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00160}00160 \textcolor{comment}{/* === ldl\_symbolic ========================================================= */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00161}00161 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00163}00163 \textcolor{comment}{/* The input to this routine is a sparse matrix A, stored in column form, and}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00164}00164 \textcolor{comment}{ * an optional permutation P.  The output is the elimination tree}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00165}00165 \textcolor{comment}{ * and the number of nonzeros in each column of L.  Parent [i] = k if k is the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00166}00166 \textcolor{comment}{ * parent of i in the tree.  The Parent array is required by ldl\_numeric.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00167}00167 \textcolor{comment}{ * Lnz [k] gives the number of nonzeros in the kth column of L, excluding the}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00168}00168 \textcolor{comment}{ * diagonal.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00169}00169 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00170}00170 \textcolor{comment}{ * One workspace vector (Flag) of size n is required.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00171}00171 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00172}00172 \textcolor{comment}{ * If P is NULL, then it is ignored.  The factorization will be LDL' = A.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00173}00173 \textcolor{comment}{ * Pinv is not computed.  In this case, neither P nor Pinv are required by}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00174}00174 \textcolor{comment}{ * ldl\_numeric.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00175}00175 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00176}00176 \textcolor{comment}{ * If P is not NULL, then it is assumed to be a valid permutation.  If}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00177}00177 \textcolor{comment}{ * row and column j of A is the kth pivot, the P [k] = j.  The factorization}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00178}00178 \textcolor{comment}{ * will be LDL' = PAP', or A (p,p) in MATLAB notation.  The inverse permutation}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00179}00179 \textcolor{comment}{ * Pinv is computed, where Pinv [j] = k if P [k] = j.  In this case, both P}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00180}00180 \textcolor{comment}{ * and Pinv are required as inputs to ldl\_numeric.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00181}00181 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00182}00182 \textcolor{comment}{ * The floating-\/point operation count of the subsequent call to ldl\_numeric}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00183}00183 \textcolor{comment}{ * is not returned, but could be computed after ldl\_symbolic is done.  It is}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00184}00184 \textcolor{comment}{ * the sum of (Lnz [k]) * (Lnz [k] + 2) for k = 0 to n-\/1.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00185}00185 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00187}\mbox{\hyperlink{ldl_8c_a968f41d4b438d80906451f884d6acfb8}{00187}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_a1bd6e517a481c200672cd65e231cbc7d}{LDL\_symbolic}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00188}00188 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00189}00189         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* A and L are n-\/by-\/n, where n >= 0 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00190}00190         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ap [ ],      \textcolor{comment}{/* input of size n+1, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00191}00191         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ai [ ],      \textcolor{comment}{/* input of size nz=Ap[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00192}00192         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lp [ ],      \textcolor{comment}{/* output of size n+1, not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00193}00193         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Parent [ ],  \textcolor{comment}{/* output of size n, not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00194}00194         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lnz [ ],     \textcolor{comment}{/* output of size n, not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00195}00195         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Flag [ ],    \textcolor{comment}{/* workspace of size n, not defn. on input or output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00196}00196         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} P [ ],       \textcolor{comment}{/* optional input of size n */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00197}00197         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Pinv [ ]     \textcolor{comment}{/* optional output of size n (used if P is not NULL) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00198}00198 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00199}00199 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00200}00200         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} i; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00201}00201         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} k; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00202}00202         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00203}00203         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} kk; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00204}00204         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p2 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00205}00205     }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00206}00206         \textcolor{keywordflow}{if} (P)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00207}00207         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00208}00208         \textcolor{comment}{/* If P is present then compute Pinv, the inverse of P */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00209}00209         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00210}00210         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00211}00211                 Pinv [P [k]] = k ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00212}00212         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00213}00213         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00214}00214         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00215}00215         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00216}00216         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00217}00217         \textcolor{comment}{/* L(k,:) pattern: all nodes reachable in etree from nz in A(0:k-\/1,k) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00218}00218         Parent [k] = -\/1 ;           \textcolor{comment}{/* parent of k is not yet known */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00219}00219         Flag [k] = k ;              \textcolor{comment}{/* mark node k as visited */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00220}00220         Lnz [k] = 0 ;               \textcolor{comment}{/* count of nonzeros in column k of L */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00221}00221         kk = (P) ? (P [k]) : (k) ;      \textcolor{comment}{/* kth original, or permuted, column */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00222}00222         p2 = Ap [kk+1] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00223}00223         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00224}00224         \textcolor{keywordflow}{for} (p = Ap [kk] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00225}00225         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00226}00226                 \textcolor{comment}{/* A (i,k) is nonzero (original or permuted A) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00227}00227                 i = (Pinv) ? (Pinv [Ai [p]]) : (Ai [p]) ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00228}00228                 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00229}00229                 \textcolor{keywordflow}{if} (i < k)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00230}00230                 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00231}00231                 \textcolor{comment}{/* follow path from i to root of etree, stop at flagged node */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00232}00232                 \textcolor{keywordflow}{for} ( ; Flag [i] != k ; i = Parent [i])}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00233}00233                 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00234}00234                         \textcolor{comment}{/* find parent of i if not yet determined */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00235}00235                         \textcolor{keywordflow}{if} (Parent [i] == -\/1) Parent [i] = k ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00236}00236                         Lnz [i]++ ;         \textcolor{comment}{/* L (k,i) is nonzero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00237}00237                         Flag [i] = k ;          \textcolor{comment}{/* mark i as visited */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00238}00238                 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00239}00239                 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00240}00240         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00241}00241         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00242}00242         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00243}00243         \textcolor{comment}{/* construct Lp index array from Lnz column counts */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00244}00244         Lp [0] = 0 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00245}00245         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00246}00246         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00247}00247         Lp [k+1] = Lp [k] + Lnz [k] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00248}00248         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00249}00249 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00250}00250 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00251}00251 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00252}00252 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00253}00253 \textcolor{comment}{/* === ldl\_numeric ========================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00254}00254 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00256}00256 \textcolor{comment}{/* Given a sparse matrix A (the arguments n, Ap, Ai, and Ax) and its symbolic}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00257}00257 \textcolor{comment}{ * analysis (Lp and Parent, and optionally P and Pinv), compute the numeric LDL'}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00258}00258 \textcolor{comment}{ * factorization of A or PAP'.  The outputs of this routine are arguments Li,}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00259}00259 \textcolor{comment}{ * Lx, and D.  It also requires three size-\/n workspaces (Y, Pattern, and Flag).}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00260}00260 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00261}00261 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00262}\mbox{\hyperlink{ldl_8c_adbdb0689fa270954591d325e920f9216}{00262}} \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} \mbox{\hyperlink{ldl_8h_a3823f617a5ed31d05c4e6c5de387662b}{LDL\_numeric}}   \textcolor{comment}{/* returns n if successful, k if D (k,k) is zero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00263}00263 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00264}00264         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* A and L are n-\/by-\/n, where n >= 0 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00265}00265         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ap [ ],      \textcolor{comment}{/* input of size n+1, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00266}00266         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ai [ ],      \textcolor{comment}{/* input of size nz=Ap[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00267}00267         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{abip__direct_8m_a6f38c508d6eaa93690533c1e2af0443f}{Ax}} [ ],  \textcolor{comment}{/* input of size nz=Ap[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00268}00268         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lp [ ],      \textcolor{comment}{/* input of size n+1, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00269}00269         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Parent [ ],  \textcolor{comment}{/* input of size n, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00270}00270         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lnz [ ],     \textcolor{comment}{/* output of size n, not defn. on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00271}00271         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Li [ ],      \textcolor{comment}{/* output of size lnz=Lp[n], not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00272}00272         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Lx [ ],    \textcolor{comment}{/* output of size lnz=Lp[n], not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00273}00273         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} D [ ],     \textcolor{comment}{/* output of size n, not defined on input */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00274}00274         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Y [ ],     \textcolor{comment}{/* workspace of size n, not defn. on input or output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00275}00275         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Pattern [ ], \textcolor{comment}{/* workspace of size n, not defn. on input or output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00276}00276         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Flag [ ],    \textcolor{comment}{/* workspace of size n, not defn. on input or output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00277}00277         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} P [ ],       \textcolor{comment}{/* optional input of size n */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00278}00278         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Pinv [ ]     \textcolor{comment}{/* optional input of size n */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00279}00279 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00280}00280 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00281}00281         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} yi; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00282}00282         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} l\_ki ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00283}00283         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00284}00284         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} i; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00285}00285         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} k; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00286}00286         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00287}00287         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} kk; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00288}00288         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p2; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00289}00289         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} len; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00290}00290         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} top;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00291}00291         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00292}00292         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00293}00293         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00294}00294             }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00295}00295         \textcolor{keywordflow}{if}(\mbox{\hyperlink{ctrlc_8h_a8f2c2baa5191f1af58ff9a660b84610a}{abip\_is\_interrupted}}()) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00296}00296         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00297}00297                     \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\_printf}}(\textcolor{stringliteral}{"{}Interrupt detected in factorization! \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00298}00298                     \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00299}00299             \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00300}00300         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00301}00301         \textcolor{comment}{/* compute nonzero Pattern of kth row of L, in topological order */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00302}00302         Y [k] = 0.0 ;           \textcolor{comment}{/* Y(0:k) is now all zero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00303}00303         top = n ;           \textcolor{comment}{/* stack for pattern is empty */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00304}00304         Flag [k] = k ;          \textcolor{comment}{/* mark node k as visited */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00305}00305         Lnz [k] = 0 ;           \textcolor{comment}{/* count of nonzeros in column k of L */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00306}00306         kk = (P) ? (P [k]) : (k) ;    \textcolor{comment}{/* kth original, or permuted, column */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00307}00307         p2 = Ap [kk+1] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00308}00308         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00309}00309         \textcolor{keywordflow}{for} (p = Ap [kk] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00310}00310         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00311}00311                 i = (Pinv) ? (Pinv [Ai [p]]) : (Ai [p]) ;   \textcolor{comment}{/* get A(i,k) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00312}00312                 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00313}00313                 \textcolor{keywordflow}{if} (i <= k)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00314}00314                 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00315}00315                 Y [i] += \mbox{\hyperlink{abip__direct_8m_a6f38c508d6eaa93690533c1e2af0443f}{Ax}} [p] ;  \textcolor{comment}{/* scatter A(i,k) into Y (sum duplicates) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00316}00316                 \textcolor{keywordflow}{for} (len = 0 ; Flag [i] != k ; i = Parent [i])}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00317}00317                 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00318}00318                         Pattern [len++] = i ;           \textcolor{comment}{/* L(k,i) is nonzero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00319}00319                         Flag [i] = k ;              \textcolor{comment}{/* mark i as visited */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00320}00320                 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00321}00321                 \textcolor{keywordflow}{while} (len > 0) Pattern [-\/-\/top] = Pattern [-\/-\/len] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00322}00322                 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00323}00323         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00324}00324         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00325}00325         \textcolor{comment}{/* compute numerical values kth row of L (a sparse triangular solve) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00326}00326         D [k] = Y [k] ;         \textcolor{comment}{/* get D(k,k) and clear Y(k) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00327}00327         Y [k] = 0.0 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00328}00328         \textcolor{keywordflow}{for} ( ; top < n ; top++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00329}00329         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00330}00330                 i = Pattern [top] ;         \textcolor{comment}{/* Pattern [top:n-\/1] is pattern of L(:,k) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00331}00331                 yi = Y [i] ;                \textcolor{comment}{/* get and clear Y(i) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00332}00332                 Y [i] = 0.0 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00333}00333                 p2 = Lp [i] + Lnz [i] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00334}00334                 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00335}00335                 \textcolor{keywordflow}{for} (p = Lp [i] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00336}00336                 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00337}00337                 Y [Li [p]] -\/= Lx [p] * yi ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00338}00338                 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00339}00339                 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00340}00340                 l\_ki = yi / D [i] ;         \textcolor{comment}{/* the nonzero entry L(k,i) */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00341}00341                 D [k] -\/= l\_ki * yi ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00342}00342                 Li [p] = k ;                \textcolor{comment}{/* store L(k,i) in column form of L */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00343}00343                 Lx [p] = l\_ki ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00344}00344                 Lnz [i]++ ;             \textcolor{comment}{/* increment count of nonzeros in col i */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00345}00345         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00346}00346             }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00347}00347         \textcolor{keywordflow}{if} (D [k] == 0.0) \textcolor{keywordflow}{return} (k) ;          \textcolor{comment}{/* failure, D(k,k) is zero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00348}00348         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00349}00349         \textcolor{keywordflow}{return} (n) ;                    \textcolor{comment}{/* success, diagonal of D is all nonzero */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00350}00350 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00351}00351 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00352}00352 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00353}00353 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00354}00354 \textcolor{comment}{/* === ldl\_lsolve:  solve Lx=b ============================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00355}00355 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00356}00356 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00357}\mbox{\hyperlink{ldl_8c_a9f5fa1561e6e0338b3d80afc18a0b2ba}{00357}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_afdb77bf36411b8260203bebb80cfa9a9}{LDL\_lsolve}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00358}00358 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00359}00359         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* L is n-\/by-\/n, where n >= 0 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00360}00360         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} X [ ],     \textcolor{comment}{/* size n.  right-\/hand-\/side on input, soln. on output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00361}00361         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lp [ ],      \textcolor{comment}{/* input of size n+1, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00362}00362         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Li [ ],      \textcolor{comment}{/* input of size lnz=Lp[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00363}00363         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Lx [ ]     \textcolor{comment}{/* input of size lnz=Lp[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00364}00364 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00365}00365 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00366}00366         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00367}00367         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00368}00368         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p2 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00369}00369         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00370}00370         \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00371}00371         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00372}00372         p2 = Lp [j+1] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00373}00373         \textcolor{keywordflow}{for} (p = Lp [j] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00374}00374         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00375}00375                 X [Li [p]] -\/= Lx [p] * X [j] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00376}00376         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00377}00377         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00378}00378 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00379}00379 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00380}00380 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00381}00381 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00382}00382 \textcolor{comment}{/* === ldl\_dsolve:  solve Dx=b ============================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00383}00383 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00384}00384 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00385}\mbox{\hyperlink{ldl_8c_ab97f12bda33dd286c91efb96e3b95995}{00385}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_a2be9aeac6a1874457c31bcb0d60e1405}{LDL\_dsolve}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00386}00386 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00387}00387         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* D is n-\/by-\/n, where n >= 0 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00388}00388         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} X [ ],     \textcolor{comment}{/* size n.  right-\/hand-\/side on input, soln. on output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00389}00389         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} D [ ]      \textcolor{comment}{/* input of size n, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00390}00390 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00391}00391 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00392}00392         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00393}00393         \textcolor{keywordflow}{for} (j = 0 ; j < n -\/ 7 ; ++j)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00394}00394         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00395}00395         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00396}00396         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00397}00397         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00398}00398         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00399}00399         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00400}00400         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00401}00401         X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00402}00402         X [j] /= D [j] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00403}00403         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00404}00404 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00405}00405         \textcolor{keywordflow}{if} (j < n -\/ 3) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00406}00406         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00407}00407             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00408}00408             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00409}00409             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00410}00410             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00411}00411         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00412}00412 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00413}00413         \textcolor{keywordflow}{if} (j < n -\/ 1) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00414}00414         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00415}00415             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00416}00416             X [j] /= D [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00417}00417         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00418}00418 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00419}00419         \textcolor{keywordflow}{if} (j < n) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00420}00420         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00421}00421             X [j] /= D [j] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00422}00422         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00423}00423 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00424}00424 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00425}00425 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00426}00426 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00427}00427 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00428}00428 \textcolor{comment}{/* === ldl\_ltsolve: solve L'x=b  ============================================ */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00429}00429 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00430}00430 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00431}\mbox{\hyperlink{ldl_8c_a2ae045b1e2f65781ffe78081af3a9900}{00431}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_a68ee4bbad9b89f7316a624700ade67f4}{LDL\_ltsolve}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00432}00432 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00433}00433         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* L is n-\/by-\/n, where n >= 0 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00434}00434         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} X [ ],     \textcolor{comment}{/* size n.  right-\/hand-\/side on input, soln. on output */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00435}00435         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Lp [ ],      \textcolor{comment}{/* input of size n+1, not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00436}00436         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Li [ ],      \textcolor{comment}{/* input of size lnz=Lp[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00437}00437         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Lx [ ]     \textcolor{comment}{/* input of size lnz=Lp[n], not modified */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00438}00438 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00439}00439 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00440}00440         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00441}00441         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00442}00442         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p2;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00443}00443         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00444}00444         \textcolor{keywordflow}{for} (j = n-\/1 ; j >= 0 ; j-\/-\/)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00445}00445         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00446}00446         p2 = Lp [j+1] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00447}00447         \textcolor{keywordflow}{for} (p = Lp [j] ; p < p2 ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00448}00448         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00449}00449                 X [j] -\/= Lx [p] * X [Li [p]] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00450}00450         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00451}00451         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00452}00452 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00453}00453 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00454}00454 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00455}00455 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00456}00456 \textcolor{comment}{/* === ldl\_perm: permute a vector, x=Pb ===================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00457}00457 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00458}00458 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00459}\mbox{\hyperlink{ldl_8c_ad1eccebf53bb99cab11cfef3bd84ecf8}{00459}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_ac01ccaa8b1e4bd420e0f5d969cb6123f}{LDL\_perm}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00460}00460 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00461}00461         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* size of X, B, and P */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00462}00462         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} X [ ],     \textcolor{comment}{/* output of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00463}00463         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} B [ ],     \textcolor{comment}{/* input of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00464}00464         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} P [ ]        \textcolor{comment}{/* input permutation array of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00465}00465 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00466}00466 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00467}00467         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00468}00468         \textcolor{keywordflow}{for} (j = 0 ; j < n -\/ 7; ++j)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00469}00469         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00470}00470         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00471}00471         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00472}00472         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00473}00473         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00474}00474         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00475}00475         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00476}00476         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00477}00477         X [j] = B [P [j]] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00478}00478         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00479}00479 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00480}00480         \textcolor{keywordflow}{if} (j < n -\/ 3)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00481}00481         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00482}00482         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00483}00483         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00484}00484         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00485}00485         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00486}00486         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00487}00487 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00488}00488         \textcolor{keywordflow}{if} (j < n -\/ 1)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00489}00489         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00490}00490         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00491}00491         X [j] = B [P [j]] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00492}00492         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00493}00493 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00494}00494         \textcolor{keywordflow}{if} (j < n)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00495}00495         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00496}00496         X [j] = B [P [j]] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00497}00497         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00498}00498 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00499}00499 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00500}00500 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00501}00501 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00502}00502 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00503}00503 \textcolor{comment}{/* === ldl\_permt: permute a vector, x=P'b =================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00504}00504 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00505}00505 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00506}\mbox{\hyperlink{ldl_8c_a49277c29fad99401d5ddf174676e99aa}{00506}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ldl_8h_abf0c5a3231888516fc81e080389c836a}{LDL\_permt}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00507}00507 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00508}00508         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,       \textcolor{comment}{/* size of X, B, and P */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00509}00509         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} X [ ],     \textcolor{comment}{/* output of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00510}00510         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} B [ ],     \textcolor{comment}{/* input of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00511}00511         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} P [ ]        \textcolor{comment}{/* input permutation array of size n. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00512}00512 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00513}00513 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00514}00514         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00515}00515         \textcolor{keywordflow}{for} (j = 0 ; j < n -\/ 7; ++j)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00516}00516         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00517}00517         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00518}00518         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00519}00519         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00520}00520         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00521}00521         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00522}00522         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00523}00523         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00524}00524         X [P [j]] = B [j] ; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00525}00525         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00526}00526 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00527}00527         \textcolor{keywordflow}{if} (j < n -\/ 3) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00528}00528         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00529}00529         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00530}00530         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00531}00531         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00532}00532         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00533}00533         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00534}00534 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00535}00535         \textcolor{keywordflow}{if} (j < n -\/ 1) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00536}00536         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00537}00537         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00538}00538         X [P [j]] = B [j] ; ++j;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00539}00539         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00540}00540 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00541}00541         \textcolor{keywordflow}{if} (j < n) }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00542}00542         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00543}00543         X [P [j]] = B [j] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00544}00544         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00545}00545 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00546}00546 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00547}00547 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00548}00548 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00549}00549 \textcolor{comment}{/* === ldl\_valid\_perm: check if a permutation vector is valid =============== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00550}00550 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00551}00551 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00552}00552 \textcolor{comment}{/* returns 1 if valid, 0 otherwise */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00553}\mbox{\hyperlink{ldl_8c_a6d577188d21bacfc010e270056d89050}{00553}} \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} \mbox{\hyperlink{ldl_8h_a20e7bb8c868e2035f55fbfce9254257f}{LDL\_valid\_perm}}     }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00554}00554 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00555}00555         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00556}00556         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} P [ ],           \textcolor{comment}{/* input of size n, a permutation of 0:n-\/1 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00557}00557         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Flag [ ]         \textcolor{comment}{/* workspace of size n */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00558}00558 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00559}00559 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00560}00560         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00561}00561         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} k;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00562}00562         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00563}00563         \textcolor{keywordflow}{if} (n < 0 || !Flag)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00564}00564         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00565}00565         \textcolor{keywordflow}{return} (0) ;        \textcolor{comment}{/* n must be >= 0, and Flag must be present */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00566}00566         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00567}00567         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00568}00568         \textcolor{keywordflow}{if} (!P)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00569}00569         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00570}00570         \textcolor{keywordflow}{return} (1) ;        \textcolor{comment}{/* If ABIP\_NULL, P is assumed to be the identity perm. */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00571}00571         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00572}00572         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00573}00573         \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00574}00574         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00575}00575         Flag [j] = 0 ;      \textcolor{comment}{/* clear the Flag array */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00576}00576         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00577}00577         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00578}00578         \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00579}00579         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00580}00580         j = P [k] ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00581}00581         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00582}00582         \textcolor{keywordflow}{if} (j < 0 || j >= n || Flag [j] != 0)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00583}00583         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00584}00584                 \textcolor{keywordflow}{return} (0) ;    \textcolor{comment}{/* P is not valid */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00585}00585         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00586}00586         Flag [j] = 1 ;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00587}00587         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00588}00588         \textcolor{keywordflow}{return} (1) ;        \textcolor{comment}{/* P is valid */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00589}00589 \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00590}00590 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00591}00591 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00592}00592 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00593}00593 \textcolor{comment}{/* === ldl\_valid\_matrix: check if a sparse matrix is valid ================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00594}00594 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00595}00595 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00596}00596 \textcolor{comment}{/* This routine checks to see if a sparse matrix A is valid for input to}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00597}00597 \textcolor{comment}{ * ldl\_symbolic and ldl\_numeric.  It returns 1 if the matrix is valid, 0}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00598}00598 \textcolor{comment}{ * otherwise.  A is in sparse column form.  The numerical values in column j}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00599}00599 \textcolor{comment}{ * are stored in Ax [Ap [j] ... Ap [j+1]-\/1], with row indices in}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00600}00600 \textcolor{comment}{ * Ai [Ap [j] ... Ap [j+1]-\/1].  The Ax array is not checked.}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00601}00601 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00602}00602 }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00603}\mbox{\hyperlink{ldl_8c_a140c22324c4a9dab7f407dfbfb840862}{00603}} \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} \mbox{\hyperlink{ldl_8h_ac544f8a8b8fd775f6b9bfa6b5aea4fce}{LDL\_valid\_matrix}}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00604}00604 (}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00605}00605         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} n,}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00606}00606         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00607}00607         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} Ai [ ]}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00608}00608 )}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00609}00609 \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00610}00610         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} j; }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00611}00611         \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\_int}} p;}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00612}00612         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00613}00613         \textcolor{keywordflow}{if} (n < 0 || !Ap || !Ai || Ap [0] != 0)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00614}00614         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00615}00615         \textcolor{keywordflow}{return} (0) ;        \textcolor{comment}{/* n must be >= 0, and Ap and Ai must be present */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00616}00616         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00617}00617         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00618}00618         \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00619}00619         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00620}00620         \textcolor{keywordflow}{if} (Ap [j] > Ap [j+1])}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00621}00621         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00622}00622                 \textcolor{keywordflow}{return} (0) ;    \textcolor{comment}{/* Ap must be monotonically nondecreasing */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00623}00623         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00624}00624         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00625}00625         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00626}00626         \textcolor{keywordflow}{for} (p = 0 ; p < Ap [n] ; p++)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00627}00627         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00628}00628         \textcolor{keywordflow}{if} (Ai [p] < 0 || Ai [p] >= n)}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00629}00629         \{}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00630}00630                 \textcolor{keywordflow}{return} (0) ;    \textcolor{comment}{/* row indices must be in the range 0 to n-\/1 */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00631}00631         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00632}00632         \}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00633}00633         }
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00634}00634         \textcolor{keywordflow}{return} (1) ;        \textcolor{comment}{/* matrix is valid */}}
+\DoxyCodeLine{\Hypertarget{ldl_8c_source_l00635}00635 \}}
+
+\end{DoxyCode}

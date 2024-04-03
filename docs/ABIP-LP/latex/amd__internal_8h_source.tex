@@ -1,0 +1,340 @@
+\hypertarget{amd__internal_8h_source}{}\doxysection{amd\+\_\+internal.\+h}
+\label{amd__internal_8h_source}\index{external/amd/amd\_internal.h@{external/amd/amd\_internal.h}}
+\mbox{\hyperlink{amd__internal_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00002}00002 \textcolor{comment}{/* === amd\_internal.h ====================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00011}00011 \textcolor{comment}{/* This file is for internal use in AMD itself, and does not normally need to}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00012}00012 \textcolor{comment}{ * be included in user code (it is included in UMFPACK, however).   All others}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00013}00013 \textcolor{comment}{ * should use amd.h instead.}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00014}00014 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00016}00016 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00017}00017 \textcolor{comment}{/* === NDEBUG ============================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00018}00018 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00020}00020 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00021}00021 \textcolor{comment}{ * Turning on debugging takes some work (see below).   If you do not edit this}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00022}00022 \textcolor{comment}{ * file, then debugging is always turned off, regardless of whether or not}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00023}00023 \textcolor{comment}{ * -\/DNDEBUG is specified in your compiler options.}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00024}00024 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00025}00025 \textcolor{comment}{ * If AMD is being compiled as a mexFunction, then MATLAB\_MEX\_FILE is defined,}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00026}00026 \textcolor{comment}{ * and mxAssert is used instead of assert.  If debugging is not enabled, no}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00027}00027 \textcolor{comment}{ * MATLAB include files or functions are used.  Thus, the AMD library libamd.a}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00028}00028 \textcolor{comment}{ * can be safely used in either a stand-\/alone C program or in another}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00029}00029 \textcolor{comment}{ * mexFunction, without any change.}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00030}00030 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00032}00032 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00033}00033 \textcolor{comment}{    AMD will be exceedingly slow when running in debug mode.  The next three}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00034}00034 \textcolor{comment}{    lines ensure that debugging is turned off.}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00035}00035 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00036}00036 \textcolor{preprocessor}{\#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00037}00037 \textcolor{preprocessor}{\#define NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00038}00038 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00040}00040 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00041}00041 \textcolor{comment}{    To enable debugging, uncomment the following line:}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00042}00042 \textcolor{comment}{\#undef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00043}00043 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00045}00045 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00046}00046 \textcolor{comment}{/* ANSI include files */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00047}00047 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00049}00049 \textcolor{comment}{/* from stdlib.h:  size\_t, malloc, free, realloc, and calloc */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00050}00050 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00052}00052 \textcolor{preprocessor}{\#if !defined(NPRINT) || !defined(NDEBUG)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00053}00053 \textcolor{comment}{/* from stdio.h:  printf.  Not included if NPRINT is defined at compile time.}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00054}00054 \textcolor{comment}{ * fopen and fscanf are used when debugging. */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00055}00055 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00056}00056 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00058}00058 \textcolor{comment}{/* from limits.h:  INT\_MAX and LONG\_MAX */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00059}00059 \textcolor{preprocessor}{\#include <limits.h>}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00061}00061 \textcolor{comment}{/* from math.h: sqrt */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00062}00062 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00064}00064 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00065}00065 \textcolor{comment}{/* MATLAB include files (only if being used in or via MATLAB) */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00066}00066 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00068}00068 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00069}00069 \textcolor{preprocessor}{\#include "{}matrix.h"{}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00070}00070 \textcolor{preprocessor}{\#include "{}mex.h"{}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00071}00071 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00073}00073 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00074}00074 \textcolor{comment}{/* basic definitions */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00075}00075 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00077}00077 \textcolor{preprocessor}{\#ifdef FLIP}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00078}00078 \textcolor{preprocessor}{\#undef FLIP}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00079}00079 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00081}00081 \textcolor{preprocessor}{\#ifdef MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00082}00082 \textcolor{preprocessor}{\#undef MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00083}00083 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00085}00085 \textcolor{preprocessor}{\#ifdef MIN}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00086}00086 \textcolor{preprocessor}{\#undef MIN}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00087}00087 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00089}00089 \textcolor{preprocessor}{\#ifdef EMPTY}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00090}00090 \textcolor{preprocessor}{\#undef EMPTY}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00091}00091 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00093}00093 \textcolor{preprocessor}{\#ifdef GLOBAL}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00094}00094 \textcolor{preprocessor}{\#undef GLOBAL}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00095}00095 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00097}00097 \textcolor{preprocessor}{\#ifdef PRIVATE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00098}00098 \textcolor{preprocessor}{\#undef PRIVATE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00099}00099 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00101}00101 \textcolor{comment}{/* FLIP is a "{}negation about -\/1"{}, and is used to mark an integer i that is}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00102}00102 \textcolor{comment}{ * normally non-\/negative.  FLIP (EMPTY) is EMPTY.  FLIP of a number > EMPTY}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00103}00103 \textcolor{comment}{ * is negative, and FLIP of a number < EMTPY is positive.  FLIP (FLIP (i)) = i}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00104}00104 \textcolor{comment}{ * for all integers i.  UNFLIP (i) is >= EMPTY. */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00105}00105 \textcolor{preprocessor}{\#define EMPTY (-\/1)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00106}\mbox{\hyperlink{amd__internal_8h_a9b17a06cbb01e7b7a165c13e5640fd46}{00106}} \textcolor{preprocessor}{\#define FLIP(i) (-\/(i)-\/2)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00107}\mbox{\hyperlink{amd__internal_8h_a58d80900906670c5df232e3c288dbec9}{00107}} \textcolor{preprocessor}{\#define UNFLIP(i) ((i < EMPTY) ? FLIP (i) : (i))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00109}00109 \textcolor{comment}{/* for integer MAX/MIN, or for doubles when we don't care how NaN's behave: */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00110}\mbox{\hyperlink{amd__internal_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{00110}} \textcolor{preprocessor}{\#define MAX(a,b) (((a) > (b)) ? (a) : (b))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00111}\mbox{\hyperlink{amd__internal_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{00111}} \textcolor{preprocessor}{\#define MIN(a,b) (((a) < (b)) ? (a) : (b))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00113}00113 \textcolor{comment}{/* logical expression of p implies q: */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00114}\mbox{\hyperlink{amd__internal_8h_aa2faa268dbd9c43a8e7aac92bd70114f}{00114}} \textcolor{preprocessor}{\#define IMPLIES(p,q) (!(p) || (q))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00116}00116 \textcolor{comment}{/* Note that the IBM RS 6000 xlc predefines TRUE and FALSE in <types.h>. */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00117}00117 \textcolor{comment}{/* The Compaq Alpha also predefines TRUE and FALSE. */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00118}00118 \textcolor{preprocessor}{\#ifdef TRUE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00119}00119 \textcolor{preprocessor}{\#undef TRUE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00120}00120 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00121}00121 \textcolor{preprocessor}{\#ifdef FALSE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00122}00122 \textcolor{preprocessor}{\#undef FALSE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00123}00123 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00125}\mbox{\hyperlink{amd__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{00125}} \textcolor{preprocessor}{\#define TRUE (1)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00126}\mbox{\hyperlink{amd__internal_8h_aa93f0eb578d23995850d61f7d61c55c1}{00126}} \textcolor{preprocessor}{\#define FALSE (0)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00127}\mbox{\hyperlink{amd__internal_8h_a5e151c615eda34903514212f05a5ccf8}{00127}} \textcolor{preprocessor}{\#define PRIVATE static}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00128}\mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{00128}} \textcolor{preprocessor}{\#define GLOBAL}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00129}\mbox{\hyperlink{amd__internal_8h_a2b7cf2a3641be7b89138615764d60ba3}{00129}} \textcolor{preprocessor}{\#define EMPTY (-\/1)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00131}00131 \textcolor{comment}{/* Note that Linux's gcc 2.96 defines NULL as ((void *) 0), but other */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00132}00132 \textcolor{comment}{/* compilers (even gcc 2.95.2 on Solaris) define NULL as 0 or (0).  We */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00133}00133 \textcolor{comment}{/* need to use the ANSI standard value of 0. */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00134}00134 \textcolor{preprocessor}{\#ifdef ABIP\_NULL}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00135}00135 \textcolor{preprocessor}{\#undef ABIP\_NULL}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00136}00136 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00138}\mbox{\hyperlink{amd__internal_8h_adae2a4e360bd77801ffccfc6288f97c5}{00138}} \textcolor{preprocessor}{\#define ABIP\_NULL 0}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00140}00140 \textcolor{comment}{/* largest value of size\_t */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00141}00141 \textcolor{preprocessor}{\#ifndef SIZE\_T\_MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00142}00142 \textcolor{preprocessor}{\#ifdef SIZE\_MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00143}00143 \textcolor{comment}{/* C99 only */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00144}00144 \textcolor{preprocessor}{\#define SIZE\_T\_MAX SIZE\_MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00145}00145 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00146}\mbox{\hyperlink{amd__internal_8h_acfa3af56d5e0045c1d7a5682fd1d2853}{00146}} \textcolor{preprocessor}{\#define SIZE\_T\_MAX ((size\_t) (-\/1))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00147}00147 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00148}00148 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00150}00150 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00151}00151 \textcolor{comment}{/* integer type for AMD: int or SuiteSparse\_long */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00152}00152 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00154}00154 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd_8h}{amd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00156}00156 \textcolor{preprocessor}{\#if defined (DLONG) || defined (ZLONG)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00158}00158 \textcolor{preprocessor}{\#define Int SuiteSparse\_long}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00159}00159 \textcolor{preprocessor}{\#define ID  SuiteSparse\_long\_id}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00160}00160 \textcolor{preprocessor}{\#define Int\_MAX SuiteSparse\_long\_max}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00162}00162 \textcolor{preprocessor}{\#define AMD\_order amd\_l\_order}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00163}00163 \textcolor{preprocessor}{\#define AMD\_defaults amd\_l\_defaults}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00164}00164 \textcolor{preprocessor}{\#define AMD\_control amd\_l\_control}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00165}00165 \textcolor{preprocessor}{\#define AMD\_info amd\_l\_info}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00166}00166 \textcolor{preprocessor}{\#define AMD\_1 amd\_l1}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00167}00167 \textcolor{preprocessor}{\#define AMD\_2 amd\_l2}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00168}00168 \textcolor{preprocessor}{\#define AMD\_valid amd\_l\_valid}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00169}00169 \textcolor{preprocessor}{\#define AMD\_aat amd\_l\_aat}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00170}00170 \textcolor{preprocessor}{\#define AMD\_postorder amd\_l\_postorder}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00171}00171 \textcolor{preprocessor}{\#define AMD\_post\_tree amd\_l\_post\_tree}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00172}00172 \textcolor{preprocessor}{\#define AMD\_dump amd\_l\_dump}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00173}00173 \textcolor{preprocessor}{\#define AMD\_debug amd\_l\_debug}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00174}00174 \textcolor{preprocessor}{\#define AMD\_debug\_init amd\_l\_debug\_init}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00175}00175 \textcolor{preprocessor}{\#define AMD\_preprocess amd\_l\_preprocess}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00177}00177 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00179}\mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{00179}} \textcolor{preprocessor}{\#define Int int}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00180}\mbox{\hyperlink{amd__internal_8h_a77ceac8d6af195fe72f95f6afd87c45e}{00180}} \textcolor{preprocessor}{\#define ID "{}\%d"{}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00181}\mbox{\hyperlink{amd__internal_8h_a487e0193fe74cf79f80a11b180afbd93}{00181}} \textcolor{preprocessor}{\#define Int\_MAX INT\_MAX}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00182}00182 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00183}\mbox{\hyperlink{amd__internal_8h_ad0a7a2b7611f040ab0fe5b2d21315038}{00183}} \textcolor{preprocessor}{\#define AMD\_order amd\_order}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00184}\mbox{\hyperlink{amd__internal_8h_ab95de05cfb0c5289b12c9680a38d2bd4}{00184}} \textcolor{preprocessor}{\#define AMD\_defaults amd\_defaults}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00185}\mbox{\hyperlink{amd__internal_8h_a929f2d9484aa213d8d118b9020318d89}{00185}} \textcolor{preprocessor}{\#define AMD\_control amd\_control}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00186}\mbox{\hyperlink{amd__internal_8h_a9f5748f9d35403b59f66710ee1212a82}{00186}} \textcolor{preprocessor}{\#define AMD\_info amd\_info}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00187}\mbox{\hyperlink{amd__internal_8h_a94cc01405c92793818283753af88cd2b}{00187}} \textcolor{preprocessor}{\#define AMD\_1 amd\_1}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00188}\mbox{\hyperlink{amd__internal_8h_a84e7b06fe5121a773a03f601eb6b48ee}{00188}} \textcolor{preprocessor}{\#define AMD\_2 amd\_2}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00189}\mbox{\hyperlink{amd__internal_8h_a73783eda41bbecd6671f619cab1650d9}{00189}} \textcolor{preprocessor}{\#define AMD\_valid amd\_valid}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00190}\mbox{\hyperlink{amd__internal_8h_aaaf1c74d82ed1bc639d31aa886a26902}{00190}} \textcolor{preprocessor}{\#define AMD\_aat amd\_aat}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00191}\mbox{\hyperlink{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}{00191}} \textcolor{preprocessor}{\#define AMD\_postorder amd\_postorder}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00192}\mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{00192}} \textcolor{preprocessor}{\#define AMD\_post\_tree amd\_post\_tree}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00193}\mbox{\hyperlink{amd__internal_8h_ad6a599d15b6481a28fc572961e0c873a}{00193}} \textcolor{preprocessor}{\#define AMD\_dump amd\_dump}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00194}\mbox{\hyperlink{amd__internal_8h_a345a39fc2e311324fa1d45033b692ff9}{00194}} \textcolor{preprocessor}{\#define AMD\_debug amd\_debug}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00195}\mbox{\hyperlink{amd__internal_8h_ad8e2519f3d40b5bc00b7d28c25b41903}{00195}} \textcolor{preprocessor}{\#define AMD\_debug\_init amd\_debug\_init}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00196}\mbox{\hyperlink{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}{00196}} \textcolor{preprocessor}{\#define AMD\_preprocess amd\_preprocess}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00197}00197 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00198}00198 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00200}00200 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00201}00201 \textcolor{comment}{/* === PRINTF macro ======================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00202}00202 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00203}00203 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00204}00204 \textcolor{comment}{/* All output goes through the PRINTF macro.  */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00205}\mbox{\hyperlink{amd__internal_8h_ae89677f15a992e290c8b355ba0bd9d0c}{00205}} \textcolor{preprocessor}{\#define PRINTF(params) \{ if (amd\_printf != ABIP\_NULL) (void) amd\_printf params ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00207}00207 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00208}00208 \textcolor{comment}{/* AMD routine definitions (not user-\/callable) */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00209}00209 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00211}00211 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{amd__internal_8h_aaaf1c74d82ed1bc639d31aa886a26902}{AMD\_aat}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00212}00212 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00213}00213             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00214}00214             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00215}00215             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00216}00216             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Len [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00217}00217             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Tp [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00218}00218             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00219}00219 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00220}00220 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00221}00221 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_a94cc01405c92793818283753af88cd2b}{AMD\_1}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00222}00222 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00223}00223             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00224}00224             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00225}00225             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00226}00226             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} P [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00227}00227             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Pinv [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00228}00228             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Len [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00229}00229             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} slen,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00230}00230             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} S [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00231}00231             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00232}00232             \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{struct_a_b_i_p___i_n_f_o}{ABIPInfo}} [ ]}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00233}00233 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00234}00234 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00235}00235 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_a0b2a248bbe495b6731e5d93383376f42}{AMD\_postorder}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00236}00236 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00237}00237             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nn,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00238}00238             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Parent [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00239}00239             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Npiv [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00240}00240             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Fsize [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00241}00241             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00242}00242             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00243}00243             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00244}00244             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack [ ]}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00245}00245 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00247}\mbox{\hyperlink{amd__internal_8h_a6c748e1329d371cbd71bf9b1417bebb3}{00247}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{amd__internal_8h_a2e30376c31e65ef69fe9624fe0377907}{AMD\_post\_tree}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00248}00248 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00249}00249             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} root,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00250}00250             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} k,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00251}00251             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Child [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00252}00252             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Sibling [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00253}00253             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Order [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00254}00254             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Stack [ ]}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00255}00255             }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00256}00256             \#ifndef NDEBUG}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00257}00257             , \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nn}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00258}00258             \#endif}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00259}00259 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00261}00261 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_aee4f02bea7a424a10cccdef6e493f989}{AMD\_preprocess}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00262}00262 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00263}00263             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00264}00264             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ap [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00265}00265             \textcolor{keyword}{const} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ai [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00266}00266             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Rp [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00267}00267             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Ri [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00268}00268             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} W [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00269}00269             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Flag [ ]}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00270}00270 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00272}00272 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00273}00273 \textcolor{comment}{/* debugging definitions */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00274}00274 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00276}00276 \textcolor{preprocessor}{\#ifndef NDEBUG}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00278}00278 \textcolor{comment}{/* from assert.h:  assert macro */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00279}00279 \textcolor{preprocessor}{\#include <assert.h>}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00281}00281 \textcolor{preprocessor}{\#ifndef EXTERN}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00282}00282 \textcolor{preprocessor}{\#define EXTERN extern}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00283}00283 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00284}00284 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00285}00285 \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{amd__internal_8h_a345a39fc2e311324fa1d45033b692ff9}{AMD\_debug}} ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00287}00287 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_ad8e2519f3d40b5bc00b7d28c25b41903}{AMD\_debug\_init}} ( \textcolor{keywordtype}{char} *s ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00288}00288 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00289}00289 \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_ad6a599d15b6481a28fc572961e0c873a}{AMD\_dump}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00290}00290 (}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00291}00291             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} n,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00292}00292             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Pe [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00293}00293             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Iw [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00294}00294             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Len [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00295}00295             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} iwlen,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00296}00296             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} pfree,}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00297}00297             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Nv [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00298}00298             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Next [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00299}00299             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Last [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00300}00300             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Head [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00301}00301             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Elen [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00302}00302             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} Degree [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00303}00303             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} W [ ],}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00304}00304             \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} nel}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00305}00305 ) ;}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00306}00306 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00307}00307 \textcolor{preprocessor}{\#ifdef ASSERT}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00308}00308 \textcolor{preprocessor}{\#undef ASSERT}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00309}00309 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00310}00310 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00311}00311 \textcolor{comment}{/* Use mxAssert if AMD is compiled into a mexFunction */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00312}00312 \textcolor{preprocessor}{\#ifdef MATLAB\_MEX\_FILE}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00313}00313 \textcolor{preprocessor}{\#define ASSERT(expression) (mxAssert ((expression), "{}"{}}))}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00314}00314 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00315}00315 \textcolor{preprocessor}{\#define ASSERT(expression) (assert (expression))}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00316}00316 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00317}00317 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00318}00318 \textcolor{preprocessor}{\#define AMD\_DEBUG0(params) \{ PRINTF (params) ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00319}00319 \textcolor{preprocessor}{\#define AMD\_DEBUG1(params) \{ if (AMD\_debug >= 1) PRINTF (params) ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00320}00320 \textcolor{preprocessor}{\#define AMD\_DEBUG2(params) \{ if (AMD\_debug >= 2) PRINTF (params) ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00321}00321 \textcolor{preprocessor}{\#define AMD\_DEBUG3(params) \{ if (AMD\_debug >= 3) PRINTF (params) ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00322}00322 \textcolor{preprocessor}{\#define AMD\_DEBUG4(params) \{ if (AMD\_debug >= 4) PRINTF (params) ; \}}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00323}00323 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00324}00324 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00325}00325 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00326}00326 \textcolor{comment}{/* no debugging */}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00327}\mbox{\hyperlink{amd__internal_8h_a87e006a00875d2e518652108f6cb5790}{00327}} \textcolor{preprocessor}{\#define ASSERT(expression)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00328}\mbox{\hyperlink{amd__internal_8h_aa7a9799073f6b5fb48d087321121345e}{00328}} \textcolor{preprocessor}{\#define AMD\_DEBUG0(params)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00329}\mbox{\hyperlink{amd__internal_8h_a37fa7f2b8b3ac668a7e1c2613445b16d}{00329}} \textcolor{preprocessor}{\#define AMD\_DEBUG1(params)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00330}\mbox{\hyperlink{amd__internal_8h_affe04eb97a59a9cb13e0b537b1844197}{00330}} \textcolor{preprocessor}{\#define AMD\_DEBUG2(params)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00331}\mbox{\hyperlink{amd__internal_8h_afd254e4246734c9bb9bb01350196f2bd}{00331}} \textcolor{preprocessor}{\#define AMD\_DEBUG3(params)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00332}\mbox{\hyperlink{amd__internal_8h_aab6224578a8462cdc28a6e511cafa6b1}{00332}} \textcolor{preprocessor}{\#define AMD\_DEBUG4(params)}}
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00333}00333 }
+\DoxyCodeLine{\Hypertarget{amd__internal_8h_source_l00334}00334 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,86 @@
+\hypertarget{abip_8c}{}\doxysection{src/abip.c File Reference}
+\label{abip_8c}\index{src/abip.c@{src/abip.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}adaptive.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ctrlc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linalg.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}normalize.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abip_8c_a016a520dc275fc34ac8d42f08d42907d}{ABIP}} (timer)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_a6c0052040b9b36c6852ee7847bfe1f74}{solve}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em detailed update rule of ABIP \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_aa22e6bc8e059b9cde7edeab5ba7c439e}{finish}} (\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\item 
+\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_a9d72e9d8de84bc68f20fbabbf6a02253}{init}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{abip_8c_a615aa6e4ecfe6ec1df47272c53ddb3ac}{main}} (const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol, \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em the main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{abip_8c_a016a520dc275fc34ac8d42f08d42907d}\label{abip_8c_a016a520dc275fc34ac8d42f08d42907d}} 
+\index{abip.c@{abip.c}!ABIP@{ABIP}}
+\index{ABIP@{ABIP}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{ABIP()}{ABIP()}}
+{\footnotesize\ttfamily ABIP (\begin{DoxyParamCaption}\item[{timer}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l00012}{12}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_aa22e6bc8e059b9cde7edeab5ba7c439e}\label{abip_8c_aa22e6bc8e059b9cde7edeab5ba7c439e}} 
+\index{abip.c@{abip.c}!finish@{finish}}
+\index{finish@{finish}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{finish()}{finish()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() finish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l02301}{2301}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a9d72e9d8de84bc68f20fbabbf6a02253}\label{abip_8c_a9d72e9d8de84bc68f20fbabbf6a02253}} 
+\index{abip.c@{abip.c}!init@{init}}
+\index{init@{init}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l02341}{2341}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a615aa6e4ecfe6ec1df47272c53ddb3ac}\label{abip_8c_a615aa6e4ecfe6ec1df47272c53ddb3ac}} 
+\index{abip.c@{abip.c}!main@{main}}
+\index{main@{main}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() main (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+the main function 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l02393}{2393}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+
+\mbox{\Hypertarget{abip_8c_a6c0052040b9b36c6852ee7847bfe1f74}\label{abip_8c_a6c0052040b9b36c6852ee7847bfe1f74}} 
+\index{abip.c@{abip.c}!solve@{solve}}
+\index{solve@{solve}!abip.c@{abip.c}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{const \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol,  }\item[{\mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+detailed update rule of ABIP 
+
+
+
+Definition at line \mbox{\hyperlink{abip_8c_source_l02056}{2056}} of file \mbox{\hyperlink{abip_8c_source}{abip.\+c}}.
+

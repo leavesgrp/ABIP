@@ -1,0 +1,93 @@
+\hypertarget{cs__lu_8c_source}{}\doxysection{cs\+\_\+lu.\+c}
+\label{cs__lu_8c_source}\index{csparse/Source/cs\_lu.c@{csparse/Source/cs\_lu.c}}
+\mbox{\hyperlink{cs__lu_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00002}00002 \textcolor{comment}{/* [L,U,pinv]=lu(A, [q lnz unz]). lnz and unz can be guess */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00003}\mbox{\hyperlink{cs_8h_ad63cba2834ab7aa01a015a7b0e28eb19}{00003}} \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{cs__lu_8c_ad63cba2834ab7aa01a015a7b0e28eb19}{cs\_lu}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__symbolic}{css}} *S, \textcolor{keywordtype}{double} tol)}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00005}00005     \mbox{\hyperlink{structcs__sparse}{cs}} *L, *U ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00006}00006     \mbox{\hyperlink{structcs__numeric}{csn}} *N ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00007}00007     \textcolor{keywordtype}{double} pivot, *Lx, *Ux, *x,  a, t ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00008}00008     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *Lp, *Li, *Up, *Ui, *pinv, *xi, *q, n, ipiv, k, top, p, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, col, lnz,unz;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00009}00009     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !S) \textcolor{keywordflow}{return} (NULL) ;          \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00010}00010     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00011}00011     q = S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}} ; lnz = S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} ; unz = S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00012}00012     x = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;            \textcolor{comment}{/* get double workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00013}00013     xi = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (2*n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;            \textcolor{comment}{/* get csi workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00014}00014     N = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__numeric}{csn}})) ;               \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00015}00015     \textcolor{keywordflow}{if} (!x || !xi || !N) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, xi, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00016}00016     N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}} = L = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (n, n, lnz, 1, 0) ;       \textcolor{comment}{/* allocate result L */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00017}00017     N-\/>\mbox{\hyperlink{structcs__numeric_a1e07204edb10064ca1e471289fced1cb}{U}} = U = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (n, n, unz, 1, 0) ;       \textcolor{comment}{/* allocate result U */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00018}00018     N-\/>\mbox{\hyperlink{structcs__numeric_a30fd2e151d4170f569260261bb18d955}{pinv}} = pinv = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;  \textcolor{comment}{/* allocate result pinv */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00019}00019     \textcolor{keywordflow}{if} (!L || !U || !pinv) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, xi, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00020}00020     Lp = L-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Up = U-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00021}00021     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;           \textcolor{comment}{/* clear workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00022}00022     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < n ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;       \textcolor{comment}{/* no rows pivotal yet */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00023}00023     \textcolor{keywordflow}{for} (k = 0 ; k <= n ; k++) Lp [k] = 0 ;         \textcolor{comment}{/* no cols of L yet */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00024}00024     lnz = unz = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00025}00025     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)       \textcolor{comment}{/* compute L(:,k) and U(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00026}00026     \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00027}00027         \textcolor{comment}{/* -\/-\/-\/ Triangular solve -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00028}00028         Lp [k] = lnz ;              \textcolor{comment}{/* L(:,k) starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00029}00029         Up [k] = unz ;              \textcolor{comment}{/* U(:,k) starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00030}00030         \textcolor{keywordflow}{if} ((lnz + n > L-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} \&\& !\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (L, 2*L-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} + n)) ||}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00031}00031             (unz + n > U-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} \&\& !\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (U, 2*U-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} + n)))}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00032}00032         \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00033}00033             \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, xi, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00034}00034         \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00035}00035         Li = L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Lx = L-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ; Ui = U-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Ux = U-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00036}00036         col = q ? (q [k]) : k ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00037}00037         top = \mbox{\hyperlink{cs_8h_a772ba477fdc1f6499735635e037b0c6d}{cs\_spsolve}} (L, A, col, xi, x, pinv, 1) ;  \textcolor{comment}{/* x = L\(\backslash\)A(:,col) */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00038}00038         \textcolor{comment}{/* -\/-\/-\/ Find pivot -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00039}00039         ipiv = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00040}00040         a = -\/1 ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00041}00041         \textcolor{keywordflow}{for} (p = top ; p < n ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00042}00042         \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00043}00043             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = xi [p] ;            \textcolor{comment}{/* x(i) is nonzero */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00044}00044             \textcolor{keywordflow}{if} (pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] < 0)       \textcolor{comment}{/* row i is not yet pivotal */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00045}00045             \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00046}00046                 \textcolor{keywordflow}{if} ((t = fabs (x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}])) > a)}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00047}00047                 \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00048}00048                     a = t ;         \textcolor{comment}{/* largest pivot candidate so far */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00049}00049                     ipiv = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00050}00050                 \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00051}00051             \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00052}00052             \textcolor{keywordflow}{else}                    \textcolor{comment}{/* x(i) is the entry U(pinv[i],k) */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00053}00053             \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00054}00054                 Ui [unz] = pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00055}00055                 Ux [unz++] = x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00056}00056             \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00057}00057         \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00058}00058         \textcolor{keywordflow}{if} (ipiv == -\/1 || a <= 0) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, xi, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00059}00059         \textcolor{comment}{/* tol=1 for  partial pivoting; tol<1 gives preference to diagonal */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00060}00060         \textcolor{keywordflow}{if} (pinv [col] < 0 \&\& fabs (x [col]) >= a*tol) ipiv = col ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00061}00061         \textcolor{comment}{/* -\/-\/-\/ Divide by pivot -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00062}00062         pivot = x [ipiv] ;          \textcolor{comment}{/* the chosen pivot */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00063}00063         Ui [unz] = k ;              \textcolor{comment}{/* last entry in U(:,k) is U(k,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00064}00064         Ux [unz++] = pivot ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00065}00065         pinv [ipiv] = k ;           \textcolor{comment}{/* ipiv is the kth pivot row */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00066}00066         Li [lnz] = ipiv ;           \textcolor{comment}{/* first entry in L(:,k) is L(k,k) = 1 */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00067}00067         Lx [lnz++] = 1 ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00068}00068         \textcolor{keywordflow}{for} (p = top ; p < n ; p++) \textcolor{comment}{/* L(k+1:n,k) = x / pivot */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00069}00069         \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00070}00070             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = xi [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00071}00071             \textcolor{keywordflow}{if} (pinv [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] < 0)       \textcolor{comment}{/* x(i) is an entry in L(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00072}00072             \{}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00073}00073                 Li [lnz] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;      \textcolor{comment}{/* save unpermuted row in L */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00074}00074                 Lx [lnz++] = x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] / pivot ;    \textcolor{comment}{/* scale pivot column */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00075}00075             \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00076}00076             x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;             \textcolor{comment}{/* x [0..n-\/1] = 0 for next k */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00077}00077         \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00078}00078     \}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00079}00079     \textcolor{comment}{/* -\/-\/-\/ Finalize L and U -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00080}00080     Lp [n] = lnz ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00081}00081     Up [n] = unz ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00082}00082     Li = L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ;                     \textcolor{comment}{/* fix row indices of L for final pinv */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00083}00083     \textcolor{keywordflow}{for} (p = 0 ; p < lnz ; p++) Li [p] = pinv [Li [p]] ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00084}00084     \mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (L, 0) ;           \textcolor{comment}{/* remove extra space from L and U */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00085}00085     \mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (U, 0) ;}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00086}00086     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, xi, x, 1)) ;     \textcolor{comment}{/* success */}}
+\DoxyCodeLine{\Hypertarget{cs__lu_8c_source_l00087}00087 \}}
+
+\end{DoxyCode}

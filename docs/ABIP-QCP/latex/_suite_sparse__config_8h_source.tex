@@ -1,0 +1,254 @@
+\hypertarget{_suite_sparse__config_8h_source}{}\doxysection{Suite\+Sparse\+\_\+config.\+h}
+\label{_suite_sparse__config_8h_source}\index{amd/SuiteSparse\_config.h@{amd/SuiteSparse\_config.h}}
+\mbox{\hyperlink{_suite_sparse__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00001}00001 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00002}00002 \textcolor{comment}{/* === SuiteSparse\_config =================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00003}00003 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00005}00005 \textcolor{comment}{/* Configuration file for SuiteSparse: a Suite of Sparse matrix packages}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00006}00006 \textcolor{comment}{ * (AMD, COLAMD, CCOLAMD, CAMD, CHOLMOD, UMFPACK, CXSparse, and others).}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00008}00008 \textcolor{comment}{ * SuiteSparse\_config.h provides the definition of the long integer.  On most}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00009}00009 \textcolor{comment}{ * systems, a C program can be compiled in LP64 mode, in which long's and}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00010}00010 \textcolor{comment}{ * pointers are both 64-\/bits, and int's are 32-\/bits.  Windows 64, however, uses}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00011}00011 \textcolor{comment}{ * the LLP64 model, in which int's and long's are 32-\/bits, and long long's and}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00012}00012 \textcolor{comment}{ * pointers are 64-\/bits.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00013}00013 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00014}00014 \textcolor{comment}{ * SuiteSparse packages that include long integer versions are}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00015}00015 \textcolor{comment}{ * intended for the LP64 mode.  However, as a workaround for Windows 64}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00016}00016 \textcolor{comment}{ * (and perhaps other systems), the long integer can be redefined.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00017}00017 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00018}00018 \textcolor{comment}{ * If \_WIN64 is defined, then the \_\_int64 type is used instead of long.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00019}00019 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00020}00020 \textcolor{comment}{ * The long integer can also be defined at compile time.  For example, this}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00021}00021 \textcolor{comment}{ * could be added to SuiteSparse\_config.mk:}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00022}00022 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00023}00023 \textcolor{comment}{ * CFLAGS = -\/O -\/D'SuiteSparse\_long=long long' \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00024}00024 \textcolor{comment}{ *  -\/D'SuiteSparse\_long\_max=9223372036854775801' -\/D'SuiteSparse\_long\_idd="{}lld"{}'}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00025}00025 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00026}00026 \textcolor{comment}{ * This file defines SuiteSparse\_long as either long (on all but \_WIN64) or}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00027}00027 \textcolor{comment}{ * \_\_int64 on Windows 64.  The intent is that a SuiteSparse\_long is always a}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00028}00028 \textcolor{comment}{ * 64-\/bit integer in a 64-\/bit code.  ptrdiff\_t might be a better choice than}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00029}00029 \textcolor{comment}{ * long; it is always the same size as a pointer.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00030}00030 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00031}00031 \textcolor{comment}{ * This file also defines the SUITESPARSE\_VERSION and related definitions.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00032}00032 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00033}00033 \textcolor{comment}{ * Copyright (c) 2012, Timothy A. Davis.  No licensing restrictions apply}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00034}00034 \textcolor{comment}{ * to this file or to the SuiteSparse\_config directory.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00035}00035 \textcolor{comment}{ * Author: Timothy A. Davis.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00036}00036 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00038}00038 \textcolor{preprocessor}{\#ifndef SUITESPARSE\_CONFIG\_H}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00039}00039 \textcolor{preprocessor}{\#define SUITESPARSE\_CONFIG\_H}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00041}00041 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00042}00042 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00043}00043 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00045}00045 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00046}00046 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{ctrlc_8h}{ctrlc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00047}00047 \textcolor{preprocessor}{\#include <limits.h>}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00048}00048 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00050}00050 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00051}00051 \textcolor{comment}{/* === SuiteSparse\_long ===================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00052}00052 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00054}00054 \textcolor{preprocessor}{\#ifndef SuiteSparse\_long}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00056}00056 \textcolor{preprocessor}{\#ifdef \_WIN64}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00058}00058 \textcolor{preprocessor}{\#define SuiteSparse\_long \_\_int64}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00059}00059 \textcolor{preprocessor}{\#define SuiteSparse\_long\_max \_I64\_MAX}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00060}00060 \textcolor{preprocessor}{\#define SuiteSparse\_long\_idd "{}I64d"{}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00062}00062 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00064}\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{00064}} \textcolor{preprocessor}{\#define SuiteSparse\_long long}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00065}\mbox{\hyperlink{_suite_sparse__config_8h_ae5508ef881ec0a26f42dbbcce580e597}{00065}} \textcolor{preprocessor}{\#define SuiteSparse\_long\_max LONG\_MAX}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00066}\mbox{\hyperlink{_suite_sparse__config_8h_a06d8ca80daeb7eeeb7a9066cf097a8ff}{00066}} \textcolor{preprocessor}{\#define SuiteSparse\_long\_idd "{}ld"{}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00068}00068 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00069}\mbox{\hyperlink{_suite_sparse__config_8h_a3bc4391ab84f9e961388b85c5885c84b}{00069}} \textcolor{preprocessor}{\#define SuiteSparse\_long\_id "{}\%"{}} SuiteSparse\_long\_idd}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00070}00070 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00072}00072 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00073}00073 \textcolor{comment}{/* === SuiteSparse\_config parameters and functions ========================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00074}00074 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00076}00076 \textcolor{comment}{/* SuiteSparse-\/wide parameters are placed in this struct.  It is meant to be}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00077}00077 \textcolor{comment}{   an extern, globally-\/accessible struct.  It is not meant to be updated}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00078}00078 \textcolor{comment}{   frequently by multiple threads.  Rather, if an application needs to modify}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00079}00079 \textcolor{comment}{   SuiteSparse\_config, it should do it once at the beginning of the application,}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00080}00080 \textcolor{comment}{   before multiple threads are launched.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00081}00081 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00082}00082 \textcolor{comment}{   The intent of these function pointers is that they not be used in your}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00083}00083 \textcolor{comment}{   application directly, except to assign them to the desired user-\/provided}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00084}00084 \textcolor{comment}{   functions.  Rather, you should use the}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00085}00085 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00087}\mbox{\hyperlink{struct_suite_sparse__config__struct}{00087}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_suite_sparse__config__struct}{SuiteSparse\_config\_struct}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00088}00088 \{}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00089}\mbox{\hyperlink{struct_suite_sparse__config__struct_aca1bd88d48f2ad4d2352f59fcd5afb1a}{00089}}     \textcolor{keywordtype}{void} *(*malloc\_func) (size\_t) ;             \textcolor{comment}{/* pointer to malloc */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00090}\mbox{\hyperlink{struct_suite_sparse__config__struct_a9115643ec1b74644a762d930d64af168}{00090}}     \textcolor{keywordtype}{void} *(*calloc\_func) (size\_t, size\_t) ;     \textcolor{comment}{/* pointer to calloc */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00091}\mbox{\hyperlink{struct_suite_sparse__config__struct_aa339959942895710e27126a60f0b8caa}{00091}}     \textcolor{keywordtype}{void} *(*realloc\_func) (\textcolor{keywordtype}{void} *, size\_t) ;    \textcolor{comment}{/* pointer to realloc */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00092}\mbox{\hyperlink{struct_suite_sparse__config__struct_a1c63928f26bce192b95906a4dd89561f}{00092}}     void (*\mbox{\hyperlink{struct_suite_sparse__config__struct_a1c63928f26bce192b95906a4dd89561f}{free\_func}}) (\textcolor{keywordtype}{void} *) ;                \textcolor{comment}{/* pointer to free */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00093}\mbox{\hyperlink{struct_suite_sparse__config__struct_af36508c39c2294f3d2da1a6c9454bb19}{00093}}     int (*\mbox{\hyperlink{struct_suite_sparse__config__struct_af36508c39c2294f3d2da1a6c9454bb19}{printf\_func}}) (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *, ...) ;    \textcolor{comment}{/* pointer to printf */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00094}\mbox{\hyperlink{struct_suite_sparse__config__struct_ac8271a27a4b1e5a0ad743f86d5d6adb6}{00094}}     \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} (*\mbox{\hyperlink{struct_suite_sparse__config__struct_ac8271a27a4b1e5a0ad743f86d5d6adb6}{hypot\_func}}) (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}) ;     \textcolor{comment}{/* pointer to hypot */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00095}\mbox{\hyperlink{struct_suite_sparse__config__struct_ab5fe52147c2e02c1a92e032ab29caee1}{00095}}     int (*\mbox{\hyperlink{struct_suite_sparse__config__struct_ab5fe52147c2e02c1a92e032ab29caee1}{divcomplex\_func}}) (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *);}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00096}00096 \} ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00098}00098 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_suite_sparse__config__struct}{SuiteSparse\_config\_struct}} \mbox{\hyperlink{_suite_sparse__config_8h_a22fb853a5152143de774ec2567fcebba}{SuiteSparse\_config}} ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00100}00100 \textcolor{keywordtype}{void} \mbox{\hyperlink{_suite_sparse__config_8h_a2603d7a19c1ab6e6783bc9e8e8793a6f}{SuiteSparse\_start}} ( \textcolor{keywordtype}{void} ) ;   \textcolor{comment}{/* called to start SuiteSparse */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00102}00102 \textcolor{keywordtype}{void} \mbox{\hyperlink{_suite_sparse__config_8h_ab819da71ef674f1d7570721158edcb64}{SuiteSparse\_finish}} ( \textcolor{keywordtype}{void} ) ;  \textcolor{comment}{/* called to finish SuiteSparse */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00104}00104 \textcolor{keywordtype}{void} *\mbox{\hyperlink{_suite_sparse__config_8h_a9b5517b80fbb8e3c33f2d73c371f1a39}{SuiteSparse\_malloc}}    \textcolor{comment}{/* pointer to allocated block of memory */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00105}00105 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00106}00106       \textcolor{keywordtype}{size\_t} nitems,          \textcolor{comment}{/* number of items to malloc (>=1 is enforced) */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00107}00107       \textcolor{keywordtype}{size\_t} size\_of\_item     \textcolor{comment}{/* sizeof each item */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00108}00108 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00110}00110 \textcolor{keywordtype}{void} *\mbox{\hyperlink{_suite_sparse__config_8h_ada8ebff2da5353a26435e2ab6fbc94dc}{SuiteSparse\_calloc}}    \textcolor{comment}{/* pointer to allocated block of memory */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00111}00111 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00112}00112       \textcolor{keywordtype}{size\_t} nitems,          \textcolor{comment}{/* number of items to calloc (>=1 is enforced) */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00113}00113       \textcolor{keywordtype}{size\_t} size\_of\_item     \textcolor{comment}{/* sizeof each item */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00114}00114 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00116}00116 \textcolor{keywordtype}{void} *\mbox{\hyperlink{_suite_sparse__config_8h_a1a3bc40746062c754978eeab94421dc7}{SuiteSparse\_realloc}}   \textcolor{comment}{/* pointer to reallocated block of memory, or}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00117}00117 \textcolor{comment}{                               to original block if the realloc failed. */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00118}00118 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00119}00119       \textcolor{keywordtype}{size\_t} nitems\_new,      \textcolor{comment}{/* new number of items in the object */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00120}00120       \textcolor{keywordtype}{size\_t} nitems\_old,      \textcolor{comment}{/* old number of items in the object */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00121}00121       \textcolor{keywordtype}{size\_t} size\_of\_item,    \textcolor{comment}{/* sizeof each item */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00122}00122       \textcolor{keywordtype}{void} *p,                \textcolor{comment}{/* old object to reallocate */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00123}00123       \textcolor{keywordtype}{int} *ok                 \textcolor{comment}{/* 1 if successful, 0 otherwise */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00124}00124 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00126}00126 \textcolor{keywordtype}{void} *\mbox{\hyperlink{_suite_sparse__config_8h_a4ce7b04b3596759072d6f96ae5802e43}{SuiteSparse\_free}}      \textcolor{comment}{/* always returns NULL */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00127}00127 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00128}00128       \textcolor{keywordtype}{void} *p                 \textcolor{comment}{/* block to free */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00129}00129 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00131}00131 \textcolor{keywordtype}{void} \mbox{\hyperlink{_suite_sparse__config_8h_ae734df3a98cb70256d2c652652057c31}{SuiteSparse\_tic}}    \textcolor{comment}{/* start the timer */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00132}00132 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00133}00133       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}} [2]      \textcolor{comment}{/* output, contents undefined on input */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00134}00134 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00136}00136 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{_suite_sparse__config_8h_a893a1f99b2aad6fbfde56ff7d00cf23e}{SuiteSparse\_toc}}  \textcolor{comment}{/* return time in seconds since last tic */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00137}00137 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00138}00138       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}} [2]      \textcolor{comment}{/* input: from last call to SuiteSparse\_tic */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00139}00139 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00140}00140 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00141}00141 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{_suite_sparse__config_8h_a7398fc7df01cc0886dcab763bcccb1b9}{SuiteSparse\_time}}  \textcolor{comment}{/* returns current wall clock time in seconds */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00142}00142 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00143}00143     void}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00144}00144 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00146}00146 \textcolor{comment}{/* returns sqrt (x\string^2 + y\string^2), computed reliably */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00147}00147 \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} \mbox{\hyperlink{_suite_sparse__config_8h_ac09563d0e1abb963adae23a004c3da11}{SuiteSparse\_hypot}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} y) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00149}00149 \textcolor{comment}{/* complex division of c = a/b */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00150}00150 \textcolor{keywordtype}{int} \mbox{\hyperlink{_suite_sparse__config_8h_a00639b2a375b56a4caa3fda80d0af9f1}{SuiteSparse\_divcomplex}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00151}00151 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00152}00152       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ar, }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00153}00153       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ai,     \textcolor{comment}{/* real and imaginary parts of a */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00154}00154       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} br,}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00155}00155       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} bi,  \textcolor{comment}{/* real and imaginary parts of b */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00156}00156       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *cr, }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00157}00157       \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *ci  \textcolor{comment}{/* real and imaginary parts of c */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00158}00158 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00160}00160 \textcolor{comment}{/* determine which timer to use, if any */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00161}00161 \textcolor{preprocessor}{\#ifndef NTIMER}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00162}00162 \textcolor{preprocessor}{\#ifdef \_POSIX\_C\_SOURCE}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00163}00163 \textcolor{preprocessor}{\#if    \_POSIX\_C\_SOURCE >= 199309L}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00164}00164 \textcolor{preprocessor}{\#define SUITESPARSE\_TIMER\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00165}00165 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00166}00166 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00167}00167 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00169}00169 \textcolor{comment}{/* SuiteSparse printf macro */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00170}\mbox{\hyperlink{_suite_sparse__config_8h_a201deb251d1aeae53d294e8335a36f23}{00170}} \textcolor{preprocessor}{\#define SUITESPARSE\_PRINTF(params) \{if (SuiteSparse\_config.printf\_func != ABIP\_NULL)\{(void) (SuiteSparse\_config.printf\_func) params;\}\}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00172}00172 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00173}00173 \textcolor{comment}{/* === SuiteSparse version ================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00174}00174 \textcolor{comment}{/* ========================================================================== */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00176}00176 \textcolor{comment}{/* SuiteSparse is not a package itself, but a collection of packages, some of}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00177}00177 \textcolor{comment}{ * which must be used together (UMFPACK requires AMD, CHOLMOD requires AMD,}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00178}00178 \textcolor{comment}{ * COLAMD, CAMD, and CCOLAMD, etc).  A version number is provided here for the}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00179}00179 \textcolor{comment}{ * collection itself.  The versions of packages within each version of}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00180}00180 \textcolor{comment}{ * SuiteSparse are meant to work together.  Combining one package from one}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00181}00181 \textcolor{comment}{ * version of SuiteSparse, with another package from another version of}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00182}00182 \textcolor{comment}{ * SuiteSparse, may or may not work.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00183}00183 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00184}00184 \textcolor{comment}{ * SuiteSparse contains the following packages:}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00185}00185 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00186}00186 \textcolor{comment}{ *  SuiteSparse\_config version 5.1.2 (version always the same as SuiteSparse)}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00187}00187 \textcolor{comment}{ *  GraphBLAS       version 1.1.2}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00188}00188 \textcolor{comment}{ *  ssget           version 2.0.0}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00189}00189 \textcolor{comment}{ *  AMD             version 2.4.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00190}00190 \textcolor{comment}{ *  BTF             version 1.2.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00191}00191 \textcolor{comment}{ *  CAMD            version 2.4.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00192}00192 \textcolor{comment}{ *  CCOLAMD         version 2.9.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00193}00193 \textcolor{comment}{ *  CHOLMOD         version 3.0.11}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00194}00194 \textcolor{comment}{ *  COLAMD          version 2.9.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00195}00195 \textcolor{comment}{ *  CSparse         version 3.2.0}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00196}00196 \textcolor{comment}{ *  CXSparse        version 3.2.0}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00197}00197 \textcolor{comment}{ *  GPUQREngine     version 1.0.5}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00198}00198 \textcolor{comment}{ *  KLU             version 1.3.8}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00199}00199 \textcolor{comment}{ *  LDL             version 2.2.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00200}00200 \textcolor{comment}{ *  RBio            version 2.2.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00201}00201 \textcolor{comment}{ *  SPQR            version 2.0.8}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00202}00202 \textcolor{comment}{ *  SuiteSparse\_GPURuntime  version 1.0.5}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00203}00203 \textcolor{comment}{ *  UMFPACK         version 5.7.6}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00204}00204 \textcolor{comment}{ *  MATLAB\_Tools    various packages \& M-\/files}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00205}00205 \textcolor{comment}{ *  xerbla          version 1.0.3}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00206}00206 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00207}00207 \textcolor{comment}{ * Other package dependencies:}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00208}00208 \textcolor{comment}{ *  BLAS            required by CHOLMOD and UMFPACK}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00209}00209 \textcolor{comment}{ *  LAPACK          required by CHOLMOD}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00210}00210 \textcolor{comment}{ *  METIS 5.1.0     required by CHOLMOD (optional) and KLU (optional)}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00211}00211 \textcolor{comment}{ *  CUBLAS, CUDART  NVIDIA libraries required by CHOLMOD and SPQR when}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00212}00212 \textcolor{comment}{ *                  they are compiled with GPU acceleration.}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00213}00213 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00215}00215 \textcolor{keywordtype}{int} \mbox{\hyperlink{_suite_sparse__config_8h_aa1eccb4f1042226256f7ef483caefe97}{SuiteSparse\_version}}     \textcolor{comment}{/* returns SUITESPARSE\_VERSION */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00216}00216 (}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00217}00217     \textcolor{comment}{/* output, not defined on input.  Not used if NULL.  Returns}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00218}00218 \textcolor{comment}{       the three version codes in version [0..2]:}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00219}00219 \textcolor{comment}{       version [0] is SUITESPARSE\_MAIN\_VERSION}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00220}00220 \textcolor{comment}{       version [1] is SUITESPARSE\_SUB\_VERSION}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00221}00221 \textcolor{comment}{       version [2] is SUITESPARSE\_SUBSUB\_VERSION}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00222}00222 \textcolor{comment}{       */}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00223}00223     \textcolor{keywordtype}{int} \mbox{\hyperlink{abip_8h_a14b83612aa3efc7ef50c6f69af903cad}{version}} [3]}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00224}00224 ) ;}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00226}00226 \textcolor{comment}{/* Versions prior to 4.2.0 do not have the above function.  The following}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00227}00227 \textcolor{comment}{   code fragment will work with any version of SuiteSparse:}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00228}00228 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00229}00229 \textcolor{comment}{   \#ifdef SUITESPARSE\_HAS\_VERSION\_FUNCTION}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00230}00230 \textcolor{comment}{   v = SuiteSparse\_version (NULL) ;}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00231}00231 \textcolor{comment}{   \#else}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00232}00232 \textcolor{comment}{   v = SUITESPARSE\_VERSION ;}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00233}00233 \textcolor{comment}{   \#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00234}00234 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00235}\mbox{\hyperlink{_suite_sparse__config_8h_a6925a6a38ed7cc19e7badfaec084ffd7}{00235}} \textcolor{preprocessor}{\#define SUITESPARSE\_HAS\_VERSION\_FUNCTION}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00237}\mbox{\hyperlink{_suite_sparse__config_8h_a8f56ccd98faab4388e4638f408a10e04}{00237}} \textcolor{preprocessor}{\#define SUITESPARSE\_DATE "{}Dec 28, 2017"{}}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00238}\mbox{\hyperlink{_suite_sparse__config_8h_a5d9ae4bf03cff48c827d2351fc69a944}{00238}} \textcolor{preprocessor}{\#define SUITESPARSE\_VER\_CODE(main,sub) ((main) * 1000 + (sub))}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00239}\mbox{\hyperlink{_suite_sparse__config_8h_ab652289d2edb4b02406cf2fef48d6cef}{00239}} \textcolor{preprocessor}{\#define SUITESPARSE\_MAIN\_VERSION 5}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00240}\mbox{\hyperlink{_suite_sparse__config_8h_ab92c25d9664bdabe73ac3dd4e680ecb3}{00240}} \textcolor{preprocessor}{\#define SUITESPARSE\_SUB\_VERSION 1}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00241}\mbox{\hyperlink{_suite_sparse__config_8h_ab46d62a655375a89f9b5a925c49455cd}{00241}} \textcolor{preprocessor}{\#define SUITESPARSE\_SUBSUB\_VERSION 2}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00242}\mbox{\hyperlink{_suite_sparse__config_8h_a4e93bbf50ff4646a3b6536ebde64bc5c}{00242}} \textcolor{preprocessor}{\#define SUITESPARSE\_VERSION \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00243}00243 \textcolor{preprocessor}{    SUITESPARSE\_VER\_CODE(SUITESPARSE\_MAIN\_VERSION,SUITESPARSE\_SUB\_VERSION)}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00245}00245 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00246}00246 \}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00247}00247 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_suite_sparse__config_8h_source_l00248}00248 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

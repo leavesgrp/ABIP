@@ -1,0 +1,17 @@
+\hypertarget{cs__pinv_8c_source}{}\doxysection{cs\+\_\+pinv.\+c}
+\label{cs__pinv_8c_source}\index{csparse/Source/cs\_pinv.c@{csparse/Source/cs\_pinv.c}}
+\mbox{\hyperlink{cs__pinv_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00002}00002 \textcolor{comment}{/* pinv = p', or p = pinv' */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00003}\mbox{\hyperlink{cs_8h_a2d711fa72bad4a3e94b3aeeb743e27ad}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *\mbox{\hyperlink{cs__pinv_8c_ae8aefba6d94d832505cc7ed4b0d78548}{cs\_pinv}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \textcolor{keyword}{const} *p, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n)}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} k, *pinv ;}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00006}00006     \textcolor{keywordflow}{if} (!p) \textcolor{keywordflow}{return} (NULL) ;                     \textcolor{comment}{/* p = NULL denotes identity */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00007}00007     pinv = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;        \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00008}00008     \textcolor{keywordflow}{if} (!pinv) \textcolor{keywordflow}{return} (NULL) ;                  \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00009}00009     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) pinv [p [k]] = k ;\textcolor{comment}{/* invert the permutation */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00010}00010     \textcolor{keywordflow}{return} (pinv) ;                             \textcolor{comment}{/* return result */}}
+\DoxyCodeLine{\Hypertarget{cs__pinv_8c_source_l00011}00011 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,79 @@
+\hypertarget{cs__qr_8c_source}{}\doxysection{cs\+\_\+qr.\+c}
+\label{cs__qr_8c_source}\index{csparse/Source/cs\_qr.c@{csparse/Source/cs\_qr.c}}
+\mbox{\hyperlink{cs__qr_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00002}00002 \textcolor{comment}{/* sparse QR factorization [V,beta,pinv,R] = qr (A) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00003}\mbox{\hyperlink{cs_8h_ad50e945d7db927c8731fff2bcc962eea}{00003}} \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{cs__qr_8c_ad50e945d7db927c8731fff2bcc962eea}{cs\_qr}} (\textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__symbolic}{css}} *S)}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00005}00005     \textcolor{keywordtype}{double} *Rx, *Vx, *Ax, *x,  *Beta ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00006}00006     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, k, p, m, n, vnz, p1, top, m2, len, col, rnz, *s, *leftmost, *Ap, *Ai,}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00007}00007         *parent, *Rp, *Ri, *Vp, *Vi, *w, *pinv, *q ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00008}00008     \mbox{\hyperlink{structcs__sparse}{cs}} *R, *V ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00009}00009     \mbox{\hyperlink{structcs__numeric}{csn}} *N ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !S) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00011}00011     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Ax = A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00012}00012     q = S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}} ; parent = S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}} ; pinv = S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}} ; m2 = S-\/>\mbox{\hyperlink{structcs__symbolic_aa0227f03661c17f047757cad80d6f4d9}{m2}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00013}00013     vnz = S-\/>\mbox{\hyperlink{structcs__symbolic_a4f723af5f9ae0047f678a82a146d17b0}{lnz}} ; rnz = S-\/>\mbox{\hyperlink{structcs__symbolic_a75ba99f8c206d85c4936e11053e7f5e3}{unz}} ; leftmost = S-\/>\mbox{\hyperlink{structcs__symbolic_a06a2d29d73a501796269bc02638dbf97}{leftmost}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00014}00014     w = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m2+n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;            \textcolor{comment}{/* get csi workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00015}00015     x = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m2, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;           \textcolor{comment}{/* get double workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00016}00016     N = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__numeric}{csn}})) ;               \textcolor{comment}{/* allocate result */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00017}00017     \textcolor{keywordflow}{if} (!w || !x || !N) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, w, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00018}00018     s = w + m2 ;                                    \textcolor{comment}{/* s is size n */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00019}00019     \textcolor{keywordflow}{for} (k = 0 ; k < m2 ; k++) x [k] = 0 ;          \textcolor{comment}{/* clear workspace x */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00020}00020     N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}} = V = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (m2, n, vnz, 1, 0) ;      \textcolor{comment}{/* allocate result V */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00021}00021     N-\/>\mbox{\hyperlink{structcs__numeric_a1e07204edb10064ca1e471289fced1cb}{U}} = R = \mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (m2, n, rnz, 1, 0) ;      \textcolor{comment}{/* allocate result R */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00022}00022     N-\/>\mbox{\hyperlink{structcs__numeric_ad81bc354670c58c7e715293e98316152}{B}} = Beta = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;  \textcolor{comment}{/* allocate result Beta */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00023}00023     \textcolor{keywordflow}{if} (!R || !V || !Beta) \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, w, x, 0)) ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00024}00024     Rp = R-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ri = R-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Rx = R-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00025}00025     Vp = V-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Vi = V-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Vx = V-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00026}00026     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m2 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ; \textcolor{comment}{/* clear w, to mark nodes */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00027}00027     rnz = 0 ; vnz = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00028}00028     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++)               \textcolor{comment}{/* compute V and R */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00029}00029     \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00030}00030         Rp [k] = rnz ;                      \textcolor{comment}{/* R(:,k) starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00031}00031         Vp [k] = p1 = vnz ;                 \textcolor{comment}{/* V(:,k) starts here */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00032}00032         w [k] = k ;                         \textcolor{comment}{/* add V(k,k) to pattern of V */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00033}00033         Vi [vnz++] = k ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00034}00034         top = n ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00035}00035         col = q ? q [k] : k ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00036}00036         \textcolor{keywordflow}{for} (p = Ap [col] ; p < Ap [col+1] ; p++)   \textcolor{comment}{/* find R(:,k) pattern */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00037}00037         \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00038}00038             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = leftmost [Ai [p]] ;         \textcolor{comment}{/* i = min(find(A(i,q))) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00039}00039             \textcolor{keywordflow}{for} (len = 0 ; w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] != k ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = parent [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]) \textcolor{comment}{/* traverse up to k */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00040}00040             \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00041}00041                 s [len++] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00042}00042                 w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00043}00043             \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00044}00044             \textcolor{keywordflow}{while} (len > 0) s [-\/-\/top] = s [-\/-\/len] ; \textcolor{comment}{/* push path on stack */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00045}00045             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = pinv [Ai [p]] ;             \textcolor{comment}{/* i = permuted row of A(:,col) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00046}00046             x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = Ax [p] ;                \textcolor{comment}{/* x (i) = A(:,col) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00047}00047             \textcolor{keywordflow}{if} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} > k \&\& w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] < k)         \textcolor{comment}{/* pattern of V(:,k) = x (k+1:m) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00048}00048             \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00049}00049                 Vi [vnz++] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;            \textcolor{comment}{/* add i to pattern of V(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00050}00050                 w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = k ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00051}00051             \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00052}00052         \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00053}00053         \textcolor{keywordflow}{for} (p = top ; p < n ; p++) \textcolor{comment}{/* for each i in pattern of R(:,k) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00054}00054         \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00055}00055             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = s [p] ;                     \textcolor{comment}{/* R(i,k) is nonzero */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00056}00056             \mbox{\hyperlink{cs_8h_a88a82fabd191059a8db610fbfe6b008a}{cs\_happly}} (V, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, Beta [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}], x) ; \textcolor{comment}{/* apply (V(i),Beta(i)) to x */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00057}00057             Ri [rnz] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;                  \textcolor{comment}{/* R(i,k) = x(i) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00058}00058             Rx [rnz++] = x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00059}00059             x [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00060}00060             \textcolor{keywordflow}{if} (parent [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] == k) vnz = \mbox{\hyperlink{cs_8h_a324e7bf547ed0b969275da4410563e6e}{cs\_scatter}} (V, \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, 0, w, NULL, k, V, vnz);}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00061}00061         \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00062}00062         \textcolor{keywordflow}{for} (p = p1 ; p < vnz ; p++)        \textcolor{comment}{/* gather V(:,k) = x */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00063}00063         \{}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00064}00064             Vx [p] = x [Vi [p]] ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00065}00065             x [Vi [p]] = 0 ;}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00066}00066         \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00067}00067         Ri [rnz] = k ;                     \textcolor{comment}{/* R(k,k) = norm (x) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00068}00068         Rx [rnz++] = \mbox{\hyperlink{cs_8h_af4e2e546282433ebb90343c8535dd1fe}{cs\_house}} (Vx+p1, Beta+k, vnz-\/p1) ; \textcolor{comment}{/* [v,beta]=house(x) */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00069}00069     \}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00070}00070     Rp [n] = rnz ;                          \textcolor{comment}{/* finalize R */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00071}00071     Vp [n] = vnz ;                          \textcolor{comment}{/* finalize V */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00072}00072     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (N, NULL, w, x, 1)) ;  \textcolor{comment}{/* success */}}
+\DoxyCodeLine{\Hypertarget{cs__qr_8c_source_l00073}00073 \}}
+
+\end{DoxyCode}

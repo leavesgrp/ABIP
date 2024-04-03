@@ -1,0 +1,40 @@
+\hypertarget{cs__dupl_8c_source}{}\doxysection{cs\+\_\+dupl.\+c}
+\label{cs__dupl_8c_source}\index{csparse/Source/cs\_dupl.c@{csparse/Source/cs\_dupl.c}}
+\mbox{\hyperlink{cs__dupl_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00002}00002 \textcolor{comment}{/* remove duplicate entries from A */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00003}\mbox{\hyperlink{cs_8h_ab3c714102b93af81d9f6225699fc020d}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__dupl_8c_ab3c714102b93af81d9f6225699fc020d}{cs\_dupl}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A)}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}, j, p, q, nz = 0, n, m, *Ap, *Ai, *w ;}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00006}00006     \textcolor{keywordtype}{double} *Ax ;}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) \textcolor{keywordflow}{return} (0) ;               \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00008}00008     m = A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} ; n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ; Ap = A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ai = A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Ax = A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00009}00009     w = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;           \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00010}00010     \textcolor{keywordflow}{if} (!w) \textcolor{keywordflow}{return} (0) ;                        \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00011}00011     \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < m ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++) w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = -\/1 ;      \textcolor{comment}{/* row i not yet seen */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00012}00012     \textcolor{keywordflow}{for} (j = 0 ; j < n ; j++)}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00013}00013     \{}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00014}00014         q = nz ;                                \textcolor{comment}{/* column j will start at q */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00015}00015         \textcolor{keywordflow}{for} (p = Ap [j] ; p < Ap [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00016}00016         \{}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00017}00017             \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = Ai [p] ;                        \textcolor{comment}{/* A(i,j) is nonzero */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00018}00018             \textcolor{keywordflow}{if} (w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] >= q)}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00019}00019             \{}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00020}00020                 Ax [w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}]] += Ax [p] ;          \textcolor{comment}{/* A(i,j) is a duplicate */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00021}00021             \}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00022}00022             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00023}00023             \{}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00024}00024                 w [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = nz ;                    \textcolor{comment}{/* record where row i occurs */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00025}00025                 Ai [nz] = \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} ;                   \textcolor{comment}{/* keep A(i,j) */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00026}00026                 Ax [nz++] = Ax [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00027}00027             \}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00028}00028         \}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00029}00029         Ap [j] = q ;                            \textcolor{comment}{/* record start of column j */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00030}00030     \}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00031}00031     Ap [n] = nz ;                               \textcolor{comment}{/* finalize A */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00032}00032     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                               \textcolor{comment}{/* free workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00033}00033     \textcolor{keywordflow}{return} (\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (A, 0)) ;              \textcolor{comment}{/* remove extra space from A */}}
+\DoxyCodeLine{\Hypertarget{cs__dupl_8c_source_l00034}00034 \}}
+
+\end{DoxyCode}

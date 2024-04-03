@@ -1,0 +1,32 @@
+\hypertarget{cs__cholsol_8c_source}{}\doxysection{cs\+\_\+cholsol.\+c}
+\label{cs__cholsol_8c_source}\index{csparse/Source/cs\_cholsol.c@{csparse/Source/cs\_cholsol.c}}
+\mbox{\hyperlink{cs__cholsol_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00002}00002 \textcolor{comment}{/* x=A\(\backslash\)b where A is symmetric positive definite; b overwritten with solution */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00003}\mbox{\hyperlink{cs_8h_ae821a46d8293bb2e3d34880433ceb705}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__cholsol_8c_ae821a46d8293bb2e3d34880433ceb705}{cs\_cholsol}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} order, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *A, \textcolor{keywordtype}{double} *b)}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00005}00005     \textcolor{keywordtype}{double} *x ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00006}00006     \mbox{\hyperlink{structcs__symbolic}{css}} *S ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00007}00007     \mbox{\hyperlink{structcs__numeric}{csn}} *N ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00008}00008     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, ok ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00009}00009     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A) || !b) \textcolor{keywordflow}{return} (0) ;     \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00010}00010     n = A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00011}00011     S = \mbox{\hyperlink{cs_8h_a33a1dc7aff658c5699d6c6d4a0fa70d3}{cs\_schol}} (order, A) ;               \textcolor{comment}{/* ordering and symbolic analysis */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00012}00012     N = \mbox{\hyperlink{cs_8h_ad68a5d313333e08e69d6d781b65af55c}{cs\_chol}} (A, S) ;                    \textcolor{comment}{/* numeric Cholesky factorization */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00013}00013     x = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;    \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00014}00014     ok = (S \&\& N \&\& x) ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00015}00015     \textcolor{keywordflow}{if} (ok)}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00016}00016     \{}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00017}00017         \mbox{\hyperlink{cs_8h_a0938ec08825dc07a2dab8f9477ab053b}{cs\_ipvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}, b, x, n) ;   \textcolor{comment}{/* x = P*b */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00018}00018         \mbox{\hyperlink{cs_8h_adefe244fe8757d1d7b4de55e0c81561f}{cs\_lsolve}} (N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}}, x) ;           \textcolor{comment}{/* x = L\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00019}00019         \mbox{\hyperlink{cs_8h_a470ceabef51cc5f2d522587aa9470eb6}{cs\_ltsolve}} (N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}}, x) ;          \textcolor{comment}{/* x = L'\(\backslash\)x */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00020}00020         \mbox{\hyperlink{cs_8h_a79d20fcd31c30d118075e08087127c4e}{cs\_pvec}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}, x, b, n) ;    \textcolor{comment}{/* b = P'*x */}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00021}00021     \}}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00022}00022     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (x) ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00023}00023     \mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (S) ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00024}00024     \mbox{\hyperlink{cs_8h_adabc8e810cec49307537b5e3368d53aa}{cs\_nfree}} (N) ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00025}00025     \textcolor{keywordflow}{return} (ok) ;}
+\DoxyCodeLine{\Hypertarget{cs__cholsol_8c_source_l00026}00026 \}}
+
+\end{DoxyCode}

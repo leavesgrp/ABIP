@@ -1,0 +1,126 @@
+\hypertarget{cs__util_8c_source}{}\doxysection{cs\+\_\+util.\+c}
+\label{cs__util_8c_source}\index{csparse/Source/cs\_util.c@{csparse/Source/cs\_util.c}}
+\mbox{\hyperlink{cs__util_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00002}00002 \textcolor{comment}{/* allocate a sparse matrix (triplet form or compressed-\/column form) */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00003}\mbox{\hyperlink{cs_8h_af3ed6e2936760b1b53b79fe3ed5cc8b6}{00003}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{cs__util_8c_af3ed6e2936760b1b53b79fe3ed5cc8b6}{cs\_spalloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} m, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} nzmax, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} values, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} triplet)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00005}00005     \mbox{\hyperlink{structcs__sparse}{cs}} *A = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__sparse}{cs}})) ;    \textcolor{comment}{/* allocate the cs struct */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00006}00006     \textcolor{keywordflow}{if} (!A) \textcolor{keywordflow}{return} (NULL) ;                 \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00007}00007     A-\/>\mbox{\hyperlink{structcs__sparse_a8dab81f7d781bd65c7cb4f103db87ade}{m}} = m ;                              \textcolor{comment}{/* define dimensions and nzmax */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00008}00008     A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} = n ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00009}00009     A-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} = nzmax = \mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (nzmax, 1) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00010}00010     A-\/>\mbox{\hyperlink{structcs__sparse_a8eb7205d5e8fbb0c08a80e9fd52d2963}{nz}} = triplet ? 0 : -\/1 ;              \textcolor{comment}{/* allocate triplet or comp.col */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00011}00011     A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (triplet ? nzmax : n+1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00012}00012     A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (nzmax, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00013}00013     A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} = values ? \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (nzmax, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) : NULL ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00014}00014     \textcolor{keywordflow}{return} ((!A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} || !A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} || (values \&\& !A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}})) ? \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (A) : A) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00015}00015 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00017}00017 \textcolor{comment}{/* change the max \# of entries sparse matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00018}\mbox{\hyperlink{cs_8h_a4f6f6d0b8acba23772fd254ec794e966}{00018}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__util_8c_a4f6f6d0b8acba23772fd254ec794e966}{cs\_sprealloc}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} nzmax)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00020}00020     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok, oki, okj = 1, okx = 1 ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00021}00021     \textcolor{keywordflow}{if} (!A) \textcolor{keywordflow}{return} (0) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00022}00022     \textcolor{keywordflow}{if} (nzmax <= 0) nzmax = (\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (A)) ? (A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} [A-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}}]) : A-\/>\mbox{\hyperlink{structcs__sparse_a8eb7205d5e8fbb0c08a80e9fd52d2963}{nz}} ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00023}00023     nzmax = \mbox{\hyperlink{cs_8h_a7447e0bed6bf453743551d158e019e8b}{CS\_MAX}} (nzmax, 1) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00024}00024     A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} = \mbox{\hyperlink{cs_8h_a6e24151b1b4d6711299022113e3c26d6}{cs\_realloc}} (A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}, nzmax, sizeof (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}), \&oki) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00025}00025     \textcolor{keywordflow}{if} (\mbox{\hyperlink{cs_8h_a62bab576c9482f6e11c4cee5a1b5a39a}{CS\_TRIPLET}} (A)) A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} = \mbox{\hyperlink{cs_8h_a6e24151b1b4d6711299022113e3c26d6}{cs\_realloc}} (A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}, nzmax, sizeof (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}}), \&okj) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00026}00026     \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}) A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} = \mbox{\hyperlink{cs_8h_a6e24151b1b4d6711299022113e3c26d6}{cs\_realloc}} (A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}, nzmax, sizeof (\textcolor{keywordtype}{double}), \&okx) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00027}00027     ok = (oki \&\& okj \&\& okx) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00028}00028     \textcolor{keywordflow}{if} (ok) A-\/>\mbox{\hyperlink{structcs__sparse_a4d98fb7ac430adab928f42e45d7c5504}{nzmax}} = nzmax ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00029}00029     \textcolor{keywordflow}{return} (ok) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00030}00030 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00032}00032 \textcolor{comment}{/* free a sparse matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00033}\mbox{\hyperlink{cs_8h_a01a74117bb6004b0b844de5940ddee0a}{00033}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (\mbox{\hyperlink{structcs__sparse}{cs}} *A)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00034}00034 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00035}00035     \textcolor{keywordflow}{if} (!A) \textcolor{keywordflow}{return} (NULL) ;     \textcolor{comment}{/* do nothing if A already NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00036}00036     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (A-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00037}00037     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (A-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00038}00038     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (A-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00039}00039     \textcolor{keywordflow}{return} ((\mbox{\hyperlink{structcs__sparse}{cs}} *) \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (A)) ;   \textcolor{comment}{/* free the cs struct and return NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00040}00040 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00042}00042 \textcolor{comment}{/* free a numeric factorization */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00043}\mbox{\hyperlink{cs_8h_adabc8e810cec49307537b5e3368d53aa}{00043}} \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{cs__util_8c_adabc8e810cec49307537b5e3368d53aa}{cs\_nfree}} (\mbox{\hyperlink{structcs__numeric}{csn}} *N)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00044}00044 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00045}00045     \textcolor{keywordflow}{if} (!N) \textcolor{keywordflow}{return} (NULL) ;     \textcolor{comment}{/* do nothing if N already NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00046}00046     \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (N-\/>\mbox{\hyperlink{structcs__numeric_a93a8cf26f01d3df51b41acc690f120d7}{L}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00047}00047     \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (N-\/>\mbox{\hyperlink{structcs__numeric_a1e07204edb10064ca1e471289fced1cb}{U}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00048}00048     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (N-\/>\mbox{\hyperlink{structcs__numeric_a30fd2e151d4170f569260261bb18d955}{pinv}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00049}00049     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (N-\/>\mbox{\hyperlink{structcs__numeric_ad81bc354670c58c7e715293e98316152}{B}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00050}00050     \textcolor{keywordflow}{return} ((\mbox{\hyperlink{structcs__numeric}{csn}} *) \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (N)) ;  \textcolor{comment}{/* free the csn struct and return NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00051}00051 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00053}00053 \textcolor{comment}{/* free a symbolic factorization */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00054}\mbox{\hyperlink{cs_8h_a2eebf0dae1d9ee505a016630e4fa5748}{00054}} \mbox{\hyperlink{structcs__symbolic}{css}} *\mbox{\hyperlink{cs__util_8c_a2eebf0dae1d9ee505a016630e4fa5748}{cs\_sfree}} (\mbox{\hyperlink{structcs__symbolic}{css}} *S)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00055}00055 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00056}00056     \textcolor{keywordflow}{if} (!S) \textcolor{keywordflow}{return} (NULL) ;     \textcolor{comment}{/* do nothing if S already NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00057}00057     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aaec943329f58d681893838030e3e273c}{pinv}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00058}00058     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S-\/>\mbox{\hyperlink{structcs__symbolic_a28f8bda67a6e43eac6bac66980f57163}{q}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00059}00059     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S-\/>\mbox{\hyperlink{structcs__symbolic_aec9034130e3a364799c96d3bae5f3809}{parent}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00060}00060     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S-\/>\mbox{\hyperlink{structcs__symbolic_af019d6662511b698efe705ad93b4e27b}{cp}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00061}00061     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S-\/>\mbox{\hyperlink{structcs__symbolic_a06a2d29d73a501796269bc02638dbf97}{leftmost}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00062}00062     \textcolor{keywordflow}{return} ((\mbox{\hyperlink{structcs__symbolic}{css}} *) \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (S)) ;  \textcolor{comment}{/* free the css struct and return NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00063}00063 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00065}00065 \textcolor{comment}{/* allocate a cs\_dmperm or cs\_scc result */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00066}\mbox{\hyperlink{cs_8h_a5b17812b02b3c113ce0088870aaeffd9}{00066}} \mbox{\hyperlink{structcs__dmperm__results}{csd}} *\mbox{\hyperlink{cs__util_8c_a5b17812b02b3c113ce0088870aaeffd9}{cs\_dalloc}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} m, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00067}00067 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00068}00068     \mbox{\hyperlink{structcs__dmperm__results}{csd}} *D ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00069}00069     D = \mbox{\hyperlink{cs_8h_a071e69dcb222391d3add6c5220a79f51}{cs\_calloc}} (1, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structcs__dmperm__results}{csd}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00070}00070     \textcolor{keywordflow}{if} (!D) \textcolor{keywordflow}{return} (NULL) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00071}00071     D-\/>\mbox{\hyperlink{structcs__dmperm__results_aa1cdef46dad146c0d64d64dbda23f44e}{p}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00072}00072     D-\/>\mbox{\hyperlink{structcs__dmperm__results_a193ebe355ad15e9408fdf705e197833f}{r}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (m+6, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00073}00073     D-\/>\mbox{\hyperlink{structcs__dmperm__results_a76216ad1101a5b930eaf062ae3d48c99}{q}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00074}00074     D-\/>\mbox{\hyperlink{structcs__dmperm__results_a6dd273f5ba6466e85e5ac158703911d0}{s}} = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n+6, \textcolor{keyword}{sizeof} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}})) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00075}00075     \textcolor{keywordflow}{return} ((!D-\/>\mbox{\hyperlink{structcs__dmperm__results_aa1cdef46dad146c0d64d64dbda23f44e}{p}} || !D-\/>\mbox{\hyperlink{structcs__dmperm__results_a193ebe355ad15e9408fdf705e197833f}{r}} || !D-\/>\mbox{\hyperlink{structcs__dmperm__results_a76216ad1101a5b930eaf062ae3d48c99}{q}} || !D-\/>\mbox{\hyperlink{structcs__dmperm__results_a6dd273f5ba6466e85e5ac158703911d0}{s}}) ? \mbox{\hyperlink{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}{cs\_dfree}} (D) : D) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00076}00076 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00078}00078 \textcolor{comment}{/* free a cs\_dmperm or cs\_scc result */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00079}\mbox{\hyperlink{cs_8h_a30f07e6f09ffa0de8a961de63e624c8e}{00079}} \mbox{\hyperlink{structcs__dmperm__results}{csd}} *\mbox{\hyperlink{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}{cs\_dfree}} (\mbox{\hyperlink{structcs__dmperm__results}{csd}} *D)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00080}00080 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00081}00081     \textcolor{keywordflow}{if} (!D) \textcolor{keywordflow}{return} (NULL) ;     \textcolor{comment}{/* do nothing if D already NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00082}00082     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (D-\/>\mbox{\hyperlink{structcs__dmperm__results_aa1cdef46dad146c0d64d64dbda23f44e}{p}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00083}00083     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (D-\/>\mbox{\hyperlink{structcs__dmperm__results_a76216ad1101a5b930eaf062ae3d48c99}{q}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00084}00084     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (D-\/>\mbox{\hyperlink{structcs__dmperm__results_a193ebe355ad15e9408fdf705e197833f}{r}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00085}00085     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (D-\/>\mbox{\hyperlink{structcs__dmperm__results_a6dd273f5ba6466e85e5ac158703911d0}{s}}) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00086}00086     \textcolor{keywordflow}{return} ((\mbox{\hyperlink{structcs__dmperm__results}{csd}} *) \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (D)) ;  \textcolor{comment}{/* free the csd struct and return NULL */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00087}00087 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00089}00089 \textcolor{comment}{/* free workspace and return a sparse matrix result */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00090}\mbox{\hyperlink{cs_8h_afa27f1bfd7e5be4f160c24b0828d9178}{00090}} \mbox{\hyperlink{structcs__sparse}{cs}} *\mbox{\hyperlink{cs__util_8c_afa27f1bfd7e5be4f160c24b0828d9178}{cs\_done}} (\mbox{\hyperlink{structcs__sparse}{cs}} *C, \textcolor{keywordtype}{void} *w, \textcolor{keywordtype}{void} *x, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00091}00091 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00092}00092     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                       \textcolor{comment}{/* free workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00093}00093     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (x) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00094}00094     \textcolor{keywordflow}{return} (ok ? C : \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C)) ;   \textcolor{comment}{/* return result if OK, else free it */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00095}00095 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00097}00097 \textcolor{comment}{/* free workspace and return csi array result */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00098}\mbox{\hyperlink{cs_8h_a5f172de9436558173ef0b873d9e1a5db}{00098}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *\mbox{\hyperlink{cs__util_8c_a5f172de9436558173ef0b873d9e1a5db}{cs\_idone}} (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *p, \mbox{\hyperlink{structcs__sparse}{cs}} *C, \textcolor{keywordtype}{void} *w, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00099}00099 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00100}00100     \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C) ;                     \textcolor{comment}{/* free temporary matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00101}00101     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                       \textcolor{comment}{/* free workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00102}00102     \textcolor{keywordflow}{return} (ok ? p : (\mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *) \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (p)) ; \textcolor{comment}{/* return result, or free it */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00103}00103 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00105}00105 \textcolor{comment}{/* free workspace and return a numeric factorization (Cholesky, LU, or QR) */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00106}\mbox{\hyperlink{cs_8h_a694a09c9515e8fd862bd5270ee35cbc8}{00106}} \mbox{\hyperlink{structcs__numeric}{csn}} *\mbox{\hyperlink{cs__util_8c_a694a09c9515e8fd862bd5270ee35cbc8}{cs\_ndone}} (\mbox{\hyperlink{structcs__numeric}{csn}} *N, \mbox{\hyperlink{structcs__sparse}{cs}} *C, \textcolor{keywordtype}{void} *w, \textcolor{keywordtype}{void} *x, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00107}00107 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00108}00108     \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C) ;                     \textcolor{comment}{/* free temporary matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00109}00109     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                       \textcolor{comment}{/* free workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00110}00110     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (x) ;}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00111}00111     \textcolor{keywordflow}{return} (ok ? N : \mbox{\hyperlink{cs__util_8c_adabc8e810cec49307537b5e3368d53aa}{cs\_nfree}} (N)) ;    \textcolor{comment}{/* return result if OK, else free it */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00112}00112 \}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00114}00114 \textcolor{comment}{/* free workspace and return a csd result */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00115}\mbox{\hyperlink{cs_8h_aa848643a3fad58acb3b400c36de5dd3e}{00115}} \mbox{\hyperlink{structcs__dmperm__results}{csd}} *\mbox{\hyperlink{cs__util_8c_aa848643a3fad58acb3b400c36de5dd3e}{cs\_ddone}} (\mbox{\hyperlink{structcs__dmperm__results}{csd}} *D, \mbox{\hyperlink{structcs__sparse}{cs}} *C, \textcolor{keywordtype}{void} *w, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} ok)}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00116}00116 \{}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00117}00117     \mbox{\hyperlink{cs__util_8c_a01a74117bb6004b0b844de5940ddee0a}{cs\_spfree}} (C) ;                     \textcolor{comment}{/* free temporary matrix */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00118}00118     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;                       \textcolor{comment}{/* free workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00119}00119     \textcolor{keywordflow}{return} (ok ? D : \mbox{\hyperlink{cs__util_8c_a30f07e6f09ffa0de8a961de63e624c8e}{cs\_dfree}} (D)) ;    \textcolor{comment}{/* return result if OK, else free it */}}
+\DoxyCodeLine{\Hypertarget{cs__util_8c_source_l00120}00120 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,558 @@
+\hypertarget{amd_8h}{}\doxysection{external/amd/amd.h File Reference}
+\label{amd_8h}\index{external/amd/amd.h@{external/amd/amd.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Suite\+Sparse\+\_\+config.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}}~extern
+\item 
+\#define \mbox{\hyperlink{amd_8h_affdc598f13446fa7f4dbd2e55aeeba36}{AMD\+\_\+\+CONTROL}}~5          /$\ast$ size of Control array $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_ad4d0388011f3a533198976feb69ae5e4}{AMD\+\_\+\+INFO}}~20            /$\ast$ size of Info array $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_aa5d6b72c4e51b57087a55b99d5072792}{AMD\+\_\+\+DENSE}}~0            /$\ast$ \char`\"{}dense\char`\"{} \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} degree $>$ Control \mbox{[}0\mbox{]} $\ast$ sqrt (n) $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a51a25f4c648f8be90e5db00ff10f89c6}{AMD\+\_\+\+AGGRESSIVE}}~1    /$\ast$ do aggressive absorption \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} Control \mbox{[}1\mbox{]} != 0 $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a4ab439dcb1b2034b0cf7b92c5ad60e6d}{AMD\+\_\+\+DEFAULT\+\_\+\+DENSE}}~10.\+0          /$\ast$ default \char`\"{}dense\char`\"{} degree 10$\ast$sqrt(n) $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a2da83d1a74137be92385ffd239e5e4df}{AMD\+\_\+\+DEFAULT\+\_\+\+AGGRESSIVE}}~1    /$\ast$ do aggressive absorption by default $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a11d69311f252e19d4435029812065206}{AMD\+\_\+\+STATUS}}~0           /$\ast$ return value of \mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\+\_\+order}} and \mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{amd\+\_\+l\+\_\+order}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_ad593079a13107070ba76e539b3b1c19a}{AMD\+\_\+N}}~1                /$\ast$ \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} is n-\/by-\/n $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a4f88b4f4705995693bc017d717dad36e}{AMD\+\_\+\+NZ}}~2      /$\ast$ number of nonzeros in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_ae8211d71b1b50b77c06984a07275edd1}{AMD\+\_\+\+SYMMETRY}}~3         /$\ast$ symmetry of pattern (1 is sym., 0 is unsym.) $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a835a095afffcd03e5ed5c2632c2dc1d9}{AMD\+\_\+\+NZDIAG}}~4           /$\ast$ \# of entries on diagonal $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a2f9a02baa3b1a848dce862fbea0f2e64}{AMD\+\_\+\+NZ\+\_\+\+A\+\_\+\+PLUS\+\_\+\+AT}}~5  /$\ast$ nz in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}+\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}\textquotesingle{} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a17c486f4577c5914e975e270ea7c8b76}{AMD\+\_\+\+NDENSE}}~6           /$\ast$ number of \char`\"{}dense\char`\"{} rows/columns in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a947c29267a22a2c462c55e8912ba2432}{AMD\+\_\+\+MEMORY}}~7           /$\ast$ amount of memory used by AMD $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_ae7b45589f33fbdad203bf330abb423e3}{AMD\+\_\+\+NCMPA}}~8            /$\ast$ number of garbage collections in AMD $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a0bb2d3b5a2436760e9ea6cefdfcd90af}{AMD\+\_\+\+LNZ}}~9     /$\ast$ approx. nz in L, excluding the diagonal $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a35be9f9c7b66f2a449dbadd022ebb4df}{AMD\+\_\+\+NDIV}}~10            /$\ast$ number of fl. point divides for LU and LDL\textquotesingle{} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_aa45c6a9529df13508f551cd9d366fe22}{AMD\+\_\+\+NMULTSUBS\+\_\+\+LDL}}~11 /$\ast$ number of fl. point ($\ast$,-\/) pairs for LDL\textquotesingle{} $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a6608c6d00d7e671f92baa675990619a5}{AMD\+\_\+\+NMULTSUBS\+\_\+\+LU}}~12  /$\ast$ number of fl. point ($\ast$,-\/) pairs for LU $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a7fa264773307cae6f5c829f29e2e8efa}{AMD\+\_\+\+DMAX}}~13             /$\ast$ max nz. in any column of L, incl. diagonal $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}{AMD\+\_\+\+OK}}~0           /$\ast$ success $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a3a1e5404ad34ec4faf624d2416410103}{AMD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY}}~-\/1        /$\ast$ malloc failed, or problem too large $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}{AMD\+\_\+\+INVALID}}~-\/2              /$\ast$ input arguments are not valid $\ast$/
+\item 
+\#define \mbox{\hyperlink{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}{AMD\+\_\+\+OK\+\_\+\+BUT\+\_\+\+JUMBLED}}
+\item 
+\#define \mbox{\hyperlink{amd_8h_a3cc33507c4130196ea26e685d9fd634d}{AMD\+\_\+\+DATE}}~\char`\"{}May 4, 2016\char`\"{}
+\item 
+\#define \mbox{\hyperlink{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}{AMD\+\_\+\+VERSION\+\_\+\+CODE}}(\mbox{\hyperlink{abip_8h_a615aa6e4ecfe6ec1df47272c53ddb3ac}{main}},  sub)~((\mbox{\hyperlink{abip_8h_a615aa6e4ecfe6ec1df47272c53ddb3ac}{main}}) $\ast$ 1000 + (sub))
+\item 
+\#define \mbox{\hyperlink{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}{AMD\+\_\+\+MAIN\+\_\+\+VERSION}}~2
+\item 
+\#define \mbox{\hyperlink{amd_8h_aa055fcdf57343e1744fb114add9d0086}{AMD\+\_\+\+SUB\+\_\+\+VERSION}}~4
+\item 
+\#define \mbox{\hyperlink{amd_8h_ab2cabd46ed253019dee4cfa046e08dad}{AMD\+\_\+\+SUBSUB\+\_\+\+VERSION}}~6
+\item 
+\#define \mbox{\hyperlink{amd_8h_ac15fe8d35e7859df7fa5d8fbc892d42d}{AMD\+\_\+\+VERSION}}~\mbox{\hyperlink{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}{AMD\+\_\+\+VERSION\+\_\+\+CODE}}(\mbox{\hyperlink{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}{AMD\+\_\+\+MAIN\+\_\+\+VERSION}},\mbox{\hyperlink{amd_8h_aa055fcdf57343e1744fb114add9d0086}{AMD\+\_\+\+SUB\+\_\+\+VERSION}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} \mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\+\_\+order}} (\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} n, const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} \mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{amd\+\_\+l\+\_\+order}} (\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} n, const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}{amd\+\_\+2}} (\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} n, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Pe\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Iw\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Len\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} iwlen, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} pfree, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Nv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Next\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Last\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Head\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Elen\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Degree\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} W\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a7fceed4b9f84d05c83a106bbf8779c71}{amd\+\_\+l2}} (\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} n, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Pe\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Iw\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Len\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} iwlen, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} pfree, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Nv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Next\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Last\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Head\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Elen\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Degree\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} W\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} \mbox{\hyperlink{amd_8h_a27866de985cec7a835d86430cb6b3ce7}{amd\+\_\+valid}} (\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} n\+\_\+row, \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} n\+\_\+col, const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} Ai\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} \mbox{\hyperlink{amd_8h_a046c86e2bb7a9dd585c358a456bb0e92}{amd\+\_\+l\+\_\+valid}} (\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} n\+\_\+row, \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} n\+\_\+col, const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Ap\mbox{[}$\,$\mbox{]}, const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} Ai\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a0154a0afff23e3aad0130eafe07197df}{amd\+\_\+defaults}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a3f6e5570a601182c58851e3f3acebc0c}{amd\+\_\+l\+\_\+defaults}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}{amd\+\_\+control}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a1245ac30e3ae313eb1c0ec563b5190e8}{amd\+\_\+l\+\_\+control}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Control\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}{amd\+\_\+info}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{amd_8h_a9863b7fb51073577f525dbd44c1832ae}{amd\+\_\+l\+\_\+info}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}}\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ \mbox{\hyperlink{amd_8h_aad03ab24d52b470a3834c3ca628f1b93}{amd\+\_\+malloc}} )(size\+\_\+t)
+\item 
+\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void($\ast$ \mbox{\hyperlink{amd_8h_a4a20ed8093682b7589431dc1ca9a7f0b}{amd\+\_\+free}} )(void $\ast$)
+\item 
+\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ \mbox{\hyperlink{amd_8h_a3e28fc50f9effa04e74c05fb84cdca84}{amd\+\_\+realloc}} )(void $\ast$, size\+\_\+t)
+\item 
+\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ \mbox{\hyperlink{amd_8h_a4093915e4aab0d4bc3b3592ca4847c7c}{amd\+\_\+calloc}} )(size\+\_\+t, size\+\_\+t)
+\item 
+\mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}($\ast$ \mbox{\hyperlink{amd_8h_a541b8ca83d96b2e21bb92e061966866c}{amd\+\_\+printf}} )(const char $\ast$,...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{amd_8h_a51a25f4c648f8be90e5db00ff10f89c6}\label{amd_8h_a51a25f4c648f8be90e5db00ff10f89c6}} 
+\index{amd.h@{amd.h}!AMD\_AGGRESSIVE@{AMD\_AGGRESSIVE}}
+\index{AMD\_AGGRESSIVE@{AMD\_AGGRESSIVE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_AGGRESSIVE}{AMD\_AGGRESSIVE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+AGGRESSIVE~1    /$\ast$ do aggressive absorption \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} Control \mbox{[}1\mbox{]} != 0 $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00341}{341}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_affdc598f13446fa7f4dbd2e55aeeba36}\label{amd_8h_affdc598f13446fa7f4dbd2e55aeeba36}} 
+\index{amd.h@{amd.h}!AMD\_CONTROL@{AMD\_CONTROL}}
+\index{AMD\_CONTROL@{AMD\_CONTROL}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_CONTROL}{AMD\_CONTROL}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+CONTROL~5          /$\ast$ size of Control array $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00336}{336}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a3cc33507c4130196ea26e685d9fd634d}\label{amd_8h_a3cc33507c4130196ea26e685d9fd634d}} 
+\index{amd.h@{amd.h}!AMD\_DATE@{AMD\_DATE}}
+\index{AMD\_DATE@{AMD\_DATE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DATE}{AMD\_DATE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DATE~\char`\"{}May 4, 2016\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00394}{394}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a2da83d1a74137be92385ffd239e5e4df}\label{amd_8h_a2da83d1a74137be92385ffd239e5e4df}} 
+\index{amd.h@{amd.h}!AMD\_DEFAULT\_AGGRESSIVE@{AMD\_DEFAULT\_AGGRESSIVE}}
+\index{AMD\_DEFAULT\_AGGRESSIVE@{AMD\_DEFAULT\_AGGRESSIVE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEFAULT\_AGGRESSIVE}{AMD\_DEFAULT\_AGGRESSIVE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEFAULT\+\_\+\+AGGRESSIVE~1    /$\ast$ do aggressive absorption by default $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00345}{345}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a4ab439dcb1b2034b0cf7b92c5ad60e6d}\label{amd_8h_a4ab439dcb1b2034b0cf7b92c5ad60e6d}} 
+\index{amd.h@{amd.h}!AMD\_DEFAULT\_DENSE@{AMD\_DEFAULT\_DENSE}}
+\index{AMD\_DEFAULT\_DENSE@{AMD\_DEFAULT\_DENSE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DEFAULT\_DENSE}{AMD\_DEFAULT\_DENSE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DEFAULT\+\_\+\+DENSE~10.\+0          /$\ast$ default \char`\"{}dense\char`\"{} degree 10$\ast$sqrt(n) $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00344}{344}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_aa5d6b72c4e51b57087a55b99d5072792}\label{amd_8h_aa5d6b72c4e51b57087a55b99d5072792}} 
+\index{amd.h@{amd.h}!AMD\_DENSE@{AMD\_DENSE}}
+\index{AMD\_DENSE@{AMD\_DENSE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DENSE}{AMD\_DENSE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DENSE~0            /$\ast$ \char`\"{}dense\char`\"{} \mbox{\hyperlink{compile__direct_8m_ae68ea3db45607c289701d8041ae92c46}{if}} degree $>$ Control \mbox{[}0\mbox{]} $\ast$ sqrt (n) $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00340}{340}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a7fa264773307cae6f5c829f29e2e8efa}\label{amd_8h_a7fa264773307cae6f5c829f29e2e8efa}} 
+\index{amd.h@{amd.h}!AMD\_DMAX@{AMD\_DMAX}}
+\index{AMD\_DMAX@{AMD\_DMAX}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_DMAX}{AMD\_DMAX}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+DMAX~13             /$\ast$ max nz. in any column of L, incl. diagonal $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00361}{361}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ad4d0388011f3a533198976feb69ae5e4}\label{amd_8h_ad4d0388011f3a533198976feb69ae5e4}} 
+\index{amd.h@{amd.h}!AMD\_INFO@{AMD\_INFO}}
+\index{AMD\_INFO@{AMD\_INFO}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_INFO}{AMD\_INFO}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+INFO~20            /$\ast$ size of Info array $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00337}{337}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}\label{amd_8h_a7dce2cf7732f27fad7ab5700347ff4b5}} 
+\index{amd.h@{amd.h}!AMD\_INVALID@{AMD\_INVALID}}
+\index{AMD\_INVALID@{AMD\_INVALID}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_INVALID}{AMD\_INVALID}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+INVALID~-\/2              /$\ast$ input arguments are not valid $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00369}{369}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a0bb2d3b5a2436760e9ea6cefdfcd90af}\label{amd_8h_a0bb2d3b5a2436760e9ea6cefdfcd90af}} 
+\index{amd.h@{amd.h}!AMD\_LNZ@{AMD\_LNZ}}
+\index{AMD\_LNZ@{AMD\_LNZ}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_LNZ}{AMD\_LNZ}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+LNZ~9     /$\ast$ approx. nz in L, excluding the diagonal $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00357}{357}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}\label{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}} 
+\index{amd.h@{amd.h}!AMD\_MAIN\_VERSION@{AMD\_MAIN\_VERSION}}
+\index{AMD\_MAIN\_VERSION@{AMD\_MAIN\_VERSION}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_MAIN\_VERSION}{AMD\_MAIN\_VERSION}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+MAIN\+\_\+\+VERSION~2}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00396}{396}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a947c29267a22a2c462c55e8912ba2432}\label{amd_8h_a947c29267a22a2c462c55e8912ba2432}} 
+\index{amd.h@{amd.h}!AMD\_MEMORY@{AMD\_MEMORY}}
+\index{AMD\_MEMORY@{AMD\_MEMORY}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_MEMORY}{AMD\_MEMORY}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+MEMORY~7           /$\ast$ amount of memory used by AMD $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00355}{355}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ad593079a13107070ba76e539b3b1c19a}\label{amd_8h_ad593079a13107070ba76e539b3b1c19a}} 
+\index{amd.h@{amd.h}!AMD\_N@{AMD\_N}}
+\index{AMD\_N@{AMD\_N}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_N}{AMD\_N}}
+{\footnotesize\ttfamily \#define AMD\+\_\+N~1                /$\ast$ \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} is n-\/by-\/n $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00349}{349}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ae7b45589f33fbdad203bf330abb423e3}\label{amd_8h_ae7b45589f33fbdad203bf330abb423e3}} 
+\index{amd.h@{amd.h}!AMD\_NCMPA@{AMD\_NCMPA}}
+\index{AMD\_NCMPA@{AMD\_NCMPA}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NCMPA}{AMD\_NCMPA}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NCMPA~8            /$\ast$ number of garbage collections in AMD $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00356}{356}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a17c486f4577c5914e975e270ea7c8b76}\label{amd_8h_a17c486f4577c5914e975e270ea7c8b76}} 
+\index{amd.h@{amd.h}!AMD\_NDENSE@{AMD\_NDENSE}}
+\index{AMD\_NDENSE@{AMD\_NDENSE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NDENSE}{AMD\_NDENSE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NDENSE~6           /$\ast$ number of \char`\"{}dense\char`\"{} rows/columns in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00354}{354}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a35be9f9c7b66f2a449dbadd022ebb4df}\label{amd_8h_a35be9f9c7b66f2a449dbadd022ebb4df}} 
+\index{amd.h@{amd.h}!AMD\_NDIV@{AMD\_NDIV}}
+\index{AMD\_NDIV@{AMD\_NDIV}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NDIV}{AMD\_NDIV}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NDIV~10            /$\ast$ number of fl. point divides for LU and LDL\textquotesingle{} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00358}{358}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_aa45c6a9529df13508f551cd9d366fe22}\label{amd_8h_aa45c6a9529df13508f551cd9d366fe22}} 
+\index{amd.h@{amd.h}!AMD\_NMULTSUBS\_LDL@{AMD\_NMULTSUBS\_LDL}}
+\index{AMD\_NMULTSUBS\_LDL@{AMD\_NMULTSUBS\_LDL}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NMULTSUBS\_LDL}{AMD\_NMULTSUBS\_LDL}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NMULTSUBS\+\_\+\+LDL~11 /$\ast$ number of fl. point ($\ast$,-\/) pairs for LDL\textquotesingle{} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00359}{359}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a6608c6d00d7e671f92baa675990619a5}\label{amd_8h_a6608c6d00d7e671f92baa675990619a5}} 
+\index{amd.h@{amd.h}!AMD\_NMULTSUBS\_LU@{AMD\_NMULTSUBS\_LU}}
+\index{AMD\_NMULTSUBS\_LU@{AMD\_NMULTSUBS\_LU}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NMULTSUBS\_LU}{AMD\_NMULTSUBS\_LU}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NMULTSUBS\+\_\+\+LU~12  /$\ast$ number of fl. point ($\ast$,-\/) pairs for LU $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00360}{360}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a4f88b4f4705995693bc017d717dad36e}\label{amd_8h_a4f88b4f4705995693bc017d717dad36e}} 
+\index{amd.h@{amd.h}!AMD\_NZ@{AMD\_NZ}}
+\index{AMD\_NZ@{AMD\_NZ}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NZ}{AMD\_NZ}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NZ~2      /$\ast$ number of nonzeros in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00350}{350}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a2f9a02baa3b1a848dce862fbea0f2e64}\label{amd_8h_a2f9a02baa3b1a848dce862fbea0f2e64}} 
+\index{amd.h@{amd.h}!AMD\_NZ\_A\_PLUS\_AT@{AMD\_NZ\_A\_PLUS\_AT}}
+\index{AMD\_NZ\_A\_PLUS\_AT@{AMD\_NZ\_A\_PLUS\_AT}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NZ\_A\_PLUS\_AT}{AMD\_NZ\_A\_PLUS\_AT}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NZ\+\_\+\+A\+\_\+\+PLUS\+\_\+\+AT~5  /$\ast$ nz in \mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}+\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}\textquotesingle{} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00353}{353}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a835a095afffcd03e5ed5c2632c2dc1d9}\label{amd_8h_a835a095afffcd03e5ed5c2632c2dc1d9}} 
+\index{amd.h@{amd.h}!AMD\_NZDIAG@{AMD\_NZDIAG}}
+\index{AMD\_NZDIAG@{AMD\_NZDIAG}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_NZDIAG}{AMD\_NZDIAG}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+NZDIAG~4           /$\ast$ \# of entries on diagonal $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00352}{352}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}\label{amd_8h_a7bf9fb29997a2f5c025d8647ccd446ac}} 
+\index{amd.h@{amd.h}!AMD\_OK@{AMD\_OK}}
+\index{AMD\_OK@{AMD\_OK}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_OK}{AMD\_OK}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+OK~0           /$\ast$ success $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00367}{367}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}\label{amd_8h_ad8b8eddc9133dfab5b1cebe6f85b1dad}} 
+\index{amd.h@{amd.h}!AMD\_OK\_BUT\_JUMBLED@{AMD\_OK\_BUT\_JUMBLED}}
+\index{AMD\_OK\_BUT\_JUMBLED@{AMD\_OK\_BUT\_JUMBLED}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_OK\_BUT\_JUMBLED}{AMD\_OK\_BUT\_JUMBLED}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+OK\+\_\+\+BUT\+\_\+\+JUMBLED}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    1        \textcolor{comment}{/* input matrix is OK for amd\_order, but}}
+\DoxyCodeLine{\textcolor{comment}{    * columns were not sorted, and/or duplicate entries were present.  AMD had}}
+\DoxyCodeLine{\textcolor{comment}{    * to do extra work before ordering the matrix.  This is a warning, not an}}
+\DoxyCodeLine{\textcolor{comment}{    * error.  */}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00370}{370}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a3a1e5404ad34ec4faf624d2416410103}\label{amd_8h_a3a1e5404ad34ec4faf624d2416410103}} 
+\index{amd.h@{amd.h}!AMD\_OUT\_OF\_MEMORY@{AMD\_OUT\_OF\_MEMORY}}
+\index{AMD\_OUT\_OF\_MEMORY@{AMD\_OUT\_OF\_MEMORY}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_OUT\_OF\_MEMORY}{AMD\_OUT\_OF\_MEMORY}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY~-\/1        /$\ast$ malloc failed, or problem too large $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00368}{368}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a11d69311f252e19d4435029812065206}\label{amd_8h_a11d69311f252e19d4435029812065206}} 
+\index{amd.h@{amd.h}!AMD\_STATUS@{AMD\_STATUS}}
+\index{AMD\_STATUS@{AMD\_STATUS}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_STATUS}{AMD\_STATUS}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+STATUS~0           /$\ast$ return value of \mbox{\hyperlink{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}{amd\+\_\+order}} and \mbox{\hyperlink{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}{amd\+\_\+l\+\_\+order}} $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00348}{348}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_aa055fcdf57343e1744fb114add9d0086}\label{amd_8h_aa055fcdf57343e1744fb114add9d0086}} 
+\index{amd.h@{amd.h}!AMD\_SUB\_VERSION@{AMD\_SUB\_VERSION}}
+\index{AMD\_SUB\_VERSION@{AMD\_SUB\_VERSION}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_SUB\_VERSION}{AMD\_SUB\_VERSION}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+SUB\+\_\+\+VERSION~4}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00397}{397}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ab2cabd46ed253019dee4cfa046e08dad}\label{amd_8h_ab2cabd46ed253019dee4cfa046e08dad}} 
+\index{amd.h@{amd.h}!AMD\_SUBSUB\_VERSION@{AMD\_SUBSUB\_VERSION}}
+\index{AMD\_SUBSUB\_VERSION@{AMD\_SUBSUB\_VERSION}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_SUBSUB\_VERSION}{AMD\_SUBSUB\_VERSION}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+SUBSUB\+\_\+\+VERSION~6}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00398}{398}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ae8211d71b1b50b77c06984a07275edd1}\label{amd_8h_ae8211d71b1b50b77c06984a07275edd1}} 
+\index{amd.h@{amd.h}!AMD\_SYMMETRY@{AMD\_SYMMETRY}}
+\index{AMD\_SYMMETRY@{AMD\_SYMMETRY}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_SYMMETRY}{AMD\_SYMMETRY}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+SYMMETRY~3         /$\ast$ symmetry of pattern (1 is sym., 0 is unsym.) $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00351}{351}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ac15fe8d35e7859df7fa5d8fbc892d42d}\label{amd_8h_ac15fe8d35e7859df7fa5d8fbc892d42d}} 
+\index{amd.h@{amd.h}!AMD\_VERSION@{AMD\_VERSION}}
+\index{AMD\_VERSION@{AMD\_VERSION}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_VERSION}{AMD\_VERSION}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+VERSION~\mbox{\hyperlink{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}{AMD\+\_\+\+VERSION\+\_\+\+CODE}}(\mbox{\hyperlink{amd_8h_a8e7394a28c884e0559d7b252c1beea5a}{AMD\+\_\+\+MAIN\+\_\+\+VERSION}},\mbox{\hyperlink{amd_8h_aa055fcdf57343e1744fb114add9d0086}{AMD\+\_\+\+SUB\+\_\+\+VERSION}})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00399}{399}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}\label{amd_8h_ae315a02a72fdc20262c4a3d55b8954e9}} 
+\index{amd.h@{amd.h}!AMD\_VERSION\_CODE@{AMD\_VERSION\_CODE}}
+\index{AMD\_VERSION\_CODE@{AMD\_VERSION\_CODE}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{AMD\_VERSION\_CODE}{AMD\_VERSION\_CODE}}
+{\footnotesize\ttfamily \#define AMD\+\_\+\+VERSION\+\_\+\+CODE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{abip_8h_a615aa6e4ecfe6ec1df47272c53ddb3ac}{main}},  }\item[{}]{sub }\end{DoxyParamCaption})~((\mbox{\hyperlink{abip_8h_a615aa6e4ecfe6ec1df47272c53ddb3ac}{main}}) $\ast$ 1000 + (sub))}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00395}{395}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a77366c1bd428629dc898e188bfd182a3}\label{amd_8h_a77366c1bd428629dc898e188bfd182a3}} 
+\index{amd.h@{amd.h}!EXTERN@{EXTERN}}
+\index{EXTERN@{EXTERN}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{EXTERN}{EXTERN}}
+{\footnotesize\ttfamily \#define EXTERN~extern}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00311}{311}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}\label{amd_8h_a1da5a859f1480e4a156bcd33d9021bcc}} 
+\index{amd.h@{amd.h}!amd\_2@{amd\_2}}
+\index{amd\_2@{amd\_2}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_2()}{amd\_2()}}
+{\footnotesize\ttfamily void amd\+\_\+2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{n,  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Pe\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Iw\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Len\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{iwlen,  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{pfree,  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Nv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Next\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Last\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Head\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Elen\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Degree\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{W\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}\label{amd_8h_a12fa24ec4fcb5b7e36aac926213b5265}} 
+\index{amd.h@{amd.h}!amd\_control@{amd\_control}}
+\index{amd\_control@{amd\_control}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_control()}{amd\_control()}}
+{\footnotesize\ttfamily void amd\+\_\+control (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a0154a0afff23e3aad0130eafe07197df}\label{amd_8h_a0154a0afff23e3aad0130eafe07197df}} 
+\index{amd.h@{amd.h}!amd\_defaults@{amd\_defaults}}
+\index{amd\_defaults@{amd\_defaults}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_defaults()}{amd\_defaults()}}
+{\footnotesize\ttfamily void amd\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}\label{amd_8h_a74dc4d852530509a2822dda74cdcd4e5}} 
+\index{amd.h@{amd.h}!amd\_info@{amd\_info}}
+\index{amd\_info@{amd\_info}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_info()}{amd\_info()}}
+{\footnotesize\ttfamily void amd\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a7fceed4b9f84d05c83a106bbf8779c71}\label{amd_8h_a7fceed4b9f84d05c83a106bbf8779c71}} 
+\index{amd.h@{amd.h}!amd\_l2@{amd\_l2}}
+\index{amd\_l2@{amd\_l2}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l2()}{amd\_l2()}}
+{\footnotesize\ttfamily void amd\+\_\+l2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{n,  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Pe\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Iw\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Len\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{iwlen,  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{pfree,  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Nv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Next\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Last\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Head\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Elen\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Degree\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{W\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a1245ac30e3ae313eb1c0ec563b5190e8}\label{amd_8h_a1245ac30e3ae313eb1c0ec563b5190e8}} 
+\index{amd.h@{amd.h}!amd\_l\_control@{amd\_l\_control}}
+\index{amd\_l\_control@{amd\_l\_control}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l\_control()}{amd\_l\_control()}}
+{\footnotesize\ttfamily void amd\+\_\+l\+\_\+control (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a3f6e5570a601182c58851e3f3acebc0c}\label{amd_8h_a3f6e5570a601182c58851e3f3acebc0c}} 
+\index{amd.h@{amd.h}!amd\_l\_defaults@{amd\_l\_defaults}}
+\index{amd\_l\_defaults@{amd\_l\_defaults}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l\_defaults()}{amd\_l\_defaults()}}
+{\footnotesize\ttfamily void amd\+\_\+l\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a9863b7fb51073577f525dbd44c1832ae}\label{amd_8h_a9863b7fb51073577f525dbd44c1832ae}} 
+\index{amd.h@{amd.h}!amd\_l\_info@{amd\_l\_info}}
+\index{amd\_l\_info@{amd\_l\_info}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l\_info()}{amd\_l\_info()}}
+{\footnotesize\ttfamily void amd\+\_\+l\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}\label{amd_8h_a76e47a5fffc5bbdea55cfc8caf8bc449}} 
+\index{amd.h@{amd.h}!amd\_l\_order@{amd\_l\_order}}
+\index{amd\_l\_order@{amd\_l\_order}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l\_order()}{amd\_l\_order()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} amd\+\_\+l\+\_\+order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{n,  }\item[{const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a046c86e2bb7a9dd585c358a456bb0e92}\label{amd_8h_a046c86e2bb7a9dd585c358a456bb0e92}} 
+\index{amd.h@{amd.h}!amd\_l\_valid@{amd\_l\_valid}}
+\index{amd\_l\_valid@{amd\_l\_valid}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_l\_valid()}{amd\_l\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}} amd\+\_\+l\+\_\+valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{n\+\_\+row,  }\item[{\mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{n\+\_\+col,  }\item[{const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{_suite_sparse__config_8h_a4c27f78f2db3b7dcfcea6cdaf2010bc9}{Suite\+Sparse\+\_\+long}}}]{Ai\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}\label{amd_8h_af3a851a44d02a8be3febc422f0f42bb3}} 
+\index{amd.h@{amd.h}!amd\_order@{amd\_order}}
+\index{amd\_order@{amd\_order}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_order()}{amd\_order()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} amd\+\_\+order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{n,  }\item[{const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Control\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ABIPInfo\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{amd_8h_a27866de985cec7a835d86430cb6b3ce7}\label{amd_8h_a27866de985cec7a835d86430cb6b3ce7}} 
+\index{amd.h@{amd.h}!amd\_valid@{amd\_valid}}
+\index{amd\_valid@{amd\_valid}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_valid()}{amd\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}} amd\+\_\+valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{n\+\_\+row,  }\item[{\mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{n\+\_\+col,  }\item[{const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{const \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}}]{Ai\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{amd_8h_a4093915e4aab0d4bc3b3592ca4847c7c}\label{amd_8h_a4093915e4aab0d4bc3b3592ca4847c7c}} 
+\index{amd.h@{amd.h}!amd\_calloc@{amd\_calloc}}
+\index{amd\_calloc@{amd\_calloc}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_calloc}{amd\_calloc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ amd\+\_\+calloc) (size\+\_\+t, size\+\_\+t) (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{,  }\item[{size\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00317}{317}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a4a20ed8093682b7589431dc1ca9a7f0b}\label{amd_8h_a4a20ed8093682b7589431dc1ca9a7f0b}} 
+\index{amd.h@{amd.h}!amd\_free@{amd\_free}}
+\index{amd\_free@{amd\_free}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_free}{amd\_free}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void($\ast$ amd\+\_\+free) (void $\ast$) (\begin{DoxyParamCaption}\item[{void $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00315}{315}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_aad03ab24d52b470a3834c3ca628f1b93}\label{amd_8h_aad03ab24d52b470a3834c3ca628f1b93}} 
+\index{amd.h@{amd.h}!amd\_malloc@{amd\_malloc}}
+\index{amd\_malloc@{amd\_malloc}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_malloc}{amd\_malloc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ amd\+\_\+malloc) (size\+\_\+t) (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00314}{314}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a541b8ca83d96b2e21bb92e061966866c}\label{amd_8h_a541b8ca83d96b2e21bb92e061966866c}} 
+\index{amd.h@{amd.h}!amd\_printf@{amd\_printf}}
+\index{amd\_printf@{amd\_printf}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_printf}{amd\_printf}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} \mbox{\hyperlink{make__abip_8m_aa7ac7e8e91bc138d3f764590574ec274}{int}}($\ast$ amd\+\_\+printf) (const char $\ast$,...) (\begin{DoxyParamCaption}\item[{const char $\ast$}]{,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00318}{318}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+
+\mbox{\Hypertarget{amd_8h_a3e28fc50f9effa04e74c05fb84cdca84}\label{amd_8h_a3e28fc50f9effa04e74c05fb84cdca84}} 
+\index{amd.h@{amd.h}!amd\_realloc@{amd\_realloc}}
+\index{amd\_realloc@{amd\_realloc}!amd.h@{amd.h}}
+\doxysubsubsection{\texorpdfstring{amd\_realloc}{amd\_realloc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{amd_8h_a77366c1bd428629dc898e188bfd182a3}{EXTERN}} void $\ast$($\ast$ amd\+\_\+realloc) (void $\ast$, size\+\_\+t) (\begin{DoxyParamCaption}\item[{void $\ast$}]{,  }\item[{size\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{amd_8h_source_l00316}{316}} of file \mbox{\hyperlink{amd_8h_source}{amd.\+h}}.
+

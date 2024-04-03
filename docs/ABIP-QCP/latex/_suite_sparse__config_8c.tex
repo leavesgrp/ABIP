@@ -1,0 +1,174 @@
+\hypertarget{_suite_sparse__config_8c}{}\doxysection{amd/\+Suite\+Sparse\+\_\+config.c File Reference}
+\label{_suite_sparse__config_8c}\index{amd/SuiteSparse\_config.c@{amd/SuiteSparse\_config.c}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Suite\+Sparse\+\_\+config.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_suite_sparse__config_8c_a2603d7a19c1ab6e6783bc9e8e8793a6f}{Suite\+Sparse\+\_\+start}} (void)
+\item 
+void \mbox{\hyperlink{_suite_sparse__config_8c_ab819da71ef674f1d7570721158edcb64}{Suite\+Sparse\+\_\+finish}} (void)
+\item 
+void $\ast$ \mbox{\hyperlink{_suite_sparse__config_8c_a9b5517b80fbb8e3c33f2d73c371f1a39}{Suite\+Sparse\+\_\+malloc}} (size\+\_\+t nitems, size\+\_\+t size\+\_\+of\+\_\+item)
+\item 
+void $\ast$ \mbox{\hyperlink{_suite_sparse__config_8c_ada8ebff2da5353a26435e2ab6fbc94dc}{Suite\+Sparse\+\_\+calloc}} (size\+\_\+t nitems, size\+\_\+t size\+\_\+of\+\_\+item)
+\item 
+void $\ast$ \mbox{\hyperlink{_suite_sparse__config_8c_a1a3bc40746062c754978eeab94421dc7}{Suite\+Sparse\+\_\+realloc}} (size\+\_\+t nitems\+\_\+new, size\+\_\+t nitems\+\_\+old, size\+\_\+t size\+\_\+of\+\_\+item, void $\ast$p, int $\ast$ok)
+\item 
+void $\ast$ \mbox{\hyperlink{_suite_sparse__config_8c_a4ce7b04b3596759072d6f96ae5802e43}{Suite\+Sparse\+\_\+free}} (void $\ast$p)
+\item 
+void \mbox{\hyperlink{_suite_sparse__config_8c_ae734df3a98cb70256d2c652652057c31}{Suite\+Sparse\+\_\+tic}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}}\mbox{[}2\mbox{]})
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{_suite_sparse__config_8c_a893a1f99b2aad6fbfde56ff7d00cf23e}{Suite\+Sparse\+\_\+toc}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{util_8h_aeafa89f9003430cc0822231f8c5d85d2}{tic}}\mbox{[}2\mbox{]})
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{_suite_sparse__config_8c_a7398fc7df01cc0886dcab763bcccb1b9}{Suite\+Sparse\+\_\+time}} (void)
+\item 
+int \mbox{\hyperlink{_suite_sparse__config_8c_aa1eccb4f1042226256f7ef483caefe97}{Suite\+Sparse\+\_\+version}} (int \mbox{\hyperlink{abip_8h_a14b83612aa3efc7ef50c6f69af903cad}{version}}\mbox{[}3\mbox{]})
+\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{_suite_sparse__config_8c_ac09563d0e1abb963adae23a004c3da11}{Suite\+Sparse\+\_\+hypot}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} y)
+\item 
+int \mbox{\hyperlink{_suite_sparse__config_8c_a00639b2a375b56a4caa3fda80d0af9f1}{Suite\+Sparse\+\_\+divcomplex}} (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} ar, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} ai, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} br, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} bi, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$cr, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$ci)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_suite_sparse__config__struct}{Suite\+Sparse\+\_\+config\+\_\+struct}} \mbox{\hyperlink{_suite_sparse__config_8c_a22fb853a5152143de774ec2567fcebba}{Suite\+Sparse\+\_\+config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_suite_sparse__config_8c_ada8ebff2da5353a26435e2ab6fbc94dc}\label{_suite_sparse__config_8c_ada8ebff2da5353a26435e2ab6fbc94dc}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_calloc@{SuiteSparse\_calloc}}
+\index{SuiteSparse\_calloc@{SuiteSparse\_calloc}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_calloc()}{SuiteSparse\_calloc()}}
+{\footnotesize\ttfamily void $\ast$ Suite\+Sparse\+\_\+calloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nitems,  }\item[{size\+\_\+t}]{size\+\_\+of\+\_\+item }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00211}{211}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a00639b2a375b56a4caa3fda80d0af9f1}\label{_suite_sparse__config_8c_a00639b2a375b56a4caa3fda80d0af9f1}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_divcomplex@{SuiteSparse\_divcomplex}}
+\index{SuiteSparse\_divcomplex@{SuiteSparse\_divcomplex}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_divcomplex()}{SuiteSparse\_divcomplex()}}
+{\footnotesize\ttfamily int Suite\+Sparse\+\_\+divcomplex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ar,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{ai,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{br,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{bi,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{cr,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{ci }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00516}{516}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_ab819da71ef674f1d7570721158edcb64}\label{_suite_sparse__config_8c_ab819da71ef674f1d7570721158edcb64}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_finish@{SuiteSparse\_finish}}
+\index{SuiteSparse\_finish@{SuiteSparse\_finish}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_finish()}{SuiteSparse\_finish()}}
+{\footnotesize\ttfamily void Suite\+Sparse\+\_\+finish (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00173}{173}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a4ce7b04b3596759072d6f96ae5802e43}\label{_suite_sparse__config_8c_a4ce7b04b3596759072d6f96ae5802e43}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_free@{SuiteSparse\_free}}
+\index{SuiteSparse\_free@{SuiteSparse\_free}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_free()}{SuiteSparse\_free()}}
+{\footnotesize\ttfamily void $\ast$ Suite\+Sparse\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00311}{311}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_ac09563d0e1abb963adae23a004c3da11}\label{_suite_sparse__config_8c_ac09563d0e1abb963adae23a004c3da11}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_hypot@{SuiteSparse\_hypot}}
+\index{SuiteSparse\_hypot@{SuiteSparse\_hypot}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_hypot()}{SuiteSparse\_hypot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Suite\+Sparse\+\_\+hypot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00464}{464}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a9b5517b80fbb8e3c33f2d73c371f1a39}\label{_suite_sparse__config_8c_a9b5517b80fbb8e3c33f2d73c371f1a39}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_malloc@{SuiteSparse\_malloc}}
+\index{SuiteSparse\_malloc@{SuiteSparse\_malloc}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_malloc()}{SuiteSparse\_malloc()}}
+{\footnotesize\ttfamily void $\ast$ Suite\+Sparse\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nitems,  }\item[{size\+\_\+t}]{size\+\_\+of\+\_\+item }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00182}{182}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a1a3bc40746062c754978eeab94421dc7}\label{_suite_sparse__config_8c_a1a3bc40746062c754978eeab94421dc7}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_realloc@{SuiteSparse\_realloc}}
+\index{SuiteSparse\_realloc@{SuiteSparse\_realloc}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_realloc()}{SuiteSparse\_realloc()}}
+{\footnotesize\ttfamily void $\ast$ Suite\+Sparse\+\_\+realloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nitems\+\_\+new,  }\item[{size\+\_\+t}]{nitems\+\_\+old,  }\item[{size\+\_\+t}]{size\+\_\+of\+\_\+item,  }\item[{void $\ast$}]{p,  }\item[{int $\ast$}]{ok }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00247}{247}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a2603d7a19c1ab6e6783bc9e8e8793a6f}\label{_suite_sparse__config_8c_a2603d7a19c1ab6e6783bc9e8e8793a6f}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_start@{SuiteSparse\_start}}
+\index{SuiteSparse\_start@{SuiteSparse\_start}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_start()}{SuiteSparse\_start()}}
+{\footnotesize\ttfamily void Suite\+Sparse\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00109}{109}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_ae734df3a98cb70256d2c652652057c31}\label{_suite_sparse__config_8c_ae734df3a98cb70256d2c652652057c31}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_tic@{SuiteSparse\_tic}}
+\index{SuiteSparse\_tic@{SuiteSparse\_tic}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_tic()}{SuiteSparse\_tic()}}
+{\footnotesize\ttfamily void Suite\+Sparse\+\_\+tic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{tic\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00373}{373}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a7398fc7df01cc0886dcab763bcccb1b9}\label{_suite_sparse__config_8c_a7398fc7df01cc0886dcab763bcccb1b9}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_time@{SuiteSparse\_time}}
+\index{SuiteSparse\_time@{SuiteSparse\_time}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_time()}{SuiteSparse\_time()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Suite\+Sparse\+\_\+time (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00414}{414}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_a893a1f99b2aad6fbfde56ff7d00cf23e}\label{_suite_sparse__config_8c_a893a1f99b2aad6fbfde56ff7d00cf23e}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_toc@{SuiteSparse\_toc}}
+\index{SuiteSparse\_toc@{SuiteSparse\_toc}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_toc()}{SuiteSparse\_toc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Suite\+Sparse\+\_\+toc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{tic\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00397}{397}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{_suite_sparse__config_8c_aa1eccb4f1042226256f7ef483caefe97}\label{_suite_sparse__config_8c_aa1eccb4f1042226256f7ef483caefe97}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_version@{SuiteSparse\_version}}
+\index{SuiteSparse\_version@{SuiteSparse\_version}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_version()}{SuiteSparse\_version()}}
+{\footnotesize\ttfamily int Suite\+Sparse\+\_\+version (\begin{DoxyParamCaption}\item[{int}]{version\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00429}{429}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_suite_sparse__config_8c_a22fb853a5152143de774ec2567fcebba}\label{_suite_sparse__config_8c_a22fb853a5152143de774ec2567fcebba}} 
+\index{SuiteSparse\_config.c@{SuiteSparse\_config.c}!SuiteSparse\_config@{SuiteSparse\_config}}
+\index{SuiteSparse\_config@{SuiteSparse\_config}!SuiteSparse\_config.c@{SuiteSparse\_config.c}}
+\doxysubsubsection{\texorpdfstring{SuiteSparse\_config}{SuiteSparse\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_suite_sparse__config__struct}{Suite\+Sparse\+\_\+config\+\_\+struct}} Suite\+Sparse\+\_\+config}
+
+
+
+Definition at line \mbox{\hyperlink{_suite_sparse__config_8c_source_l00053}{53}} of file \mbox{\hyperlink{_suite_sparse__config_8c_source}{Suite\+Sparse\+\_\+config.\+c}}.
+

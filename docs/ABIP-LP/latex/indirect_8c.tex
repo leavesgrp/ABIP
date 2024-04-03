@@ -1,0 +1,147 @@
+\hypertarget{indirect_8c}{}\doxysection{linsys/indirect.c File Reference}
+\label{indirect_8c}\index{linsys/indirect.c@{linsys/indirect.c}}
+{\ttfamily \#include \char`\"{}indirect.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{indirect_8c_a4582d3bdac0c75af09e18b19895f5d2a}{CG\+\_\+\+BEST\+\_\+\+TOL}}~1e-\/9
+\item 
+\#define \mbox{\hyperlink{indirect_8c_abc4e2adcba8fe527e9ec77f7746fe8eb}{CG\+\_\+\+MIN\+\_\+\+TOL}}~1e-\/1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a6f4745f2a8f151cbfba288a3248bb397}{get\+\_\+lin\+\_\+sys\+\_\+method}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\item 
+char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a9324fcbdcbd2c577751203abc8ba28c4}{get\+\_\+lin\+\_\+sys\+\_\+summary}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$info)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_ad23b46969855636085b813a83c2489d2}{free\+\_\+lin\+\_\+sys\+\_\+work}} (\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a258abad59f073a88954cde0430ef5965}{accum\+\_\+by\+\_\+\+Atrans}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a9487ca3dd47956f14600cf6be4149505}{accum\+\_\+by\+\_\+A}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ac73bb3556c5c5226726efc502e9b544f}{x}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a8fb58ed8fb2e51d3b351642a176ed59b}{normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\item 
+void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_a184cd0c90635e21071242946afc34efa}{un\+\_\+normalize\+\_\+A}} (\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$scal)
+\item 
+\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_ade882d3f4d06d932341d13197881fbc9}{init\+\_\+lin\+\_\+sys\+\_\+work}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() \mbox{\hyperlink{indirect_8c_ac1465df3228739549e5435792394d4bf}{solve\+\_\+lin\+\_\+sys}} (const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs, \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$p, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$s, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{indirect_8c_a4582d3bdac0c75af09e18b19895f5d2a}\label{indirect_8c_a4582d3bdac0c75af09e18b19895f5d2a}} 
+\index{indirect.c@{indirect.c}!CG\_BEST\_TOL@{CG\_BEST\_TOL}}
+\index{CG\_BEST\_TOL@{CG\_BEST\_TOL}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{CG\_BEST\_TOL}{CG\_BEST\_TOL}}
+{\footnotesize\ttfamily \#define CG\+\_\+\+BEST\+\_\+\+TOL~1e-\/9}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00003}{3}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_abc4e2adcba8fe527e9ec77f7746fe8eb}\label{indirect_8c_abc4e2adcba8fe527e9ec77f7746fe8eb}} 
+\index{indirect.c@{indirect.c}!CG\_MIN\_TOL@{CG\_MIN\_TOL}}
+\index{CG\_MIN\_TOL@{CG\_MIN\_TOL}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{CG\_MIN\_TOL}{CG\_MIN\_TOL}}
+{\footnotesize\ttfamily \#define CG\+\_\+\+MIN\+\_\+\+TOL~1e-\/1}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00004}{4}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{indirect_8c_a9487ca3dd47956f14600cf6be4149505}\label{indirect_8c_a9487ca3dd47956f14600cf6be4149505}} 
+\index{indirect.c@{indirect.c}!accum\_by\_A@{accum\_by\_A}}
+\index{accum\_by\_A@{accum\_by\_A}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{accum\_by\_A()}{accum\_by\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() accum\+\_\+by\+\_\+A (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00233}{233}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_a258abad59f073a88954cde0430ef5965}\label{indirect_8c_a258abad59f073a88954cde0430ef5965}} 
+\index{indirect.c@{indirect.c}!accum\_by\_Atrans@{accum\_by\_Atrans}}
+\index{accum\_by\_Atrans@{accum\_by\_Atrans}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{accum\_by\_Atrans()}{accum\_by\_Atrans()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() accum\+\_\+by\+\_\+\+Atrans (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00222}{222}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_ad23b46969855636085b813a83c2489d2}\label{indirect_8c_ad23b46969855636085b813a83c2489d2}} 
+\index{indirect.c@{indirect.c}!free\_lin\_sys\_work@{free\_lin\_sys\_work}}
+\index{free\_lin\_sys\_work@{free\_lin\_sys\_work}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{free\_lin\_sys\_work()}{free\_lin\_sys\_work()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() free\+\_\+lin\+\_\+sys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00141}{141}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_a6f4745f2a8f151cbfba288a3248bb397}\label{indirect_8c_a6f4745f2a8f151cbfba288a3248bb397}} 
+\index{indirect.c@{indirect.c}!get\_lin\_sys\_method@{get\_lin\_sys\_method}}
+\index{get\_lin\_sys\_method@{get\_lin\_sys\_method}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{get\_lin\_sys\_method()}{get\_lin\_sys\_method()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+lin\+\_\+sys\+\_\+method (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00008}{8}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_a9324fcbdcbd2c577751203abc8ba28c4}\label{indirect_8c_a9324fcbdcbd2c577751203abc8ba28c4}} 
+\index{indirect.c@{indirect.c}!get\_lin\_sys\_summary@{get\_lin\_sys\_summary}}
+\index{get\_lin\_sys\_summary@{get\_lin\_sys\_summary}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{get\_lin\_sys\_summary()}{get\_lin\_sys\_summary()}}
+{\footnotesize\ttfamily char $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() get\+\_\+lin\+\_\+sys\+\_\+summary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{abip_8h_a2d206e17a6a22c0bc8d322e1b4d9c4c2}{ABIPInfo}} $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00020}{20}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_ade882d3f4d06d932341d13197881fbc9}\label{indirect_8c_ade882d3f4d06d932341d13197881fbc9}} 
+\index{indirect.c@{indirect.c}!init\_lin\_sys\_work@{init\_lin\_sys\_work}}
+\index{init\_lin\_sys\_work@{init\_lin\_sys\_work}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{init\_lin\_sys\_work()}{init\_lin\_sys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$\mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() init\+\_\+lin\+\_\+sys\+\_\+work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00282}{282}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_a8fb58ed8fb2e51d3b351642a176ed59b}\label{indirect_8c_a8fb58ed8fb2e51d3b351642a176ed59b}} 
+\index{indirect.c@{indirect.c}!normalize\_A@{normalize\_A}}
+\index{normalize\_A@{normalize\_A}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{normalize\_A()}{normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{\mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00244}{244}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_ac1465df3228739549e5435792394d4bf}\label{indirect_8c_ac1465df3228739549e5435792394d4bf}} 
+\index{indirect.c@{indirect.c}!solve\_lin\_sys@{solve\_lin\_sys}}
+\index{solve\_lin\_sys@{solve\_lin\_sys}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{solve\_lin\_sys()}{solve\_lin\_sys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() solve\+\_\+lin\+\_\+sys (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{\mbox{\hyperlink{abip_8h_ad65f57f12b6c1b2e44ae0cec693e714b}{ABIPLin\+Sys\+Work}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00393}{393}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+
+\mbox{\Hypertarget{indirect_8c_a184cd0c90635e21071242946afc34efa}\label{indirect_8c_a184cd0c90635e21071242946afc34efa}} 
+\index{indirect.c@{indirect.c}!un\_normalize\_A@{un\_normalize\_A}}
+\index{un\_normalize\_A@{un\_normalize\_A}!indirect.c@{indirect.c}}
+\doxysubsubsection{\texorpdfstring{un\_normalize\_A()}{un\_normalize\_A()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}() un\+\_\+normalize\+\_\+A (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abip_8h_a0dfbdddb857581adb29d5f3f95641eeb}{ABIPMatrix}} $\ast$}]{A,  }\item[{const \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs,  }\item[{const \mbox{\hyperlink{abip_8h_aac807ee4291b774db6dcdb256b16d5fb}{ABIPScaling}} $\ast$}]{scal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{indirect_8c_source_l00253}{253}} of file \mbox{\hyperlink{indirect_8c_source}{indirect.\+c}}.
+

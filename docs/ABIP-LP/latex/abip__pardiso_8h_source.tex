@@ -1,0 +1,82 @@
+\hypertarget{abip__pardiso_8h_source}{}\doxysection{abip\+\_\+pardiso.\+h}
+\label{abip__pardiso_8h_source}\index{linsys/abip\_pardiso.h@{linsys/abip\_pardiso.h}}
+\mbox{\hyperlink{abip__pardiso_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef abip\_pardiso\_h}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00002}00002 \textcolor{preprocessor}{\#define abip\_pardiso\_h}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00004}00004 \textcolor{comment}{/* Implement the pardiso solver interface for IPM */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{glbopts_8h}{glbopts.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00009}\mbox{\hyperlink{abip__pardiso_8h_a27a0664d63e573557fbb08a7c2deba9e}{00009}} \textcolor{preprocessor}{\#define PARDISO\_OK       (  0)}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00010}\mbox{\hyperlink{abip__pardiso_8h_ace2297c33894c3d75a2c077871d6908a}{00010}} \textcolor{preprocessor}{\#define PARDISOINDEX     ( 64)      }\textcolor{comment}{// Pardiso working array length}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00011}\mbox{\hyperlink{abip__pardiso_8h_aa49ee2738b572fb5837bfcb0af1bb273}{00011}} \textcolor{preprocessor}{\#define PARDISO\_SYM      ( 11)      }\textcolor{comment}{// Pardiso symbolic analysis}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00012}\mbox{\hyperlink{abip__pardiso_8h_ab235ccd19803462f51a0011c8a53794f}{00012}} \textcolor{preprocessor}{\#define PARDISO\_FAC      ( 22)      }\textcolor{comment}{// Pardiso numerical factorization}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00013}\mbox{\hyperlink{abip__pardiso_8h_aa3ce1a1103ece568c6dd03c9bb199bd5}{00013}} \textcolor{preprocessor}{\#define PARDISO\_SYM\_FAC  ( 12)      }\textcolor{comment}{// Symbolic analysis and factorization}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00014}\mbox{\hyperlink{abip__pardiso_8h_afd90df78609882f9ee85ab44ab09ce91}{00014}} \textcolor{preprocessor}{\#define PARDISO\_SOLVE    ( 33)      }\textcolor{comment}{// Solve linear system}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00015}\mbox{\hyperlink{abip__pardiso_8h_a957f01863e27ffc6b77030e4abdc344b}{00015}} \textcolor{preprocessor}{\#define PARDISO\_FORWARD  (331)      }\textcolor{comment}{// Pardiso forward solve}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00016}\mbox{\hyperlink{abip__pardiso_8h_a3e0442a61aa565d77578d1c6fb65bf28}{00016}} \textcolor{preprocessor}{\#define PARDISO\_BACKWARD (333)      }\textcolor{comment}{// Pardiso backward solve}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00017}\mbox{\hyperlink{abip__pardiso_8h_a053fad41faee203a85f92433b25ec076}{00017}} \textcolor{preprocessor}{\#define PARDISO\_FREE     ( -\/1)      }\textcolor{comment}{// Free internal data structure}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00019}00019 \textcolor{comment}{// Pardiso default parameters}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00020}00020 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} maxfct = 1;  \textcolor{comment}{// Maximum number of factors}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00021}00021 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} mnum   = 1;  \textcolor{comment}{// The matrix used for the solution phase}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00022}00022 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} mtype  = -\/2; \textcolor{comment}{// Real and symmetric indefinite}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00023}00023 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} msglvl = 0;  \textcolor{comment}{// Print no information}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00024}00024 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} idummy = 0;  \textcolor{comment}{// Dummy variable for taking up space}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00025}00025 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} ddummy = 0.0;  \textcolor{comment}{// Dummy variable for taking up space}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00027}00027 \textcolor{comment}{// Pardiso solver}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00028}\mbox{\hyperlink{abip__pardiso_8h_ad6063d3913159b01182152185b3bdc1e}{00028}} \textcolor{preprocessor}{\#define SYMBOLIC 3}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00029}\mbox{\hyperlink{abip__pardiso_8h_a8f4c765598cb3e3f3ec4f5067dc23bd3}{00029}} \textcolor{preprocessor}{\#define PIVOTING 2}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00030}\mbox{\hyperlink{abip__pardiso_8h_a9cf92699ad42fd752eefb601412f6de2}{00030}} \textcolor{preprocessor}{\#define FACTORIZE 0}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00032}00032 \textcolor{keyword}{static} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} PARDISO\_PARAMS\_LDL[\mbox{\hyperlink{abip__pardiso_8h_ace2297c33894c3d75a2c077871d6908a}{PARDISOINDEX}}] = \{}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00033}00033     }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00034}00034     1, \textcolor{comment}{/* Non-\/default value */} \mbox{\hyperlink{abip__pardiso_8h_ad6063d3913159b01182152185b3bdc1e}{SYMBOLIC}}, \textcolor{comment}{/* P Nested dissection */} 0, \textcolor{comment}{/* Reserved          */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00035}00035     0, \textcolor{comment}{/* No CG             */} 0, \textcolor{comment}{/* No user permutation */} 1, \textcolor{comment}{/* Overwriting    */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00036}00036     0, \textcolor{comment}{/* Refinement report */} 0, \textcolor{comment}{/* Auto ItRef step     */} 0, \textcolor{comment}{/* Reserved          */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00037}00037     8, \textcolor{comment}{/* Perturb           */} 0, \textcolor{comment}{/* Disable scaling     */} 0, \textcolor{comment}{/* No transpose      */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00038}00038     0, \textcolor{comment}{/* Disable matching  */} 0, \textcolor{comment}{/* Report on pivots    */} 0, \textcolor{comment}{/* Output            */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00039}00039     0, \textcolor{comment}{/* Output            */} 0, \textcolor{comment}{/* Output              */}-\/1, \textcolor{comment}{/* No report         */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00040}00040     0, \textcolor{comment}{/* No report         */} 0, \textcolor{comment}{/* Output              */} \mbox{\hyperlink{abip__pardiso_8h_a8f4c765598cb3e3f3ec4f5067dc23bd3}{PIVOTING}}, \textcolor{comment}{/* Pivoting          */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00041}00041     0, \textcolor{comment}{/* nPosEigVals       */} 0, \textcolor{comment}{/* nNegEigVals         */} \mbox{\hyperlink{abip__pardiso_8h_a9cf92699ad42fd752eefb601412f6de2}{FACTORIZE}}, \textcolor{comment}{/* Classic factorize */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00042}00042     0,                         0,                           0, \textcolor{comment}{/* Matrix checker    */}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00043}00043     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00044}00044     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00045}00045     0,                         1, \textcolor{comment}{/* 0-\/based solve       */} 0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00046}00046     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00047}00047     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00048}00048     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00049}00049     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00050}00050     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00051}00051     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00052}00052     0,                         0, \textcolor{comment}{/* No diagonal         */} 0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00053}00053     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00054}00054     0,                         0,                           0,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00055}00055     0}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00056}00056 \};}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00058}00058 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00059}00059 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00060}00060 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00062}\mbox{\hyperlink{abip__pardiso_8h_a7bed2d2298b65b4a3fa90a65b0939ee9}{00062}} \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{abip__pardiso_8h_a7bed2d2298b65b4a3fa90a65b0939ee9}{pardisoinit}} ( \textcolor{keywordtype}{void} *, \textcolor{keyword}{const} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} * );}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00064}\mbox{\hyperlink{abip__pardiso_8h_acec5e6fac4e7d13cde319b80999854d1}{00064}} \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{abip__pardiso_8h_acec5e6fac4e7d13cde319b80999854d1}{pardiso}}     ( \textcolor{keywordtype}{void}     *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}    *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00065}00065                           \textcolor{keywordtype}{double}   *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}}    *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *,}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00066}00066                           \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} *, \textcolor{keywordtype}{double}      *, \textcolor{keywordtype}{double}   *, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} * );}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00068}00068 \textcolor{keyword}{extern} \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\_int}} \mbox{\hyperlink{abip__pardiso_8h_acb79006208bb6fe65286d87d3fcdf790}{pardisoFactorize}}( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p, \mbox{\hyperlink{cs_8h_ac071bd38e4c31ed73ec02faa32b52e4a}{cs}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} );}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00069}00069 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{abip__pardiso_8h_ab384654c9cbe7d2a58b7b82869f81415}{pardisoFree}}         ( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p, \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}} );}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00070}00070 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{abip__pardiso_8h_a9cedb6b9358888fa07ea0ea920e6bb38}{pardisoSolve}}        ( \mbox{\hyperlink{struct_a_b_i_p___l_i_n___s_y_s___w_o_r_k}{ABIPLinSysWork}} *p, \mbox{\hyperlink{struct_a_b_i_p___a___d_a_t_a___m_a_t_r_i_x}{ABIPMatrix}} *\mbox{\hyperlink{abip__direct_8m_a505587068efcde0cc482e8c40e756ede}{A}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *\mbox{\hyperlink{abip__direct_8m_ad4fac5754ba897e2bd99db24b75a909a}{b}} );}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00071}00071 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00072}00072 \}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00073}00073 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{abip__pardiso_8h_source_l00076}00076 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* abip\_pardiso\_h */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

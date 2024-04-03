@@ -1,0 +1,117 @@
+\hypertarget{ldl_8c}{}\doxysection{external/ldl/ldl.c File Reference}
+\label{ldl_8c}\index{external/ldl/ldl.c@{external/ldl/ldl.c}}
+{\ttfamily \#include \char`\"{}ldl.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ldl_8c_a968f41d4b438d80906451f884d6acfb8}{LDL\+\_\+symbolic}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ap\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Parent\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lnz\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Flag\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Pinv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} \mbox{\hyperlink{ldl_8c_adbdb0689fa270954591d325e920f9216}{LDL\+\_\+numeric}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ap\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ai\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{abip__direct_8m_a6f38c508d6eaa93690533c1e2af0443f}{Ax}}\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Parent\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lnz\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Li\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Lx\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} D\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Y\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Pattern\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Flag\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Pinv\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ldl_8c_a9f5fa1561e6e0338b3d80afc18a0b2ba}{LDL\+\_\+lsolve}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} X\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Li\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Lx\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ldl_8c_ab97f12bda33dd286c91efb96e3b95995}{LDL\+\_\+dsolve}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} X\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} D\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ldl_8c_a2ae045b1e2f65781ffe78081af3a9900}{LDL\+\_\+ltsolve}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} X\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Lp\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Li\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} Lx\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ldl_8c_ad1eccebf53bb99cab11cfef3bd84ecf8}{LDL\+\_\+perm}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} X\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} B\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} P\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ldl_8c_a49277c29fad99401d5ddf174676e99aa}{LDL\+\_\+permt}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} X\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} B\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} P\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} \mbox{\hyperlink{ldl_8c_a6d577188d21bacfc010e270056d89050}{LDL\+\_\+valid\+\_\+perm}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} P\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Flag\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} \mbox{\hyperlink{ldl_8c_a140c22324c4a9dab7f407dfbfb840862}{LDL\+\_\+valid\+\_\+matrix}} (\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} n, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ap\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} Ai\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ldl_8c_ab97f12bda33dd286c91efb96e3b95995}\label{ldl_8c_ab97f12bda33dd286c91efb96e3b95995}} 
+\index{ldl.c@{ldl.c}!LDL\_dsolve@{LDL\_dsolve}}
+\index{LDL\_dsolve@{LDL\_dsolve}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_dsolve()}{LDL\_dsolve()}}
+{\footnotesize\ttfamily void LDL\+\_\+dsolve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{X\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{D\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00385}{385}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a9f5fa1561e6e0338b3d80afc18a0b2ba}\label{ldl_8c_a9f5fa1561e6e0338b3d80afc18a0b2ba}} 
+\index{ldl.c@{ldl.c}!LDL\_lsolve@{LDL\_lsolve}}
+\index{LDL\_lsolve@{LDL\_lsolve}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_lsolve()}{LDL\_lsolve()}}
+{\footnotesize\ttfamily void LDL\+\_\+lsolve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{X\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Li\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Lx\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00357}{357}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a2ae045b1e2f65781ffe78081af3a9900}\label{ldl_8c_a2ae045b1e2f65781ffe78081af3a9900}} 
+\index{ldl.c@{ldl.c}!LDL\_ltsolve@{LDL\_ltsolve}}
+\index{LDL\_ltsolve@{LDL\_ltsolve}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_ltsolve()}{LDL\_ltsolve()}}
+{\footnotesize\ttfamily void LDL\+\_\+ltsolve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{X\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Li\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Lx\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00431}{431}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_adbdb0689fa270954591d325e920f9216}\label{ldl_8c_adbdb0689fa270954591d325e920f9216}} 
+\index{ldl.c@{ldl.c}!LDL\_numeric@{LDL\_numeric}}
+\index{LDL\_numeric@{LDL\_numeric}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_numeric()}{LDL\_numeric()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} LDL\+\_\+numeric (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Ax\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Parent\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lnz\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Li\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Lx\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{D\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{Y\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Pattern\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Flag\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Pinv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00262}{262}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_ad1eccebf53bb99cab11cfef3bd84ecf8}\label{ldl_8c_ad1eccebf53bb99cab11cfef3bd84ecf8}} 
+\index{ldl.c@{ldl.c}!LDL\_perm@{LDL\_perm}}
+\index{LDL\_perm@{LDL\_perm}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_perm()}{LDL\_perm()}}
+{\footnotesize\ttfamily void LDL\+\_\+perm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{X\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{B\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{P\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00459}{459}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a49277c29fad99401d5ddf174676e99aa}\label{ldl_8c_a49277c29fad99401d5ddf174676e99aa}} 
+\index{ldl.c@{ldl.c}!LDL\_permt@{LDL\_permt}}
+\index{LDL\_permt@{LDL\_permt}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_permt()}{LDL\_permt()}}
+{\footnotesize\ttfamily void LDL\+\_\+permt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{X\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{B\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{P\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00506}{506}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a968f41d4b438d80906451f884d6acfb8}\label{ldl_8c_a968f41d4b438d80906451f884d6acfb8}} 
+\index{ldl.c@{ldl.c}!LDL\_symbolic@{LDL\_symbolic}}
+\index{LDL\_symbolic@{LDL\_symbolic}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_symbolic()}{LDL\_symbolic()}}
+{\footnotesize\ttfamily void LDL\+\_\+symbolic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ai\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lp\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Parent\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Lnz\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Flag\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Pinv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00187}{187}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a140c22324c4a9dab7f407dfbfb840862}\label{ldl_8c_a140c22324c4a9dab7f407dfbfb840862}} 
+\index{ldl.c@{ldl.c}!LDL\_valid\_matrix@{LDL\_valid\_matrix}}
+\index{LDL\_valid\_matrix@{LDL\_valid\_matrix}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_valid\_matrix()}{LDL\_valid\_matrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} LDL\+\_\+valid\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ap\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Ai\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00603}{603}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+
+\mbox{\Hypertarget{ldl_8c_a6d577188d21bacfc010e270056d89050}\label{ldl_8c_a6d577188d21bacfc010e270056d89050}} 
+\index{ldl.c@{ldl.c}!LDL\_valid\_perm@{LDL\_valid\_perm}}
+\index{LDL\_valid\_perm@{LDL\_valid\_perm}!ldl.c@{ldl.c}}
+\doxysubsubsection{\texorpdfstring{LDL\_valid\_perm()}{LDL\_valid\_perm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}} LDL\+\_\+valid\+\_\+perm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{n,  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{P\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{ldl_8h_a37398df0403c7166d627e88635f8ed85}{LDL\+\_\+int}}}]{Flag\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ldl_8c_source_l00553}{553}} of file \mbox{\hyperlink{ldl_8c_source}{ldl.\+c}}.
+

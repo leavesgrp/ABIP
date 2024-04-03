@@ -1,0 +1,195 @@
+\hypertarget{svm__config_8h}{}\doxysection{include/svm\+\_\+config.h File Reference}
+\label{svm__config_8h}\index{include/svm\_config.h@{include/svm\_config.h}}
+{\ttfamily \#include \char`\"{}glbopts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}amatrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linsys.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_svm}{Svm}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_svm}{Svm}} \mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__config_8h_a1f41c19913ab881bb804ac173adf86eb}{init\+\_\+svm}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$$\ast$gen\+\_\+svm, \mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$d, \mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$stgs)
+\begin{DoxyCompactList}\small\item\em Initialize the svm socp formulation structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_a44d7af45b93a7997a5deae8b3b02db11}{scaling\+\_\+svm\+\_\+data}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$k)
+\begin{DoxyCompactList}\small\item\em Customized scaling procedure for the svm socp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_afa9d5584a64f329fd57f9d86b4264a50}{un\+\_\+scaling\+\_\+svm\+\_\+sol}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Get the unscaled solution of the original svm problem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_a872c80eb518d9413b6b2df34b6eb7e96}{calc\+\_\+svm\+\_\+residuals}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w, \mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$r, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} ipm\+\_\+iter, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} admm\+\_\+iter)
+\begin{DoxyCompactList}\small\item\em Calculate the residuals of the svm socp formulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__config_8h_a955caaa5da66641cfed42f68e8d2326d}{init\+\_\+svm\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Initialize the linear system solver work space for the svm socp formulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} \mbox{\hyperlink{svm__config_8h_afcef34469bfe21fab013c9103ce8df73}{solve\+\_\+svm\+\_\+linsys}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$b, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$pcg\+\_\+warm\+\_\+start, \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} iter, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} error\+\_\+ratio)
+\begin{DoxyCompactList}\small\item\em Customized linear system solver for the svm socp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_a8e22103fb04bafa180e2ad092173d2cb}{free\+\_\+svm\+\_\+linsys\+\_\+work}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}})
+\begin{DoxyCompactList}\small\item\em Free the linear system solver work space for the svm socp formulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_a56d0adce551ae778d63bedb5ae8ca6da}{svm\+\_\+\+A\+\_\+times}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the svm socp formulation with A untransposed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{svm__config_8h_ada03a83787c7ba5f820cca35dd89b40d}{svm\+\_\+\+AT\+\_\+times}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$x, \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$y)
+\begin{DoxyCompactList}\small\item\em Customized matrix-\/vector multiplication for the svm socp formulation with A transposed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} \mbox{\hyperlink{svm__config_8h_ae829303cc34d579d6af7d14a031dfaf3}{svm\+\_\+inner\+\_\+conv\+\_\+check}} (\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$\mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}, \mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$w)
+\begin{DoxyCompactList}\small\item\em Check whether the inner loop of the svm socp formulation has converged. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}\label{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}} 
+\index{svm\_config.h@{svm\_config.h}!svm@{svm}}
+\index{svm@{svm}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{svm}{svm}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_svm}{Svm}} \mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}}}
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8h_source_l00012}{12}} of file \mbox{\hyperlink{svm__config_8h_source}{svm\+\_\+config.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{svm__config_8h_a872c80eb518d9413b6b2df34b6eb7e96}\label{svm__config_8h_a872c80eb518d9413b6b2df34b6eb7e96}} 
+\index{svm\_config.h@{svm\_config.h}!calc\_svm\_residuals@{calc\_svm\_residuals}}
+\index{calc\_svm\_residuals@{calc\_svm\_residuals}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{calc\_svm\_residuals()}{calc\_svm\_residuals()}}
+{\footnotesize\ttfamily void calc\+\_\+svm\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w,  }\item[{\mbox{\hyperlink{abip_8h_a9fe5ada87fe03b48da4ab774b440a5a8}{ABIPResiduals}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{ipm\+\_\+iter,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{admm\+\_\+iter }\end{DoxyParamCaption})}
+
+
+
+Calculate the residuals of the svm socp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00445}{445}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_a8e22103fb04bafa180e2ad092173d2cb}\label{svm__config_8h_a8e22103fb04bafa180e2ad092173d2cb}} 
+\index{svm\_config.h@{svm\_config.h}!free\_svm\_linsys\_work@{free\_svm\_linsys\_work}}
+\index{free\_svm\_linsys\_work@{free\_svm\_linsys\_work}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{free\_svm\_linsys\_work()}{free\_svm\_linsys\_work()}}
+{\footnotesize\ttfamily void free\+\_\+svm\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Free the linear system solver work space for the svm socp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00812}{812}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_a1f41c19913ab881bb804ac173adf86eb}\label{svm__config_8h_a1f41c19913ab881bb804ac173adf86eb}} 
+\index{svm\_config.h@{svm\_config.h}!init\_svm@{init\_svm}}
+\index{init\_svm@{init\_svm}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{init\_svm()}{init\_svm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+svm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$$\ast$}]{gen\+\_\+svm,  }\item[{\mbox{\hyperlink{abip_8h_a4cec75609b3626b983bd0374e13c83f7}{ABIPData}} $\ast$}]{d,  }\item[{\mbox{\hyperlink{abip_8h_a45d71dd1b8ed11bb7d8a9a30e95e1b62}{ABIPSettings}} $\ast$}]{stgs }\end{DoxyParamCaption})}
+
+
+
+Initialize the svm socp formulation structure. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00008}{8}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_a955caaa5da66641cfed42f68e8d2326d}\label{svm__config_8h_a955caaa5da66641cfed42f68e8d2326d}} 
+\index{svm\_config.h@{svm\_config.h}!init\_svm\_linsys\_work@{init\_svm\_linsys\_work}}
+\index{init\_svm\_linsys\_work@{init\_svm\_linsys\_work}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{init\_svm\_linsys\_work()}{init\_svm\_linsys\_work()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} init\+\_\+svm\+\_\+linsys\+\_\+work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the linear system solver work space for the svm socp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00702}{702}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_a44d7af45b93a7997a5deae8b3b02db11}\label{svm__config_8h_a44d7af45b93a7997a5deae8b3b02db11}} 
+\index{svm\_config.h@{svm\_config.h}!scaling\_svm\_data@{scaling\_svm\_data}}
+\index{scaling\_svm\_data@{scaling\_svm\_data}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{scaling\_svm\_data()}{scaling\_svm\_data()}}
+{\footnotesize\ttfamily void scaling\+\_\+svm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a64ad344c256f3963c12771d9add09c37}{ABIPCone}} $\ast$}]{k }\end{DoxyParamCaption})}
+
+
+
+Customized scaling procedure for the svm socp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00283}{283}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_afcef34469bfe21fab013c9103ce8df73}\label{svm__config_8h_afcef34469bfe21fab013c9103ce8df73}} 
+\index{svm\_config.h@{svm\_config.h}!solve\_svm\_linsys@{solve\_svm\_linsys}}
+\index{solve\_svm\_linsys@{solve\_svm\_linsys}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{solve\_svm\_linsys()}{solve\_svm\_linsys()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}} solve\+\_\+svm\+\_\+linsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{pcg\+\_\+warm\+\_\+start,  }\item[{\mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}]{iter,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}]{error\+\_\+ratio }\end{DoxyParamCaption})}
+
+
+
+Customized linear system solver for the svm socp formulation. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00728}{728}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_a56d0adce551ae778d63bedb5ae8ca6da}\label{svm__config_8h_a56d0adce551ae778d63bedb5ae8ca6da}} 
+\index{svm\_config.h@{svm\_config.h}!svm\_A\_times@{svm\_A\_times}}
+\index{svm\_A\_times@{svm\_A\_times}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{svm\_A\_times()}{svm\_A\_times()}}
+{\footnotesize\ttfamily void svm\+\_\+\+A\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the svm socp formulation with A untransposed. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00175}{175}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_ada03a83787c7ba5f820cca35dd89b40d}\label{svm__config_8h_ada03a83787c7ba5f820cca35dd89b40d}} 
+\index{svm\_config.h@{svm\_config.h}!svm\_AT\_times@{svm\_AT\_times}}
+\index{svm\_AT\_times@{svm\_AT\_times}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{svm\_AT\_times()}{svm\_AT\_times()}}
+{\footnotesize\ttfamily void svm\+\_\+\+AT\+\_\+times (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{const \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Customized matrix-\/vector multiplication for the svm socp formulation with A transposed. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00202}{202}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_ae829303cc34d579d6af7d14a031dfaf3}\label{svm__config_8h_ae829303cc34d579d6af7d14a031dfaf3}} 
+\index{svm\_config.h@{svm\_config.h}!svm\_inner\_conv\_check@{svm\_inner\_conv\_check}}
+\index{svm\_inner\_conv\_check@{svm\_inner\_conv\_check}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{svm\_inner\_conv\_check()}{svm\_inner\_conv\_check()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}} svm\+\_\+inner\+\_\+conv\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_a2b376d68f2c2468a7d3d2d19b05ab651}{ABIPWork}} $\ast$}]{w }\end{DoxyParamCaption})}
+
+
+
+Check whether the inner loop of the svm socp formulation has converged. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00234}{234}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+
+\mbox{\Hypertarget{svm__config_8h_afa9d5584a64f329fd57f9d86b4264a50}\label{svm__config_8h_afa9d5584a64f329fd57f9d86b4264a50}} 
+\index{svm\_config.h@{svm\_config.h}!un\_scaling\_svm\_sol@{un\_scaling\_svm\_sol}}
+\index{un\_scaling\_svm\_sol@{un\_scaling\_svm\_sol}!svm\_config.h@{svm\_config.h}}
+\doxysubsubsection{\texorpdfstring{un\_scaling\_svm\_sol()}{un\_scaling\_svm\_sol()}}
+{\footnotesize\ttfamily void un\+\_\+scaling\+\_\+svm\+\_\+sol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svm__config_8h_ad470261a3c5d6b5876527b8b9d190f28}{svm}} $\ast$}]{self,  }\item[{\mbox{\hyperlink{abip_8h_ad9157802852c68d8719ff96d2945a8f0}{ABIPSolution}} $\ast$}]{sol }\end{DoxyParamCaption})}
+
+
+
+Get the unscaled solution of the original svm problem. 
+
+
+
+Definition at line \mbox{\hyperlink{svm__config_8c_source_l00413}{413}} of file \mbox{\hyperlink{svm__config_8c_source}{svm\+\_\+config.\+c}}.
+

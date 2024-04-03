@@ -1,0 +1,719 @@
+\hypertarget{glbopts_8h}{}\doxysection{include/glbopts.h File Reference}
+\label{glbopts_8h}\index{include/glbopts.h@{include/glbopts.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}{ABIP}}(x)~abip\+\_\+\#\#x
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_aed03cf43b77bd494f8686de4608ebe01}{ABIP\+\_\+\+VERSION}}~  (\char`\"{}2.\+0.\+0\char`\"{}) /$\ast$ string literals automatically null-\/terminated $\ast$/
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a377d35f388c40b9c6d2fe0885a0d51c5}{ABIP\+\_\+\+INFEASIBLE\+\_\+\+INACCURATE}}~(-\/7)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ab0c4dbdb34ab50401413d6b59e2c0d8d}{ABIP\+\_\+\+UNBOUNDED\+\_\+\+INACCURATE}}~(-\/6)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a5ce7155e7ccab21936c5f33587071898}{ABIP\+\_\+\+SIGINT}}~(-\/5)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_abdf832542abc004c044a3a77b7953a0b}{ABIP\+\_\+\+FAILED}}~(-\/4)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_aa69e51089d3210ef65ea9e1e980c0656}{ABIP\+\_\+\+INDETERMINATE}}~(-\/3)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_adbefab5c0866849ad8d9da6d759b9770}{ABIP\+\_\+\+INFEASIBLE}}~(-\/2)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a0b0ae45cf4ca0711f6085a143dc66faf}{ABIP\+\_\+\+UNBOUNDED}}~(-\/1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ab621bf53fde52d206337013bc344027b}{ABIP\+\_\+\+UNFINISHED}}~(0)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a9b9c03f341c92e1bd5a7cb9eda0cf712}{ABIP\+\_\+\+SOLVED}}~(1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a2eeef2b4c5ba7d70e08adf2e2aa36565}{ABIP\+\_\+\+SOLVED\+\_\+\+INACCURATE}}~(2)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a79b42a285d76a6b8fea67565fbb85572}{ABIP\+\_\+\+UNSOLVED}}~(3)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ab899f53048f1f06a224b5eb1fa369750}{SIGMA}}~(0.\+8)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a8659b9de3e544ff142b153b076f30fd5}{GAMMA}}~(1.\+6)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ace4a94c7f3ba6ca288986cbdc6dc420a}{MAX\+\_\+\+IPM\+\_\+\+ITERS}}~(500)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_adb781b748be23cf47e14229754b54ccd}{MAX\+\_\+\+ADMM\+\_\+\+ITERS}}~(10000000)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}{EPS}}~(1E-\/3)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_af5abd28c44c29b7397c84f1fec4b1d84}{ALPHA}}~(1.\+8)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a12bfb0313e34bbbe9b0d083d8249655b}{CG\+\_\+\+RATE}}~(2.\+0)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a4582d3bdac0c75af09e18b19895f5d2a}{CG\+\_\+\+BEST\+\_\+\+TOL}}~(1e-\/9)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_abc4e2adcba8fe527e9ec77f7746fe8eb}{CG\+\_\+\+MIN\+\_\+\+TOL}}~(1e-\/5)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a29cf2d41341c861a02125541ee1c9368}{NORMALIZE}}~(1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a0cbea62f1ce2043dd08108e65ed8de1d}{SCALE}}~(1.\+0)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a16e20738fcaf832adad13641d7b7b8b4}{SPARSITY\+\_\+\+RATIO}}~(0.\+01)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a3b3b811b2e8bc357be8f81cef34b1707}{RHO\+\_\+Y}}~(1E-\/3)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a464391e568178aa10799bce40d9a7792}{ADAPTIVE}}~(1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a7a2686c17aa36e243cdf3e04c6795621}{EPS\+\_\+\+COR}}~(0.\+2)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ab23999cea61269a6ce67eb7bc0b08a94}{EPS\+\_\+\+PEN}}~(0.\+1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ac3f20027de8e67abebbd8299b2fb770b}{ADAPTIVE\+\_\+\+LOOKBACK}}~(20)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a42f8c497a1968074f38bf5055c650dca}{VERBOSE}}~(1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a2117977538fc37cd5f66997e2cfc89bf}{WARM\+\_\+\+START}}~(0)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a20d4b2668d2cdff38153e0ba62df6a11}{CONE\+\_\+\+TOL}}~(1e-\/8)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}{abip\+\_\+printf}}~printf
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a24fe747589cbd8e1bc42ea8519f80ba3}{\+\_\+abip\+\_\+free}}~free
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a70eef5206777c5ca7413f495573608b5}{\+\_\+abip\+\_\+malloc}}~malloc
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}{\+\_\+abip\+\_\+calloc}}~calloc
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}{\+\_\+abip\+\_\+realloc}}~realloc
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}{abip\+\_\+free}}(x)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a016483b740c4496aabd3926bfefe686f}{abip\+\_\+malloc}}(x)~\mbox{\hyperlink{glbopts_8h_a70eef5206777c5ca7413f495573608b5}{\+\_\+abip\+\_\+malloc}}(x)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}{abip\+\_\+calloc}}(x,  y)~\mbox{\hyperlink{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}{\+\_\+abip\+\_\+calloc}}(x, y)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_af7d18de888226d0ab9e248889d7516ab}{abip\+\_\+realloc}}(x,  y)~\mbox{\hyperlink{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}{\+\_\+abip\+\_\+realloc}}(x, y)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}{NAN}}~((\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}})0x7ff8000000000000)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a956e2723d559858d08644ac99146e910}{INFINITY}}~\mbox{\hyperlink{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}{NAN}}
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\+\_\+\+NULL}}~0
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{MAX}}(a,  b)~(((a) $>$ (b)) ? (a) \+: (b))
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{MIN}}(a,  b)~(((a) $<$ (b)) ? (a) \+: (b))
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a996f7be338ccb40d1a2a5abc1ad61759}{ABS}}(x)~(((x) $<$ 0) ? -\/(x) \+: (x))
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a5eb338b58f3b23067d6a87b00eca4971}{POWF}}~pow
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a3b9d7d973bd11c5ad12d329c6ea8b308}{SQRTF}}~sqrt
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a94c324ab9e9283e9ec9324baf52f8a71}{DEBUG\+\_\+\+FUNC}}
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a6a0e6b80dd3d5ca395cf58151749f5e2}{RETURN}}~return
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{EPS\+\_\+\+TOL}}~(1E-\/18)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a274d5c6f0e4fc5e150e00e52a3f79a32}{SAFEDIV\+\_\+\+POS}}(X,  Y)~((Y) $<$ \mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{EPS\+\_\+\+TOL}} ? ((X) / \mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{EPS\+\_\+\+TOL}}) \+: (X) / (Y))
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a4e4b717291d0110b79e2efb2e8499c55}{CONVERGED\+\_\+\+INTERVAL}}~(1)
+\item 
+\#define \mbox{\hyperlink{glbopts_8h_a94f5bbb85116b138ba46912456f4b5e4}{INDETERMINATE\+\_\+\+TOL}}~(1e-\/9)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}
+\item 
+typedef double \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}\label{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}} 
+\index{glbopts.h@{glbopts.h}!\_abip\_calloc@{\_abip\_calloc}}
+\index{\_abip\_calloc@{\_abip\_calloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{\_abip\_calloc}{\_abip\_calloc}}
+{\footnotesize\ttfamily \#define \+\_\+abip\+\_\+calloc~calloc}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00080}{80}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a24fe747589cbd8e1bc42ea8519f80ba3}\label{glbopts_8h_a24fe747589cbd8e1bc42ea8519f80ba3}} 
+\index{glbopts.h@{glbopts.h}!\_abip\_free@{\_abip\_free}}
+\index{\_abip\_free@{\_abip\_free}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{\_abip\_free}{\_abip\_free}}
+{\footnotesize\ttfamily \#define \+\_\+abip\+\_\+free~free}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00078}{78}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a70eef5206777c5ca7413f495573608b5}\label{glbopts_8h_a70eef5206777c5ca7413f495573608b5}} 
+\index{glbopts.h@{glbopts.h}!\_abip\_malloc@{\_abip\_malloc}}
+\index{\_abip\_malloc@{\_abip\_malloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{\_abip\_malloc}{\_abip\_malloc}}
+{\footnotesize\ttfamily \#define \+\_\+abip\+\_\+malloc~malloc}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00079}{79}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}\label{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}} 
+\index{glbopts.h@{glbopts.h}!\_abip\_realloc@{\_abip\_realloc}}
+\index{\_abip\_realloc@{\_abip\_realloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{\_abip\_realloc}{\_abip\_realloc}}
+{\footnotesize\ttfamily \#define \+\_\+abip\+\_\+realloc~realloc}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00081}{81}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}\label{glbopts_8h_a7aa92d3ed179f2b3cf7a45e28918267f}} 
+\index{glbopts.h@{glbopts.h}!ABIP@{ABIP}}
+\index{ABIP@{ABIP}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP}{ABIP}}
+{\footnotesize\ttfamily \#define ABIP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~abip\+\_\+\#\#x}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00013}{13}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}\label{glbopts_8h_ac0c98696c50539fe534f8a4bd7786528}} 
+\index{glbopts.h@{glbopts.h}!abip\_calloc@{abip\_calloc}}
+\index{abip\_calloc@{abip\_calloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_calloc}{abip\_calloc}}
+{\footnotesize\ttfamily \#define abip\+\_\+calloc(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\mbox{\hyperlink{glbopts_8h_a338f6cbafc1feb920b7654a05323a940}{\+\_\+abip\+\_\+calloc}}(x, y)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00088}{88}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_abdf832542abc004c044a3a77b7953a0b}\label{glbopts_8h_abdf832542abc004c044a3a77b7953a0b}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_FAILED@{ABIP\_FAILED}}
+\index{ABIP\_FAILED@{ABIP\_FAILED}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_FAILED}{ABIP\_FAILED}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+FAILED~(-\/4)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00023}{23}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}\label{glbopts_8h_a9284e3e2b6b1360ab920b37c3b5760d3}} 
+\index{glbopts.h@{glbopts.h}!abip\_free@{abip\_free}}
+\index{abip\_free@{abip\_free}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_free}{abip\_free}}
+{\footnotesize\ttfamily \#define abip\+\_\+free(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{      \mbox{\hyperlink{glbopts_8h_a24fe747589cbd8e1bc42ea8519f80ba3}{\_abip\_free}}(x);          \(\backslash\)}
+\DoxyCodeLine{      x = \mbox{\hyperlink{glbopts_8h_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00084}{84}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_aa69e51089d3210ef65ea9e1e980c0656}\label{glbopts_8h_aa69e51089d3210ef65ea9e1e980c0656}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_INDETERMINATE@{ABIP\_INDETERMINATE}}
+\index{ABIP\_INDETERMINATE@{ABIP\_INDETERMINATE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_INDETERMINATE}{ABIP\_INDETERMINATE}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+INDETERMINATE~(-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00024}{24}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_adbefab5c0866849ad8d9da6d759b9770}\label{glbopts_8h_adbefab5c0866849ad8d9da6d759b9770}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_INFEASIBLE@{ABIP\_INFEASIBLE}}
+\index{ABIP\_INFEASIBLE@{ABIP\_INFEASIBLE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_INFEASIBLE}{ABIP\_INFEASIBLE}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+INFEASIBLE~(-\/2)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00025}{25}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a377d35f388c40b9c6d2fe0885a0d51c5}\label{glbopts_8h_a377d35f388c40b9c6d2fe0885a0d51c5}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_INFEASIBLE\_INACCURATE@{ABIP\_INFEASIBLE\_INACCURATE}}
+\index{ABIP\_INFEASIBLE\_INACCURATE@{ABIP\_INFEASIBLE\_INACCURATE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_INFEASIBLE\_INACCURATE}{ABIP\_INFEASIBLE\_INACCURATE}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+INFEASIBLE\+\_\+\+INACCURATE~(-\/7)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00020}{20}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a016483b740c4496aabd3926bfefe686f}\label{glbopts_8h_a016483b740c4496aabd3926bfefe686f}} 
+\index{glbopts.h@{glbopts.h}!abip\_malloc@{abip\_malloc}}
+\index{abip\_malloc@{abip\_malloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_malloc}{abip\_malloc}}
+{\footnotesize\ttfamily \#define abip\+\_\+malloc(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\mbox{\hyperlink{glbopts_8h_a70eef5206777c5ca7413f495573608b5}{\+\_\+abip\+\_\+malloc}}(x)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00087}{87}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_adae2a4e360bd77801ffccfc6288f97c5}\label{glbopts_8h_adae2a4e360bd77801ffccfc6288f97c5}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_NULL@{ABIP\_NULL}}
+\index{ABIP\_NULL@{ABIP\_NULL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_NULL}{ABIP\_NULL}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+NULL~0}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00135}{135}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}\label{glbopts_8h_a57e351e88d1c80b131d88c5b422a555a}} 
+\index{glbopts.h@{glbopts.h}!abip\_printf@{abip\_printf}}
+\index{abip\_printf@{abip\_printf}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_printf}{abip\_printf}}
+{\footnotesize\ttfamily \#define abip\+\_\+printf~printf}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00077}{77}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_af7d18de888226d0ab9e248889d7516ab}\label{glbopts_8h_af7d18de888226d0ab9e248889d7516ab}} 
+\index{glbopts.h@{glbopts.h}!abip\_realloc@{abip\_realloc}}
+\index{abip\_realloc@{abip\_realloc}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_realloc}{abip\_realloc}}
+{\footnotesize\ttfamily \#define abip\+\_\+realloc(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\mbox{\hyperlink{glbopts_8h_a742c11545af0a001a573c9dbc96c0c22}{\+\_\+abip\+\_\+realloc}}(x, y)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00089}{89}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a5ce7155e7ccab21936c5f33587071898}\label{glbopts_8h_a5ce7155e7ccab21936c5f33587071898}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_SIGINT@{ABIP\_SIGINT}}
+\index{ABIP\_SIGINT@{ABIP\_SIGINT}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_SIGINT}{ABIP\_SIGINT}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+SIGINT~(-\/5)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00022}{22}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a9b9c03f341c92e1bd5a7cb9eda0cf712}\label{glbopts_8h_a9b9c03f341c92e1bd5a7cb9eda0cf712}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_SOLVED@{ABIP\_SOLVED}}
+\index{ABIP\_SOLVED@{ABIP\_SOLVED}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_SOLVED}{ABIP\_SOLVED}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+SOLVED~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00028}{28}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a2eeef2b4c5ba7d70e08adf2e2aa36565}\label{glbopts_8h_a2eeef2b4c5ba7d70e08adf2e2aa36565}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_SOLVED\_INACCURATE@{ABIP\_SOLVED\_INACCURATE}}
+\index{ABIP\_SOLVED\_INACCURATE@{ABIP\_SOLVED\_INACCURATE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_SOLVED\_INACCURATE}{ABIP\_SOLVED\_INACCURATE}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+SOLVED\+\_\+\+INACCURATE~(2)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00029}{29}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a0b0ae45cf4ca0711f6085a143dc66faf}\label{glbopts_8h_a0b0ae45cf4ca0711f6085a143dc66faf}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_UNBOUNDED@{ABIP\_UNBOUNDED}}
+\index{ABIP\_UNBOUNDED@{ABIP\_UNBOUNDED}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_UNBOUNDED}{ABIP\_UNBOUNDED}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+UNBOUNDED~(-\/1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00026}{26}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ab0c4dbdb34ab50401413d6b59e2c0d8d}\label{glbopts_8h_ab0c4dbdb34ab50401413d6b59e2c0d8d}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_UNBOUNDED\_INACCURATE@{ABIP\_UNBOUNDED\_INACCURATE}}
+\index{ABIP\_UNBOUNDED\_INACCURATE@{ABIP\_UNBOUNDED\_INACCURATE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_UNBOUNDED\_INACCURATE}{ABIP\_UNBOUNDED\_INACCURATE}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+UNBOUNDED\+\_\+\+INACCURATE~(-\/6)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00021}{21}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ab621bf53fde52d206337013bc344027b}\label{glbopts_8h_ab621bf53fde52d206337013bc344027b}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_UNFINISHED@{ABIP\_UNFINISHED}}
+\index{ABIP\_UNFINISHED@{ABIP\_UNFINISHED}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_UNFINISHED}{ABIP\_UNFINISHED}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+UNFINISHED~(0)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00027}{27}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a79b42a285d76a6b8fea67565fbb85572}\label{glbopts_8h_a79b42a285d76a6b8fea67565fbb85572}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_UNSOLVED@{ABIP\_UNSOLVED}}
+\index{ABIP\_UNSOLVED@{ABIP\_UNSOLVED}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_UNSOLVED}{ABIP\_UNSOLVED}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+UNSOLVED~(3)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00030}{30}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_aed03cf43b77bd494f8686de4608ebe01}\label{glbopts_8h_aed03cf43b77bd494f8686de4608ebe01}} 
+\index{glbopts.h@{glbopts.h}!ABIP\_VERSION@{ABIP\_VERSION}}
+\index{ABIP\_VERSION@{ABIP\_VERSION}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABIP\_VERSION}{ABIP\_VERSION}}
+{\footnotesize\ttfamily \#define ABIP\+\_\+\+VERSION~  (\char`\"{}2.\+0.\+0\char`\"{}) /$\ast$ string literals automatically null-\/terminated $\ast$/}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00017}{17}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a996f7be338ccb40d1a2a5abc1ad61759}\label{glbopts_8h_a996f7be338ccb40d1a2a5abc1ad61759}} 
+\index{glbopts.h@{glbopts.h}!ABS@{ABS}}
+\index{ABS@{ABS}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ABS}{ABS}}
+{\footnotesize\ttfamily \#define ABS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) $<$ 0) ? -\/(x) \+: (x))}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00146}{146}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a464391e568178aa10799bce40d9a7792}\label{glbopts_8h_a464391e568178aa10799bce40d9a7792}} 
+\index{glbopts.h@{glbopts.h}!ADAPTIVE@{ADAPTIVE}}
+\index{ADAPTIVE@{ADAPTIVE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ADAPTIVE}{ADAPTIVE}}
+{\footnotesize\ttfamily \#define ADAPTIVE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00045}{45}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ac3f20027de8e67abebbd8299b2fb770b}\label{glbopts_8h_ac3f20027de8e67abebbd8299b2fb770b}} 
+\index{glbopts.h@{glbopts.h}!ADAPTIVE\_LOOKBACK@{ADAPTIVE\_LOOKBACK}}
+\index{ADAPTIVE\_LOOKBACK@{ADAPTIVE\_LOOKBACK}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ADAPTIVE\_LOOKBACK}{ADAPTIVE\_LOOKBACK}}
+{\footnotesize\ttfamily \#define ADAPTIVE\+\_\+\+LOOKBACK~(20)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00048}{48}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_af5abd28c44c29b7397c84f1fec4b1d84}\label{glbopts_8h_af5abd28c44c29b7397c84f1fec4b1d84}} 
+\index{glbopts.h@{glbopts.h}!ALPHA@{ALPHA}}
+\index{ALPHA@{ALPHA}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{ALPHA}{ALPHA}}
+{\footnotesize\ttfamily \#define ALPHA~(1.\+8)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00037}{37}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a4582d3bdac0c75af09e18b19895f5d2a}\label{glbopts_8h_a4582d3bdac0c75af09e18b19895f5d2a}} 
+\index{glbopts.h@{glbopts.h}!CG\_BEST\_TOL@{CG\_BEST\_TOL}}
+\index{CG\_BEST\_TOL@{CG\_BEST\_TOL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{CG\_BEST\_TOL}{CG\_BEST\_TOL}}
+{\footnotesize\ttfamily \#define CG\+\_\+\+BEST\+\_\+\+TOL~(1e-\/9)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00039}{39}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_abc4e2adcba8fe527e9ec77f7746fe8eb}\label{glbopts_8h_abc4e2adcba8fe527e9ec77f7746fe8eb}} 
+\index{glbopts.h@{glbopts.h}!CG\_MIN\_TOL@{CG\_MIN\_TOL}}
+\index{CG\_MIN\_TOL@{CG\_MIN\_TOL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{CG\_MIN\_TOL}{CG\_MIN\_TOL}}
+{\footnotesize\ttfamily \#define CG\+\_\+\+MIN\+\_\+\+TOL~(1e-\/5)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00040}{40}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a12bfb0313e34bbbe9b0d083d8249655b}\label{glbopts_8h_a12bfb0313e34bbbe9b0d083d8249655b}} 
+\index{glbopts.h@{glbopts.h}!CG\_RATE@{CG\_RATE}}
+\index{CG\_RATE@{CG\_RATE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{CG\_RATE}{CG\_RATE}}
+{\footnotesize\ttfamily \#define CG\+\_\+\+RATE~(2.\+0)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00038}{38}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a20d4b2668d2cdff38153e0ba62df6a11}\label{glbopts_8h_a20d4b2668d2cdff38153e0ba62df6a11}} 
+\index{glbopts.h@{glbopts.h}!CONE\_TOL@{CONE\_TOL}}
+\index{CONE\_TOL@{CONE\_TOL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{CONE\_TOL}{CONE\_TOL}}
+{\footnotesize\ttfamily \#define CONE\+\_\+\+TOL~(1e-\/8)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00052}{52}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a4e4b717291d0110b79e2efb2e8499c55}\label{glbopts_8h_a4e4b717291d0110b79e2efb2e8499c55}} 
+\index{glbopts.h@{glbopts.h}!CONVERGED\_INTERVAL@{CONVERGED\_INTERVAL}}
+\index{CONVERGED\_INTERVAL@{CONVERGED\_INTERVAL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{CONVERGED\_INTERVAL}{CONVERGED\_INTERVAL}}
+{\footnotesize\ttfamily \#define CONVERGED\+\_\+\+INTERVAL~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00181}{181}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a94c324ab9e9283e9ec9324baf52f8a71}\label{glbopts_8h_a94c324ab9e9283e9ec9324baf52f8a71}} 
+\index{glbopts.h@{glbopts.h}!DEBUG\_FUNC@{DEBUG\_FUNC}}
+\index{DEBUG\_FUNC@{DEBUG\_FUNC}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_FUNC}{DEBUG\_FUNC}}
+{\footnotesize\ttfamily \#define DEBUG\+\_\+\+FUNC}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00174}{174}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}\label{glbopts_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}} 
+\index{glbopts.h@{glbopts.h}!EPS@{EPS}}
+\index{EPS@{EPS}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{EPS}{EPS}}
+{\footnotesize\ttfamily \#define EPS~(1E-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00036}{36}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a7a2686c17aa36e243cdf3e04c6795621}\label{glbopts_8h_a7a2686c17aa36e243cdf3e04c6795621}} 
+\index{glbopts.h@{glbopts.h}!EPS\_COR@{EPS\_COR}}
+\index{EPS\_COR@{EPS\_COR}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{EPS\_COR}{EPS\_COR}}
+{\footnotesize\ttfamily \#define EPS\+\_\+\+COR~(0.\+2)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00046}{46}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ab23999cea61269a6ce67eb7bc0b08a94}\label{glbopts_8h_ab23999cea61269a6ce67eb7bc0b08a94}} 
+\index{glbopts.h@{glbopts.h}!EPS\_PEN@{EPS\_PEN}}
+\index{EPS\_PEN@{EPS\_PEN}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{EPS\_PEN}{EPS\_PEN}}
+{\footnotesize\ttfamily \#define EPS\+\_\+\+PEN~(0.\+1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00047}{47}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}\label{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}} 
+\index{glbopts.h@{glbopts.h}!EPS\_TOL@{EPS\_TOL}}
+\index{EPS\_TOL@{EPS\_TOL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{EPS\_TOL}{EPS\_TOL}}
+{\footnotesize\ttfamily \#define EPS\+\_\+\+TOL~(1E-\/18)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00178}{178}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a8659b9de3e544ff142b153b076f30fd5}\label{glbopts_8h_a8659b9de3e544ff142b153b076f30fd5}} 
+\index{glbopts.h@{glbopts.h}!GAMMA@{GAMMA}}
+\index{GAMMA@{GAMMA}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{GAMMA}{GAMMA}}
+{\footnotesize\ttfamily \#define GAMMA~(1.\+6)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00032}{32}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a94f5bbb85116b138ba46912456f4b5e4}\label{glbopts_8h_a94f5bbb85116b138ba46912456f4b5e4}} 
+\index{glbopts.h@{glbopts.h}!INDETERMINATE\_TOL@{INDETERMINATE\_TOL}}
+\index{INDETERMINATE\_TOL@{INDETERMINATE\_TOL}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{INDETERMINATE\_TOL}{INDETERMINATE\_TOL}}
+{\footnotesize\ttfamily \#define INDETERMINATE\+\_\+\+TOL~(1e-\/9)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00182}{182}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a956e2723d559858d08644ac99146e910}\label{glbopts_8h_a956e2723d559858d08644ac99146e910}} 
+\index{glbopts.h@{glbopts.h}!INFINITY@{INFINITY}}
+\index{INFINITY@{INFINITY}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{INFINITY}{INFINITY}}
+{\footnotesize\ttfamily \#define INFINITY~\mbox{\hyperlink{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}{NAN}}}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00123}{123}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}\label{glbopts_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}} 
+\index{glbopts.h@{glbopts.h}!MAX@{MAX}}
+\index{MAX@{MAX}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define MAX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $>$ (b)) ? (a) \+: (b))}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00138}{138}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_adb781b748be23cf47e14229754b54ccd}\label{glbopts_8h_adb781b748be23cf47e14229754b54ccd}} 
+\index{glbopts.h@{glbopts.h}!MAX\_ADMM\_ITERS@{MAX\_ADMM\_ITERS}}
+\index{MAX\_ADMM\_ITERS@{MAX\_ADMM\_ITERS}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ADMM\_ITERS}{MAX\_ADMM\_ITERS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+ADMM\+\_\+\+ITERS~(10000000)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00035}{35}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ace4a94c7f3ba6ca288986cbdc6dc420a}\label{glbopts_8h_ace4a94c7f3ba6ca288986cbdc6dc420a}} 
+\index{glbopts.h@{glbopts.h}!MAX\_IPM\_ITERS@{MAX\_IPM\_ITERS}}
+\index{MAX\_IPM\_ITERS@{MAX\_IPM\_ITERS}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_IPM\_ITERS}{MAX\_IPM\_ITERS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+IPM\+\_\+\+ITERS~(500)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00034}{34}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\label{glbopts_8h_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{glbopts.h@{glbopts.h}!MIN@{MIN}}
+\index{MIN@{MIN}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define MIN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $<$ (b)) ? (a) \+: (b))}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00142}{142}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}\label{glbopts_8h_a8abfcc76130f3f991d124dd22d7e69bc}} 
+\index{glbopts.h@{glbopts.h}!NAN@{NAN}}
+\index{NAN@{NAN}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{NAN}{NAN}}
+{\footnotesize\ttfamily \#define NAN~((\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}})0x7ff8000000000000)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00120}{120}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a29cf2d41341c861a02125541ee1c9368}\label{glbopts_8h_a29cf2d41341c861a02125541ee1c9368}} 
+\index{glbopts.h@{glbopts.h}!NORMALIZE@{NORMALIZE}}
+\index{NORMALIZE@{NORMALIZE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{NORMALIZE}{NORMALIZE}}
+{\footnotesize\ttfamily \#define NORMALIZE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00041}{41}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a5eb338b58f3b23067d6a87b00eca4971}\label{glbopts_8h_a5eb338b58f3b23067d6a87b00eca4971}} 
+\index{glbopts.h@{glbopts.h}!POWF@{POWF}}
+\index{POWF@{POWF}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{POWF}{POWF}}
+{\footnotesize\ttfamily \#define POWF~pow}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00153}{153}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a6a0e6b80dd3d5ca395cf58151749f5e2}\label{glbopts_8h_a6a0e6b80dd3d5ca395cf58151749f5e2}} 
+\index{glbopts.h@{glbopts.h}!RETURN@{RETURN}}
+\index{RETURN@{RETURN}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{RETURN}{RETURN}}
+{\footnotesize\ttfamily \#define RETURN~return}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00175}{175}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a3b3b811b2e8bc357be8f81cef34b1707}\label{glbopts_8h_a3b3b811b2e8bc357be8f81cef34b1707}} 
+\index{glbopts.h@{glbopts.h}!RHO\_Y@{RHO\_Y}}
+\index{RHO\_Y@{RHO\_Y}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{RHO\_Y}{RHO\_Y}}
+{\footnotesize\ttfamily \#define RHO\+\_\+Y~(1E-\/3)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00044}{44}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a274d5c6f0e4fc5e150e00e52a3f79a32}\label{glbopts_8h_a274d5c6f0e4fc5e150e00e52a3f79a32}} 
+\index{glbopts.h@{glbopts.h}!SAFEDIV\_POS@{SAFEDIV\_POS}}
+\index{SAFEDIV\_POS@{SAFEDIV\_POS}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{SAFEDIV\_POS}{SAFEDIV\_POS}}
+{\footnotesize\ttfamily \#define SAFEDIV\+\_\+\+POS(\begin{DoxyParamCaption}\item[{}]{X,  }\item[{}]{Y }\end{DoxyParamCaption})~((Y) $<$ \mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{EPS\+\_\+\+TOL}} ? ((X) / \mbox{\hyperlink{glbopts_8h_aa55105ff5af42ab0fdd2cc08a47beebe}{EPS\+\_\+\+TOL}}) \+: (X) / (Y))}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00179}{179}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a0cbea62f1ce2043dd08108e65ed8de1d}\label{glbopts_8h_a0cbea62f1ce2043dd08108e65ed8de1d}} 
+\index{glbopts.h@{glbopts.h}!SCALE@{SCALE}}
+\index{SCALE@{SCALE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{SCALE}{SCALE}}
+{\footnotesize\ttfamily \#define SCALE~(1.\+0)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00042}{42}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_ab899f53048f1f06a224b5eb1fa369750}\label{glbopts_8h_ab899f53048f1f06a224b5eb1fa369750}} 
+\index{glbopts.h@{glbopts.h}!SIGMA@{SIGMA}}
+\index{SIGMA@{SIGMA}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{SIGMA}{SIGMA}}
+{\footnotesize\ttfamily \#define SIGMA~(0.\+8)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00031}{31}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a16e20738fcaf832adad13641d7b7b8b4}\label{glbopts_8h_a16e20738fcaf832adad13641d7b7b8b4}} 
+\index{glbopts.h@{glbopts.h}!SPARSITY\_RATIO@{SPARSITY\_RATIO}}
+\index{SPARSITY\_RATIO@{SPARSITY\_RATIO}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{SPARSITY\_RATIO}{SPARSITY\_RATIO}}
+{\footnotesize\ttfamily \#define SPARSITY\+\_\+\+RATIO~(0.\+01)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00043}{43}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a3b9d7d973bd11c5ad12d329c6ea8b308}\label{glbopts_8h_a3b9d7d973bd11c5ad12d329c6ea8b308}} 
+\index{glbopts.h@{glbopts.h}!SQRTF@{SQRTF}}
+\index{SQRTF@{SQRTF}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{SQRTF}{SQRTF}}
+{\footnotesize\ttfamily \#define SQRTF~sqrt}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00161}{161}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a42f8c497a1968074f38bf5055c650dca}\label{glbopts_8h_a42f8c497a1968074f38bf5055c650dca}} 
+\index{glbopts.h@{glbopts.h}!VERBOSE@{VERBOSE}}
+\index{VERBOSE@{VERBOSE}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{VERBOSE}{VERBOSE}}
+{\footnotesize\ttfamily \#define VERBOSE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00049}{49}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_a2117977538fc37cd5f66997e2cfc89bf}\label{glbopts_8h_a2117977538fc37cd5f66997e2cfc89bf}} 
+\index{glbopts.h@{glbopts.h}!WARM\_START@{WARM\_START}}
+\index{WARM\_START@{WARM\_START}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{WARM\_START}{WARM\_START}}
+{\footnotesize\ttfamily \#define WARM\+\_\+\+START~(0)}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00050}{50}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}\label{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}} 
+\index{glbopts.h@{glbopts.h}!abip\_float@{abip\_float}}
+\index{abip\_float@{abip\_float}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_float}{abip\_float}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\+\_\+float}}}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00118}{118}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+
+\mbox{\Hypertarget{glbopts_8h_aace05daf91e2aee26c134253e4053350}\label{glbopts_8h_aace05daf91e2aee26c134253e4053350}} 
+\index{glbopts.h@{glbopts.h}!abip\_int@{abip\_int}}
+\index{abip\_int@{abip\_int}!glbopts.h@{glbopts.h}}
+\doxysubsubsection{\texorpdfstring{abip\_int}{abip\_int}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{glbopts_8h_aace05daf91e2aee26c134253e4053350}{abip\+\_\+int}}}
+
+
+
+Definition at line \mbox{\hyperlink{glbopts_8h_source_l00113}{113}} of file \mbox{\hyperlink{glbopts_8h_source}{glbopts.\+h}}.
+

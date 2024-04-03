@@ -1,0 +1,15 @@
+\hypertarget{cs__ipvec_8c_source}{}\doxysection{cs\+\_\+ipvec.\+c}
+\label{cs__ipvec_8c_source}\index{csparse/Source/cs\_ipvec.c@{csparse/Source/cs\_ipvec.c}}
+\mbox{\hyperlink{cs__ipvec_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00002}00002 \textcolor{comment}{/* x(p) = b, for dense vectors x and b; p=NULL denotes identity */}}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00003}\mbox{\hyperlink{cs_8h_a0938ec08825dc07a2dab8f9477ab053b}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__ipvec_8c_a0938ec08825dc07a2dab8f9477ab053b}{cs\_ipvec}} (\textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *p, \textcolor{keyword}{const} \textcolor{keywordtype}{double} *b, \textcolor{keywordtype}{double} *x, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n)}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} k ;}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00006}00006     \textcolor{keywordflow}{if} (!x || !b) \textcolor{keywordflow}{return} (0) ;                              \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00007}00007     \textcolor{keywordflow}{for} (k = 0 ; k < n ; k++) x [p ? p [k] : k] = b [k] ;}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00008}00008     \textcolor{keywordflow}{return} (1) ;}
+\DoxyCodeLine{\Hypertarget{cs__ipvec_8c_source_l00009}00009 \}}
+
+\end{DoxyCode}

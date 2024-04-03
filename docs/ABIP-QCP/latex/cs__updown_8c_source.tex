@@ -1,0 +1,43 @@
+\hypertarget{cs__updown_8c_source}{}\doxysection{cs\+\_\+updown.\+c}
+\label{cs__updown_8c_source}\index{csparse/Source/cs\_updown.c@{csparse/Source/cs\_updown.c}}
+\mbox{\hyperlink{cs__updown_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{cs_8h}{cs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00002}00002 \textcolor{comment}{/* sparse Cholesky update/downdate, L*L' + sigma*w*w' (sigma = +1 or -\/1) */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00003}\mbox{\hyperlink{cs_8h_a2bb008386ca2830501510aaa9a604976}{00003}} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} \mbox{\hyperlink{cs__updown_8c_a2bb008386ca2830501510aaa9a604976}{cs\_updown}} (\mbox{\hyperlink{structcs__sparse}{cs}} *L, \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} sigma, \textcolor{keyword}{const} \mbox{\hyperlink{structcs__sparse}{cs}} *C, \textcolor{keyword}{const} \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} *parent)}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00004}00004 \{}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00005}00005     \mbox{\hyperlink{cs_8h_a95c7aeda659645c4dbdb55da86fddcc0}{csi}} n, p, f, j, *Lp, *Li, *Cp, *Ci ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00006}00006     \textcolor{keywordtype}{double} *Lx, *Cx, alpha, beta = 1, delta, gamma, w1, w2, *w, beta2 = 1 ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00007}00007     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (L) || !\mbox{\hyperlink{cs_8h_a11fc95c9740a561d409f89b987d8072f}{CS\_CSC}} (C) || !parent) \textcolor{keywordflow}{return} (0) ;  \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00008}00008     Lp = L-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Li = L-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Lx = L-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ; n = L-\/>\mbox{\hyperlink{structcs__sparse_ad9d0192b240c4ea51984ad0d09f56a02}{n}} ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00009}00009     Cp = C-\/>\mbox{\hyperlink{structcs__sparse_a645e83714f71e7ab788ee75c6fc46dac}{p}} ; Ci = C-\/>\mbox{\hyperlink{structcs__sparse_a95cad038b1ec034f444ab517822040b1}{i}} ; Cx = C-\/>\mbox{\hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}} ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00010}00010     \textcolor{keywordflow}{if} ((p = Cp [0]) >= Cp [1]) \textcolor{keywordflow}{return} (1) ;        \textcolor{comment}{/* return if C empty */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00011}00011     w = \mbox{\hyperlink{cs_8h_aeaf304feeab73b22eed3e64c0371884b}{cs\_malloc}} (n, \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double})) ;            \textcolor{comment}{/* get workspace */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00012}00012     \textcolor{keywordflow}{if} (!w) \textcolor{keywordflow}{return} (0) ;                            \textcolor{comment}{/* out of memory */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00013}00013     f = Ci [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00014}00014     \textcolor{keywordflow}{for} ( ; p < Cp [1] ; p++) f = \mbox{\hyperlink{cs_8h_a2635aa5c35f05bb0e4c88be5aabae949}{CS\_MIN}} (f, Ci [p]) ;  \textcolor{comment}{/* f = min (find (C)) */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00015}00015     \textcolor{keywordflow}{for} (j = f ; j != -\/1 ; j = parent [j]) w [j] = 0 ;  \textcolor{comment}{/* clear workspace w */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00016}00016     \textcolor{keywordflow}{for} (p = Cp [0] ; p < Cp [1] ; p++) w [Ci [p]] = Cx [p] ; \textcolor{comment}{/* w = C */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00017}00017     \textcolor{keywordflow}{for} (j = f ; j != -\/1 ; j = parent [j])          \textcolor{comment}{/* walk path f up to root */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00018}00018     \{}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00019}00019         p = Lp [j] ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00020}00020         alpha = w [j] / Lx [p] ;                    \textcolor{comment}{/* alpha = w(j) / L(j,j) */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00021}00021         beta2 = beta*beta + sigma*alpha*alpha ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00022}00022         \textcolor{keywordflow}{if} (beta2 <= 0) break ;                     \textcolor{comment}{/* not positive definite */}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00023}00023         beta2 = sqrt (beta2) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00024}00024         delta = (sigma > 0) ? (beta / beta2) : (beta2 / beta) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00025}00025         gamma = sigma * alpha / (beta2 * beta) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00026}00026         Lx [p] = delta * Lx [p] + ((sigma > 0) ? (gamma * w [j]) : 0) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00027}00027         beta = beta2 ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00028}00028         \textcolor{keywordflow}{for} (p++ ; p < Lp [j+1] ; p++)}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00029}00029         \{}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00030}00030             w1 = w [Li [p]] ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00031}00031             w [Li [p]] = w2 = w1 -\/ alpha * Lx [p] ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00032}00032             Lx [p] = delta * Lx [p] + gamma * ((sigma > 0) ? w1 : w2) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00033}00033         \}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00034}00034     \}}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00035}00035     \mbox{\hyperlink{cs_8h_adfe5c16cc6d8a8b545b35940a0702be1}{cs\_free}} (w) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00036}00036     \textcolor{keywordflow}{return} (beta2 > 0) ;}
+\DoxyCodeLine{\Hypertarget{cs__updown_8c_source_l00037}00037 \}}
+
+\end{DoxyCode}

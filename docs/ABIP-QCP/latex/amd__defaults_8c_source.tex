@@ -1,0 +1,43 @@
+\hypertarget{amd__defaults_8c_source}{}\doxysection{amd\+\_\+defaults.\+c}
+\label{amd__defaults_8c_source}\index{amd/amd\_defaults.c@{amd/amd\_defaults.c}}
+\mbox{\hyperlink{amd__defaults_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00001}00001 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00002}00002 \textcolor{comment}{/* === AMD\_defaults ======================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00003}00003 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00005}00005 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00006}00006 \textcolor{comment}{/* AMD, Copyright (c) Timothy A. Davis,                      */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00007}00007 \textcolor{comment}{/* Patrick R. Amestoy, and Iain S. Duff.  See ../README.txt for License.     */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00008}00008 \textcolor{comment}{/* email: DrTimothyAldenDavis@gmail.com                                      */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00009}00009 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00011}00011 \textcolor{comment}{/* User-\/callable.  Sets default control parameters for AMD.  See amd.h}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00012}00012 \textcolor{comment}{ * for details.}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00013}00013 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{amd__internal_8h}{amd\_internal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00017}00017 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00018}00018 \textcolor{comment}{/* === AMD defaults ======================================================== */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00019}00019 \textcolor{comment}{/* ========================================================================= */}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00021}\mbox{\hyperlink{amd__defaults_8c_a3100b5c45b14d10e2ba85814f9f8e200}{00021}} \mbox{\hyperlink{amd__internal_8h_a3de33738fd3c7e77bffbcfaefc3e7645}{GLOBAL}} \textcolor{keywordtype}{void} \mbox{\hyperlink{amd__internal_8h_ab95de05cfb0c5289b12c9680a38d2bd4}{AMD\_defaults}}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00022}00022 (}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00023}00023         \mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} Control [ ]}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00024}00024 )}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00025}00025 \{}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00026}00026         \mbox{\hyperlink{amd__internal_8h_a91adff1610bdf681555a8f2e330dc963}{Int}} \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}};}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00028}00028         \textcolor{keywordflow}{if} (Control != (\mbox{\hyperlink{glbopts_8h_a821030b4c0b76c8ea69c6193548d126b}{abip\_float}} *) \mbox{\hyperlink{amd__global_8c_adae2a4e360bd77801ffccfc6288f97c5}{ABIP\_NULL}})}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00029}00029         \{}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00030}00030         \textcolor{keywordflow}{for} (\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} = 0 ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}} < \mbox{\hyperlink{amd_8h_affdc598f13446fa7f4dbd2e55aeeba36}{AMD\_CONTROL}} ; \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}++)}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00031}00031         \{}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00032}00032                 Control [\mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}] = 0 ;}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00033}00033         \}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00034}00034         Control [\mbox{\hyperlink{amd_8h_aa5d6b72c4e51b57087a55b99d5072792}{AMD\_DENSE}}] = \mbox{\hyperlink{amd_8h_a4ab439dcb1b2034b0cf7b92c5ad60e6d}{AMD\_DEFAULT\_DENSE}} ;}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00035}00035         Control [\mbox{\hyperlink{amd_8h_a51a25f4c648f8be90e5db00ff10f89c6}{AMD\_AGGRESSIVE}}] = \mbox{\hyperlink{amd_8h_a2da83d1a74137be92385ffd239e5e4df}{AMD\_DEFAULT\_AGGRESSIVE}} ;}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00036}00036         \}}
+\DoxyCodeLine{\Hypertarget{amd__defaults_8c_source_l00037}00037 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,612 @@
+\hypertarget{make__abip__qcp_8m}{}\doxysection{make\+\_\+abip\+\_\+qcp.\+m File Reference}
+\label{make__abip__qcp_8m}\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+else \mbox{\hyperlink{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}{error}} (\textquotesingle{}Unsupported platform.\textbackslash{}n\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ad75df51eb935e4bca1128c4abd8967e2}{if}} (\mbox{\hyperlink{make__abip__qcp_8m_a0514aabed091ee5e2f35766eb01eced6}{debug}}==0) \mbox{\hyperlink{make__abip__qcp_8m_ad7e4c5d176737ba67cc9ddb7823dbea1}{debugcommand}}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_aa28651e1558d237a3b186ceb7e6539f7}{fprintf}} (\char`\"{}\%s\textbackslash{}n\char`\"{}, \mbox{\hyperlink{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}{mexcommand}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ae0713c10bdc8fef7c0bdb1fbc3739ef0}{eval}} (replace(\mbox{\hyperlink{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}{mexcommand}}, \char`\"{}Program Files (x86)\char`\"{}, \char`\"{}\textquotesingle{}Program Files (x86)\textquotesingle{}\char`\"{}))
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a1adbeab494a00a93c231e3acd514bd38}{addpath}} (\mbox{\hyperlink{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}{pmex}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a64f85e80d95a06c7eb36a084706744d8}{if}} (\mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}}==\char`\"{}ml\char`\"{}) \mbox{\hyperlink{make__abip__qcp_8m_aa28651e1558d237a3b186ceb7e6539f7}{fprintf}}(\char`\"{}Successfull compiled mex function abip\+\_\+ml\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a3b087ebfdab10dec2da25b7585272ce8}{fprintf}} (\char`\"{}Usage\+:\mbox{[}sol,info\mbox{]} = abip\+\_\+ml(data,settings)\textbackslash{}n \char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_afa1e2adf92257d4505bc882dd72cfd5c}{fprintf}} (\char`\"{}data struct contais X,y,lambda\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a538b5932207087874885d9e335496feb}{fprintf}} (\char`\"{}data struct contais A,Q,c,rl,ru,lb,ub and L(optional)\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a8836a2dd48399dabd6f8b855f10ebf4c}{fprintf}} (\char`\"{}data struct contais A,b,c\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_aec1d9d08333646e76a41172f8acaac95}{fprintf}} (\char`\"{}data struct contais A,Q,b,c\textbackslash{}n\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}} = \textquotesingle{}\mbox{\hyperlink{structqcp}{qcp}}\textquotesingle{}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a0514aabed091ee5e2f35766eb01eced6}{debug}} = 0
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a59a23dc8a9b01eed45075cf81601f40b}{platform}} = convert\+Chars\+To\+Strings(computer(\textquotesingle{}arch\textquotesingle{}))
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_acd3424c52c115fc00144c6679816c819}{link}} = \textquotesingle{} \textquotesingle{}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ab0f228205403831f8950de8bbddc2aeb}{MKLROOT}} = getenv(\textquotesingle{}MKLROOT\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ab465395a321ed71eb6bdc5300e468de1}{mkl\+\_\+lib\+\_\+path}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_ab0f228205403831f8950de8bbddc2aeb}{MKLROOT}}, \textquotesingle{}lib\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} = join(\mbox{[}\textquotesingle{}-\/L\textquotesingle{}, \mbox{\hyperlink{make__abip__qcp_8m_ab465395a321ed71eb6bdc5300e468de1}{mkl\+\_\+lib\+\_\+path}}\mbox{]})
+\item 
+If use \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}}
+\item 
+If use we suggest you set the environmental variables by \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh \mbox{\hyperlink{make__abip__qcp_8m_af0c019493ffd73b2804c0a82e0284905}{alternatively}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your \mbox{\hyperlink{make__abip__qcp_8m_a5a10d557154569995a38500644890827}{self}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For \mbox{\hyperlink{make__abip__qcp_8m_ad25a423421b65a265c07429f960a1b8f}{example}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in \mbox{\hyperlink{make__abip__qcp_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}{linux}}
+\item 
+If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib \mbox{\hyperlink{make__abip__qcp_8m_a457fad4fc634bc3412b163d82eab6663}{intel64}}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_ab8ccc09e77c7f22bf12b90214e38e072}{mexfname}} = \char`\"{}abip\+\_\+\char`\"{} + \mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}{psrc}} = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}source\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}{pmex}} = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}mex\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_af75062a31025243b46508faaad2d3000}{mex\+\_\+file}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}{pmex}}, \mbox{[}\textquotesingle{}abip\+\_\+\textquotesingle{} \mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}} \textquotesingle{}\+\_\+mex.\+c\textquotesingle{}\mbox{]})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a167b423763590466a917e3d2e964fd4c}{src\+\_\+files}} = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}{psrc}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}{srclist}} = \mbox{[}$\,$\mbox{]}
+\item 
+for \mbox{\hyperlink{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}{i}}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}{psrc}}, \mbox{\hyperlink{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}{srclist}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}{pcs}} = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}csparse\textquotesingle{}, \textquotesingle{}Source\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ae58becb3af01c96c983e1993ee45fe75}{cs\+\_\+files}} = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}{pcs}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a09443155559a95783392d6cbd7165b35}{cslist}} = \mbox{[}$\,$\mbox{]}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_ad84bb50a5d4326b4f568abe7491b5b90}{cs}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}{pcs}}, \mbox{\hyperlink{make__abip__qcp_8m_a09443155559a95783392d6cbd7165b35}{cslist}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}{pldl}} = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}qdldl\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a3129127996706ffd4bfb637354a9d7c6}{ldl\+\_\+files}} = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}{pldl}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_abdf7d8bde4537941cd837163872e1254}{ldllist}} = \mbox{[}$\,$\mbox{]}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_aba521ee2578ebac33dbc6b9c91e28cf2}{ldl}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}{pldl}}, \mbox{\hyperlink{make__abip__qcp_8m_abdf7d8bde4537941cd837163872e1254}{ldllist}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}{pamd}} = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{make__abip__qcp_8m_a952abcd3372425a5b72bfd594ea94f7d}{amd}}\textquotesingle{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a8f7f94b77930741f0b407da3e6ea7465}{amd\+\_\+files}} = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}{pamd}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a4cdb4f35f5ca58f7a1b7e3864143eeff}{amdlist}} = \mbox{[}$\,$\mbox{]}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_a952abcd3372425a5b72bfd594ea94f7d}{amd}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}{pamd}}, \mbox{\hyperlink{make__abip__qcp_8m_a4cdb4f35f5ca58f7a1b7e3864143eeff}{amdlist}})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a49a0a76799d617ea26110dd3e9517d0d}{pinc}} = \char`\"{}include\char`\"{}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a11c42d8d1b8ae90768af98b06aaab0b6}{cs\+\_\+include}} = fullfile(\char`\"{}csparse\char`\"{}, \char`\"{}Include\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a7b7932de24fe2363f33e178ee6359a1b}{ldl\+\_\+include}} = fullfile(\char`\"{}qdldl\char`\"{}, \char`\"{}include\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a049e636487224e8351c4753d2c326762}{mkl\+\_\+include}} = fullfile(mkl\+\_\+path, \char`\"{}include\char`\"{})
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_a93f48e86acfb35a50a8799854a7a8c5b}{amd\+\_\+include}} = \char`\"{}amd\char`\"{}
+\item 
+\mbox{\hyperlink{make__abip__qcp_8m_ae3c3880b330addfd80a3cdc927f4dd54}{inc}} = \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a49a0a76799d617ea26110dd3e9517d0d}{pinc}},\mbox{\hyperlink{make__abip__qcp_8m_a049e636487224e8351c4753d2c326762}{mkl\+\_\+include}},\mbox{\hyperlink{make__abip__qcp_8m_a11c42d8d1b8ae90768af98b06aaab0b6}{cs\+\_\+include}},\mbox{\hyperlink{make__abip__qcp_8m_a7b7932de24fe2363f33e178ee6359a1b}{ldl\+\_\+include}}, \mbox{\hyperlink{make__abip__qcp_8m_a93f48e86acfb35a50a8799854a7a8c5b}{amd\+\_\+include}}\mbox{]}
+\item 
+else \mbox{\hyperlink{make__abip__qcp_8m_ad7e4c5d176737ba67cc9ddb7823dbea1}{debugcommand}} = \char`\"{}-\/g \char`\"{}
+\item 
+end \mbox{\hyperlink{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}{mexcommand}} = \char`\"{}mex \char`\"{} + debugcommand + \char`\"{} -\/output \char`\"{} + join(\mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_ab8ccc09e77c7f22bf12b90214e38e072}{mexfname}}, \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}}, \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}, \mbox{\hyperlink{make__abip__qcp_8m_ae3c3880b330addfd80a3cdc927f4dd54}{inc}}, \mbox{\hyperlink{make__abip__qcp_8m_acd3424c52c115fc00144c6679816c819}{link}}\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{make__abip__qcp_8m_a1adbeab494a00a93c231e3acd514bd38}\label{make__abip__qcp_8m_a1adbeab494a00a93c231e3acd514bd38}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!addpath@{addpath}}
+\index{addpath@{addpath}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{addpath()}{addpath()}}
+{\footnotesize\ttfamily addpath (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}{pmex}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}\label{make__abip__qcp_8m_a59e6fcf4ac0ba01e8756f45e29613e88}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!error@{error}}
+\index{error@{error}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily else error (\begin{DoxyParamCaption}\item[{\textquotesingle{}Unsupported platform.\textbackslash{}n\textquotesingle{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ae0713c10bdc8fef7c0bdb1fbc3739ef0}\label{make__abip__qcp_8m_ae0713c10bdc8fef7c0bdb1fbc3739ef0}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!eval@{eval}}
+\index{eval@{eval}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily eval (\begin{DoxyParamCaption}\item[{replace(\mbox{\hyperlink{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}{mexcommand}}, \char`\"{}Program Files (x86)\char`\"{}, \char`\"{}\textquotesingle{}Program Files (x86)\textquotesingle{}\char`\"{})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_aa28651e1558d237a3b186ceb7e6539f7}\label{make__abip__qcp_8m_aa28651e1558d237a3b186ceb7e6539f7}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}\%s\textbackslash{}n\char`\"{}}]{,  }\item[{\mbox{\hyperlink{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}{mexcommand}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a8836a2dd48399dabd6f8b855f10ebf4c}\label{make__abip__qcp_8m_a8836a2dd48399dabd6f8b855f10ebf4c}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}data struct contais}]{A,  }\item[{b}]{,  }\item[{c\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_aec1d9d08333646e76a41172f8acaac95}\label{make__abip__qcp_8m_aec1d9d08333646e76a41172f8acaac95}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}data struct contais}]{A,  }\item[{Q}]{,  }\item[{b}]{,  }\item[{c\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a538b5932207087874885d9e335496feb}\label{make__abip__qcp_8m_a538b5932207087874885d9e335496feb}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}data struct contais}]{A,  }\item[{Q}]{,  }\item[{c}]{,  }\item[{rl}]{,  }\item[{ru}]{,  }\item[{lb}]{,  }\item[{ub and L(optional)\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_afa1e2adf92257d4505bc882dd72cfd5c}\label{make__abip__qcp_8m_afa1e2adf92257d4505bc882dd72cfd5c}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}\item[{\char`\"{}data struct contais}]{X,  }\item[{y}]{,  }\item[{lambda\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a3b087ebfdab10dec2da25b7585272ce8}\label{make__abip__qcp_8m_a3b087ebfdab10dec2da25b7585272ce8}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{fprintf()}{fprintf()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily fprintf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ad75df51eb935e4bca1128c4abd8967e2}\label{make__abip__qcp_8m_ad75df51eb935e4bca1128c4abd8967e2}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!if@{if}}
+\index{if@{if}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip__qcp_8m_a0514aabed091ee5e2f35766eb01eced6}{debug}}}]{ = {\ttfamily =0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a64f85e80d95a06c7eb36a084706744d8}\label{make__abip__qcp_8m_a64f85e80d95a06c7eb36a084706744d8}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!if@{if}}
+\index{if@{if}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily end if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}}}]{ = {\ttfamily =\char`\"{}ml\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{make__abip__qcp_8m_af0c019493ffd73b2804c0a82e0284905}\label{make__abip__qcp_8m_af0c019493ffd73b2804c0a82e0284905}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!alternatively@{alternatively}}
+\index{alternatively@{alternatively}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{alternatively}{alternatively}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh alternatively}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00012}{12}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a952abcd3372425a5b72bfd594ea94f7d}\label{make__abip__qcp_8m_a952abcd3372425a5b72bfd594ea94f7d}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!amd@{amd}}
+\index{amd@{amd}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{amd}{amd}}
+{\footnotesize\ttfamily end amd = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}{pamd}}, \mbox{\hyperlink{make__abip__qcp_8m_a4cdb4f35f5ca58f7a1b7e3864143eeff}{amdlist}})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00072}{72}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a8f7f94b77930741f0b407da3e6ea7465}\label{make__abip__qcp_8m_a8f7f94b77930741f0b407da3e6ea7465}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!amd\_files@{amd\_files}}
+\index{amd\_files@{amd\_files}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{amd\_files}{amd\_files}}
+{\footnotesize\ttfamily amd\+\_\+files = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}{pamd}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00067}{67}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a93f48e86acfb35a50a8799854a7a8c5b}\label{make__abip__qcp_8m_a93f48e86acfb35a50a8799854a7a8c5b}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!amd\_include@{amd\_include}}
+\index{amd\_include@{amd\_include}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{amd\_include}{amd\_include}}
+{\footnotesize\ttfamily amd\+\_\+include = \char`\"{}amd\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00084}{84}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a4cdb4f35f5ca58f7a1b7e3864143eeff}\label{make__abip__qcp_8m_a4cdb4f35f5ca58f7a1b7e3864143eeff}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!amdlist@{amdlist}}
+\index{amdlist@{amdlist}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{amdlist}{amdlist}}
+{\footnotesize\ttfamily amdlist = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00068}{68}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ad84bb50a5d4326b4f568abe7491b5b90}\label{make__abip__qcp_8m_ad84bb50a5d4326b4f568abe7491b5b90}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!cs@{cs}}
+\index{cs@{cs}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{cs}{cs}}
+{\footnotesize\ttfamily end \mbox{\hyperlink{cs_8h_ab684df486f6679bc11bc980c789c04a4}{cs}} = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}{pcs}}, \mbox{\hyperlink{make__abip__qcp_8m_a09443155559a95783392d6cbd7165b35}{cslist}})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00054}{54}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ae58becb3af01c96c983e1993ee45fe75}\label{make__abip__qcp_8m_ae58becb3af01c96c983e1993ee45fe75}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!cs\_files@{cs\_files}}
+\index{cs\_files@{cs\_files}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{cs\_files}{cs\_files}}
+{\footnotesize\ttfamily cs\+\_\+files = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}{pcs}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00049}{49}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a11c42d8d1b8ae90768af98b06aaab0b6}\label{make__abip__qcp_8m_a11c42d8d1b8ae90768af98b06aaab0b6}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!cs\_include@{cs\_include}}
+\index{cs\_include@{cs\_include}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{cs\_include}{cs\_include}}
+{\footnotesize\ttfamily cs\+\_\+include = fullfile(\char`\"{}csparse\char`\"{}, \char`\"{}Include\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00078}{78}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a09443155559a95783392d6cbd7165b35}\label{make__abip__qcp_8m_a09443155559a95783392d6cbd7165b35}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!cslist@{cslist}}
+\index{cslist@{cslist}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{cslist}{cslist}}
+{\footnotesize\ttfamily cslist = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00050}{50}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a0514aabed091ee5e2f35766eb01eced6}\label{make__abip__qcp_8m_a0514aabed091ee5e2f35766eb01eced6}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!debug@{debug}}
+\index{debug@{debug}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily debug = 0}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00002}{2}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ad7e4c5d176737ba67cc9ddb7823dbea1}\label{make__abip__qcp_8m_ad7e4c5d176737ba67cc9ddb7823dbea1}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!debugcommand@{debugcommand}}
+\index{debugcommand@{debugcommand}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{debugcommand}{debugcommand}}
+{\footnotesize\ttfamily else debugcommand = \char`\"{}-\/g \char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00092}{92}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ad25a423421b65a265c07429f960a1b8f}\label{make__abip__qcp_8m_ad25a423421b65a265c07429f960a1b8f}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!example@{example}}
+\index{example@{example}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{example}{example}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For example}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00013}{13}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}\label{make__abip__qcp_8m_a6f6ccfcf58b31cb6412107d9d5281426}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!i@{i}}
+\index{i@{i}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily for i}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= 1:length(\mbox{\hyperlink{make__abip__qcp_8m_a167b423763590466a917e3d2e964fd4c}{src\_files}})}
+\DoxyCodeLine{    \mbox{\hyperlink{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}{srclist}} = [srclist,convertCharsToStrings(src\_files(i).name)]}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00040}{40}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ae3c3880b330addfd80a3cdc927f4dd54}\label{make__abip__qcp_8m_ae3c3880b330addfd80a3cdc927f4dd54}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!inc@{inc}}
+\index{inc@{inc}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{inc}{inc}}
+{\footnotesize\ttfamily inc = \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a49a0a76799d617ea26110dd3e9517d0d}{pinc}},\mbox{\hyperlink{make__abip__qcp_8m_a049e636487224e8351c4753d2c326762}{mkl\+\_\+include}},\mbox{\hyperlink{make__abip__qcp_8m_a11c42d8d1b8ae90768af98b06aaab0b6}{cs\+\_\+include}},\mbox{\hyperlink{make__abip__qcp_8m_a7b7932de24fe2363f33e178ee6359a1b}{ldl\+\_\+include}}, \mbox{\hyperlink{make__abip__qcp_8m_a93f48e86acfb35a50a8799854a7a8c5b}{amd\+\_\+include}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00086}{86}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a457fad4fc634bc3412b163d82eab6663}\label{make__abip__qcp_8m_a457fad4fc634bc3412b163d82eab6663}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!intel64@{intel64}}
+\index{intel64@{intel64}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{intel64}{intel64}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in you may find it at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} mkl lib intel64}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00013}{13}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_aba521ee2578ebac33dbc6b9c91e28cf2}\label{make__abip__qcp_8m_aba521ee2578ebac33dbc6b9c91e28cf2}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!ldl@{ldl}}
+\index{ldl@{ldl}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{ldl}{ldl}}
+{\footnotesize\ttfamily end ldl = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}{pldl}}, \mbox{\hyperlink{make__abip__qcp_8m_abdf7d8bde4537941cd837163872e1254}{ldllist}})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00063}{63}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a3129127996706ffd4bfb637354a9d7c6}\label{make__abip__qcp_8m_a3129127996706ffd4bfb637354a9d7c6}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!ldl\_files@{ldl\_files}}
+\index{ldl\_files@{ldl\_files}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{ldl\_files}{ldl\_files}}
+{\footnotesize\ttfamily ldl\+\_\+files = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}{pldl}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00058}{58}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a7b7932de24fe2363f33e178ee6359a1b}\label{make__abip__qcp_8m_a7b7932de24fe2363f33e178ee6359a1b}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!ldl\_include@{ldl\_include}}
+\index{ldl\_include@{ldl\_include}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{ldl\_include}{ldl\_include}}
+{\footnotesize\ttfamily ldl\+\_\+include = fullfile(\char`\"{}qdldl\char`\"{}, \char`\"{}include\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00080}{80}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_abdf7d8bde4537941cd837163872e1254}\label{make__abip__qcp_8m_abdf7d8bde4537941cd837163872e1254}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!ldllist@{ldllist}}
+\index{ldllist@{ldllist}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{ldllist}{ldllist}}
+{\footnotesize\ttfamily ldllist = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00059}{59}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}\label{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!lib\_path@{lib\_path}}
+\index{lib\_path@{lib\_path}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{lib\_path}{lib\_path}}
+{\footnotesize\ttfamily lib\+\_\+path = join(\mbox{[}\textquotesingle{}-\/L\textquotesingle{}, \mbox{\hyperlink{make__abip__qcp_8m_ab465395a321ed71eb6bdc5300e468de1}{mkl\+\_\+lib\+\_\+path}}\mbox{]})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00008}{8}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_acd3424c52c115fc00144c6679816c819}\label{make__abip__qcp_8m_acd3424c52c115fc00144c6679816c819}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!link@{link}}
+\index{link@{link}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{link}{link}}
+{\footnotesize\ttfamily link = \textquotesingle{} \textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00005}{5}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}\label{make__abip__qcp_8m_aaba5ee4fd2d55f76c9d4a8e79f0597e7}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!linux@{linux}}
+\index{linux@{linux}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{linux}{linux}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your For in linux}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00013}{13}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_af75062a31025243b46508faaad2d3000}\label{make__abip__qcp_8m_af75062a31025243b46508faaad2d3000}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mex\_file@{mex\_file}}
+\index{mex\_file@{mex\_file}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mex\_file}{mex\_file}}
+{\footnotesize\ttfamily mex\+\_\+file = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}{pmex}}, \mbox{[}\textquotesingle{}abip\+\_\+\textquotesingle{} \mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}} \textquotesingle{}\+\_\+mex.\+c\textquotesingle{}\mbox{]})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00036}{36}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}\label{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mex\_type@{mex\_type}}
+\index{mex\_type@{mex\_type}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mex\_type}{mex\_type}}
+{\footnotesize\ttfamily mex\+\_\+type = \textquotesingle{}\mbox{\hyperlink{structqcp}{qcp}}\textquotesingle{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00001}{1}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}\label{make__abip__qcp_8m_a42d1a24c9cda6e3eb06678f96a2a3f38}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mexcommand@{mexcommand}}
+\index{mexcommand@{mexcommand}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mexcommand}{mexcommand}}
+{\footnotesize\ttfamily end mexcommand = \char`\"{}mex \char`\"{} + debugcommand + \char`\"{} -\/output \char`\"{} + join(\mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_ab8ccc09e77c7f22bf12b90214e38e072}{mexfname}}, \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}}, \mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}, \mbox{\hyperlink{make__abip__qcp_8m_ae3c3880b330addfd80a3cdc927f4dd54}{inc}}, \mbox{\hyperlink{make__abip__qcp_8m_acd3424c52c115fc00144c6679816c819}{link}}\mbox{]})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00094}{94}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ab8ccc09e77c7f22bf12b90214e38e072}\label{make__abip__qcp_8m_ab8ccc09e77c7f22bf12b90214e38e072}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mexfname@{mexfname}}
+\index{mexfname@{mexfname}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mexfname}{mexfname}}
+{\footnotesize\ttfamily end mexfname = \char`\"{}abip\+\_\+\char`\"{} + \mbox{\hyperlink{make__abip__qcp_8m_a0eab3c29dbfaa1654c2410e0674bd5fc}{mex\+\_\+type}}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00031}{31}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}\label{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!MKL@{MKL}}
+\index{MKL@{MKL}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{MKL}{MKL}}
+{\footnotesize\ttfamily If use MKL}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00010}{10}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a049e636487224e8351c4753d2c326762}\label{make__abip__qcp_8m_a049e636487224e8351c4753d2c326762}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mkl\_include@{mkl\_include}}
+\index{mkl\_include@{mkl\_include}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mkl\_include}{mkl\_include}}
+{\footnotesize\ttfamily mkl\+\_\+include = fullfile(mkl\+\_\+path, \char`\"{}include\char`\"{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00082}{82}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ab465395a321ed71eb6bdc5300e468de1}\label{make__abip__qcp_8m_ab465395a321ed71eb6bdc5300e468de1}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!mkl\_lib\_path@{mkl\_lib\_path}}
+\index{mkl\_lib\_path@{mkl\_lib\_path}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{mkl\_lib\_path}{mkl\_lib\_path}}
+{\footnotesize\ttfamily mkl\+\_\+lib\+\_\+path = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_ab0f228205403831f8950de8bbddc2aeb}{MKLROOT}}, \textquotesingle{}lib\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00007}{7}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ab0f228205403831f8950de8bbddc2aeb}\label{make__abip__qcp_8m_ab0f228205403831f8950de8bbddc2aeb}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!MKLROOT@{MKLROOT}}
+\index{MKLROOT@{MKLROOT}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{MKLROOT}{MKLROOT}}
+{\footnotesize\ttfamily MKLROOT = getenv(\textquotesingle{}MKLROOT\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00006}{6}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}\label{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!oneapi@{oneapi}}
+\index{oneapi@{oneapi}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{oneapi}{oneapi}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by oneapi}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00010}{10}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}\label{make__abip__qcp_8m_ad46ef37ef970a23a2cd3538fb2591491}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!pamd@{pamd}}
+\index{pamd@{pamd}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{pamd}{pamd}}
+{\footnotesize\ttfamily pamd = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{make__abip__qcp_8m_a952abcd3372425a5b72bfd594ea94f7d}{amd}}\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00065}{65}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}\label{make__abip__qcp_8m_a955823537ef7f7343069ab324921f229}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!pcs@{pcs}}
+\index{pcs@{pcs}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{pcs}{pcs}}
+{\footnotesize\ttfamily pcs = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}csparse\textquotesingle{}, \textquotesingle{}Source\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00047}{47}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a49a0a76799d617ea26110dd3e9517d0d}\label{make__abip__qcp_8m_a49a0a76799d617ea26110dd3e9517d0d}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!pinc@{pinc}}
+\index{pinc@{pinc}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{pinc}{pinc}}
+{\footnotesize\ttfamily pinc = \char`\"{}include\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00076}{76}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a59a23dc8a9b01eed45075cf81601f40b}\label{make__abip__qcp_8m_a59a23dc8a9b01eed45075cf81601f40b}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!platform@{platform}}
+\index{platform@{platform}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{platform}{platform}}
+{\footnotesize\ttfamily elseif platform = convert\+Chars\+To\+Strings(computer(\textquotesingle{}arch\textquotesingle{}))}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00004}{4}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}\label{make__abip__qcp_8m_a393317836412b6dde7a04517cbce1625}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!pldl@{pldl}}
+\index{pldl@{pldl}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{pldl}{pldl}}
+{\footnotesize\ttfamily pldl = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}qdldl\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}{src}}\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00056}{56}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}\label{make__abip__qcp_8m_aa00c95b0c1205cb6231955e8851334ee}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!pmex@{pmex}}
+\index{pmex@{pmex}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{pmex}{pmex}}
+{\footnotesize\ttfamily pmex = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}mex\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00034}{34}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}\label{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!psrc@{psrc}}
+\index{psrc@{psrc}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{psrc}{psrc}}
+{\footnotesize\ttfamily psrc = fullfile(\textquotesingle{}.\textquotesingle{}, \textquotesingle{}source\textquotesingle{})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00032}{32}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a5a10d557154569995a38500644890827}\label{make__abip__qcp_8m_a5a10d557154569995a38500644890827}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!self@{self}}
+\index{self@{self}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{self}{self}}
+{\footnotesize\ttfamily If use we suggest you set the environmental variables by it is typically placed at opt intel \mbox{\hyperlink{make__abip__qcp_8m_a6776bf3054c05d1fc2e9ac7e6afa9d4b}{oneapi}} setvars sh you can set the \mbox{\hyperlink{make__abip__qcp_8m_af45525c788eb569082a0f644778bc4a8}{lib\+\_\+path}} to your \mbox{\hyperlink{make__abip__qcp_8m_a04949beba84344c1fdd15af198cef829}{MKL}} path by your self}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00012}{12}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}\label{make__abip__qcp_8m_a0e9117de7e6a340559202f88a1dbd9c6}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!src@{src}}
+\index{src@{src}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{src}{src}}
+{\footnotesize\ttfamily src = fullfile(\mbox{\hyperlink{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}{psrc}}, \mbox{\hyperlink{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}{srclist}})}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00045}{45}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a167b423763590466a917e3d2e964fd4c}\label{make__abip__qcp_8m_a167b423763590466a917e3d2e964fd4c}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!src\_files@{src\_files}}
+\index{src\_files@{src\_files}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{src\_files}{src\_files}}
+{\footnotesize\ttfamily src\+\_\+files = dir( \mbox{[}\mbox{\hyperlink{make__abip__qcp_8m_a5a264769a9d9960f8262a7c34b2bd4bd}{psrc}} \textquotesingle{}/$\ast$.c\textquotesingle{}\mbox{]} )}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00037}{37}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
+\mbox{\Hypertarget{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}\label{make__abip__qcp_8m_a6043add48ca180f2529d285dc460aea5}} 
+\index{make\_abip\_qcp.m@{make\_abip\_qcp.m}!srclist@{srclist}}
+\index{srclist@{srclist}!make\_abip\_qcp.m@{make\_abip\_qcp.m}}
+\doxysubsubsection{\texorpdfstring{srclist}{srclist}}
+{\footnotesize\ttfamily srclist = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{make__abip__qcp_8m_source_l00038}{38}} of file \mbox{\hyperlink{make__abip__qcp_8m_source}{make\+\_\+abip\+\_\+qcp.\+m}}.
+
